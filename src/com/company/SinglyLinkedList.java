@@ -16,6 +16,19 @@ public class SinglyLinkedList {
             if(n.next == null) return n;
         return null;
     }
+    public boolean isEmpty() {
+        return head == null;
+    }
+    public int getSize() {
+        int result = 0;
+        for(Node n = head; n != null; n=n.next)
+            result++;
+        return result;
+    }
+    public int getHead() {
+//        Node tail = getTailNode();
+        return head.info;
+    }
     public int getTail() {
 //        Node tail = getTailNode();
         return tail.info;
