@@ -1,10 +1,10 @@
 package com.company;
 
-public class SinglyLinkedList {
+public class SinglyLinkedList<E> {
     private class Node {
-        public int info;
+        public E info;
         public Node next;
-        public Node(int info, Node n) {
+        public Node(E info, Node n) {
             this.info = info;
             this.next = n;
         }
@@ -25,11 +25,11 @@ public class SinglyLinkedList {
             result++;
         return result;
     }
-    public int getHead() {
+    public E getHead() {
 //        Node tail = getTailNode();
         return head.info;
     }
-    public int getTail() {
+    public E getTail() {
 //        Node tail = getTailNode();
         return tail.info;
     }
@@ -37,28 +37,38 @@ public class SinglyLinkedList {
         head = null;
         tail = null;
     }
-    public void addFirst(int info) {
+    public void addFirst(E info) {
         Node new_node = new Node(info, head);
         head = new_node;
         tail = head.next != null ? tail : head;
     }
-    public void addLast(int info) {
+    public void addLast(E info) {
         //Node tail = getTailNode();
         Node new_node = new Node(info, null);
-        tail.next = new_node;
+        if(tail == null) {
+            tail = new_node;
+            head = new_node;
+        } else {
+            tail.next = new_node;
+            tail = new_node;
+        }
+
+
     }
-    public int removeFirst() {
+    public E removeFirst() {
         if(head != null) {
-            int value = head.info;
+            E value = head.info;
             head = head.next;
             tail = head != null ? tail : null;
             return value;
         }
-        return Integer.MIN_VALUE;
+        return null;
     }
-    public void print() {
+    public String toString() {
+        String result = "";
         for(Node n = head; n != null; n=n.next)
-            System.out.print(n.info + " ");
-        System.out.print("\r\n");
+            result += n.info.toString() + " ";
+        result += "\n";
+        return result;
     }
 }

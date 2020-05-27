@@ -1,14 +1,14 @@
 package com.company;
 
-public class LinkedStack implements Stack {
-    private SinglyLinkedList list = new SinglyLinkedList();
+public class LinkedStack<E> implements Stack<E> {
+    private SinglyLinkedList<E> list = new SinglyLinkedList<E>();
     @Override
-    public void push(int info) {
+    public void push(E info) {
         list.addFirst(info);
     }
 
     @Override
-    public int pop() {
+    public E pop() {
         return list.removeFirst();
     }
 
@@ -18,7 +18,7 @@ public class LinkedStack implements Stack {
     }
 
     @Override
-    public int top() {
+    public E top() {
         return list.getHead();
     }
 
@@ -29,6 +29,6 @@ public class LinkedStack implements Stack {
 
     @Override
     public void print() {
-        list.print();;
+        //list.print();
     }
 }
