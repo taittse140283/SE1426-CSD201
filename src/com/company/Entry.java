@@ -2,24 +2,30 @@ package com.company;
 
 public class Entry {
     private int _rank;
-    private String _job;
-    public Entry(int rank, String job) {
-        _rank = rank;
-        _job = job;
+    private String _info;
+
+    public Entry(int rank, String info) {
+        this._rank = rank;
+        this._info = info;
     }
-    public int getRank() {
+
+    public void set_info(String info) {
+        this._info = info;
+    }
+
+    public void set_rank(int rank) {
+        this._rank = rank;
+    }
+
+    public String get_info() {
+        return _info;
+    }
+
+    public int get_rank() {
         return _rank;
     }
-    public String getJob() {
-        return _job;
-    }
-    public void setRank(int rank) {
-        _rank = rank;
-    }
-    public void setJob(String job) {
-        _job = job;
-    }
+
     public String toString() {
-        return "(" + _rank + ", " + _job + ")";
+        return "(" + _rank + ", " + _info + ")";
     }
 }
