@@ -6,7 +6,7 @@
 
 /**
  *
- * @author tieuminh
+ * @author SE140293
  */
 public class Main {
 
@@ -16,6 +16,11 @@ public class Main {
     public static void main(String[] args) {
         System.out.print("Hello World");
         // TODO code application logic here
+        System.out.println("aa");
+        int i;
+        for (int j = 0; j < 10; j++) {
+            System.out.println("aaa");
+        }
     }
     
 }
