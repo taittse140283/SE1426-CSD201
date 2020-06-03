@@ -15,7 +15,8 @@ public class Main {
      */
     public static void main(String[] args) {
         System.out.print("Hello World");
-        System.out.println("hehe");
+        System.out.println("hehe boizzz");
+        System.out.println("minh ne");
         // TODO code application logic here
     }
     
