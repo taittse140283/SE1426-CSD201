@@ -20,6 +20,7 @@ public class Main {
         int i;
         for (int j = 0; j < 10; j++) {
             System.out.println("aaa");
+            System.out.println("test");
         }
     }
     
