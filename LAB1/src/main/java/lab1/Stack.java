@@ -16,6 +16,6 @@ public interface Stack {
     public void get(String email);
     public void getMax(String email);
     public void deleteMax(String email);
-    
+    public String toString();
     
 }
