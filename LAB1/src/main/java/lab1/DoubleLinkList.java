@@ -21,12 +21,18 @@ public class DoubleLinkList {
         }
     }
     private Node header;
-    private Node tail;
+    private Node tailer;
     
     public DoubleLinkList(){
         header= new Node(Integer.MIN_VALUE,null,null);
-        tail=new Node(Integer.MAX_VALUE,null,null);
-        header.next=tail;
+        tailer=new Node(Integer.MAX_VALUE,null,null);
+        header.next=tailer;
+    }
+    private void add(int point, Node infontof, Node back){
+        Node new_Node= new Node(point, infontof, back);
+        infontof.next=new_Node;
+        infontof.back=new_Node;
+        
     }
     
 }
