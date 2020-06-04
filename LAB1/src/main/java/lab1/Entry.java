@@ -37,6 +37,7 @@ public class Entry {
     }
     
     // Enter input information of player include email and point;
+    //no return
     public void input(){
         System.out.println("Please enter the email:");
         _email=sc.nextLine();
@@ -45,6 +46,7 @@ public class Entry {
         
     }
     //method to print the display
+    //return the value of information you entered
      public String toString(){
         return "(" +_email + "," +_point +")" ;
     }
