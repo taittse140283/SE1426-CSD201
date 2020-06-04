@@ -48,6 +48,13 @@ public class DoublyLinkedList {
         }
         return n;
     }
+    public double removeFirst(){
+        return remove(header.prev).point;
+    }
+    public double removeLast(){
+        return remove(trailer.prev).point;
+    }
+    
     
     
     
