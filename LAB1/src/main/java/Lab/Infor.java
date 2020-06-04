@@ -15,14 +15,16 @@ public class Infor {
     private String email;
     private int point;
 
-    public Infor() {
+    public Infor() { //khai bao constructor khong tham so
     }
 
-    public Infor(String email, int point) {
+    public Infor(String email, int point) { //khai bao constructor co tham so là email và point
         this.email = email;
         this.point = point;
     }
-
+    /**
+     * Create getter and setter to accces private variables
+     */
     public String getEmail() {
         return email;
     }
@@ -38,7 +40,11 @@ public class Infor {
     public void setPoint(int point) {
         this.point = point;
     }
-    
+    /**
+     * This is a method for user to input email and point
+     * There is no input data
+     * No data output
+     */
     public void input(){
         Scanner sc= new Scanner(System.in);
         System.out.println("Email:");
@@ -46,6 +52,11 @@ public class Infor {
         System.out.println("Point:");
         point= Integer.parseInt(sc.nextLine());
     }
+    /**
+     * This is a method to output the data
+     * No input data
+     * Return email and point of user
+     */
     public void output(){
         System.out.println("Emai:" + email + "|" + "Point:" + point);
     }
