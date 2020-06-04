@@ -33,6 +33,9 @@ public class DoublyLinkedList {
         back.prev=new_node;
         
     }
+    public void addFirst(double point){
+        insert(point,header,header.next);
+    }
     
     
     
