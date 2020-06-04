@@ -36,6 +36,18 @@ public class DoublyLinkedList {
     public void addFirst(double point){
         insert(point,header,header.next);
     }
+    public void addLast(double point){
+        insert(point,trailer.prev,trailer);
+    }
+    private Node remove(Node n){
+        if(n!=header && n!=trailer){
+            Node font=n.prev;
+            Node back=n.next;
+            font.next=back;
+            back.prev=font;
+        }
+        return n;
+    }
     
     
     
