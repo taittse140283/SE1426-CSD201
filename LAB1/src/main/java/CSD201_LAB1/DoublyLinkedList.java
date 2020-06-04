@@ -22,6 +22,17 @@ public class DoublyLinkedList {
     }
     private Node header;
     private Node trailer;
+    public DoublyLinkedList(){
+        header =new Node(Double.MIN_VALUE,null,null);
+        trailer=new Node(Double.MAX_VALUE,null,header);
+        header.next=trailer;
+    }
+    private void insert(double point, Node font,Node back){
+        Node new_node=new Node(point,back,font);
+        font.next=new_node;
+        back.prev=new_node;
+        
+    }
     
     
     
