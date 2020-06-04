@@ -54,7 +54,10 @@ public class DoublyLinkedList {
     public double removeLast(){
         return remove(trailer.prev).point;
     }
-    
+    public void print(){
+        for(Node n=header.next;n!=trailer;n=n.next)
+            System.out.println(n.point+"");
+    }
     
     
     
