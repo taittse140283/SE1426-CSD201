@@ -19,6 +19,17 @@ public class BSTree {
     void insert(int value) {
         root = insertNode(value, root);
     }
+    Node searchNode(int value, Node p) {
+        if(p == null) return null;
+        if(value > p.info) return searchNode(value, p.right);
+        else if(value < p.info) return searchNode(value, p.left);
+        return p;
+    }
+    void search(int value) {
+        Node p = searchNode(value, root);
+        if(p == null) System.out.print("Not Found\n");
+        else System.out.print("Found in Tree\n");
+    }
     Node insertNode(int value, Node p ) {
         if(p == null) return new Node(value);
         if(value > p.info)
@@ -46,7 +57,8 @@ public class BSTree {
         visit(p);
     }
     void print() {
-        postOrder(root);
+        inOrder(root);
+        System.out.print("\n");
     }
 }
 
