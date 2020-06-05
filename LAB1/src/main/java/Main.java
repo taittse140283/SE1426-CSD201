@@ -20,8 +20,8 @@ public class Main {
         Entry D = new Entry(7, "D");
         Entry E = new Entry(6, "E");
         Entry F = new Entry(1, "F");
-        Entry G = new Entry(8, "H");
-        Entry H = new Entry(1, "K");
+        Entry G = new Entry(8, "G");
+        Entry H = new Entry(1, "H");
         SortList sl = new SortList();
         sl.insert(A);
         sl.insert(B);
@@ -33,7 +33,7 @@ public class Main {
         sl.insert(H);
         sl.print();
         System.out.println("\n");
-        sl.remove("K");
+        sl.update("E");
         sl.print();
 
 //        DoubleLinkedList<Entry> dll = new DoubleLinkedList();
