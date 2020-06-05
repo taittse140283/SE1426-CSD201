@@ -3,8 +3,8 @@ package com.company;
 public class Main {
     public static void main(String[] args) {
         Entry A = new Entry(2, "A");
-        Entry B = new Entry(-1, "B");
-        Entry C = new Entry(-1, "C");
+        Entry B = new Entry(4, "B");
+        Entry C = new Entry(3, "C");
         Entry D = new Entry(1, "D");
         SortedPriorityQueue queue = new SortedPriorityQueue();
         queue.insert(A);

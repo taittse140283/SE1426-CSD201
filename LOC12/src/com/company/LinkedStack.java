@@ -13,18 +13,28 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     @Override
-    public int size() {
-        return list.getSize();
+    public E top() {
+        return null;
     }
 
-    @Override
-    public E top() {
-        return list.getHead();
-    }
+//    @Override
+//    public int size() {
+//        return list.getSize();
+//    }
+//
+//    @Override
+//    public E top() {
+//        return list.getHead();
+//    }
 
     @Override
     public boolean isEmpty() {
         return list.isEmpty();
+    }
+
+    @Override
+    public int size() {
+        return 0;
     }
 
     @Override
