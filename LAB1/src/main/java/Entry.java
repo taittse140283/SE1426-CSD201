@@ -1,5 +1,3 @@
-package hi;
-
 public class Entry {
     private int rank;
     private String info;
