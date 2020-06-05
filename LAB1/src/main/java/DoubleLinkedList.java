@@ -41,8 +41,8 @@ public class DoubleLinkedList<E> {
 
     //create a new empty list
     public DoubleLinkedList() {
-        header = new Node<E>(null, null, null);
-        trailer = new Node<E>(null, header, null);
+        header = new Node<>(null, null, null);
+        trailer = new Node<>(null, header, null);
         header.next = trailer;
     }
 
@@ -79,7 +79,7 @@ public class DoubleLinkedList<E> {
     }
 
     private E remove(Node<E> node) {
-        if(n != header && n != trailer) {
+        if(node != header && node != trailer) {
             Node<E> font = node.getPrev();
             Node<E> back = node.getNext();
             font.next = back;
@@ -98,11 +98,14 @@ public class DoubleLinkedList<E> {
         return remove(trailer.getPrev());
     }
 
-    public print(){
-        for (Node n = header.next; n != trailer; n=n.next){
+    public void print(){
+        Node<E> n ;
+        for (n = header.next; n != trailer; n=n.next){
             System.out.println(n.getE() + " ");
+            //System.out.println(n.getE() + " ");
+
         }
-        System.out.println("\n");
+        //System.out.println("\n");
     }
 }
 

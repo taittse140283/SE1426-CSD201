@@ -17,7 +17,6 @@ public class Main {
         System.out.print("Hello World");
         System.out.println("push");
         System.out.println("helekrekwlr");
-        // TODO code application logic here
     }
     
 }
