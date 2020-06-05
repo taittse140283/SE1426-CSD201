@@ -102,10 +102,8 @@ public class DoubleLinkedList<E> {
         Node<E> n ;
         for (n = header.next; n != trailer; n=n.next){
             System.out.println(n.getE() + " ");
-            //System.out.println(n.getE() + " ");
-
         }
-        //System.out.println("\n");
+        System.out.println("\n");
     }
 }
 
