@@ -28,10 +28,19 @@ public class DoublyLinkedList {
         return size==0;
     }
     /**
+     * Get information of header
+     * @return information of header
+     */
+    public Player getHeaderInfo()
+    {
+        return header.getInfo();
+    }
+    
+    /**
      * Insert new node into list at first position
      * @param info 
      */
-    private void addFirst(Player info)
+    public void addFirst(Player info)
     {
         DLLNode newest=new DLLNode();//create new node
         newest.setInfo(info);//set info
@@ -45,7 +54,11 @@ public class DoublyLinkedList {
         }
         size++;//increasing size of the list
     }
-    private void addLast(Player info)
+    /**
+     * Insert new node into list at last position
+     * @param info 
+     */
+    public void addLast(Player info)
     {
         DLLNode newest=new DLLNode();//create new node
         newest.setInfo(info);//set info 
@@ -62,7 +75,11 @@ public class DoublyLinkedList {
         }
         size++;//increading size of the list
     }
-    private Player removeFirst() 
+    /**
+     * Remove first node from list
+     * @return info of the node be removed
+     */
+    public Player removeFirst() 
     {
         if (isEmpty()) {//is list is empty
             System.out.println("Error:Empty list");//print error
