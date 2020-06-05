@@ -12,10 +12,16 @@ package bai1;
 /** Class Doubly LinkedList Node*/
 public class DLLNode<Player> {
 
-    private Player info;//chua thong tin cua nguoi choi bao gom email va point
-    private DLLNode<Player> prev;//tro toi node dang truoc 
-    private DLLNode<Player> next;//tro toi node ke tiep
+    private Player info;//contains information of player include email and point
+    private DLLNode<Player> prev;//reference to previous node
+    private DLLNode<Player> next;//reference to next node
     //constructor, getter, setter 
+
+    public DLLNode() {
+        info=null;
+        prev=next=null;
+    }
+    
     public DLLNode(Player info, DLLNode prev, DLLNode next) {
         this.info = info;
         this.prev = prev;
