@@ -10,25 +10,15 @@
  */
 public class Player implements Comparable<Player> {
 
-    private String userName;
     private String email;
     private long point;
 
     public Player() {
     }
 
-    public Player(String userName, String email, int point) {
-        this.userName = userName;
+    public Player(String email, int point) {
         this.email = email;
         this.point = point;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getEmail() {
