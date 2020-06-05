@@ -62,5 +62,23 @@ public class DoublyLinkedList {
         }
         size++;//increading size of the list
     }
+    private Player removeFirst() 
+    {
+        if (isEmpty()) {//is list is empty
+            System.out.println("Error:Empty list");//print error
+        }
+        else
+        {
+            Player value=header.getInfo();//get info of the node be removed
+            header=header.getNext();//set header reference to next of header
+            size--;//decrease size of the list
+            if(size==0)//if clear all node
+            {
+                header=trailer=null;//set header and trailer to be null(cause there's no more node)
+            }
+            return value;//return info of the node be removed
+        }
+        return null;
+    }
     
 }
