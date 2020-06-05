@@ -14,8 +14,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.print("Hello World");
-        System.out.print("Hello thầy");
+        System.out.print("Hello World\n");
+        System.out.print("Test on my computer");
+        
         // TODO code application logic here
     }
     
