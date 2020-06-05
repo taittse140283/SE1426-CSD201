@@ -1,6 +1,6 @@
-import org.w3c.dom.Node;
 
-public class SortList implements LinkList{
+
+public class SortList implements LinkList {
     private DoubleLinkedList<Entry> dbl = new DoubleLinkedList<>();
 
     @Override
@@ -18,18 +18,23 @@ public class SortList implements LinkList{
     public void insert(Entry e) {
         int rank = e.getRank();
         int size = dbl.size();
-        if(size == 0){
+        if (size == 0) {
             dbl.addFirst(e);
-        }else{
-            for (int i = size - 1; i >= 0 ; i--) {
-                if (rank<= dbl.getElementNode(i).getRank()){
-//                    Node<E> new_node = new Node<E>(e,dbl.getNode(i-1),dbl.getNode(i));
-//
-                    dbl.insert(e,dbl.getNode(i-1),dbl.getNode(i));
+        }else {
+            if (rank > dbl.last().getRank()) {
+                dbl.addLast(e);
+            } else if(rank <= dbl.first().getRank()){
+                dbl.addFirst(e);
+            }else {
+                for (int i = 0 ; i < size; i++) {
+                    if (rank <= dbl.getElementNode(i).getRank()) {
+                        dbl.insert(e, dbl.getNode(i-1), dbl.getNode(i));
+                        return;
+                    }
                 }
             }
-        }
 
+        }
     }
 
     @Override
@@ -45,5 +50,9 @@ public class SortList implements LinkList{
     @Override
     public void update(String mail) {
 
+    }
+
+    public void print(){
+        dbl.print();
     }
 }

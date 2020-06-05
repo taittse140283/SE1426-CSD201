@@ -67,7 +67,8 @@ public class DoubleLinkedList<E> {
     public void insert(E e, Node<E> prev, Node<E> next){
         Node<E> newnode = new Node<>(e,prev,next);
         prev.setNext(newnode);
-        next.setNext(newnode);
+        next.setPrev(newnode);
+        size++;
     }
 
     public void addFirst(E e){
@@ -99,24 +100,11 @@ public class DoubleLinkedList<E> {
     }
 
     public E getElementNode(int post){
-//        int first = -1;
-//        Node<E> n ;
-//        for (n = header.next; n != trailer; n=n.next){
-//            first++;
-//            if(first == i){
-//                return n;
-//            }
-//        }
-//        return null;
-        Node<E> temp = header;
-        for (int i= 0; i<post; i++){
-            temp = temp.next;
-        }
-        return temp.getE();
+        return getNode(post).getE();
     }
 
     public Node<E> getNode(int post){
-        Node<E> temp = header;
+        Node<E> temp = header.next;
         for (int i= 0; i<post; i++){
             temp = temp.next;
         }
@@ -124,11 +112,9 @@ public class DoubleLinkedList<E> {
     }
 
     public void print(){
-        Node<E> n ;
-        for (n = header.next; n != trailer; n=n.next){
+        for (Node<E> n  = header.next; n != trailer; n=n.next){
             System.out.println(n.getE() + " ");
         }
-        System.out.println("\n");
     }
 }
 
