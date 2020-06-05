@@ -98,6 +98,31 @@ public class DoubleLinkedList<E> {
         return remove(trailer.getPrev());
     }
 
+    public E getElementNode(int post){
+//        int first = -1;
+//        Node<E> n ;
+//        for (n = header.next; n != trailer; n=n.next){
+//            first++;
+//            if(first == i){
+//                return n;
+//            }
+//        }
+//        return null;
+        Node<E> temp = header;
+        for (int i= 0; i<post; i++){
+            temp = temp.next;
+        }
+        return temp.getE();
+    }
+
+    public Node<E> getNode(int post){
+        Node<E> temp = header;
+        for (int i= 0; i<post; i++){
+            temp = temp.next;
+        }
+        return temp;
+    }
+
     public void print(){
         Node<E> n ;
         for (n = header.next; n != trailer; n=n.next){

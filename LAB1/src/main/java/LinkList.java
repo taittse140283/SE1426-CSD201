@@ -1,9 +1,8 @@
 public interface LinkList {
-    void removeMax(DoubleLinkedList<Entry> list);
-    void findMax(DoubleLinkedList<Entry> list);
-    void insert(DoubleLinkedList<Entry> list);
-    void remove(DoubleLinkedList<Entry> list, String mail);
-    void find(DoubleLinkedList<Entry> list, String mail);
-    void update(DoubleLinkedList<Entry> list, String mail);
-
+    void removeMax();
+    void findMax();
+    void insert(Entry e);
+    void remove(String mail);
+    void find(String mail);
+    void update(String mail);
 }
