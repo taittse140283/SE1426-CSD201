@@ -5,12 +5,12 @@ public class SortList implements LinkList {
 
     @Override
     public void removeMax() {
-
+        dbl.removeLast();
     }
 
     @Override
     public void findMax() {
-
+        System.out.println("Max: "+ dbl.last());
     }
 
     //parameter is Object, function find post to insert new node
@@ -39,7 +39,14 @@ public class SortList implements LinkList {
 
     @Override
     public void remove(String mail) {
-
+        int size = dbl.size();
+        for (int i = 0; i < size ; i++) {
+            if(mail.equals(dbl.getElementNode(i).getInfo())){
+                dbl.removeNode(dbl.getNode(i));
+                return;
+            }
+        }
+        System.out.println("No");
     }
 
     @Override
