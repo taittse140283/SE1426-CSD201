@@ -9,12 +9,18 @@ package bai1;
  *
  * @author Admin
  */
+/**
+  Class stores information of player include email and point
+ */
 public class Player {
-    //Class luu tru thong tin nguoi choi bao gom email va diem
-    //Chua constructor, cac ham getter, setter va override toString() de output chuan dang: email,point;
-    //Chua nghien cuu cach ghi comment chuan nen cu ghi nhu nay truoc da
+    //Contain constructor, getter, setter and override toString()methods to get output be like: email,point;
     private String email;
     private int point;
+
+    public Player() {
+        email="";
+        point=0;
+    }
     
 
     public Player(String email, int point) {
