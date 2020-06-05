@@ -65,7 +65,7 @@ public class DoublyLinkedList<E> {
         return size == 0;
     }
 
-    // tra ve node dau tien trong danh sach ma khong remove no
+    // tra ve node dau tien trong danh sach ma khong remove no 0(1)
     public E first() {
         if (isEmpty()) {
             return null;
@@ -80,6 +80,47 @@ public class DoublyLinkedList<E> {
         }
         return tralier.getPrev().getElement();
     }
+    // them vao dau
+    public void addFirst(E e) {
+        addBetween(e, header, header.getNext());
+    }
     
+    // them vao cuoi
+    public void addLast(E e) {
+        addBetween(e, tralier.getPrev(), tralier);
+    }
+    
+    //xoa element dau O(1)
+    public E removeFirst() {
+        if(isEmpty()) {
+            return null;
+        }
+        return remove(header.getNext());
+    }
+    
+    // xoa element cuoi 
+    public E removeLast() {
+        if(isEmpty()) {
+            return null;
+        }
+        return remove(tralier.getPrev());
+    }
+    
+    // them node moi vao danh sach lien ket giua 2 node da cho
+    private void addBetween(E e, Node<E> p, Node<E> s) {
+        Node<E> newNode = new Node<>(e, p, s);
+        p.setNext(newNode);
+        s.setPrev(newNode);
+        size++;
+    }
+    
+    private E remove(Node<E> node) {
+        Node<E> p = node.getPrev();
+        Node<E> s = node.getNext();
+        p.setNext(s);
+        s.setPrev(p);
+        size--;
+        return node.getElement();
+    }
     
 }
