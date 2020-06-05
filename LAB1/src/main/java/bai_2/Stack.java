@@ -65,4 +65,9 @@ public class Stack {
         return tail.tag;
     }
     
+    //In ra cac tag theo thu tu tu bottom(head) den top(tail)
+    public void print() {
+        for(TagHTML t = head; t != null; t = t.next)
+            System.out.print(t.tag + "   ");
+    }
 }
