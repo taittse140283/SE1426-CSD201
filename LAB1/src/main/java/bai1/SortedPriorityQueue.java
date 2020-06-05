@@ -47,4 +47,21 @@ public class SortedPriorityQueue {
             list.setSize(list.getSize()+1);
         }
     }
+    /**
+     * Remove Player has highest point in the list
+     * @return Player be removed
+     */
+    public Player removeMax()
+    {
+        return list.removeFirst();
+    }
+    /**
+     * Get Player has highest point in the list
+     * @return Player has highest point in the list
+     */
+    public Player getMax()
+    {
+        return list.getHeaderInfo();
+    }
+    
 }
