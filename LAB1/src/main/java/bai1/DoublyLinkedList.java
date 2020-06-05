@@ -16,17 +16,21 @@ public class DoublyLinkedList {
     private DLLNode<Player> header;//reference to the first node of the list
     private DLLNode<Player> trailer;//reference to the last node of the list
     private int size=0;
+    
     //contructor
+    //change to default(be used to this way =))))))))
     public DoublyLinkedList() {
-        header= new DLLNode<>(null,null,null);
-        trailer=new DLLNode<>(null, header, null);
-        header.setNext(trailer);
+        header = trailer = null;
+        size = 0;
     }
     public boolean isEmpty()
     {
         return size==0;
     }
-    
+    /**
+     * Insert new node into list at first position
+     * @param info 
+     */
     private void addFirst(Player info)
     {
         DLLNode newest=new DLLNode();//create new node
@@ -40,6 +44,23 @@ public class DoublyLinkedList {
             header=newest;//newest become the header
         }
         size++;//increasing size of the list
+    }
+    private void addLast(Player info)
+    {
+        DLLNode newest=new DLLNode();//create new node
+        newest.setInfo(info);//set info 
+        newest.setPrev(trailer);//set prev of newest reference to trailer
+        newest.setNext(null);//set next of newest refernce to null(next of trailer reference to null )
+        if(size==0)//if list is empty
+        {
+            header=trailer=newest;//set header and trailer are newest
+        }
+        else
+        {
+            trailer.setNext(newest);//set next of trailer reference to newest
+            trailer=newest;//set newest become trailer
+        }
+        size++;//increading size of the list
     }
     
 }
