@@ -12,7 +12,7 @@ package bai1;
 /**
  * Doubly Linked List implementation
  */
-public class DoublyLinkedList {
+public class DoublyLinkedList<Player> {
     private DLLNode<Player> header;//reference to the first node of the list
     private DLLNode<Player> trailer;//reference to the last node of the list
     private int size=0;
@@ -23,6 +23,31 @@ public class DoublyLinkedList {
         header = trailer = null;
         size = 0;
     }
+
+    public DLLNode<Player> getHeader() {
+        return header;
+    }
+
+    public void setHeader(DLLNode<Player> header) {
+        this.header = header;
+    }
+
+    public DLLNode<Player> getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(DLLNode<Player> trailer) {
+        this.trailer = trailer;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+    
     public boolean isEmpty()
     {
         return size==0;
@@ -38,12 +63,10 @@ public class DoublyLinkedList {
     
     /**
      * Insert new node into list at first position
-     * @param info 
+     * @param newest 
      */
-    public void addFirst(Player info)
+    public void addFirst(DLLNode<Player> newest)
     {
-        DLLNode newest=new DLLNode();//create new node
-        newest.setInfo(info);//set info
         newest.setNext(header);//set next of newest reference to header
         if(size==0)//if list is empty
             header=trailer=newest;//set header and trailer are newest
@@ -58,10 +81,8 @@ public class DoublyLinkedList {
      * Insert new node into list at last position
      * @param info 
      */
-    public void addLast(Player info)
+    public void addLast(DLLNode<Player> newest)
     {
-        DLLNode newest=new DLLNode();//create new node
-        newest.setInfo(info);//set info 
         newest.setPrev(trailer);//set prev of newest reference to trailer
         newest.setNext(null);//set next of newest refernce to null(next of trailer reference to null )
         if(size==0)//if list is empty
