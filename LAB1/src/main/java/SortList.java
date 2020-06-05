@@ -56,6 +56,10 @@ public class SortList implements LinkList {
         System.out.println("Data is not exist");
     }
 
+    /*This method will find info of player
+    Parameter is email of player. If email is not exist,
+    method will show a msg to warning
+     */
     @Override
     public void find(String mail) {
         int size = dbl.size();
@@ -68,6 +72,11 @@ public class SortList implements LinkList {
         System.out.println("Data is not exist");
     }
 
+
+    /*This method will update point of player
+    Parameter is email of player. If email is not exist,
+    method will show a msg to warning
+     */
     @Override
     public void update(String mail) {
         String new_email;
