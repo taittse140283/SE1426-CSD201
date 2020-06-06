@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package bai1;
-
-import java.lang.invoke.MethodHandles;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
