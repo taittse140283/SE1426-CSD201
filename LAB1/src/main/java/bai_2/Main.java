@@ -14,6 +14,7 @@ public class Main {
       
         //Testing
         String url = "https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
-       Program p = new Program(url);
+        String file = "output.csv";
+        Program p = new Program(url, file);
     }
 }
