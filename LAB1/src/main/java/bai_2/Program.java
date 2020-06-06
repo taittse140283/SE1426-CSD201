@@ -11,6 +11,7 @@ package bai_2;
  */
 public class Program {
     GetContentFromWebsite g = new GetContentFromWebsite();
+    CSV csv = new CSV();
 
     public Program(String urlWeb) {
         try {
@@ -38,7 +39,8 @@ public class Program {
             
             // Only comment tag has '-' character => <!--comment-->
             else if(content.charAt(i) == '-' && check == true) {
-                tag = "";
+                tag += "-";
+                processingHTMLTag(tag);
                 check = false;
                 
             }
@@ -53,10 +55,27 @@ public class Program {
             else if(((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
                 tag += ">";
                 check = false;
-                System.out.println(tag);
+                processingHTMLTag(tag);
             }
         }
     }
     
-    
+    public void processingHTMLTag(String tag) {
+        
+        if(tag.equalsIgnoreCase("<!DOCTYPE>"))
+            csv.countingFrequenceAppearance(tag);
+        else if(tag.equalsIgnoreCase("<!-"))
+            csv.countingFrequenceAppearance("<!--comment-->");
+        else if(tag.equalsIgnoreCase("<meta>"))
+            csv.countingFrequenceAppearance(tag);
+        else if(tag.equalsIgnoreCase("<link>"))
+            csv.countingFrequenceAppearance(tag);
+        else if(tag.equalsIgnoreCase("<img>"))
+            csv.countingFrequenceAppearance(tag);
+        else if(tag.equalsIgnoreCase("<br>"))
+            csv.countingFrequenceAppearance(tag);
+        else{
+            
+        }
+    }
 }
