@@ -12,6 +12,7 @@ package bai_2;
 public class Program {
     GetContentFromWebsite g = new GetContentFromWebsite();
     CSV csv = new CSV();
+    Stack s = new Stack();
 
     public Program(String urlWeb) {
         try {
@@ -60,8 +61,12 @@ public class Program {
         }
     }
     
+    //Counting and compare close tag and top of stack tag
     public void processingHTMLTag(String tag) {
         
+        //There are very many special tags
+        //I only can list some of them
+        //such as: !DOCTYPE, comment, meta, link, img...
         if(tag.equalsIgnoreCase("<!DOCTYPE>"))
             csv.countingFrequenceAppearance(tag);
         else if(tag.equalsIgnoreCase("<!-"))
@@ -74,8 +79,22 @@ public class Program {
             csv.countingFrequenceAppearance(tag);
         else if(tag.equalsIgnoreCase("<br>"))
             csv.countingFrequenceAppearance(tag);
-        else{
-            
-        }
+        else if(tag.equalsIgnoreCase("<hr>"))
+            csv.countingFrequenceAppearance(tag);
+        
+        //Compare close tag and top of stack tag
+        else {
+            if(tag.contains("</") == false) {
+                s.push(tag); //If it is not a close tag => push this to stack
+                s.print(); //print to screen for testing
+                System.out.println();
+            }
+            //If is a close tag and it equals top of stack tag => pop it out off of stack
+            else if(s.getTop().equalsIgnoreCase(tag.replace("/", "")) == true) {
+                s.pop(); 
+                s.print(); //print to screen for testing
+                System.out.println();
+            }
+        } 
     }
 }
