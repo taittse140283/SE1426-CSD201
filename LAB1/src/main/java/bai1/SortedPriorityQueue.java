@@ -23,30 +23,35 @@ public class SortedPriorityQueue {
      * @param newest
      */
     public void add(DLLNode<Player> newest) {
-        //The header has the greatest point of Player 
-        if (newest.getInfo().getPoint() > list.getHeader().getInfo().getPoint())//compare with header, 
-        //if point of Player in newest Node greater than point of Player in header Node
-        //then add it at first position of the list
-        {
-            list.addFirst(newest);
-        } //The trailer has the lowest point of Player
-        else if (newest.getInfo().getPoint() < list.getTrailer().getInfo().getPoint())//compare with trailer
-        //if point of Player in newest Node lower than point of Player in trailer Node
-        //then add it at last position of the list
-        {
-            list.addLast(newest);
+        if (list.getSize() == 0) {
+            list.setHeader(newest);
+            list.setTrailer(newest);
         } else {
-            DLLNode<Player> temp = list.getHeader();
-            //find the position can insert new node
-            while (temp.getInfo().getPoint() > newest.getInfo().getPoint()) {
-                temp = temp.getNext();
+            //The header has the greatest point of Player 
+            if (newest.getInfo().getPoint() > list.getHeader().getInfo().getPoint())//compare with header, 
+            //if point of Player in newest Node greater than point of Player in header Node
+            //then add it at first position of the list
+            {
+                list.addFirst(newest);
+            } //The trailer has the lowest point of Player
+            else if (newest.getInfo().getPoint() < list.getTrailer().getInfo().getPoint())//compare with trailer
+            //if point of Player in newest Node lower than point of Player in trailer Node
+            //then add it at last position of the list
+            {
+                list.addLast(newest);
+            } else {
+                DLLNode<Player> temp = list.getHeader();
+                //find the position can insert new node
+                while (temp.getInfo().getPoint() > newest.getInfo().getPoint()) {
+                    temp = temp.getNext();
+                }
+                //new node is inserted in front of temp  
+                (temp.getPrev()).setNext(newest);
+                newest.setPrev(temp.getPrev());
+                temp.setPrev(newest);
+                newest.setNext(temp);
+                list.setSize(list.getSize() + 1);
             }
-            //new node is inserted in front of temp  
-            (temp.getPrev()).setNext(newest);
-            newest.setPrev(temp.getPrev());
-            temp.setPrev(newest);
-            newest.setNext(temp);
-            list.setSize(list.getSize() + 1);
         }
     }
 
@@ -84,13 +89,15 @@ public class SortedPriorityQueue {
         }
         return temp.getInfo();
     }
+
     /**
      * Get the node in the list has the same email with parameter email
+     *
      * @param email
-     * @return node in the list has the same email with parameter email, if can't find, return null
+     * @return node in the list has the same email with parameter email, if
+     * can't find, return null
      */
-    public DLLNode<Player> getNode(String email)
-    {
+    public DLLNode<Player> getNode(String email) {
         DLLNode<Player> temp = list.getHeader();//get header
         while (!temp.getInfo().getEmail().equals(email) && temp != null)//traverse the list to find Node has the same email
         {
@@ -130,19 +137,17 @@ public class SortedPriorityQueue {
             System.out.println("Error:Not found player");
         }
     }
+
     /**
      * Delete player has the same email with parameter email
-     * @param email 
+     *
+     * @param email
      */
-    public void deletePlayer(String email)
-    {
-        DLLNode<Player> deletePlayer=getNode(email);
-        if(deletePlayer!=null)
-        {
-            System.out.println("Deleted player:"+list.remove(deletePlayer).toString());
-        }
-        else
-        {
+    public void deletePlayer(String email) {
+        DLLNode<Player> deletePlayer = getNode(email);
+        if (deletePlayer != null) {
+            System.out.println("Deleted player:" + list.remove(deletePlayer).toString());
+        } else {
             System.out.println("Error:Not found player");
         }
     }
