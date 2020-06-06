@@ -63,5 +63,19 @@ public class SortedPriorityQueue {
     {
         return list.getHeaderInfo();
     }
+    /**
+     * Search for player in the list has the same email with the Player has email need to find
+     * @param email
+     * @return Player has the same email with the Player has email need to find, if can;t find, return null
+     */
+    public Player getPlayer(String email)
+    {
+        DLLNode<Player> temp=list.getHeader();//get header
+        while(!temp.getInfo().getEmail().equals(email)&&temp!=null)//traverse the list to find Player has the same email
+        {
+            temp=temp.getNext();
+        }
+        return temp.getInfo();
+    }
     
 }
