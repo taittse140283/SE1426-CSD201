@@ -12,8 +12,8 @@ package bai_2;
 public class Main {
     public static void main(String[] args) throws Exception {
       
-        //Testing processingHTML tags
-        String url = "http://example.com/";
+        //Testing
+        String url = "https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
        Program p = new Program(url);
     }
 }
