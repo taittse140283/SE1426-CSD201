@@ -1,3 +1,5 @@
+import java.io.*;
+
 public class DoubleLinkedList<E> {
     private static class Node<E> {
         private E e;
@@ -113,6 +115,14 @@ public class DoubleLinkedList<E> {
     public void print() {
         for (Node<E> n = header.next; n != trailer; n = n.next) {
             System.out.println(n.getE() + " ");
+        }
+    }
+
+    public void printtoFile(String file) throws IOException {
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(file));
+        DataOutputStream dos = new DataOutputStream(fos);
+        for (Node<E> n = header.next; n != trailer; n = n.next) {
+            dos.writeBytes(n.getE() + "\n");
         }
     }
 }

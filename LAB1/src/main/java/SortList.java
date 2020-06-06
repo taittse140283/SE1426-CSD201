@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class SortList implements LinkList {
@@ -95,5 +96,9 @@ public class SortList implements LinkList {
 
     public void print() {
         dbl.print();
+    }
+
+    public void printtoFile(String Filename) throws IOException {
+        dbl.printtoFile(Filename);
     }
 }
