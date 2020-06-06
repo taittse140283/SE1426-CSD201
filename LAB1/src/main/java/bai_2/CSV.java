@@ -27,12 +27,22 @@ public class CSV {
      * @param tag 
      */
     public void countingFrequenceAppearance(String tag) {
-        //If csv
+  
         if(csv.containsKey(tag) == false) {
             csv.put(tag, 1);
         }
         else {
             csv.put(tag, csv.get(tag) + 1);
+        }
+    }
+    
+    //Print to screen for testing
+    public void print() {
+        for (Map.Entry<String, Integer> entry : csv.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            
+            System.out.println("key: " + key + " - value: " + value);
         }
     }
 }
