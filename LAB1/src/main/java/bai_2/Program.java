@@ -18,6 +18,7 @@ public class Program {
         try {
             String content = g.readContent(urlWeb);
             analyzeHTMLTag(content);
+            csv.print(); //Testing count function
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,6 +82,10 @@ public class Program {
             csv.countingFrequenceAppearance(tag);
         else if(tag.equalsIgnoreCase("<hr>"))
             csv.countingFrequenceAppearance(tag);
+        else if(tag.equalsIgnoreCase("<input>"))
+            csv.countingFrequenceAppearance(tag);
+        else if(tag.equalsIgnoreCase("<![endif]-")) //This is not a comment
+            csv.countingFrequenceAppearance("<![endif]-->");
         
         //Compare close tag and top of stack tag
         else {
