@@ -14,11 +14,12 @@ public class Program {
     CSV csv = new CSV();
     Stack s = new Stack();
 
-    public Program(String urlWeb) {
+    public Program(String urlWeb, String fileName) {
         try {
             String content = g.readContent(urlWeb);
             analyzeHTMLTag(content);
             csv.print(); //Testing count function
+            csv.sortAndWriteToFile(fileName);
             
         } catch (Exception e) {
             e.printStackTrace();
