@@ -46,7 +46,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return email+","+point;
+        return email+", "+point;
     }
     
     

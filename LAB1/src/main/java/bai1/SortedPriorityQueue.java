@@ -26,6 +26,7 @@ public class SortedPriorityQueue {
         if (list.getSize() == 0) {
             list.setHeader(newest);
             list.setTrailer(newest);
+            list.setSize(list.getSize()+1);
         } else {
             //The header has the greatest point of Player 
             if (newest.getInfo().getPoint() > list.getHeader().getInfo().getPoint())//compare with header, 
@@ -149,6 +150,15 @@ public class SortedPriorityQueue {
             System.out.println("Deleted player:" + list.remove(deletePlayer).toString());
         } else {
             System.out.println("Error:Not found player");
+        }
+    }
+    public void print()
+    {
+        DLLNode<Player> temp=list.getHeader();
+        while(temp!=null)
+        {
+            System.out.println(temp.getInfo().toString());
+            temp=temp.getNext();
         }
     }
 

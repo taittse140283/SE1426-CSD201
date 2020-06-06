@@ -21,15 +21,16 @@ public class CSV {
         try {
             fr=new FileReader(csvFilename);
             br=new BufferedReader(fr);
-            while(br.ready())
+            String s=br.readLine();//First line is Email, Point-->pass this line
+            while(br.ready())//check EOF
             {
-                String s=br.readLine();
-                String[] arr=s.split(",");
+                s=br.readLine();
+                String[] arr=s.split(", ");
                 if(arr.length==2){
-                Player player=new Player();
+                Player player=new Player();//create new player
                 player.setEmail(arr[0]);
                 player.setPoint(Integer.parseInt(arr[1]));
-                DLLNode<Player> newNode=new DLLNode();
+                DLLNode<Player> newNode=new DLLNode();//create node to add into list
                 newNode.setInfo(player);
                 queue.add(newNode);
                 }
