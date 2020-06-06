@@ -118,5 +118,30 @@ public class DoublyLinkedList<Player> {
         }
         return null;
     }
+    /**
+     * Remove a node
+     * @param deleteNode
+     * @return info of the node be removed
+     */
+    public Player remove(DLLNode<Player> deleteNode)
+    {
+        if (isEmpty()) {//is list is empty
+            System.out.println("Error:Empty list");//print error
+        }
+        else
+        {
+            Player value=deleteNode.getInfo();//get info odd the node be removed
+            //link 2 node that the removed node places between
+            deleteNode.getPrev().setNext(deleteNode.getNext());
+            deleteNode.getNext().setPrev(deleteNode.getPrev());
+            size--;//decrease size of the list
+            if(size==0)//if clear all node
+            {
+                header=trailer=null;//set header and trailer to be null(cause there's no more node)
+            }
+            return value;//return info of the node be removed
+        }
+        return null;
+    }
     
 }

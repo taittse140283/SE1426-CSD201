@@ -130,9 +130,21 @@ public class SortedPriorityQueue {
             System.out.println("Error:Not found player");
         }
     }
+    /**
+     * Delete player has the same email with parameter email
+     * @param email 
+     */
     public void deletePlayer(String email)
     {
         DLLNode<Player> deletePlayer=getNode(email);
+        if(deletePlayer!=null)
+        {
+            System.out.println("Deleted player:"+list.remove(deletePlayer).toString());
+        }
+        else
+        {
+            System.out.println("Error:Not found player");
+        }
     }
 
 }
