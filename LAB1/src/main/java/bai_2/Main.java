@@ -12,14 +12,8 @@ package bai_2;
 public class Main {
     public static void main(String[] args) throws Exception {
       
-        //Testing analyzeHTMLTag
+        //Testing processingHTML tags
         String url = "http://example.com/";
-        String s = null;
-        GetContentFromWebsite g = new GetContentFromWebsite();
-        s = g.readContent(url);
-//        for(int i = 0; i < s.length(); i++)
-//            System.out.print(s.charAt(i));
        Program p = new Program(url);
-       p.analyzeHTMLTag(s);
     }
 }
