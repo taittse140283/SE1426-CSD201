@@ -90,7 +90,8 @@ public class Program {
         //Compare close tag and top of stack tag
         else {
             if(tag.contains("</") == false) {
-                s.push(tag); //If it is not a close tag => push this to stack
+                s.push(tag);//If it is not a close tag => push this to stack
+                csv.countingFrequenceAppearance(tag);
                 s.print(); //print to screen for testing
                 System.out.println();
             }
