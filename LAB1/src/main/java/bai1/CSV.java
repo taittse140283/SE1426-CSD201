@@ -6,13 +6,21 @@
 package bai1;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 /**
  *
  * @author Admin
  */
 public class CSV {
+    /**
+     * Read data from file csv
+     * @param csvFilename
+     * @return sorted list of Player
+     */
     public static SortedPriorityQueue readFile(String csvFilename)
     {
         SortedPriorityQueue queue = new SortedPriorityQueue();
@@ -48,6 +56,37 @@ public class CSV {
             }
         }
         return queue;
+    }
+    /**
+     * Write data into csv file
+     * @param csvFileName
+     * @param queue 
+     */
+    public static void writeFile(String csvFileName, SortedPriorityQueue queue)
+    {
+        File f=new File(csvFileName);//create new file
+        PrintWriter pw=null;
+        try {
+            pw=new PrintWriter(f);
+            pw.println("Email, Point");
+            DLLNode<Player> temp=queue.getList().getHeader();//get the header of the list
+            while(temp!=null)//traverse the list
+            {
+                pw.println(temp.getInfo().toString());//write into file
+                temp=temp.getNext();//go to next node
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally{
+            try {
+                if(pw!=null) pw.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+            
     }
     
 }

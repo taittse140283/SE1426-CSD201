@@ -17,6 +17,15 @@ public class SortedPriorityQueue {
 
     private DoublyLinkedList<Player> list = new DoublyLinkedList();
 
+    public DoublyLinkedList<Player> getList() {
+        return list;
+    }
+
+    public void setList(DoublyLinkedList<Player> list) {
+        this.list = list;
+    }
+    
+
     /**
      * Add new node into queue which sort by point of Player
      *
