@@ -84,6 +84,20 @@ public class SortedPriorityQueue {
         }
         return temp.getInfo();
     }
+    /**
+     * Get the node in the list has the same email with parameter email
+     * @param email
+     * @return node in the list has the same email with parameter email, if can't find, return null
+     */
+    public DLLNode<Player> getNode(String email)
+    {
+        DLLNode<Player> temp = list.getHeader();//get header
+        while (!temp.getInfo().getEmail().equals(email) && temp != null)//traverse the list to find Node has the same email
+        {
+            temp = temp.getNext();
+        }
+        return temp;
+    }
 
     /**
      * Update player has the same email with parameter email
@@ -115,6 +129,10 @@ public class SortedPriorityQueue {
         } else {
             System.out.println("Error:Not found player");
         }
+    }
+    public void deletePlayer(String email)
+    {
+        DLLNode<Player> deletePlayer=getNode(email);
     }
 
 }
