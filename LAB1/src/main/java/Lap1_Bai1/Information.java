@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Lap1_Bai1;
-import java.util.Scanner;
 /**
  *
  * @author PC
@@ -39,17 +38,8 @@ public class Information {
     }
     //tạo seter, getter để nhận giá trị
     
-    public void input(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter your email: ");
-        email = sc.nextLine();
-        System.out.println("Enter your point: ");
-        point = sc.nextInt();
+    public String toString(){
+        return "Email: " + email + "| Point: " + point;
     }
-    //giá trị nhập vào thông tin email, điểm của người chơi; không giá trị trả về
-    
-    public void output(){
-        System.out.println("The player " + email + " have " + point + "point");
-    }
-    //trả về giá trị email và điểm của người chơi; không giá trị nhập vào
+    //In ra email và điểm của người chơi;
 }
