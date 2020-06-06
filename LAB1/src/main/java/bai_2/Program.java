@@ -53,6 +53,7 @@ public class Program {
             else if(((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
                 tag += ">";
                 check = false;
+                System.out.println(tag);
             }
         }
     }
