@@ -124,10 +124,10 @@ public class SortedPriorityQueue {
         if (updatePlayer != null) {//if found
             //Update point of found player
             try {
-                updatePlayer.getInfo().setPoint(Integer.parseInt(point));
-                if (updatePlayer.getInfo().getPoint() < 0) {
+                if (Integer.parseInt(point) < 0) {
                     throw new Exception("Error:Must>0");
                 }
+                updatePlayer.getInfo().setPoint(Integer.parseInt(point));
 
             } catch (NumberFormatException e) {
                 System.out.println("Error:Must be integer");
@@ -148,7 +148,7 @@ public class SortedPriorityQueue {
             updatePlayer.getNext().setPrev(updatePlayer.getPrev());
             //Link clone update node with right position
             this.add(tempUpdate);
-            list.setSize(list.getSize()-1);
+            list.setSize(list.getSize()-1);//no need to increasing size, cause it like replace the node 
 
             //print to check updated
             System.out.println("Updated player:" + updatePlayer.toString());
