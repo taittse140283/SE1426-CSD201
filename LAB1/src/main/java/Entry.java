@@ -24,6 +24,6 @@ public class Entry {
     }
 
     public String toString(){
-        return "Point: "+rank + "\tEmail: " + info;
+        return info + ", " + rank;
     }
 }
