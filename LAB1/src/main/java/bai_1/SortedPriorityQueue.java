@@ -38,5 +38,9 @@ public class SortedPriorityQueue {
         }
     }
     
-   
+    //Print to the screen for testing
+    public void print() {
+        for(Node n = head; n != null; n = n.getNext())
+            System.out.println(n.getInfo().getEmail() + " - " + n.getInfo().getPoint());
+    }
 }
