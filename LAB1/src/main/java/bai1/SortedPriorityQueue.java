@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package bai1;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -22,7 +23,6 @@ public class SortedPriorityQueue {
     public void setList(DoublyLinkedList<Player> list) {
         this.list = list;
     }
-    
 
     /**
      * Add new node into queue which sort by point of Player
@@ -33,7 +33,7 @@ public class SortedPriorityQueue {
         if (list.getSize() == 0) {
             list.setHeader(newest);
             list.setTrailer(newest);
-            list.setSize(list.getSize()+1);
+            list.setSize(list.getSize() + 1);
         } else {
             //The header has the greatest point of Player 
             if (newest.getInfo().getPoint() > list.getHeader().getInfo().getPoint())//compare with header, 
@@ -119,26 +119,43 @@ public class SortedPriorityQueue {
      *
      * @param email
      */
-    public void updatePlayer(String email) {
-        Player updatePlayer = getPlayer(email);//get player has the same email
+    public void updatePlayer(String email, String point) {
+        DLLNode<Player> updatePlayer = getNode(email);//get player has the same email
         if (updatePlayer != null) {//if found
-            boolean check = true;
             //Update point of found player
-            while (check)
             try {
-                System.out.println("Update player's point:");
-                Scanner sc = new Scanner(System.in);
-                updatePlayer.setPoint(sc.nextInt());
-                if (updatePlayer.getPoint() < 0) {
+                updatePlayer.getInfo().setPoint(Integer.parseInt(point));
+                if (updatePlayer.getInfo().getPoint() < 0) {
                     throw new Exception("Error:Must>0");
                 }
-                check = false;
 
-            } catch (InputMismatchException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Error:Must be integer");
+                return;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+                return;
             }
+            DLLNode<Player> temp = list.getHeader();//get header
+            //find the position to put update Node in right place in sort list
+            while (temp.getInfo().getPoint() > updatePlayer.getInfo().getPoint()) {
+                temp = temp.getNext();
+            }
+            //Link update node with right position
+            DLLNode<Player> tempUpdate = null;
+            try {
+                tempUpdate = updatePlayer.clone();//create copy of update node
+            } catch (CloneNotSupportedException e) {
+                System.out.println(e);
+            }
+            (temp.getPrev()).setNext(tempUpdate);
+            tempUpdate.setPrev(temp.getPrev());
+            temp.setPrev(tempUpdate);
+            tempUpdate.setNext(temp);
+            //delete update node in old position
+            updatePlayer.getPrev().setNext(updatePlayer.getNext());
+            updatePlayer.getNext().setPrev(updatePlayer.getPrev());
+
             //print to check updated
             System.out.println("Updated player:" + updatePlayer.toString());
         } else {
@@ -159,13 +176,12 @@ public class SortedPriorityQueue {
             System.out.println("Error:Not found player");
         }
     }
-    public void print()
-    {
-        DLLNode<Player> temp=list.getHeader();
-        while(temp!=null)
-        {
+
+    public void print() {
+        DLLNode<Player> temp = list.getHeader();
+        while (temp != null) {
             System.out.println(temp.getInfo().toString());
-            temp=temp.getNext();
+            temp = temp.getNext();
         }
     }
 

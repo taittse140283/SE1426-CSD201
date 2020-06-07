@@ -5,6 +5,7 @@
  */
 package bai1;
 
+
 /**
  *
  * @author Admin
@@ -19,12 +20,11 @@ public class Test {
         x.setPoint(30000);
         newest.setInfo(x);
         queue.add(newest);//add
-        queue.updatePlayer("ocirlbtqze@gmail.com");//update
+        queue.updatePlayer("ocirlbtqze@gmail.com", "50000");//update
         queue.deletePlayer("ikokn@gmail.com");//delete
         System.out.println(queue.getPlayer("gzovr@gmail.com").getPoint());//get point
         System.out.println(queue.getMax().getPoint());//get top point
         System.out.println(queue.removeMax().toString());
-        
         CSV.writeFile("new.csv", queue);
     }
 }

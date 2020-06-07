@@ -10,7 +10,7 @@ package bai1;
  * @author Admin
  */
 /** Class Doubly LinkedList Node*/
-public class DLLNode<Player> {
+public class DLLNode<Player> implements Cloneable{
 
     private Player info;//contains information of player include email and point
     private DLLNode<Player> prev;//reference to previous node
@@ -21,7 +21,10 @@ public class DLLNode<Player> {
         info=null;
         prev=next=null;
     }
-    
+    @Override
+    public DLLNode<Player> clone() throws CloneNotSupportedException {
+        return (DLLNode<Player>) super.clone();
+    }
     public DLLNode(Player info, DLLNode prev, DLLNode next) {
         this.info = info;
         this.prev = prev;
