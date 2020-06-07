@@ -12,12 +12,12 @@ package bai_1;
 public class Main {
     public static void main(String[] args) {
         
-        //Test addLast method
+        //Test addAndSort method
         SortedPriorityQueue s = new SortedPriorityQueue();
-        s.addLast("aaaaaaa@aaaaaa", 100);
-        s.addLast("bbbb@bbb", 15);
-        s.addLast("ccccccc@ccccccc", 5148);
-        s.addLast("dddddddddd@dddddddd", 155);
+        s.addAndSort("aaaaaaa@aaaaaa", 100);
+        s.addAndSort("bbbb@bbb", 15);
+        s.addAndSort("ccccccc@ccccccc", 5148);
+        s.addAndSort("dddddddddd@dddddddd", 155);
         s.print();
     }
 }
