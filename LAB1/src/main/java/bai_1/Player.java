@@ -6,7 +6,7 @@
 package bai_1;
 
 /**
- * This class is used to get and set information of every player
+ * This class is used to get and set informations of every player
  * @author Linh
  */
 public class Player {
