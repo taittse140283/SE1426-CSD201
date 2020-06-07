@@ -136,25 +136,19 @@ public class SortedPriorityQueue {
                 System.out.println(e.getMessage());
                 return;
             }
-            DLLNode<Player> temp = list.getHeader();//get header
-            //find the position to put update Node in right place in sort list
-            while (temp.getInfo().getPoint() > updatePlayer.getInfo().getPoint()) {
-                temp = temp.getNext();
-            }
-            //Link update node with right position
+            //clone update node
             DLLNode<Player> tempUpdate = null;
             try {
-                tempUpdate = updatePlayer.clone();//create copy of update node
+                tempUpdate = updatePlayer.clone();
             } catch (CloneNotSupportedException e) {
                 System.out.println(e);
             }
-            (temp.getPrev()).setNext(tempUpdate);
-            tempUpdate.setPrev(temp.getPrev());
-            temp.setPrev(tempUpdate);
-            tempUpdate.setNext(temp);
             //delete update node in old position
             updatePlayer.getPrev().setNext(updatePlayer.getNext());
             updatePlayer.getNext().setPrev(updatePlayer.getPrev());
+            //Link clone update node with right position
+            this.add(tempUpdate);
+            list.setSize(list.getSize()-1);
 
             //print to check updated
             System.out.println("Updated player:" + updatePlayer.toString());
