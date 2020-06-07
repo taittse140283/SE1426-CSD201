@@ -15,11 +15,14 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+
     public static void main(String[] args) throws IOException {
-        String fileInput = "";
-        String fileOutput = "";
-        FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\MyFile.txt");
-        DataOutputStream dos = new DataOutputStream(fos);
+        SortList sl = new SortList();
+
+        String fileInput;
+        String fileOutput;
+        String email;
+        int point;
 
         String Error = "Invalid Input";
         try {
@@ -32,14 +35,45 @@ public class Main {
                         "./lab1 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -dt: Problem 1, delete the top user from the data structure and save to new csv file\n" +
                         "./lab1 1 -r <<user_CSV_file>> -g <<email>>: Problem 1, get the point of user from the data structure\n" +
                         "./lab1 1 -r <<user_CSV_file>> -t: Problem 1, get the point of the top user from the data structure");
-            } else if (args[0].equals("1")) {
+            } else if (args[0].equals("1") && args.length >= 5) {
                 if (args[1].equals("-r")) {
                     if (!args[2].trim().isEmpty()) {
                         fileInput = args[2];
                         if (args[3].equals("-s")) {
-                            if (!args[4].trim().isEmpty()){
+                            if (!args[4].trim().isEmpty()) {
                                 fileOutput = args[4];
-                            }else {
+                                copyFile(fileInput, fileOutput);
+                                System.out.println("Copy file succes");
+                                if (args[5].equals("-a") ){
+                                    System.out.println("add success 5");
+                                    if (!args[6].trim().isEmpty()) {
+                                        email = args[6];
+                                        System.out.println("add 6");
+                                        if (!args[7].trim().isEmpty()) {
+                                            point = Integer.parseInt(args[7]);
+                                            sl.insert(new Entry(point, email));
+                                            sl.printtoFile(fileOutput);
+                                            System.out.println("add new user");
+                                        } else {
+                                            System.out.println(Error);
+                                        }
+                                    } else {
+                                        System.out.println(Error);
+                                    }
+                                } else if (args[5].equals("-d")) {
+                                    if (!args[6].trim().isEmpty()) {
+                                        email = args[6];
+                                    }
+                                } else if (args[5].equals("-u")) {
+                                    if (!args[6].trim().isEmpty()) {
+                                        email = args[6];
+                                    }
+                                } else if (args[5].equals("-dt")) {
+
+                                } else {
+                                    System.out.println(Error);
+                                }
+                            } else {
                                 System.out.println(Error);
                             }
                         } else if (args[3].equals("-g")) {
@@ -59,6 +93,10 @@ public class Main {
 
             } else {
                 System.out.println(Error);
+            }
+
+            for (int i = 0; i < args.length; i++) {
+                System.out.println(args[i]);
             }
 
 
@@ -98,7 +136,6 @@ public class Main {
 //        }
 
 
-//        DoubleLinkedList<Entry> dll = new DoubleLinkedList();
 //        dll.addFirst(A);
 //        dll.addFirst(B);
 //        dll.insert(C, dll.getNode(1), dll.getNode(2));
@@ -128,5 +165,23 @@ public class Main {
         }
         return buffer.isEmpty();
     }
+
+    public static void copyFile(String input, String output) {
+        try {
+            FileInputStream fis = new FileInputStream("C:\\Users\\Admin\\Desktop\\".concat(input));
+            DataInputStream dis = new DataInputStream(fis);
+            FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(output));
+            DataOutputStream dos = new DataOutputStream(fos);
+            int Data;
+
+            while ((Data = fis.read()) != -1) {
+                fos.write(Data);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
 
 }
