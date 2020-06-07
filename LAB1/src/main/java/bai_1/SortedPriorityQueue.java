@@ -84,6 +84,13 @@ public class SortedPriorityQueue {
         return  tail.getInfo().getPoint();
     }
     
+    //Remove the player has the biggest point
+    public void removePlayerHasBiggestPoint() {
+        head = head.getNext();
+        head.setPrev(null);
+    }
+    
+    
     //Print to the screen for testing
     public void print() {
         for(Node n = head; n != null; n = n.getNext())
