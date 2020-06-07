@@ -19,5 +19,7 @@ public class Main {
         s.addAndSort("ccccccc@ccccccc", 5148);
         s.addAndSort("dddddddddd@dddddddd", 155);
         s.print();
+        s.removePlayerHasBiggestPoint();
+        s.print();
     }
 }
