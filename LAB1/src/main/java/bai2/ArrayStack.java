@@ -55,7 +55,7 @@ public class ArrayStack implements Stack{
 
     @Override
     public String pop() {
-        if(count==0)//if list is empty
+        if(isEmpty())//if list is empty
         {
             System.out.println("Error: There's nothing in stack");
         }
@@ -86,9 +86,13 @@ public class ArrayStack implements Stack{
         return count==0;
     }
 
+    /**
+     * Get the number of element in the list
+     * @return the number of element in the list
+     */
     @Override
     public int size() {
-        return 0;
+        return count;
     }
 
     @Override
