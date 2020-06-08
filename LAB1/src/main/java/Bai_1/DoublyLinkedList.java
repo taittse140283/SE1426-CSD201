@@ -35,4 +35,32 @@ public class DoublyLinkedList<E> {
             next=n;
         }
     }
+    private Node<E> header;
+    private Node<E> trailer;
+    private int size=0;
+    public DoublyLinkedList(){
+        header= new Node<>(null,null,null);
+        trailer= new Node<>(null,header,null);
+        header.setNext(trailer);
+    }
+    public int size(){
+        return size;
+    }
+    public boolean isEmpty(){
+        return size==0;
+    }
+    public E first(){
+        if(isEmpty()){
+            return null;
+        }
+        return header.getNext().getElement();
+    }
+    public E last(){
+        if(isEmpty()){
+            return null;
+        }
+        return trailer.getPrev().getElement();
+    }
+    
+
 }
