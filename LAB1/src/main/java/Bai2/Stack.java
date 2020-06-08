@@ -14,4 +14,15 @@ public class Stack {
     public void Stack(){
         head=tail=null;
     }
+    public void push(String tagHTML){
+        TgHTML tg= new TgHTML(tagHTML,head,tail);
+        if(head==null){
+            head=tail=tg;
+            head.prev=tail.prev=null;
+            return;
+        }
+        tg.NEXT= head;
+        head.prev= head=tg;
+        head.prev = null;
+    }
 }
