@@ -45,7 +45,7 @@ public class Main {
                         "./lab1 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -dt: Problem 1, delete the top user from the data structure and save to new csv file\n" +
                         "./lab1 1 -r <<user_CSV_file>> -g <<email>>: Problem 1, get the point of user from the data structure\n" +
                         "./lab1 1 -r <<user_CSV_file>> -t: Problem 1, get the point of the top user from the data structure");
-            } else if (args[0].equals("1") && args.length >= 5) {
+            } else if (args[0].equals("1") && args.length >= 4) {
                 if (args[1].equals("-r")) {
                     if (!args[2].trim().isEmpty()) {
                         fileInput = args[2];
@@ -104,20 +104,15 @@ public class Main {
                                 getData(fileInput, sl);
                                 sl.find(email);
                             }
-
                         } else if (args[3].equals("-t")) {
                             getData(fileInput, sl);
                             sl.findMax();
                         } else {
                             System.out.println(Error);
                         }
-
-
                     } else {
                         System.out.println(Error);
                     }
-
-
                 } else {
                     System.out.println(Error);
                 }
@@ -180,6 +175,8 @@ public class Main {
             while ((Data = fis.read()) != -1) {
                 fos.write(Data);
             }
+            fos.close();
+            fis.close();
         } catch (Exception e) {
             System.out.println(e);
         }
