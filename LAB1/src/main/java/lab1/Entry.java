@@ -9,9 +9,9 @@ package lab1;
  *
  * @author Admin
  */
-import java.util.Scanner;
+
 public class Entry {
-    Scanner sc= new Scanner(System.in);
+    
     private String _email; // entry variable
     private int _point;    // entry variable
     public Entry(String email, int point){ //constructor have parametter;
@@ -35,16 +35,11 @@ public class Entry {
     public void setPoint(int _point) {
         this._point = _point;
     }
-    
-    // Enter input information of player include email and point;
-    //no return
-    public void input(){
-        System.out.println("Please enter the email:");
-        _email=sc.nextLine();
-        System.out.println("Enter the your point:");
-        _point=sc.nextInt();
-        
-    }
+    //this method print to the display
+   public voi ouput(){
+        System.out.print("email: " + _email +",Point: " + _point);
+}
+   
     //method to print the display
     //return the value of information you entered
      public String toString(){
