@@ -9,10 +9,10 @@ package bai2;
  *
  * @author Admin
  */
-public interface Stack<E> {
-    public void push(E info);
-    public E pop();
-    public E top();
+public interface Stack {
+    public void push(String tag);
+    public String pop();
+    public String top();
     public boolean isEmpty();
     public int size();
     public void print();

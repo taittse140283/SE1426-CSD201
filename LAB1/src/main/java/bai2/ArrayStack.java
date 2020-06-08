@@ -9,22 +9,54 @@ package bai2;
  *
  * @author Admin
  */
-public class ArrayStack<E> implements Stack<E>{
 
-    private E[] list;
-    
-    @Override
-    public void push(E info) {
-        
+/**
+ *ArrayStack class--stack contains list of tags
+ */
+public class ArrayStack implements Stack{
+
+    private String[] list;//list of tags
+    int count;//size of list
+    private static final int capacity=500;//capacity of array
+
+    /**
+     * Default constructor for ArrayStack
+     */
+    public ArrayStack() {
+        list=new String[capacity];//allocated a array of String has 500 element
+        count=0;//default index of last element in the list
+
     }
+
+    /**
+     * Push new tag into last position of the list
+     * @param tag This is tag will be added to the arraystack
+     * @return nothing
+     */
     @Override
-    public E pop() {
+    public void push(String tag) {
+        if(count>capacity)//if over capacity of the list
+        {
+            System.out.println("Error:Stack over flow");
+            return;
+        }
+        else
+        {
+            list[count]=tag;//insert new tag into last position
+            count++;//increasing size
+        }
+
+    }
+
+
+    @Override
+    public String pop() {
         return null;
     }
     
 
     @Override
-    public E top() {
+    public String top() {
         return null;
     }
 

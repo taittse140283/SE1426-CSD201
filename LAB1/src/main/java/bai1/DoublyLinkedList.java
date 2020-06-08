@@ -11,6 +11,7 @@ package bai1;
  */
 /**
  * Doubly Linked List implementation
+ * Fields of DoublyLinkedList: DLLNode<Player> header, DLLNode<Player> trailer, int size
  */
 public class DoublyLinkedList<Player> {
 
@@ -20,11 +21,18 @@ public class DoublyLinkedList<Player> {
 
     //contructor
     //change to default(be used to this way =))))))))
+
+    /**
+     * Default Constructor of DoublyLinkedList with header, trailer are null and size =0
+     */
     public DoublyLinkedList() {
         header = trailer = null;
         size = 0;
     }
 
+    /**
+     *Getter, setter of DoublyLinkedList fields
+     */
     public DLLNode<Player> getHeader() {
         return header;
     }
@@ -49,23 +57,28 @@ public class DoublyLinkedList<Player> {
         this.size = size;
     }
 
+    /**
+     * Check if the list is empty
+     * @return true if size=0
+     */
     public boolean isEmpty() {
         return size == 0;
     }
 
     /**
-     * Get information of header
      *
-     * @return information of header
+     * This method gets information of header
+     * @return Player of DLLNode<Player> header
      */
     public Player getHeaderInfo() {
         return header.getInfo();
     }
 
     /**
-     * Insert new node into list at first position
+     * This method inserts new node into list at first position
      *
-     * @param newest
+     * @param newest This is DLLNode will be added at first position
+     * @return nothing
      */
     public void addFirst(DLLNode<Player> newest) {
         newest.setNext(header);//set next of newest reference to header
@@ -75,9 +88,9 @@ public class DoublyLinkedList<Player> {
     }
 
     /**
-     * Insert new node into list at last position
+     *This methods inserts new node into list at last position
      *
-     * @param info
+     * @param newest This is DLLNode will be added at last position
      */
     public void addLast(DLLNode<Player> newest) {
         newest.setPrev(trailer);//set prev of newest reference to trailer
@@ -93,9 +106,9 @@ public class DoublyLinkedList<Player> {
     }
 
     /**
-     * Remove first node from list
+     * This method removes first node from list
      *
-     * @return info of the node be removed
+     * @return Player of the node be removed
      */
     public Player removeFirst() {
         if (isEmpty()) {//is list is empty
@@ -114,10 +127,10 @@ public class DoublyLinkedList<Player> {
     }
 
     /**
-     * Remove a node
+     * This methods removes a DLLNode
      *
-     * @param deleteNode
-     * @return info of the node be removed
+     * @param deleteNode DLLNode<Player> will be removed
+     * @return Player of the node be removed
      */
     public Player remove(DLLNode<Player> deleteNode) {
         if (isEmpty()) {//is list is empty

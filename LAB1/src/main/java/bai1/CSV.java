@@ -15,11 +15,15 @@ import java.io.PrintWriter;
  *
  * @author Admin
  */
+
+/**
+ * CSV class read and write file CSV
+ */
 public class CSV {
     /**
-     * Read data from file csv
-     * @param csvFilename
-     * @return sorted list of Player
+     * Read data from file csv then put it in SortedPriorityQueue
+     * @param csvFilename This is path of file want to read data
+     * @return a SortedPriorityQueue that contains sorted list of Player
      */
     public static SortedPriorityQueue readFile(String csvFilename)
     {
@@ -58,35 +62,38 @@ public class CSV {
         return queue;
     }
     /**
-     * Write data into csv file
-     * @param csvFileName
-     * @param queue 
+     * Write a SortedPriorityQueue that contains sorted list of Player into csv file
+     * @param csvFileName This is path of file want to save data in
+     * @param queue This is SortedPriorityQueue that contains sorted list of Player
+     * @return nothing
      */
-    public static void writeFile(String csvFileName, SortedPriorityQueue queue)
-    {
-        File f=new File(csvFileName);//create new file
-        PrintWriter pw=null;
-        try {
-            pw=new PrintWriter(f);
-            pw.println("Email, Point");
-            DLLNode<Player> temp=queue.getList().getHeader();//get the header of the list
-            while(temp!=null)//traverse the list
-            {
-                pw.println(temp.getInfo().toString());//write into file
-                temp=temp.getNext();//go to next node
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally{
+    public static void writeFile(String csvFileName, SortedPriorityQueue queue) {
+        if (queue.getList().getSize() == 0) {
+            System.out.println("Error: Queue is empty");
+        } else {
+            File f = new File(csvFileName);//create new file
+            PrintWriter pw = null;
             try {
-                if(pw!=null) pw.close();
+                pw = new PrintWriter(f);
+                pw.println("Email, Point");
+                DLLNode<Player> temp = queue.getList().getHeader();//get the header of the list
+                while (temp != null)//traverse the list
+                {
+                    pw.println(temp.getInfo().toString());//write into file
+                    temp = temp.getNext();//go to next node
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    if (pw != null) pw.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+
         }
-            
     }
     
 }

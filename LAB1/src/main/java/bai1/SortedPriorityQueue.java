@@ -12,6 +12,11 @@ import java.util.Scanner;
  *
  * @author Admin
  */
+
+/**
+ * Class SortedPriorityQueue contains sorted list of DLLNode<Player>
+ *     Field:DoublyLinkedList<Player> list
+ */
 public class SortedPriorityQueue {
 
     private DoublyLinkedList<Player> list = new DoublyLinkedList();
@@ -25,8 +30,13 @@ public class SortedPriorityQueue {
     }
 
     /**
-     * Add new node into queue which sort by point of Player
-     *
+     *This method add new node into queue which sort by point of Player(high to low)
+     *If size of list =0, then set header and trailer are newest
+     *If if point of Player in newest Node greater than point of Player in header Node
+     *then add it at first position of the list
+     * If point of Player in newest Node lower than point of Player in trailer Node
+     * then add it at last position of the list
+     * Another case, then traverse the list to find right position
      * @param newest
      */
     public void add(DLLNode<Player> newest) {
@@ -64,7 +74,7 @@ public class SortedPriorityQueue {
     }
 
     /**
-     * Remove Player has highest point in the list
+     * This method removes Player has highest point in the list(use removeFirst() method of DoublyLinkedList)
      *
      * @return Player be removed
      */
@@ -73,7 +83,7 @@ public class SortedPriorityQueue {
     }
 
     /**
-     * Get Player has highest point in the list
+     * Get Player has highest point in the list(use getHeaderInfo() method of DoublyLinkedList)
      *
      * @return Player has highest point in the list
      */
@@ -85,7 +95,7 @@ public class SortedPriorityQueue {
      * Search for player in the list has the same email with the Player has
      * email need to find
      *
-     * @param email
+     * @param email This is email need to find in the list
      * @return Player has the same email with the Player has email need to find,
      * if can't find, return null
      */
@@ -101,7 +111,7 @@ public class SortedPriorityQueue {
     /**
      * Get the node in the list has the same email with parameter email
      *
-     * @param email
+     * @param email This is email need to find in the list
      * @return node in the list has the same email with parameter email, if
      * can't find, return null
      */
@@ -117,7 +127,10 @@ public class SortedPriorityQueue {
     /**
      * Update player has the same email with parameter email
      *
-     * @param email
+     * @param email This is email need to find in the list
+     * if can't find the DLLNode need to update, error
+     * if can find, then update the point of Player, then clone this updateNode, delete updateNode in old place
+     *and add clone of updateNode into the list at right position
      */
     public void updatePlayer(String email, String point) {
         DLLNode<Player> updatePlayer = getNode(email);//get player has the same email
@@ -160,7 +173,9 @@ public class SortedPriorityQueue {
     /**
      * Delete player has the same email with parameter email
      *
-     * @param email
+     * @param email This is email need to find in the list
+     *if can't find, print error
+     *if can find, delete the node(use remove(DLLNode<Player>  deleteNode) of DoublyLinkedList)
      */
     public void deletePlayer(String email) {
         DLLNode<Player> deletePlayer = getNode(email);
@@ -171,6 +186,10 @@ public class SortedPriorityQueue {
         }
     }
 
+    /**
+     * Print to check the list
+     * Will be delete later =)))))))
+     */
     public void print() {
         DLLNode<Player> temp = list.getHeader();
         while (temp != null) {
