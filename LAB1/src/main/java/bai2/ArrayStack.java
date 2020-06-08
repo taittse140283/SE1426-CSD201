@@ -48,9 +48,22 @@ public class ArrayStack implements Stack{
 
     }
 
+    /**
+     * Pop tag in last position(delete)
+     * @return tag in last position
+     */
 
     @Override
     public String pop() {
+        if(count==0)//if list is empty
+        {
+            System.out.println("Error: There's nothing in stack");
+        }
+        else
+        {
+            return list[count--];//no need to clear the last element, cause will have another element replace it
+
+        }
         return null;
     }
     
