@@ -95,8 +95,16 @@ public class ArrayStack implements Stack{
         return count;
     }
 
+    /**
+     * Method to check output
+     * Will be delete later
+     */
     @Override
     public void print() {
+        for(int i=0;i<count;i++)
+        {
+            System.out.println(list[i]);
+        }
     }
     
 }
