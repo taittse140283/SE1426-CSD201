@@ -39,11 +39,13 @@ public class DoublyLinkedList {
     public boolean isEmpty(){
         return tail == null;
     }
+    //them phan tu vao list
     public void add(Node<Player> newNode){
         newNode.setNext(head);
         head.setPrev(newNode);
         head = newNode;
     }
+    //xoa phan tu vao list
     public void remove(){
         if(isEmpty()){
             System.out.println("Stack rong");
