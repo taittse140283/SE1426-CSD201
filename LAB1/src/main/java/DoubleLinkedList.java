@@ -121,12 +121,15 @@ public class DoubleLinkedList<E> {
     public void printtoFile(String file) throws IOException {
         FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(file));
         DataOutputStream dos = new DataOutputStream(fos);
-        dos.writeBytes("# USER CSV FILE\n");
-        dos.writeBytes("Email, Point\n");
+        PrintWriter pw = new PrintWriter("C:\\Users\\Admin\\Desktop\\".concat(file));
+            dos.writeBytes("Email, Point\n");
+//        dos.writeBytes("Email, Point\n");
         for (Node<E> n = header.next; n != trailer; n = n.next) {
+//            pw.append(n.getE() + "\n");
             dos.writeBytes(n.getE() + "\n");
         }
     }
+
 }
 
 

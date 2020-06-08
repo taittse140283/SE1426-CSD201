@@ -44,7 +44,7 @@ public class Main {
                                 fileOutput = args[4];
                                 copyFile(fileInput, fileOutput);
                                 System.out.println("Copy file succes");
-                                if (args[5].equals("-a") ){
+                                if (args[5].equals("-a")) {
                                     System.out.println("add success 5");
                                     if (!args[6].trim().isEmpty()) {
                                         email = args[6];
@@ -52,6 +52,7 @@ public class Main {
                                         if (!args[7].trim().isEmpty()) {
                                             point = Integer.parseInt(args[7]);
                                             sl.insert(new Entry(point, email));
+                                            getData(fileInput, sl);
                                             sl.printtoFile(fileOutput);
                                             System.out.println("add new user");
                                         } else {
@@ -95,53 +96,16 @@ public class Main {
                 System.out.println(Error);
             }
 
-            for (int i = 0; i < args.length; i++) {
-                System.out.println(args[i]);
-            }
+//            for (int i = 0; i < args.length; i++) {
+//                System.out.println(args[i]);
+//            }
 
 
             String notMatches = "<h1> fkjasjdf </h1>";
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("OK");
         }
-
-//
-//        try {
-//            Entry A = new Entry(1, "A");
-//            Entry B = new Entry(9, "B");
-//            Entry C = new Entry(7, "C");
-//            Entry D = new Entry(7, "D");
-//            Entry E = new Entry(6, "E");
-//            Entry F = new Entry(1, "F");
-//            Entry G = new Entry(8, "G");
-//            Entry H = new Entry(1, "H");
-//            SortList sl = new SortList();
-//            sl.insert(A);
-//            sl.insert(B);
-//            sl.insert(C);
-//            sl.insert(D);
-//            sl.insert(E);
-//            sl.insert(F);
-//            sl.insert(G);
-//            sl.insert(H);
-//            sl.print();
-//            System.out.println("\n");
-//
-//            //dos.writeBytes(String.valueOf(A));
-//            sl.printtoFile("hoang.txt");
-//
-//        } catch (Exception e) {
-//            System.out.println("Error");
-//        }
-
-
-//        dll.addFirst(A);
-//        dll.addFirst(B);
-//        dll.insert(C, dll.getNode(1), dll.getNode(2));
-//        dll.addLast(D);
-//        dll.print();
-
 
     }
 
@@ -181,6 +145,26 @@ public class Main {
             System.out.println(e);
         }
 
+    }
+
+    public static void getData(String fileInput, SortList sl) throws IOException {
+
+        String email;
+        int point;
+        try {
+            Scanner sc = new Scanner(new File("C:\\Users\\Admin\\Desktop\\".concat(fileInput)));
+            sc.nextLine();
+            while (sc.hasNext()){
+                email = sc.next();
+                email = email.substring(0,email.length()-1);
+                point = Integer.parseInt(sc.next());
+                sl.insert(new Entry(point,email));
+            }
+            sc.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 
