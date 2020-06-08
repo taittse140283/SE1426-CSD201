@@ -66,11 +66,15 @@ public class ArrayStack implements Stack{
         }
         return null;
     }
-    
 
+
+    /**
+     * Get tag in last position
+     * @return tag in last position
+     */
     @Override
     public String top() {
-        return null;
+        return list[count];
     }
 
     @Override
