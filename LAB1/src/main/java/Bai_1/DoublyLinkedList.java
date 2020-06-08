@@ -76,5 +76,22 @@ public class DoublyLinkedList<E> {
         size--;
         return node.getElement();
     }
-
+    public void addFirst(E e){
+        addBetween(e,header,header.getNext());
+    }
+    public void addLast(E e){
+        addBetween(e,trailer.getPrev(),trailer);
+    }
+    public E deleteFirst(){
+        if(isEmpty()){
+            return null;
+        }
+        return delete(header.getNext());
+    }
+    public E deleteLast(){
+        if(isEmpty()){
+            return null;
+        }
+        return delete(trailer.getPrev());
+    }
 }
