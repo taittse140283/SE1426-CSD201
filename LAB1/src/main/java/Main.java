@@ -8,12 +8,21 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * @author tieuminh
+ * <h1>Main</h1>
+ * The Main program store main method
+ *
+ * @author Bach Duy Hoang
+ * @since 2020/6/1
  */
 public class Main {
 
     /**
+     * This is main method which makes uses of CLI and some methods
+     * to manages info players, crawler data html tag
+     *
      * @param args the command line arguments
+     * @throws IOException on input error, ...
+     * @see IOException, ArrayIndexOutOfBoundsException, ...
      */
 
     public static void main(String[] args) throws IOException {
@@ -23,6 +32,7 @@ public class Main {
         String fileOutput;
         String email;
         int point;
+        int new_point;
 
         String Error = "Invalid Input";
         try {
@@ -64,13 +74,24 @@ public class Main {
                                 } else if (args[5].equals("-d")) {
                                     if (!args[6].trim().isEmpty()) {
                                         email = args[6];
+                                        getData(fileInput, sl);
+                                        sl.remove(email);
+                                        sl.printtoFile(fileOutput);
                                     }
                                 } else if (args[5].equals("-u")) {
                                     if (!args[6].trim().isEmpty()) {
                                         email = args[6];
+                                        if (!args[7].trim().isEmpty()) {
+                                            new_point = Integer.parseInt(args[7]);
+                                            getData(fileInput, sl);
+                                            sl.update(email, new_point);
+                                            sl.printtoFile(fileOutput);
+                                        }
                                     }
                                 } else if (args[5].equals("-dt")) {
-
+                                    getData(fileInput, sl);
+                                    sl.removeMax();
+                                    sl.printtoFile(fileOutput);
                                 } else {
                                     System.out.println(Error);
                                 }
@@ -78,10 +99,20 @@ public class Main {
                                 System.out.println(Error);
                             }
                         } else if (args[3].equals("-g")) {
+                            if (!args[4].trim().isEmpty()) {
+                                email = args[4];
+                                getData(fileInput, sl);
+                                sl.find(email);
+                            }
 
+                        } else if (args[3].equals("-t")) {
+                            getData(fileInput, sl);
+                            sl.findMax();
                         } else {
                             System.out.println(Error);
                         }
+
+
                     } else {
                         System.out.println(Error);
                     }
@@ -130,6 +161,14 @@ public class Main {
         return buffer.isEmpty();
     }
 
+    /**
+     * This method is used to copy data of file to another file
+     *
+     * @param input  Name of file input
+     * @param output Name of file output
+     * @throws IOException,..
+     * @see Exception
+     */
     public static void copyFile(String input, String output) {
         try {
             FileInputStream fis = new FileInputStream("C:\\Users\\Admin\\Desktop\\".concat(input));
@@ -147,6 +186,14 @@ public class Main {
 
     }
 
+    /**
+     * getData from fileInput and add to list.
+     *
+     * @param fileInput file to getData
+     * @param sl        List to add data
+     * @throws IOException
+     * @see Exception
+     */
     public static void getData(String fileInput, SortList sl) throws IOException {
 
         String email;
@@ -154,11 +201,11 @@ public class Main {
         try {
             Scanner sc = new Scanner(new File("C:\\Users\\Admin\\Desktop\\".concat(fileInput)));
             sc.nextLine();
-            while (sc.hasNext()){
+            while (sc.hasNext()) {
                 email = sc.next();
-                email = email.substring(0,email.length()-1);
+                email = email.substring(0, email.length() - 1);
                 point = Integer.parseInt(sc.next());
-                sl.insert(new Entry(point,email));
+                sl.insert(new Entry(point, email));
             }
             sc.close();
 
