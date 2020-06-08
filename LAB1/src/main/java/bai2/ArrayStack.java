@@ -77,9 +77,13 @@ public class ArrayStack implements Stack{
         return list[count];
     }
 
+    /**
+     * Check if the list is empty
+     * @return true if count=0
+     */
     @Override
     public boolean isEmpty() {
-        return true;
+        return count==0;
     }
 
     @Override
