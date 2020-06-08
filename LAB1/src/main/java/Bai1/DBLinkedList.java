@@ -46,6 +46,5 @@ public class DBLinkedList {
         public void setE(E e) {
             this.e = e;
         }
-        
-       
+    }
 }
