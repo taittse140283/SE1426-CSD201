@@ -62,5 +62,19 @@ public class DoublyLinkedList<E> {
         return trailer.getPrev().getElement();
     }
     
+    private void addBetween(E e, Node<E> predecessor, Node<E> successor){
+        Node<E> newest= new Node<>(e,predecessor,successor);
+        predecessor.setNext(newest);
+        successor.setPrev(newest);
+        size++;
+    }
+    private E delete(Node<E> node){
+        Node<E> predecessor= node.getPrev();
+        Node<E> successor= node.getNext();
+        predecessor.setNext(successor);
+        successor.setPrev(predecessor);
+        size--;
+        return node.getElement();
+    }
 
 }
