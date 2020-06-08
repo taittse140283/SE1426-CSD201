@@ -10,7 +10,9 @@ package lab1;
  * @author Admin
  */
 public class DoubleLinkList {
-    private class Node{
+
+   
+    private class Node<>{
         private int point;
         private Node next;
         private Node back;
@@ -19,20 +21,41 @@ public class DoubleLinkList {
             this.next=next_Node;
             this.back= back_Node;
         }
+    
+    
+    //getters and setters
+    public Node<> getBack(){ return back;}
+    public Node<> getNext(){ return next;}
+    public void setBack(Node <> b){back=b;}
+    public void setNext(Node <> n){next=n;}
     }
     private Node header;
     private Node tailer;
+    private int size=0;
     
+    //constructor n new empty list
     public DoubleLinkList(){
-        header= new Node(Integer.MIN_VALUE,null,null);
-        tailer=new Node(Integer.MAX_VALUE,null,null);
-        header.next=tailer;
+        header= new Node(null,null,null);
+        tailer=new Node(null,null,null);
+        header.setNext(tailer);
     }
-    private void add(int point, Node infontof, Node back){
+    /** Return the number of elements in the linked list. */
+    public int size(){ return size;}
+    /** tests whether the linkded list is empty */
+    public boolean isEmpty(){return size==0;}
+    /** Returns the first element of the list */
+    public Node first(){
+        if(isEmpty()) return null;
+        return header.getNext().getPoint();
+    }
+    private void addBetween(int point, Node infontof, Node back){
+        /** Create and link a node */
         Node new_Node= new Node(point, infontof, back);
-        infontof.next=new_Node;
-        infontof.back=new_Node;
+        infontof.setNext(new_Node);
+        back.setBack(new_Node);
+        size++;
         
     }
+    
     
 }
