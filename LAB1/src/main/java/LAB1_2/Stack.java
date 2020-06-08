@@ -35,7 +35,7 @@ public class Stack {
     }
     // xoa phan tu (removefirst)
     public void pop(){
-        if(head != null)
+        if(head != null){
         head = head.next;
         head.prev = null;
         tail = head == null ? null : tail;
