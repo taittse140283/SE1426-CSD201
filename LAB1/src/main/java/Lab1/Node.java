@@ -15,14 +15,6 @@ public class Node<Player> {
     Node<Player> previous;
     
     /**
-     * next and previous variables are set to null
-     * @param data 
-     */
-    public Node(Player data){
-        this(data, null, null);
-    }
-    
-    /**
      * Constructor
      * @param data
      * @param next
@@ -32,6 +24,34 @@ public class Node<Player> {
     public Node(Player data, Node next, Node previous) {
         this.data = data;
         this.next = next;
+        this.previous = previous;
+    }
+
+    /**
+     * Getter, setter
+     * @return 
+     */
+    public Player getData() {
+        return data;
+    }
+
+    public void setData(Player data) {
+        this.data = data;
+    }
+
+    public Node<Player> getNext() {
+        return next;
+    }
+
+    public void setNext(Node<Player> next) {
+        this.next = next;
+    }
+
+    public Node<Player> getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(Node<Player> previous) {
         this.previous = previous;
     }
     
