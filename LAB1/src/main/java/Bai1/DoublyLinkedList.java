@@ -118,5 +118,17 @@ public class DoublyLinkedList<E> {
         s.setPrev(newNode); // ""
         size++; // tang kich thuoc danh sach len 1
     }
+    
+    /*
+        Remove existed Node in list
+    */
+    private E remove(Node<E> node) {
+        Node<E> p = node.getPrev();
+        Node<E> s = node.getNext();
+        p.setNext(s);
+        s.setPrev(p);
+        size--;
+        return node.getElement();
+    }
 
 }
