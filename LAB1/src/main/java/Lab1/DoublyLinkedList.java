@@ -25,7 +25,7 @@ public class DoublyLinkedList<Player> {
     public DoublyLinkedList(){
         header = new Node<Player>(null, null, null);
         tailer = new Node<Player>(null, null, header);
-        header.next = tailer;
+        header.next= tailer;
     }
     /**
      * check if list is empty
@@ -43,6 +43,7 @@ public class DoublyLinkedList<Player> {
         Node<Player> newnode = new Node<Player>(data, back, front);
         front.next = newnode;
         back.previous = newnode;
+        size++;
     }
     /**
      * Adding a node to the first of the list.
@@ -50,7 +51,6 @@ public class DoublyLinkedList<Player> {
      */
     public void addFirst(Player newbie){
         insert(newbie, header, header.next);
-        size++;
     }
     
     /**
@@ -59,8 +59,8 @@ public class DoublyLinkedList<Player> {
      */
     public void addLast(Player newbie){
         insert(newbie, tailer.previous, tailer);
-        size++;
     }
+    
     public Node<Player> remove(Node<Player> n){
         Node front = n.previous;
         Node back = n.next;
