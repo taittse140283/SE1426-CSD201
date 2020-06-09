@@ -47,4 +47,14 @@ public class DBLinkedList {
             this.e = e;
         }
     }
+    private Node header;
+    private Node trailer;
+    private int size = 0;
+
+    public DBLinkedList() {
+        header= new Node(null,null,null);
+        trailer=new Node(null,null,null);
+        header.setNext(trailer);
+    }
+    
 }
