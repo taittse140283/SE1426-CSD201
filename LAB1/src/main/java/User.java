@@ -37,5 +37,7 @@ public class User {
         this.point = point;
     }
     
-    
+    public String toString(){
+        return ">> " + email + " -- " + point; 
+    }
 }
