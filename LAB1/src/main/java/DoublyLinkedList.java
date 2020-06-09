@@ -70,4 +70,13 @@ public class DoublyLinkedList<E> {
         if(isEmpty()) return null;
         return trailer.getNext().getElement();
     }
+    private void addBetween(E element, Node<E> predecessor, Node<E> successor){
+        Node<E> newest = new Node<>(element, predecessor, successor);
+        predecessor.setNext(newest);
+        successor.setPrev(newest);
+        size++;
+    }
+    public void addFirst(E element){
+        addBetween(element, header, header.getNext());
+    }
 }
