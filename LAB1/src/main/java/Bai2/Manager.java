@@ -84,7 +84,7 @@ public class Manager {
         };
 
         // chuyen de set entry thanh list de sap xep
-        List<Entry<String, Integer>> list = new ArrayList<>();
+        List<Entry<String, Integer>> list = new ArrayList<>(entries);
         Collections.sort(list, comparator);
 
         //tao mot linkedHashMap va put cac entries da sap xep sang
