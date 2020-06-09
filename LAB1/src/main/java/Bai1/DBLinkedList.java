@@ -9,18 +9,23 @@ package Bai1;
  *
  * @author Asus
  */
-public class DBLinkedList {
+public class DBLinkedList<E> {
     private static class Node<E>{
-        private Node<E> prev;
+        private E element;
+        private Node<E> prev; 
         private Node<E> next;
-        private E e;
-        public Node(Node<E> prev, Node<E> next, E e) {
-            this.prev = prev;
-            this.next = next;
-            this.e = e;
+        public Node(E e, Node<E> p, Node<E> n) {
+            element = e;
+            prev = p;
+            next = n;
         }
 
-        public Node() {
+        public E getElement() {
+            return element;
+        }
+
+        public void setElement(E element) {
+            this.element = element;
         }
 
         public Node<E> getPrev() {
@@ -38,28 +43,48 @@ public class DBLinkedList {
         public void setNext(Node<E> next) {
             this.next = next;
         }
-
-        public E getE() {
-            return e;
+        private Node<E> header; 
+        private Node<E> trailer; 
+        private int size = 0;
+        public void DBLinkedList() {
+            header = new Node<>(null, null, null);
+            trailer = new Node<>(null, header, null);
+            header.setNext(trailer);  
         }
-
-        public void setE(E e) {
-            this.e = e;
-        }
-    }
-    private Node header;
-    private Node trailer;
-    private int size = 0;
-
-    public DBLinkedList() {
-        header= new Node(null,null,null);
-        trailer=new Node(null,null,null);
-        header.setNext(trailer);
-    }
-    public int size() {
+        public int size(){
         return size;
     }
-    public boolean isEmpty() {
-        return size == 0;
+    public boolean isEmpty(){
+        return size==0;
     }
-}
+    public E first(){
+        if(isEmpty()){
+            return null;
+        }
+        return header.getNext().getElement();
+    }
+    public E last(){
+        if(isEmpty()){
+            return null;
+        }
+        return trailer.getPrev().getElement();
+    }
+    
+    private void addBetween(E e, Node<E> predecessor, Node<E> successor){
+        Node<E> newest= new Node<>(e,predecessor,successor);
+        predecessor.setNext(newest);
+        successor.setPrev(newest);
+        size++;
+    }
+    private E delete(Node<E> node){
+        Node<E> predecessor= node.getPrev();
+        Node<E> successor= node.getNext();
+        predecessor.setNext(successor);
+        successor.setPrev(predecessor);
+        size--;
+        return node.getElement();
+        }
+    }
+}    
+    
+    
