@@ -15,6 +15,7 @@ public class DoublyLinkedList<Player> {
      * tail node
      * A variable for tracking size
      */
+    private Player data;
     private Node<Player> header;
     private Node<Player> tailer;
     private int size;
@@ -61,7 +62,12 @@ public class DoublyLinkedList<Player> {
         insert(newbie, tailer.previous, tailer);
         size++;
     }
-    public void remove (Node<Player> delete){
+    public Node remove(Node n){
+        Node front = n.previous;
+        Node back = n.next;
+        front.next = back;
+        back.previous = front;
+        return n;
         
     }
 }
