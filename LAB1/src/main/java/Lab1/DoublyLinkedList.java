@@ -38,15 +38,21 @@ public class DoublyLinkedList<Player> {
     
     /**
      * Adding a node to the first of the list.
-     * @param newbie 
+     * @param newbie value to add
      */
     public void addFirst(Node<Player> newbie){
-        
+        if (isEmpty()) {
+            head = new Node<Player>((Player) newbie);
+        } else {
+            Node<Player> temp = head;
+            head = new Node<Player>(null, newbie, temp);
+            head.next.previous = head;
+        }
     }
     
     /**
      * Adding a node to the last of the list.
-     * @param newbie 
+     * @param newbie to add
      */
     public void addLast(Node<Player> newbie){
         
