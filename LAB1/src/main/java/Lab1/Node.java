@@ -9,11 +9,26 @@ package Lab1;
  *
  * @author Admin
  */
-public class Node {
+public class Node<Player> {
     Player data;
-    Node next;
-    Node previous;
-
+    Node<Player> next;
+    Node<Player> previous;
+    
+    /**
+     * next and previous variables are set to null
+     * @param data 
+     */
+    public Node(Player data){
+        this(data, null, null);
+    }
+    
+    /**
+     * Constructor
+     * @param data
+     * @param next
+     * @param previous 
+     */
+    
     public Node(Player data, Node next, Node previous) {
         this.data = data;
         this.next = next;
