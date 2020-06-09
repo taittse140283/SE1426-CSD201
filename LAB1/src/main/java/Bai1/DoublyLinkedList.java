@@ -130,5 +130,18 @@ public class DoublyLinkedList<E> {
         size--;
         return node.getElement();
     }
+    
+    /*
+        Add newNode in top of list
+    */
+    public void insertFirst(E e) {
+        addBetween(e, header, header.getNext());
+    }
 
+    /*
+        Add newNode in last of list
+    */
+    public void insertLast(E e) {
+        addBetween(e, trailer.getPrev(), trailer);
+    }
 }
