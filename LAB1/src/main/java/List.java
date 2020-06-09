@@ -61,7 +61,7 @@ public class List {
         System.out.println("-List-");
         Node currentNode = head;
         while (currentNode != null) {
-            currentNode = printData();
+            currentNode.printData();
             currentNode = currentNode.next;
         }
     }
