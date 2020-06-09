@@ -14,7 +14,7 @@ package BAI2;
 public class ArrayStack<E> implements Stack<E> {
     public static final int CAPACITY =1000;
     private E[] data;
-    private int top = -1;
+    private int t = -1;
 
     public ArrayStack() {
         this(CAPACITY);
@@ -24,5 +24,30 @@ public class ArrayStack<E> implements Stack<E> {
         data = (E[]) new Object[capacity];
     }
     
+    @Override
+    public int size(){  return(t + 1);}
     
+    @Override
+    public boolean isEmpty(){ return (t == -1);}
+    
+    @Override
+    public void push(E element) throws IllegalStateException{
+        if(size() == data.length) throw new  IllegalStateException("Full Stack!");
+        data[++t] = element;
+    }
+    
+    @Override
+    public E top(){
+        if(isEmpty()) return null;
+        return data[t];
+    }
+    
+    @Override
+    public E pop(){
+        if(isEmpty()) return null;
+        E answer = data[t];
+        data[t] = null;
+        t--;
+        return answer;
+    }
 }
