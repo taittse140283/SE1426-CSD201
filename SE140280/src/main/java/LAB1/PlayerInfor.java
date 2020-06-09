@@ -34,5 +34,8 @@ public class PlayerInfor {
     public void setPoint(int point) {
         this.point = point;
     }
-    
+    public void print(){
+        System.out.println("Email: " + email+"Point: " + point);
+        
+    }
 }
