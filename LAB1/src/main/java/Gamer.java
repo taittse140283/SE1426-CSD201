@@ -32,5 +32,10 @@ public class Gamer {
     public void setPoint(int point) {
         this.point = point;
     }
+
+    public void printInfo(){
+        System.out.printf("%s|%d\n",this.email,this.point);
+    }
+    
     
 }
