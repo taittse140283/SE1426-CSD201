@@ -12,12 +12,12 @@ package Bai1;
 public class Player {
     
     private String email;
-    private long point;
+    private int point;
 
     public Player() {
     }
 
-    public Player(String email, long point) {
+    public Player(String email, int point) {
         this.email = email;
         this.point = point;
     }
@@ -34,7 +34,7 @@ public class Player {
         return point;
     }
 
-    public void setPoint(long point) {
+    public void setPoint(int point) {
         this.point = point;
     }
 
