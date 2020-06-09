@@ -14,13 +14,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- *
+ * Using Map to store data as key and value pairs
+ * Keys are HTML tags
+ * Value is frequency appearance of this tag
  * @author Linh
  */
 public class CSV {
-    //Map stores data as key and value pairs
-    //Keys are HTML tags
-    //Value is frequency appearance of this tag
     Map<String, Integer> csv; 
 
     public CSV() {
@@ -41,7 +40,9 @@ public class CSV {
         }
     }
     
-    //Print to screen for testing
+    /**
+     * Print out tag and its frequency without sort 
+     */
     public void print() {
         
         System.out.println("Before sorting by frequence:");
@@ -52,6 +53,12 @@ public class CSV {
         }
     }
     
+    /**
+     * Sort the map based on the frequency of tag then store in linkedHasMap
+     * And write to file
+     * @param fileName
+     * @throws FileNotFoundException 
+     */
     public void sortAndWriteToFile(String fileName) throws FileNotFoundException {
         
         //This will sort by value in descending order
