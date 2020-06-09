@@ -12,6 +12,12 @@ package LAB1;
  */
 
 public class DoublyLinkedList {
+
+    private static class E {
+
+        public E() {
+        }
+    }
     /*nest Node class */
     private class Node<E>{
         private E element;
@@ -71,6 +77,22 @@ public class DoublyLinkedList {
     public Player last(){
         if(isEmpty()) return null;
         return (Player) trailer.getPrev().getElement();
+    }
+    /*Add first element infornt of the list*/
+    public void addFirst(E e){
+        addBetween(e, header, header.getNext());
+    }
+     /*Add last element infornt of the list*/
+    public void addLast(E e){
+        addBetween(e, trailer.getPrev(), trailer);
+    }
+    
+    /*Add element e between given node*/
+    private void addBetween(E e, Node<E> predecessor, Node<E> successor){
+       Node<E> newest = new Node<>(e, predecessor, successor);
+       predecessor.setNext(newest);
+       successor.setPrev(newest);
+       size++;
     }
 }
 
