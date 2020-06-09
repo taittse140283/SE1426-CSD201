@@ -65,7 +65,13 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public E pop() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()) {
+            return null;
+        }
+        E element = data[top];
+        data[top] = null;
+        top--;
+        return element;
     }
 
 }
