@@ -1,8 +1,12 @@
 package bai2;
 
 public class HTMLTagManager {
-    ArrayStack stack=new ArrayStack();
-    public void getHTMLTag(String link)
+    static ArrayStack stack=new ArrayStack();
+    public static boolean isUnpairedTag(String tag)
+    {
+        return true;
+    }
+    public static void getHTMLTag(/*String link*/)
     {
         //String html=ContentWebsite.getContentOnWebsite(link);
         String html="<!DOCTYPE html>\n" +
@@ -38,15 +42,28 @@ public class HTMLTagManager {
                 return;
 
            }
-            String tag = html.substring(j+1, k);
-            if (!tag.startsWith("/")) // this is an opening tag
-                if(tag.contains(" ")) {
-                    String[] validTag = tag.split(" ");
-                    stack.push(validTag[0]);
+            String tag = html.substring(j, k+1);
+            if (!tag.startsWith("</")) // this is an opening tag
+            {
+                if(!tag.contains(" ")&&!html.contains(tag.replace("<","</")))//check for unpaired tag like <br>
+                {
+                    //just for debug so it's empty
+
+
                 }
-                 else {
+                else if (tag.contains(" ")) {
+                    String[] validTag = tag.split(" ",2);//spit into 2 string like <tag and abcxyz>
+                    tag = validTag[0] + validTag[1].substring(validTag[1].length() - 1, validTag[1].length());//concat string to it like <tag>
+                    if (!html.contains(tag.replace("<","</"))) {//check for unpaired tag like img
+                        //just for debug so it's empty
+
+                    } else {
+                        stack.push(tag);
+                   }
+                } else {//for some tag like <p>abcxyz<p>
                     stack.push(tag);
                 }
+            }
 
             else { // this is a closing tag
                 if (stack.isEmpty())
@@ -56,18 +73,21 @@ public class HTMLTagManager {
                     return;
                 }
                 String checkTag=stack.pop();
-                if (!tag.substring(1).equals(checkTag))
+                if (!tag.replace("</","<").equals(checkTag))
                 {
                      // mismatched tag
                     System.out.println("Error: Mismatch HTML tag");
+                    return;
                  }
                 else
                 {
+                    //just for debug so it's empty
 
                 }
-            j = html.indexOf('<', k+1); // find next ’<’ character (if any)
+
             }
         //return stack.isEmpty( ); // were all opening tags matched?
+            j = html.indexOf('<', k+1); // find next ’<’ character (if any)
         }
     }
 
