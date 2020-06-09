@@ -39,6 +39,11 @@ public class DoublyLinkedList<Player> {
         return size;
     }
     
+    public void insert(Player data, Node front, Node back){
+        Node<Player> newnode = new Node<Player>(data, back, front);
+        front.next = newnode;
+        back.previous = newnode;
+    }
     /**
      * Adding a node to the first of the list.
      * @param newbie value to add
