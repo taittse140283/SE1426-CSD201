@@ -48,14 +48,8 @@ public class DoublyLinkedList<Player> {
      * Adding a node to the first of the list.
      * @param newbie value to add
      */
-    public void addFirst(Node<Player> newbie){
-        if (isEmpty()) {
-            header = new Node<Player>((Player) newbie);
-        } else {
-            Node<Player> temp = header;
-            header = new Node<Player>(null, newbie, temp);
-            header.next.previous = header;
-        }
+    public void addFirst(Player newbie){
+        insert(newbie, header, header.next);
         size++;
     }
     
@@ -63,18 +57,8 @@ public class DoublyLinkedList<Player> {
      * Insert a node to the last of the list.
      * @param newbie to add
      */
-    public void addLast(Node<Player> newbie){
-        if (isEmpty()) {
-            header = new Node<Player>((Player) newbie);
-        } else {
-            Node<Player> temp = header;
-            // Di cho den cuoi danh sach
-            while (temp.next != null) {
-                temp = temp.next;
-            }
-            header = new Node<Player>(null, temp, newbie);
-        }
-        size++;
+    public void addLast(Player newbie){
+        insert(newbie, tailer.previous, tailer);
     }
     public void remove (Node<Player> delete){
         
