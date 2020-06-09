@@ -12,9 +12,8 @@ package Bai2;
 public class ArrayStack<E> implements Stack<E> {
 
     /**
-     * Default array capacity
-     * Generic array used to implement the stack
-     * index for the top of the stack
+     * Default array capacity Generic array used to implement the stack index
+     * for the top of the stack
      */
     public static final int CAPACITY = 5000;
     private E[] data;
@@ -24,19 +23,18 @@ public class ArrayStack<E> implements Stack<E> {
      * Constructor default
      */
     public ArrayStack() {
-        this(CAPACITY); 
+        this(CAPACITY);
     }
 
     /**
-     * Constructor with parameter capacity
-     * compiler may give warning
-     * @param capacity 
+     * Constructor with parameter capacity compiler may give warning
+     *
+     * @param capacity
      */
     public ArrayStack(int capacity) {
-        data = (E[]) new Object[capacity]; 
+        data = (E[]) new Object[capacity];
     }
 
-    
     @Override
     public int size() {
         return (top + 1);
@@ -49,15 +47,15 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public E top() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
         return data[top];
     }
 
     @Override
-    public void push(E element) throws IllegalStateException{
-        if(size() == data.length) {
+    public void push(E element) throws IllegalStateException {
+        if (size() == data.length) {
             throw new IllegalStateException("Stack is full");
         }
         data[++top] = element;
@@ -65,7 +63,7 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public E pop() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
         E element = data[top];
