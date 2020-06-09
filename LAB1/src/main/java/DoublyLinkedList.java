@@ -55,4 +55,9 @@ public class DoublyLinkedList<E> {
         trailer = new Node<>(null, header, null);
         header.setNext(trailer);
     }
+    
+    public int size(){ return size;}
+    
+    public boolean isEmpty(){ return size ==0;}
+            
 }
