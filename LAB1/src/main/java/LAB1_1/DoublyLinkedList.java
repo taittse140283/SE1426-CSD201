@@ -12,7 +12,7 @@ package LAB1_1;
 public class DoublyLinkedList {
     
     Node<Player> head,tail;
-    
+    private int size = 0; // kiem tra danh sach
     public Node<Player> getHead() {
         return head;
     }
@@ -37,13 +37,14 @@ public class DoublyLinkedList {
         head = tail = null;
     }
     public boolean isEmpty(){
-        return tail == null;
+        return size == 0;
     }
     //them phan tu vao list
     public void add(Node<Player> newNode){
         newNode.setNext(head);
         head.setPrev(newNode);
         head = newNode;
+        size++;
     }
     //xoa phan tu vao list
     public void remove(){
