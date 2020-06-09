@@ -47,15 +47,20 @@ public class DoublyLinkedList {
         size++;
     }
     //xoa phan tu vao list
-    public void remove(){
+    public Player remove(){
         if(isEmpty()){
             System.out.println("Stack rong");
         }
         //Neu xoa khi chi con 1 phan 
-        else if(head == tail) {
+        else{
+            Player value = head.getInfo();
+            head = head.getNext();
+            size--;
+            if(head == tail){
             head = tail = null;
             System.out.println("Danh sach trong");
-            return;
+            }
         }
+        return null;
     }
 }
