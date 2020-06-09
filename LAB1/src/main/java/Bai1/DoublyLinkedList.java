@@ -77,51 +77,54 @@ public class DoublyLinkedList<E> {
         trailer = new Node<>(null, header, null);
         header.setNext(trailer);
     }
+
     /*
         Return size fo list
-    */
+     */
     public int size() {
         return size;
     }
+
     /*
         Return true if size = 0
-    */
+     */
     public boolean isEmpty() {
         return size == 0;
     }
-    
+
     /*
         Return element in top of list
-    */
+     */
     public E getFirst() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
         return header.getNext().getElement();
     }
-    
+
     /*
         Return element in last of list
-    */
+     */
     public E getLast() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
         return trailer.getPrev().getElement();
     }
+
     /*
         Add new Node at between two given Node
-    */
+     */
     private void addBetween(E e, Node<E> p, Node<E> s) {
         Node<E> newNode = new Node<>(e, p, s); // create new node
         p.setNext(newNode);  // set address for pointer
         s.setPrev(newNode); // ""
         size++; // tang kich thuoc danh sach len 1
     }
-    
+
     /*
         Remove existed Node in list
-    */
+     */
     private E remove(Node<E> node) {
         Node<E> p = node.getPrev();
         Node<E> s = node.getNext();
@@ -130,18 +133,35 @@ public class DoublyLinkedList<E> {
         size--;
         return node.getElement();
     }
-    
+
     /*
         Add newNode in top of list
-    */
+     */
     public void insertFirst(E e) {
         addBetween(e, header, header.getNext());
     }
 
     /*
         Add newNode in last of list
-    */
+     */
     public void insertLast(E e) {
         addBetween(e, trailer.getPrev(), trailer);
+    }
+
+    /*
+        Xoa node dau danh sach
+    */
+    public E removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
+        return remove(header.getNext());
+    }
+    
+    public E removeLast() {
+        if(isEmpty()) {
+            return null;
+        }
+        return remove(trailer.getPrev());
     }
 }
