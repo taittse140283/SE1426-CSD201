@@ -16,9 +16,9 @@ public class ArrayStack<E> implements Stack<E> {
      * Generic array used to implement the stack
      * index for the top of the stack
      */
-    public static final int CAPACITY = 5000; 
-    private E data[]; 
-    private int top = -1; 
+    public static final int CAPACITY = 5000;
+    private E[] data;
+    private int top = -1;
 
     /**
      * Constructor default
@@ -44,7 +44,7 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return top == -1;
     }
 
     @Override
