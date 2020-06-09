@@ -86,9 +86,9 @@ public class HTMLTagManager {
                 }
 
             }
-        //return stack.isEmpty( ); // were all opening tags matched?
             j = html.indexOf('<', k+1); // find next ’<’ character (if any)
         }
+
     }
 
 }
