@@ -150,18 +150,38 @@ public class DoublyLinkedList<E> {
 
     /*
         Xoa node dau danh sach
-    */
+     */
     public E removeFirst() {
         if (isEmpty()) {
             return null;
         }
         return remove(header.getNext());
     }
-    
+
+    /*
+        Xoa node cuoi cung
+     */
     public E removeLast() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
         return remove(trailer.getPrev());
+    }
+
+    /*
+        Xoa mot phan tu trong list tai vi tri bat ki cho truoc
+     */
+    public void removeAtPosition(int n) {
+        if (size == 0 || n < 0) { // neu size = 0 thi ko co phan tu de remove, neu vi tri < 0 thi error index
+            return;
+        }
+        Node current = header.next; // gan node dau tien trong list cho node current
+        for (int i = 0; (current != null) && (i < n); i++) { // duyet den vi tri can tim
+            current = current.next;
+        }
+        if (current == null) {
+            return;
+        }
+        remove(current);
     }
 }
