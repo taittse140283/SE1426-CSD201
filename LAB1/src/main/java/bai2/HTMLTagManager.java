@@ -17,9 +17,9 @@ public class HTMLTagManager {
     }
     public void getHTMLTag(/*String link*/)
     {
-        //String html=ContentWebsite.getContentOnWebsite(link);
+        String html=ContentWebsite.getContentOnWebsite("https://vnexpress.net/");
         HashMap<String, Integer> frequencyOfTag=new HashMap<>();
-        String html="<!DOCTYPE html>\n" +
+        /*String html="<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
                 "	<meta charset=\"UTF-8\">\n" +
@@ -40,18 +40,18 @@ public class HTMLTagManager {
                 "	<img class = \"preview\" src = \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/389177/bacon3.jpg\" alt = \"Young Puppy\" onmouseover = \"upDate(this)\" onmouseout = \"unDo()\">\n" +
                 "\n" +
                 "</body>\n" +
-                "</html>";
+                "</html>";*/
         //Check for normal tag
         int j = html.indexOf('<'); // find first ’<’ character (if any)
         while (j!=(-1)) {
             int k = html.indexOf('>', j+1); // find next ’>’ character
-            if (k ==(-1))
+            //if (k ==(-1))
                 //invalid tag
-            {
-                System.out.println("Error: Mismatch HTML tag");
-                return;
+            //{
+               // System.out.println("Error: Mismatch HTML tag");
+                //return;
 
-           }
+          // }
             String tag = html.substring(j, k+1);
             if (!tag.startsWith("</")) // this is an opening tag
             {
@@ -75,18 +75,18 @@ public class HTMLTagManager {
             }
 
             else { // this is a closing tag
-                if (stack.isEmpty())
+                //if (stack.isEmpty())
                      // no tag to match
-                {
-                    System.out.println("Error: Mismatch HTML tag");
-                    return;
-                }
+                //{
+                   // System.out.println("Error: Mismatch HTML tag");
+                    //return;
+                //}
                 String checkTag=stack.pop();
                 if (!tag.replace("</","<").equals(checkTag))
                 {
                      // mismatched tag
-                    System.out.println("Error: Mismatch HTML tag");
-                    return;
+                    //System.out.println("Error: Mismatch HTML tag");
+                    //return;
                  }
                 else
                 {
@@ -98,6 +98,7 @@ public class HTMLTagManager {
             j = html.indexOf('<', k+1); // find next ’<’ character (if any)
         }
         frequencyOfTag=FrequencyOfTag.sortHashMap(frequencyOfTag);
+        CSV.writeFile("output.csv", frequencyOfTag);
 
     }
 
