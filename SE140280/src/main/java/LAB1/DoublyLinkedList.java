@@ -13,24 +13,20 @@ package LAB1;
 
 public class DoublyLinkedList {
     /*nest Node class */
-    private class Node{
-        private int value;
-        private Node next;
-        private Node prev;
-        public Node (int value, Node next_node, Node prev_node){
-            this.value = value;
+    private class Node<E>{
+        private E element;
+        
+        private Node<E> next;
+        private Node<E> prev;
+        public Node (E element, Node next_node, Node prev_node){
+            element = element;
             this.next = next_node;
             this.prev = prev_node;
         }  
-
-        public int getValue() {
-            return value;
+        /*Getter and Setter*/
+        public E getElement(){
+            return element;
         }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
         public Node getNext() {
             return next;
         }
@@ -51,7 +47,7 @@ public class DoublyLinkedList {
     private Node header;
     private Node trailer;
     private int size = 0;
-    /*make a new empty list*/
+    /*contructor a new empty list*/
     public DoublyLinkedList(){
         header = new Node(Integer.MIN_VALUE, null, null);
         trailer = new Node(Integer.MAX_VALUE, header, null);
@@ -61,10 +57,20 @@ public class DoublyLinkedList {
     public int size(){
         return size;
     }  
-    /*test if the linked list is empty*/
+    /*test if the linked list is empty
+    @return true*/
     public boolean isEmpty(){
         return size == 0;
     }
-    
+    /*Return first elemet of the linked list*/    
+    public Player first(){
+        if(isEmpty()) return null;
+        return (Player) header.getNext().getElement();
+    }
+    /*Return last element of the linked list*/
+    public Player last(){
+        if(isEmpty()) return null;
+        return (Player) trailer.getPrev().getElement();
+    }
 }
 
