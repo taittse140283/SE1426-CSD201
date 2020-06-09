@@ -68,13 +68,4 @@ public class DoublyLinkedList<Player> {
             }
         size++;
         }
-    }
-        
-    /**
-     * Remove a Node from the list
-     * @param delete 
-     */
-    public void remove(Node<Player> deleteNode){
-        
-    }
 }
