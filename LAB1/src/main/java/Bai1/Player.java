@@ -30,7 +30,7 @@ public class Player implements Comparable<Player>{
         this.email = email;
     }
 
-    public long getPoint() {
+    public int getPoint() {
         return point;
     }
 
