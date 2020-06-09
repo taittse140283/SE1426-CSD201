@@ -65,7 +65,7 @@ public class Stack {
      * @return tail.tag
      */
     public String getTop() {
-        return tail.tag;
+        return tail.getTag();
     }
     
     /**
@@ -73,6 +73,6 @@ public class Stack {
      */
     public void print() {
         for(TagHTML t = head; t != null; t = t.next)
-            System.out.print(t.tag + "   ");
+            System.out.print(t.getTag() + "   ");
     }
 }
