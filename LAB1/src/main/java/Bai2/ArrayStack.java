@@ -17,4 +17,37 @@ public class ArrayStack<E> implements Stack<E> {
     public ArrayStack(int capacity) {
         data = (E[ ]) new Object[capacity];
     }
-}    
+    public int size( ) { return (t + 1); }
+    @Override
+    public boolean isEmpty(){ 
+        return (t== -1); 
+    }
+    
+    public void push(E e) throws IllegalStateException {
+        if (size( ) == data.length) throw new IllegalStateException("Stack is full");
+        data[++t] = e;
+    }
+    @Override
+    public E top( ) {
+        if (isEmpty( )) return null;
+        return data[t];
+    }
+    public E pop() {
+        if (isEmpty()) return null;
+        E answer = data[t];
+        data[t] = null; // dereference to help garbage collection
+        t--;
+        return answer;
+}
+
+    @Override
+    public void print() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}
+
+    
+  
+    
+    
+    
