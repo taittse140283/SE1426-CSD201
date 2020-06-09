@@ -24,7 +24,8 @@ public class Stack {
         if(isEmpty()){
             head = tag;
             tail = head;
-            head.prev = tail.prev = null;
+            tail.next = null;
+            head.prev = tail.next = null;
             return;
         }
         //neu da co 1 phan tu tro len thi them phan tu (addFirst)
@@ -35,10 +36,25 @@ public class Stack {
     }
     // xoa phan tu (removefirst)
     public void pop(){
-        if(head != null){
-        head = head.next;
-        head.prev = null;
-        tail = head == null ? null : tail;
+        //Kiem tra stack co rong 
+        if(isEmpty()){
+            System.out.println("Stack rong");
         }
+        //Neu xoa khi chi con 1 phan 
+        else if(head == tail) {
+            head = tail = null;
+            System.out.println("Danh sach trong");
+            return;
+        }else{
+        head = head.next;
+        head.prev = null;}
+    }
+    // lay the tren cung trong stack
+    public String Top() {
+        return head.getTagHTML();
+    }
+    public void print() {
+        for(NodeHTML tag = tail; tag != null; tag = tag.prev)
+            System.out.print(tag.tagHTML + " ");
     }
 }
