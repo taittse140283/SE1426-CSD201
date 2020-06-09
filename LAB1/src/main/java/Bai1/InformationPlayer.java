@@ -5,6 +5,8 @@
  */
 package Bai1;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Asus
@@ -35,9 +37,12 @@ public class InformationPlayer {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void print(){
-        System.out.println("Email: "+email);
-        System.out.println("Point: "+point);
+    public void input(){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Email:");
+        email= sc.nextLine();
+        System.out.println("Point:");
+        point= Integer.parseInt(sc.nextLine());
     }
     @Override
     public String toString() {
