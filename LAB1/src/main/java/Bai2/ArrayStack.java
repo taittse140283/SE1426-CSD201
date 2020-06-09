@@ -49,7 +49,10 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public E top() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()) {
+            return null;
+        }
+        return data[top];
     }
 
     @Override
