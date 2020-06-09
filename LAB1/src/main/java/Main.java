@@ -17,6 +17,7 @@ public class Main {
         System.out.print("Hello World");
         System.out.print("Helllo Boizzzzz!");
         System.out.print("Helloo :3");
+        System.out.println("New line");
         // TODO code application logic here
     }
     
