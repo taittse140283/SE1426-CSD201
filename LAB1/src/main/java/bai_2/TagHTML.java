@@ -12,11 +12,10 @@ package bai_2;
 
 
 /**
- * Tao Constructor 
- * Tao getter va setter dung` de truyen va nhan du lieu
+ * Each node stores one tag and 2 info of its next node and previous node
  */
 public class TagHTML {
-    String tag;
+    private String tag;
     TagHTML next, prev;
 
     //Constructor 
