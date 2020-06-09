@@ -10,21 +10,21 @@ package LAB1_2;
  * @author TAN
  */
 public class NodeHTML {
-    String tagHTLM;
+    String tagHTML;
     NodeHTML next,prev;
     
-    public NodeHTML(String tagHTLM, NodeHTML next, NodeHTML prev) {
-        this.tagHTLM = tagHTLM;
+    public NodeHTML(String tagHTML, NodeHTML next, NodeHTML prev) {
+        this.tagHTML = tagHTML;
         this.next = next;
         this.prev = prev;
     }
 
-    public String getTagHTLM() {
-        return tagHTLM;
+    public String getTagHTML() {
+        return tagHTML;
     }
 
-    public void setTagHTLM(String tagHTLM) {
-        this.tagHTLM = tagHTLM;
+    public void setTagHTML(String tagHTML) {
+        this.tagHTML = tagHTML;
     }
 
     public NodeHTML getNext() {
