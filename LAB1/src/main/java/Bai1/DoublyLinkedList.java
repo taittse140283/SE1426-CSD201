@@ -18,11 +18,11 @@ public class DoublyLinkedList<E> {
      */
     public class Node<E> {
 
-        private E data;
+        private Player data;
         private Node<E> prev;
         private Node<E> next;
 
-        public Node(E data, Node<E> prev, Node<E> next) {
+        public Node(Player data, Node<E> prev, Node<E> next) {
             this.data = data;
             this.prev = prev;
             this.next = next;
@@ -31,7 +31,7 @@ public class DoublyLinkedList<E> {
         /*
             Return data of Node
          */
-        public E getElement() {
+        public Player getElement() {
             return data;
         }
 
@@ -96,7 +96,7 @@ public class DoublyLinkedList<E> {
         Return element in top of list 
         Chuc nang: neu list duoc sap xep, co the tim ra element largest or smallest
      */
-    public E getFirst() {
+    public Player getFirst() {
         if (isEmpty()) {
             return null;
         }
@@ -107,7 +107,7 @@ public class DoublyLinkedList<E> {
         Return element in last of list
         Chuc nang: neu list duoc sap xep, co the tim ra element largest or smallest
      */
-    public E getLast() {
+    public Player getLast() {
         if (isEmpty()) {
             return null;
         }
@@ -117,7 +117,7 @@ public class DoublyLinkedList<E> {
     /*
         Add new Node at between two given Node
      */
-    private void addBetween(E e, Node<E> p, Node<E> s) {
+    private void addBetween(Player e, Node<E> p, Node<E> s) {
         Node<E> newNode = new Node<>(e, p, s); // create new node
         p.setNext(newNode);  // set address for pointer
         s.setPrev(newNode); // ""
@@ -127,7 +127,7 @@ public class DoublyLinkedList<E> {
     /*
         Remove existed Node in list
      */
-    private E remove(Node<E> node) {
+    private Player remove(Node<E> node) {
         Node<E> p = node.getPrev();
         Node<E> s = node.getNext();
         p.setNext(s);
@@ -139,21 +139,21 @@ public class DoublyLinkedList<E> {
     /*
         Add newNode in top of list
      */
-    public void insertFirst(E e) {
+    public void insertFirst(Player e) {
         addBetween(e, header, header.getNext());
     }
 
     /*
         Add newNode in last of list
      */
-    public void insertLast(E e) {
+    public void insertLast(Player e) {
         addBetween(e, trailer.getPrev(), trailer);
     }
 
     /*
         Xoa node dau danh sach
      */
-    public E removeFirst() {
+    public Player removeFirst() {
         if (isEmpty()) {
             return null;
         }
@@ -163,7 +163,7 @@ public class DoublyLinkedList<E> {
     /*
         Xoa node cuoi cung
      */
-    public E removeLast() {
+    public Player removeLast() {
         if (isEmpty()) {
             return null;
         }
@@ -190,7 +190,7 @@ public class DoublyLinkedList<E> {
     /*
         Tim kiem element bat ki trong list.
     */
-    public E get(int index) {
+    public Player get(int index) {
         if(size != 0) {
             Node<E> current = header.getNext();
             for(int i = 0; (current != null) && (i < index); i++) {
