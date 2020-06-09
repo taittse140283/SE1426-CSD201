@@ -9,14 +9,54 @@ package Lab1;
  *
  * @author Admin
  */
-public class DoublyLinkedList {
-    Node head;
-    Node tail;
+public class DoublyLinkedList<Player> {
+    /**
+     * head node 
+     * A variable for tracking size
+     */
+    private Node<Player> head;
+    private int size;
 
+    /**
+     * Constructor empty list
+     */
     public DoublyLinkedList(){
-        head = tail = null;
+        head = null;
+        size = 0;
     }
-    public boolean isEmpty(){
-        return head == null;
+    /**
+     * check if list is empty
+     * @return true if size is 0; otherwise, it is false.
+     */
+    public boolean isEmpty() {
+        return size == 0;
+    }
+    
+    public int size(){
+        return size;
+    }
+    
+    /**
+     * Adding a node to the first of the list.
+     * @param newbie 
+     */
+    public void addFirst(Node<Player> newbie){
+        
+    }
+    
+    /**
+     * Adding a node to the last of the list.
+     * @param newbie 
+     */
+    public void addLast(Node<Player> newbie){
+        
+    }
+        
+    /**
+     * Remove a Node from the list
+     * @param delete 
+     */
+    public void remove(Node<Player> delete){
+        
     }
 }
