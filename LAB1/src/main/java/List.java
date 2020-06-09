@@ -1,15 +1,18 @@
+
+import java.util.*;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Tri
  */
 public class List {
 
+    Scanner in = new Scanner(System.in);
     private int size;
     private Node head;
     private Node tail;
@@ -23,10 +26,11 @@ public class List {
     public int size() {
         return size;
     }
+
     //use func checkExist, if true, return we found gamer
     public Node search(String gamerMail) {
         Node searchNode = this.head;
-        while (searchNode!=null) {            
+        while (searchNode != null) {
             if (searchNode.checkExist(gamerMail)) {
                 return searchNode;
             }
@@ -38,7 +42,7 @@ public class List {
     //insert
     public void insert(Node node, int position) {
         //if insert in the head, mean node.next = head so head = node, size +1
-        if (position < 1 || this.size ==0) {
+        if (position < 1 || this.size == 0) {
             node.next = this.head;
             this.head = node;
             //but if the list is empty, mean tail = head = node
@@ -64,44 +68,78 @@ public class List {
         Node prevNode = null;
         Node currentNode = this.head;
         int count = 0;
-        while (count<position) {            
+        while (count < position) {
             count++;
-            prevNode=currentNode;
-            currentNode=currentNode.next;
+            prevNode = currentNode;
+            currentNode = currentNode.next;
         }
-        node.next=currentNode;
-        prevNode.next=node;
+        node.next = currentNode;
+        prevNode.next = node;
         this.size++;
 
     }
-    
-    public void remove(String email){
-        Node preNode=null;
+
+    public void remove(String email) {
+        Node preNode = null;
         Node currentNode = this.head;
-        int count =0;
-        while (currentNode!=null) {            
+        int count = 0;
+        while (currentNode != null) {
             if (currentNode.checkExist(email)) {
                 //remove first
-                if (count==0) {
-                    this.head=this.head.next;
-                    if (this.head==null) {
-                        this.tail=null;
+                if (count == 0) {
+                    this.head = this.head.next;
+                    if (this.head == null) {
+                        this.tail = null;
                     }
-                //remove last    
-                }else if(count==this.size-1){
-                    preNode.next=null;
+                    //remove last    
+                } else if (count == this.size - 1) {
+                    preNode.next = null;
                     this.tail = preNode;
-                //remove midle    
-                }else{
-                    preNode.next=currentNode.next;
+                    //remove midle    
+                } else {
+                    preNode.next = currentNode.next;
                 }
                 this.size--;
-                return; 
+                return;
             }
             count++;
-            currentNode=currentNode.next;
+            currentNode = currentNode.next;
         }
     }
+
+    public void update(Gamer gamer) {
+        Node currentNode = this.head;
+
+        while (currentNode != null) {
+            System.out.println("Enter email you want to update: ");
+            String mail = in.nextLine().trim();
+            if (currentNode.checkExist(mail)) {
+                System.out.print("Enter new mail: ");
+                String newMail = in.nextLine().trim();
+                System.out.print("Enter new point: ");
+                int newPoint = Integer.parseInt(in.nextLine().trim());
+                gamer.setEmail(newMail);
+                gamer.setPoint(newPoint);
+            }
+            currentNode = currentNode.next;
+        }
+    }
+
+    public void getNode() {
+
+        Node currentNode = this.head;
+        System.out.println("List found: ");
+        while (currentNode != null) {
+            System.out.print("Enter email you want to search: ");
+            String mail = in.nextLine().trim();
+            if (currentNode.checkExist(mail)) {
+                currentNode.printData();
+
+            }
+            currentNode = currentNode.next;
+        }
+    }
+
     public void printList() {
         System.out.println("-List-");
         Node currentNode = head;
