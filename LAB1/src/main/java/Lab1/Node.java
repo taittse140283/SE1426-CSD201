@@ -20,7 +20,6 @@ public class Node<Player> {
      * @param next
      * @param previous 
      */
-    
     public Node(Player data, Node next, Node previous) {
         this.data = data;
         this.next = next;
@@ -28,9 +27,10 @@ public class Node<Player> {
     }
 
     /**
-     * Getter, setter
-     * @return 
+     * Getter and Setter
+     *@return data, next, previous
      */
+    
     public Player getData() {
         return data;
     }
