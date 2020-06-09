@@ -48,6 +48,7 @@ public class DoublyLinkedList<Player> {
             head = new Node<Player>(null, newbie, temp);
             head.next.previous = head;
         }
+        size++;
     }
     
     /**
