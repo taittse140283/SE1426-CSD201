@@ -45,13 +45,13 @@ public class HTMLTagManager {
         int j = html.indexOf('<'); // find first ’<’ character (if any)
         while (j!=(-1)) {
             int k = html.indexOf('>', j+1); // find next ’>’ character
-            //if (k ==(-1))
+            if (k ==(-1))
                 //invalid tag
-            //{
-               // System.out.println("Error: Mismatch HTML tag");
-                //return;
+            {
+               System.out.println("Error: Mismatch HTML tag");
+                return;
 
-          // }
+          }
             String tag = html.substring(j, k+1);
             if (!tag.startsWith("</")) // this is an opening tag
             {
@@ -86,22 +86,23 @@ public class HTMLTagManager {
             }
 
             else { // this is a closing tag
-                //if (stack.isEmpty())
-                     // no tag to match
-                //{
-                   // System.out.println("Error: Mismatch HTML tag");
-                    //return;
-                //}
-                String checkTag=stack.pop();
-                if (!tag.replace("</","<").equals(checkTag))
+               if (stack.isEmpty())
+                     //no tag to match
                 {
-                     // mismatched tag
+                   System.out.println("Error: Mismatch HTML tag");
+                    return;
+                }
+                String checkTag=stack.pop();
+               if (!tag.replace("</","<").equals(checkTag))
+                {
+                     //mismatched tag
                     //System.out.println("Error: Mismatch HTML tag");
+                    System.out.println(tag);
+                    System.out.println(checkTag);
                     //return;
                  }
                 else
                 {
-                    //just for debug so it's empty
                     frequencyOfTag=this.countFrequencyOfTag(frequencyOfTag,tag.replace("</","<"));
                 }
 
