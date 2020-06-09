@@ -50,10 +50,14 @@ public class DoublyLinkedList<Player> {
      * @param element
      */
     public void addFirst(Player data) {
-        Node newnode = new Node(data, head, null);
-        if(head != null ) {head.previous = newnode;}
-        head = newnode;
-        if(tail == null) { tail = newnode;}
+        Node newNode = new Node(data, head, null);
+        if(head != null ) {
+            head.previous = newNode;
+        }
+        head = newNode;
+        if(tail == null) {
+            tail = newNode;
+        }
         size++;
     }
     
@@ -63,10 +67,10 @@ public class DoublyLinkedList<Player> {
      */
     public void addLast(Player data) {
          
-        Node newnode = new Node(data, null, tail);
-        if(tail != null) {tail.next = newnode;}
-        tail = newnode;
-        if(head == null) { head = newnode;}
+        Node newNode = new Node(data, null, tail);
+        if(tail != null) {tail.next = newNode;}
+        tail = newNode;
+        if(head == null) { head = newNode;}
         size++;
     }
     
