@@ -56,5 +56,10 @@ public class DBLinkedList {
         trailer=new Node(null,null,null);
         header.setNext(trailer);
     }
-    
+    public int size() {
+        return size;
+    }
+    public boolean isEmpty() {
+        return size == 0;
+    }
 }
