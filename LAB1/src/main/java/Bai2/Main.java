@@ -12,11 +12,12 @@ import java.util.HashMap;
  * @author User
  */
 public class Main {
+
     public static void main(String[] args) {
         HashMap<String, Integer> hashMap = new HashMap<>();
         String url = "https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
-        String output = "xuat.csv";
-        
+        String output = "output.csv";
+
         Manager.process(hashMap, Manager.readHtlmFromWeb(url));
         Manager.writeToFile(hashMap, output);
     }
