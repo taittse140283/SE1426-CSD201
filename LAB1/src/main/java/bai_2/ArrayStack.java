@@ -51,5 +51,34 @@ public class ArrayStack<E> implements Stack<E>{
         return (t==-1);
     }
 
-    
+    /**
+     * This method is insert an element at the top of the stack
+     * 
+     * @param e
+     * @throws IllegalStateException 
+     */
+    @Override
+    public void push(E e) throws IllegalStateException {
+        if(size() == data.length) throw new IllegalStateException("Stack is full");
+        data[++t]=e;
+    }
+
+    @Override
+    public E top() {
+       if(isEmpty()){
+           return null;
+       }
+       return data[t];
+    }
+
+    @Override
+    public E pop() {
+       if(isEmpty()){
+           return null;
+       }
+       E answer= data[t];
+       data[t]=null;
+       t--;
+       return answer;
+    }
 }
