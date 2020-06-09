@@ -52,18 +52,29 @@ public class DoublyLinkedList<Player> {
     }
     
     /**
-     * Adding a node to the last of the list.
+     * Insert a node to the last of the list.
      * @param newbie to add
      */
     public void addLast(Node<Player> newbie){
-        
+        if (isEmpty()) {
+            head = new Node<Player>((Player) newbie);
+        } else {
+            Node<Player> temp = head;
+            // Di cho den cuoi danh sach
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            head = new Node<Player>(null, temp, newbie);
+            }
+        size++;
+        }
     }
         
     /**
      * Remove a Node from the list
      * @param delete 
      */
-    public void remove(Node<Player> delete){
+    public void remove(Node<Player> deleteNode){
         
     }
 }
