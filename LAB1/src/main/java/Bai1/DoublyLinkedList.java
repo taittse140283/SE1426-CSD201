@@ -16,7 +16,7 @@ public class DoublyLinkedList<E> {
      *
      * @param <E>
      */
-    private class Node<E> {
+    public class Node<E> {
 
         private E data;
         private Node<E> prev;
