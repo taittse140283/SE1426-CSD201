@@ -46,7 +46,7 @@ public class DoublyLinkedList {
         head = newNode;
         size++;
     }
-    //xoa phan tu vao list
+    //xoa phan dau tien vao list
     public Player remove(){
         if(isEmpty()){
             System.out.println("Stack rong");
@@ -63,4 +63,5 @@ public class DoublyLinkedList {
         }
         return null;
     }
+    
 }
