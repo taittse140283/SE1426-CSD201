@@ -62,12 +62,19 @@ public class DoublyLinkedList<Player> {
         insert(newbie, tailer.previous, tailer);
         size++;
     }
-    public Node remove(Node n){
+    public Node<Player> remove(Node<Player> n){
         Node front = n.previous;
         Node back = n.next;
         front.next = back;
         back.previous = front;
         return n;
-        
+
+    }
+    
+    public Player removeFirst(){
+        if(isEmpty()){
+            System.err.println("Empty List!");
+        }
+        return remove(header.next).data;
     }
 }
