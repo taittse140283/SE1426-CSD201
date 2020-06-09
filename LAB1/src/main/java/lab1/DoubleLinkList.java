@@ -35,10 +35,10 @@ public class DoubleLinkList<Entry> {
     private Node<Entry> tailer;
     private int size=0;
     
-    //constructor n new empty list
+    //constructor  new empty list
     public DoubleLinkList(){
         header= new Node(null,null,null);
-        tailer=new Node(null,null,null);
+        tailer=new Node(null,header,null);
         header.setNext(tailer);
     }
     /** Return the number of elements in the linked list. */
@@ -50,6 +50,11 @@ public class DoubleLinkList<Entry> {
         if(isEmpty()) return null;
         return header.getNext().getElement();
     }
+    /** return the last element of the list*/
+    public Entry last(){
+        if(isEmpty()) return null;
+        return tailer.getBack().getElement();
+    }
     //** add element to the linked list int the between the given nodes  */
     private void addBetween(Entry Element, Node<Entry> infontof, Node<Entry> back){
         /** Create and link a node */
@@ -59,12 +64,35 @@ public class DoubleLinkList<Entry> {
         size++;
         
     } 
+    /** add element to the front of the list
+     *@param e
+     */
+    public void addFirst(Entry e){
+        addBetween(e,header,header.getNext()); 
+    }
+    /** add element to the last the list
+     *@param e
+     */
+    public void addLast(Entry e){
+        addBetween(e,tailer.getBack(), tailer);
+    }
+    /** Removes and returns the first element of the list. */
+    public Entry removeFirst(){
+        if(isEmpty()) return null;
+        return remove(header.getNext());
+    }
+    /** Removes and returns the last element of the list. */
+    public Entry removeLast(){
+        if(isEmpty()) return null;
+        return remove(tailer.getBack());
+    }
     /** 
     * this method remove a node in linkedList
     * @param node
     * no output
     
     */
+    
     private Entry remove(Node <Entry> node){
         Node<Entry> infontof= node.getBack();
         Node<Entry> back=node.getNext();
@@ -73,6 +101,7 @@ public class DoubleLinkList<Entry> {
         size--;
         return node.getElement();
     }
+    
     
     
 
