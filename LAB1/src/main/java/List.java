@@ -23,15 +23,22 @@ public class List {
     public int size() {
         return size;
     }
-
+    //use func checkExist, if true, return we found gamer
     public Node search(String gamerMail) {
+        Node searchNode = this.head;
+        while (searchNode!=null) {            
+            if (searchNode.checkExist(gamerMail)) {
+                return searchNode;
+            }
+            searchNode = searchNode.next;
+        }
         return null;
     }
 
     //insert
     public void insert(Node node, int position) {
         //if insert in the head, mean node.next = head so head = node, size +1
-        if (position < 1) {
+        if (position < 1 || this.size ==0) {
             node.next = this.head;
             this.head = node;
             //but if the list is empty, mean tail = head = node
@@ -42,7 +49,7 @@ public class List {
             return;
         }
         //if insert in the tail, tail.next = node so tail = node, size+1
-        if (position >= size) {
+        if (position >= this.size) {
             if (tail != null) {
                 this.tail.next = node;
             }
@@ -54,9 +61,32 @@ public class List {
             this.size++;
             return;
         }
+        Node prevNode = null;
+        Node currentNode = this.head;
+        int count = 0;
+        while (count<position) {            
+            count++;
+            prevNode=currentNode;
+            currentNode=currentNode.next;
+        }
+        node.next=currentNode;
+        prevNode.next=node;
+        this.size++;
 
     }
-
+    
+    public int remove(String email){
+        Node currentNode = head;
+        int count =0;
+        while (currentNode!=null) {            
+            if (currentNode.checkExist(email)) {
+                
+                this.size--;
+            }
+            count++;
+            currentNode=currentNode.next;
+        }
+    }
     public void printList() {
         System.out.println("-List-");
         Node currentNode = head;
