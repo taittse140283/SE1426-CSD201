@@ -41,7 +41,7 @@ public class DoublyLinkedList {
         return listSize;
     }
     /**
-     * hàm để lấy độ dài của danh sách
+     * Hàm để lấy độ dài của danh sách
      * @return listSize
      */
     private Information remove(DLLNode node){
@@ -53,7 +53,7 @@ public class DoublyLinkedList {
         return node.getData();
     }
     /**
-     * xóa 1 node từ danh sách.
+     * Xóa 1 node từ danh sách.
      * @param node
      * @return dữ liệu của người chơi bị xóa
      */
@@ -66,7 +66,20 @@ public class DoublyLinkedList {
     }
     /**
      * Hàm xóa người chơi đầu tiên của danh sách 
+     * @param 
      * @return dữ liệu của người chơi đầu tiên bị xóa  
+     */
+    
+    private Information removeLast(){
+        if(isEmpty()){
+            return null;
+        }
+        return remove(trailer.getLeft());
+    }
+    /**
+     * Hàm xóa người chơi cuối của danh sách 
+     * @param data
+     * @return dữ liệu của người chơi cuối sẽ bị xóa 
      */
     
     private void add(Information data, DLLNode rightNode, DLLNode leftNode){
@@ -83,9 +96,51 @@ public class DoublyLinkedList {
      */
     
     private void addFirst(Information data){
+        add(data, header.getRight(), header);
+    }
+    /**
+     * Thêm dữ liệu của người chơi vào ở đầu danh sách
+     * @param data
+     * @param trailer
+     * @return 
+     */
+    
+    private void addLast(Information data){
         add(data, trailer, trailer.getLeft());
     }
     /**
-     * Thêm vào ở đầu danh sách
+     * Thêm một người chơi vào cuối danh sách
+     * @param data
      */
+    
+    private void addBetween(Information data, DLLNode rightNode){
+        if(rightNode == null){
+            addLast(data);
+        } else{
+            DLLNode nodeLeft = rightNode.getLeft();
+            DLLNode nodeRight = new DLLNode(data, rightNode, nodeLeft);
+            rightNode.setLeft(nodeRight);
+            nodeLeft.setRight(rightNode);
+            listSize++;
+        }
+    }
+    /**
+     * Thêm 1 người chơi mới vào giữa 2 người chơi trong danh sách
+     * @param data
+     * @param rightNode
+     */
+    
+    public void add(Information data){
+        int point = data.getPoint();
+        if(isEmpty()){
+            addFirst(data);
+        } else{
+            if(point < header.getRight().getData().getPoint()){
+                addFirst(data);
+            } else if(point > trailer.getLeft().getData().getPoint()){
+                addLast(data);
+            } else{
+                DLLNode 
+            }
+        }
 }
