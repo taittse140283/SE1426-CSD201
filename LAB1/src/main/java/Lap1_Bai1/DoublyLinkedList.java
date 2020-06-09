@@ -125,12 +125,28 @@ public class DoublyLinkedList {
         }
     }
     /**
-     * Thêm 1 người chơi mới vào giữa 2 người chơi trong danh sách
+     * Thêm 1 người chơi mới vào giữa 2 người chơi trong hàng ưu tiên
      * @param data
      * @param rightNode
      */
     
-    public void add(Information data){
+    public DLLNode findNode(int point){
+        DLLNode rightNode = header.getRight();
+        do{
+            if(rightNode.getData().getPoint() > point){
+                return rightNode;
+            } else{
+                rightNode = rightNode.getRight();
+            }
+        } while(rightNode != trailer);
+        return null;
+    }
+    /**
+     * Tìm kiếm vị trí node để chèn trong hàng đợi ưu tiên
+     * @param data 
+     */
+    
+    public void addNode(Information data){
         int point = data.getPoint();
         if(isEmpty()){
             addFirst(data);
@@ -140,7 +156,9 @@ public class DoublyLinkedList {
             } else if(point > trailer.getLeft().getData().getPoint()){
                 addLast(data);
             } else{
-                DLLNode 
+                DLLNode nodeFind = findNode(point);
+                addBetween(data, nodeFind);
             }
         }
+    }
 }
