@@ -6,24 +6,25 @@
 package bai_2;
 
 /**
- *
+ * Using doubly linked list to implement stack
  * @author Linh
- * Hien thuc stack bang doubly linked list
  */
 public class Stack {
     TagHTML head, tail;
     
-    //Stack constructor
-    //Khoi tao 2 gia tri ban dau head va tail la null khi chuong trinh duoc thuc thi
+    //Constructor
     public Stack() {
         head = tail = null;
     }
     
-    //Them 1 phan tu vao trong stack
+    /**
+     * Create a new node and add it behind the tail and move tail to new node
+     * @param tag 
+     */
     public void push(String tag) {
         TagHTML t = new TagHTML(tag, head, tail);
         
-        //Code nay se thuc thi khi stack chua co phan tu nao
+        //If nothing in stack, new node is both a head and a tail
         if(head == null) {
             head = t;
             head.prev = null;
@@ -32,40 +33,44 @@ public class Stack {
             return;
         }
         
-        //Code nay se thuc thi khi trong stack co it nhat 1 phan tu
+        //Add new node behind the tail and move tail to new node
         t.prev = tail;
         tail.next = t;
         tail = t;
         tail.next = null;
     }
     
-    //Xoa 1 phan tu o tren cung` (tail)
+    /**
+     * Remove the tail out of the stack
+     */
     public void pop() {
         
-        //Stack rong~ thi` se khong lam gi ca
         if(head == null)
             return;
         
-        //Khi stack co dung' 1 phan tu thi` head va tail se tro ve null
+        //If only 1 node in stack, assign head and tail to null
         if(head == tail) {
             head = null;
             tail = null;
             return;
         }
         
-        //Khi stack co nhieu hon 1 phan tu thi se~ doi` tail ve node truoc do
+        //Assign the tail to its previous node
         tail = tail.prev;
         tail.next = null;
     }
     
     /**
-     * @return tag html o tren cung (tail la node tren cung)
+     * Get the top tag of stack
+     * @return tail.tag
      */
     public String getTop() {
         return tail.tag;
     }
     
-    //In ra cac tag theo thu tu tu bottom(head) den top(tail)
+    /**
+     * Print all node in stack to screen
+     */
     public void print() {
         for(TagHTML t = head; t != null; t = t.next)
             System.out.print(t.tag + "   ");
