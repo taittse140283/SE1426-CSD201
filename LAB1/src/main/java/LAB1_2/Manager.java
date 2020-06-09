@@ -13,6 +13,7 @@ import java.util.HashMap;
  */
 public class Manager {
     HashMap<String,Integer> hashmap = new HashMap<>(); //tao hashmap
+    Stack stack = new Stack();
     // kiem tra tagHTML
     public void analyzeTag(String s){
         String tag="";
@@ -48,5 +49,18 @@ public class Manager {
         else {
             hashmap.put(tag, hashmap.get(tag) + 1);
         }
-    }   
+    }
+    public void processTag(String tag){
+        if(tag.contains("</") == false) {
+            stack.push(tag);
+            stack.print(); 
+            System.out.println();
+        }
+        else if(stack.Top().equalsIgnoreCase(tag.replace("/", "")) == true) {
+            stack.pop(); 
+            count(tag);
+            stack.print();
+            System.out.println();
+        }
+    }
 }
