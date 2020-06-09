@@ -46,6 +46,12 @@ public class DoubleLinkedList<Gamer> {
             this.end = end;
         }
         
+        private Node header;
+        private Node trailer;
+        public int sizeOfList =0;
+        
+        
+        
         
         
     }
