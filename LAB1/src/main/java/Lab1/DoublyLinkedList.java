@@ -25,9 +25,9 @@ public class DoublyLinkedList<Player> {
      * Constructor empty list
      */
     public DoublyLinkedList(){
-        head = new Node<Player>(null, null, null);
-        tail = new Node<Player>(null, null, head);
-        head.next= tail;
+        head = null;
+        tail = null;
+        size = 0;
     }
     /**
      * return whether the list is empty or not
