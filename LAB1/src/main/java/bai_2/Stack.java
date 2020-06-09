@@ -39,4 +39,5 @@ public interface Stack<E> {
      * @return element removed (or null if empty)
      */
     E pop();
+    public void print();
 }
