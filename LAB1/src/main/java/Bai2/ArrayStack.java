@@ -56,8 +56,11 @@ public class ArrayStack<E> implements Stack<E> {
     }
 
     @Override
-    public void push(E element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void push(E element) throws IllegalStateException{
+        if(size() == data.length) {
+            throw new IllegalStateException("Stack is full");
+        }
+        data[++top] = element;
     }
 
     @Override
