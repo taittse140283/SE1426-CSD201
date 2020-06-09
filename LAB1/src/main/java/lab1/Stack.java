@@ -9,13 +9,13 @@ package lab1;
  *
  * @author Admin
  */
-public interface Stack {
-    public void add(String new_email);
-    public void delete(String email);
-    public void update(String email);
-    public void get(String email);
-    public void getMax(String email);
-    public void deleteMax(String email);
+public interface Stack<Entry> {
+    public void add(Entry infor);
+    public Entry remove();
+    public  int size();
+    public Entry top();
+    public boolean isEmpty();
     public String toString();
+
     
 }
