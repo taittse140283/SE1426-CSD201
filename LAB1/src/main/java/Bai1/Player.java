@@ -9,7 +9,7 @@ package Bai1;
  *
  * @author User
  */
-public class Player {
+public class Player implements Comparable<Player>{
     
     private String email;
     private int point;
@@ -41,6 +41,11 @@ public class Player {
     @Override
     public String toString() {
         return this.getEmail() + "," + this.getPoint();
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return this.getPoint() < o.getPoint() ? 1 : this.getPoint() > o.getPoint() ? -1 : 0;
     }
     
     
