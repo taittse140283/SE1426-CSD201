@@ -14,6 +14,11 @@ public class Program {
     CSV csv = new CSV();
     Stack s = new Stack();
 
+    /**
+     * Solve Problem 2
+     * @param urlWeb
+     * @param fileName 
+     */
     public Program(String urlWeb, String fileName) {
         try {
             String content = g.readContent(urlWeb);
@@ -26,7 +31,10 @@ public class Program {
         }    
     }
     
-    //Find a HTML tag from the content
+    /**
+     * Find a HTML tag from the content
+     * @param content
+     */
     public void analyzeHTMLTag(String content) {
         String tag = "";
         boolean check = false;
@@ -63,11 +71,18 @@ public class Program {
         }
     }
     
-    //Counting and compare close tag and top of stack tag
+    /**
+     * Processing and count tag
+     * Too many single tag in HTML, i only can list some of them below
+     * To compare the open tag with the close tag,
+     *      if the tag not contain '/' => it is a open tag, then i push it into stack
+     *      if the tag has '/', i remove it and compare it with the top tag of stack
+     *           if them similar, i pop the top tag of stack out off the stack and count
+     * @param tag  
+     */
     public void processingHTMLTag(String tag) {
         
         //There are very many special tags
-        //I only can list some of them
         //such as: !DOCTYPE, comment, meta, link, img...
         if(tag.equalsIgnoreCase("<!DOCTYPE>"))
             csv.countingFrequenceAppearance(tag);
@@ -88,17 +103,17 @@ public class Program {
         else if(tag.equalsIgnoreCase("<![endif]-")) //This is not a comment
             csv.countingFrequenceAppearance("<![endif]-->");
         
-        //Compare close tag and top of stack tag
+        //Compare close tag with top of stack tag
         else {
             if(tag.contains("</") == false) {
                 s.push(tag);//If it is not a close tag => push this to stack
-                csv.countingFrequenceAppearance(tag);
                 s.print(); //print to screen for testing
                 System.out.println();
             }
             //If is a close tag and it equals top of stack tag => pop it out off of stack
             else if(s.getTop().equalsIgnoreCase(tag.replace("/", "")) == true) {
                 s.pop(); 
+                csv.countingFrequenceAppearance(tag);
                 s.print(); //print to screen for testing
                 System.out.println();
             }
