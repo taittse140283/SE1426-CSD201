@@ -28,14 +28,39 @@ public class List {
         return null;
     }
 
+    //insert
     public void insert(Node node, int position) {
-        //
+        //if insert in the head, mean node.next = head so head = node, size +1
+        if (position < 1) {
+            node.next = this.head;
+            this.head = node;
+            //but if the list is empty, mean tail = head = node
+            if (tail == null) {
+                this.tail = node;
+            }
+            this.size++;
+            return;
+        }
+        //if insert in the tail, tail.next = node so tail = node, size+1
+        if (position >= size) {
+            if (tail != null) {
+                this.tail.next = node;
+            }
+            this.tail = node;
+            //if the head is empty, so head = node
+            if (head == null) {
+                this.head = node;
+            }
+            this.size++;
+            return;
+        }
+
     }
-    
-    public void printList(){
+
+    public void printList() {
         System.out.println("-List-");
         Node currentNode = head;
-        while(currentNode.next!=null){
+        while (currentNode != null) {
             currentNode = printData();
             currentNode = currentNode.next;
         }
