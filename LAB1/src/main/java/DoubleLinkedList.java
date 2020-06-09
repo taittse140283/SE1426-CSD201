@@ -8,6 +8,15 @@
  *
  * @author Admin
  */
-public class DoubleLinkedList {
+public class DoubleLinkedList<Gamer> {
+   //Create class Node
+    private class Node{
+        private Gamer data;
+        private Node start;
+        private Node end;
+       
+        
+        
+    }
     
 }
