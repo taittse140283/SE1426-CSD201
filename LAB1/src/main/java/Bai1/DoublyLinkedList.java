@@ -109,7 +109,14 @@ public class DoublyLinkedList<E> {
         }
         return trailer.getPrev().getElement();
     }
-    
-    
+    /*
+        Add new Node at between two given Node
+    */
+    private void addBetween(E e, Node<E> p, Node<E> s) {
+        Node<E> newNode = new Node<>(e, p, s); // create new node
+        p.setNext(newNode);  // set address for pointer
+        s.setPrev(newNode); // ""
+        size++; // tang kich thuoc danh sach len 1
+    }
 
 }
