@@ -6,7 +6,7 @@
 
 /**
  *
- * @author tieuminh
+ * @author SE140834
  */
 public class Main {
 
@@ -14,11 +14,6 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.print("Hello World");
-        System.out.print("Helllo Boizzzzz!");
-        System.out.print("Helloo :3");
-        System.out.println("New line");
-        System.out.println("New again");
         // TODO code application logic here
     }
     

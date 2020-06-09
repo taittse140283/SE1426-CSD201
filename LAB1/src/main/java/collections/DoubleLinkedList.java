@@ -7,7 +7,7 @@ package collections;
 
 /**
  *
- * @author Administrator
+ * @author SE140834
  */
 public class DoubleLinkedList {
     
