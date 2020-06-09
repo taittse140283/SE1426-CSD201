@@ -31,11 +31,11 @@ public class Manager {
                 check = false;
             }
             // bo qua noi dung trong the HTML
-            else if(check = true && s.charAt(i) != '>'){
+            else if(check = true && s.charAt(i) != '>' && s.charAt(i) != ' '){
                 tag = tag + s.charAt(i);
             }
-            // kiem tra cac the con lai
-            else if(check == true && s.charAt(i) == '>'){
+            // kiem tra cac the con lai va cac the dac biet (ex : <link href ... >)
+            else if(check == true && (s.charAt(i) == '>' || s.charAt(i) != ' ')){
                 tag = tag + ">";
                 check = false;
             }
@@ -51,16 +51,17 @@ public class Manager {
         }
     }
     public void processTag(String tag){
+        //kiem tra cac the co the dong trong HTML
         if(tag.contains("</") == false) {
             stack.push(tag);
             stack.print(); 
-            System.out.println();
+            System.out.println("\n");
         }
         else if(stack.Top().equalsIgnoreCase(tag.replace("/", "")) == true) {
             stack.pop(); 
             count(tag);
             stack.print();
-            System.out.println();
+            System.out.println("\n");
         }
     }
 }
