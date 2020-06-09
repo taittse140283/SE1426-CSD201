@@ -15,7 +15,6 @@ public class DoublyLinkedList<Player> {
      * tail node
      * A variable for tracking size
      */
-    private Player data;
     private Node<Player> header;
     private Node<Player> tailer;
     private int size;
@@ -76,5 +75,12 @@ public class DoublyLinkedList<Player> {
             System.err.println("Empty List!");
         }
         return remove(header.next).data;
+    }
+    
+    public Player removeLast(){
+        if(isEmpty()){
+            System.err.println("Empty List!");
+        }
+        return remove(tailer.previous).data;
     }
 }
