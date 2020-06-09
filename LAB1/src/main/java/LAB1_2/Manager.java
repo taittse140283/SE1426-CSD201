@@ -5,11 +5,14 @@
  */
 package LAB1_2;
 
+import java.util.HashMap;
+
 /**
  *
  * @author TAN
  */
 public class Manager {
+    HashMap<String,Integer> hashmap = new HashMap<>(); //tao hashmap
     // kiem tra tagHTML
     public void analyzeTag(String s){
         String tag="";
@@ -37,4 +40,13 @@ public class Manager {
             }
         }
     }
+    // dem cac tag trong the HTML
+    public void count(String tag){
+         if(hashmap.containsKey(tag) == false) {
+            hashmap.put(tag, 1);
+        }
+        else {
+            hashmap.put(tag, hashmap.get(tag) + 1);
+        }
+    }   
 }
