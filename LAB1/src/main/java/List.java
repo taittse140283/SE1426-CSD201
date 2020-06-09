@@ -75,13 +75,28 @@ public class List {
 
     }
     
-    public int remove(String email){
-        Node currentNode = head;
+    public void remove(String email){
+        Node preNode=null;
+        Node currentNode = this.head;
         int count =0;
         while (currentNode!=null) {            
             if (currentNode.checkExist(email)) {
-                
+                //remove first
+                if (count==0) {
+                    this.head=this.head.next;
+                    if (this.head==null) {
+                        this.tail=null;
+                    }
+                //remove last    
+                }else if(count==this.size-1){
+                    preNode.next=null;
+                    this.tail = preNode;
+                //remove midle    
+                }else{
+                    preNode.next=currentNode.next;
+                }
                 this.size--;
+                return; 
             }
             count++;
             currentNode=currentNode.next;
