@@ -12,17 +12,20 @@ package Lab1;
 public class DoublyLinkedList<Player> {
     /**
      * head node 
+     * tail node
      * A variable for tracking size
      */
-    private Node<Player> head;
+    private Node<Player> header;
+    private Node<Player> tailer;
     private int size;
 
     /**
      * Constructor empty list
      */
     public DoublyLinkedList(){
-        head = null;
-        size = 0;
+        header = new Node<Player>(null, null, null);
+        tailer = new Node<Player>(null, null, header);
+        header.next = tailer;
     }
     /**
      * check if list is empty
@@ -42,11 +45,11 @@ public class DoublyLinkedList<Player> {
      */
     public void addFirst(Node<Player> newbie){
         if (isEmpty()) {
-            head = new Node<Player>((Player) newbie);
+            header = new Node<Player>((Player) newbie);
         } else {
-            Node<Player> temp = head;
-            head = new Node<Player>(null, newbie, temp);
-            head.next.previous = head;
+            Node<Player> temp = header;
+            header = new Node<Player>(null, newbie, temp);
+            header.next.previous = header;
         }
         size++;
     }
@@ -57,15 +60,18 @@ public class DoublyLinkedList<Player> {
      */
     public void addLast(Node<Player> newbie){
         if (isEmpty()) {
-            head = new Node<Player>((Player) newbie);
+            header = new Node<Player>((Player) newbie);
         } else {
-            Node<Player> temp = head;
+            Node<Player> temp = header;
             // Di cho den cuoi danh sach
             while (temp.next != null) {
                 temp = temp.next;
             }
-            head = new Node<Player>(null, temp, newbie);
-            }
-        size++;
+            header = new Node<Player>(null, temp, newbie);
         }
+        size++;
+    }
+    public void remove (Node<Player> delete){
+        
+    }
 }
