@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         HashMap<String, Integer> hashMap = new HashMap<>();
         String url = "https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
-        String output = "output.csv";
+        String output = "output1.csv";
 
             // test lai
         Manager.process(hashMap, Manager.readHtlmFromWeb(url));
