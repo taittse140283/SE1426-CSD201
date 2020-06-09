@@ -93,7 +93,8 @@ public class DoublyLinkedList<E> {
     }
 
     /*
-        Return element in top of list
+        Return element in top of list 
+        Chuc nang: neu list duoc sap xep, co the tim ra element largest or smallest
      */
     public E getFirst() {
         if (isEmpty()) {
@@ -104,6 +105,7 @@ public class DoublyLinkedList<E> {
 
     /*
         Return element in last of list
+        Chuc nang: neu list duoc sap xep, co the tim ra element largest or smallest
      */
     public E getLast() {
         if (isEmpty()) {
@@ -175,13 +177,29 @@ public class DoublyLinkedList<E> {
         if (size == 0 || n < 0) { // neu size = 0 thi ko co phan tu de remove, neu vi tri < 0 thi error index
             return;
         }
-        Node current = header.next; // gan node dau tien trong list cho node current
+        Node current = header.getNext(); // gan node dau tien trong list cho node current
         for (int i = 0; (current != null) && (i < n); i++) { // duyet den vi tri can tim
-            current = current.next;
+            current = current.getNext();
         }
         if (current == null) {
             return;
         }
         remove(current);
+    }
+    
+    /*
+        Tim kiem element bat ki trong list.
+    */
+    public E get(int index) {
+        if(size != 0) {
+            Node<E> current = header.getNext();
+            for(int i = 0; (current != null) && (i < index); i++) {
+                current = current.getNext();
+            }
+            if(current != null) {
+                return current.getElement();
+            }
+        }
+        return null;
     }
 }
