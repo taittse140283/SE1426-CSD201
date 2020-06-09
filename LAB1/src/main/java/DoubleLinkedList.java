@@ -9,8 +9,10 @@
  * @author Admin
  */
 public class DoubleLinkedList<Gamer> {
-   //Create class Node
-    private class Node{
+    //Create class Node
+
+    private class Node {
+
         private Gamer data;
         private Node start;
         private Node end;
@@ -21,6 +23,7 @@ public class DoubleLinkedList<Gamer> {
             this.start = start;
             this.end = end;
         }
+
         // Create getter and setter
         public Gamer getData() {
             return data;
@@ -45,15 +48,16 @@ public class DoubleLinkedList<Gamer> {
         public void setEnd(Node end) {
             this.end = end;
         }
-        
-        private Node header;
-        private Node trailer;
-        public int sizeOfList =0;
-        
-        
-        
-        
-        
+
     }
-    
+    private Node header;
+    private Node trailer;
+    public int sizeOfList = 0;
+
+    public DoubleLinkedList() {
+        header = new Node(null, null, null);
+        trailer = new Node(null,null,header);
+        header.start= trailer;
+    }
+
 }
