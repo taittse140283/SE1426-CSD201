@@ -1,13 +1,15 @@
 package bai2;
 
-import java.util.HashMap;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Class FrequencyOfTag
  * Field: HashMap<String, Integer> frequencyOfTag
- * Create class to can compare frequency of Tag(override compareTo() method of HashMap)
+ * Create class to can get and compare frequency of Tag
  */
-public class FrequencyOfTag {
+public class FrequencyOfTag{
     HashMap<String, Integer> frequencyOfTag;
     public FrequencyOfTag()
     {
@@ -31,6 +33,28 @@ public class FrequencyOfTag {
             frequencyOfTag.put(tag, frequencyOfTag.get(tag)+1);//set value of it equals past frequency plus 1(cause appear again)
         }
     }
+    //test sort, do not comment clearly yet
+    public  static HashMap<String, Integer> sortHashMap(HashMap<String, Integer> frequency)
+    {
+        //Get Entry Set of Hash Map and put it into ArrayList listEntry
+        ArrayList<Entry<String,Integer>> listEntry = new ArrayList(frequency.entrySet());
+        //Call method sort of class Collections
+        //Create anonymous Comparator class(use one time) to compare value of entry
 
+        Collections.sort(listEntry, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> e1,
+                               Map.Entry<String, Integer> e2) {
+                if(e1.getValue()<e2.getValue()) return 1;//frequency of e2.key higher than e1.key then swap to entry
+                else if(e1.getValue()>e2.getValue()) return -1;//
+                return 0;
+            }
+        });
+        frequency = new LinkedHashMap();
+        for (Entry<String,Integer> entry:listEntry)
+        {
+            frequency.put(entry.getKey(),entry.getValue());
+        }
+        return frequency;
+    }
 
 }

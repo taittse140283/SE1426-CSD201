@@ -97,6 +97,7 @@ public class HTMLTagManager {
             }
             j = html.indexOf('<', k+1); // find next ’<’ character (if any)
         }
+        frequencyOfTag=FrequencyOfTag.sortHashMap(frequencyOfTag);
 
     }
 
