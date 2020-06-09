@@ -59,6 +59,7 @@ public class DoublyLinkedList<Player> {
      */
     public void addLast(Player newbie){
         insert(newbie, tailer.previous, tailer);
+        size++;
     }
     public void remove (Node<Player> delete){
         
