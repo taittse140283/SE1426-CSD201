@@ -22,6 +22,10 @@ public class DoublyLinkedList<E> {
         private Node<E> prev;
         private Node<E> next;
 
+        public Node(Player data) {
+            this.data = data;
+        }
+
         public Node(Player data, Node<E> prev, Node<E> next) {
             this.data = data;
             this.prev = prev;
@@ -186,17 +190,17 @@ public class DoublyLinkedList<E> {
         }
         remove(current);
     }
-    
+
     /*
         Tim kiem element bat ki trong list.
-    */
+     */
     public Player get(int index) {
-        if(size != 0) {
+        if (size != 0) {
             Node<E> current = header.getNext();
-            for(int i = 0; (current != null) && (i < index); i++) {
+            for (int i = 0; (current != null) && (i < index); i++) {
                 current = current.getNext();
             }
-            if(current != null) {
+            if (current != null) {
                 return current.getElement();
             }
         }
