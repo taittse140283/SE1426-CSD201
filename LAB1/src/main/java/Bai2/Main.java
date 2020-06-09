@@ -18,7 +18,7 @@ public class Main {
         String url = "https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
         String output = "output1.csv";
 
-            // test lai
+            // test
         Manager.process(hashMap, Manager.readHtlmFromWeb(url));
         Manager.writeToFile(hashMap, output);
     }
