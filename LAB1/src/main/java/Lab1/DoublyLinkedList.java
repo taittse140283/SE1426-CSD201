@@ -66,6 +66,7 @@ public class DoublyLinkedList<Player> {
         Node back = n.next;
         front.next = back;
         back.previous = front;
+        size--;
         return n;
 
     }
