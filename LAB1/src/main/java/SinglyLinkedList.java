@@ -9,16 +9,24 @@
  * @author lehie
  */
 public class SinglyLinkedList<E> {
-    //*This method is used to 
     private class Node {
         private E value;
         private Node next;
         
+        //Constructor 
         public Node (E value, Node node) {
             this.value = value;
             this.next = node;
         }
-        
-        
+    }
+    
+    private Node head = null;
+    private Node tail = null;
+    public SinglyLinkedList() {}
+
+    private Node getLastNode() {
+        Node result = null;
+        for(Node n = head; n != null; n=n.next) result = n;
+        return result;
     }
 }
