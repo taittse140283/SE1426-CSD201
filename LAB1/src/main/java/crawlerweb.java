@@ -1,65 +1,88 @@
 import java.io.*;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class crawlerweb {
     public static void main(String[] args) throws IOException {
         File file = new File("C:\\Users\\Admin\\Desktop\\MyFile.txt");
         File newfile = new File("C:\\Users\\Admin\\Desktop\\MyFilenew.txt");
-
+        HashMap<String, Integer> hm = new HashMap<>();
         FileWriter fw = new FileWriter(newfile);
         PrintWriter pw = new PrintWriter(fw);
 
         ArrayStack<String> as = new ArrayStack<>();
-        as.push("1");
-        as.push("2");
-        as.push("4");;
-        as.push("3");
-        as.pop();
-        as.print();
-        as.push("9");
-        as.pop();
-        as.print();
-        System.out.println(as.size());
-        getHtml("https://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html","html.txt");
-    }
+        String html = FiletoString("C:\\Users\\Admin\\Desktop\\html1.txt");
+        countTag(html,hm);
 
-    public static String getHtml(String link, String nameFile) throws IOException {
-        URL url = new URL(link);
-        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-        BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Admin\\Desktop\\".concat(nameFile)));
-        String inputLine;
-        String result= "";
-        while ((inputLine = in.readLine()) != null){
-            bw.write(inputLine + "\n");
-            result += inputLine + "\n";
+        for (Map.Entry<String, Integer> entry : hm.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            System.out.println(key + "\t" + value);
+
         }
-        in.close();
-        bw.close();
-        return result;
     }
 
-    public static boolean checkMatches(String html) {
+    //    public static String getHtml(String link, String nameFile) throws IOException {
+////        URL url = new URL(link);
+////        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+////        BufferedReader br = new BufferedReader(new InputStreamReader("C:\\Users\\Admin\\Desktop\\html.txt"));
+//        FileInputStream fis = new FileInputStream("C:\\Users\\Admin\\Desktop\\html1.txt");
+//        BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Admin\\Desktop\\".concat(nameFile)));
+//        String inputLine;
+//        String result = "";
+//        while ((inputLine = fis.r) != null) {
+//            bw.write(inputLine + "\n");
+//            result += inputLine + "\n";
+//        }
+//        br.close();
+//        bw.close();
+//        return result;
+//    }
+
+
+    public static void countTag(String s, HashMap<String, Integer> hm) {
         Stack<String> buffer = new ArrayStack<>();
-        int j = html.indexOf('<');
-        while (j != -1) {
-            int k = html.indexOf('>', j + 1);
-            if (k == -1) return false;
-            String tag = html.substring(j + 1, k);
-            if (!tag.startsWith("/")) {
-                buffer.push(tag);
+        int i = s.indexOf("<");
+        while (i != -1) {
+            int k = s.indexOf(">", i + 1);
+            String tagName = s.substring(i + 1, k);
+            String[] n = tagName.split(" ");
+            tagName = n[0];
+            int count = 0;
+            if (tagName.equalsIgnoreCase("area") || tagName.equalsIgnoreCase("base") || tagName.equalsIgnoreCase("br")
+                    || tagName.equalsIgnoreCase("col") || tagName.equalsIgnoreCase("!DOCTYPE") || tagName.equalsIgnoreCase("command")
+                    || tagName.equalsIgnoreCase("embed") || tagName.equalsIgnoreCase("hr") || tagName.equalsIgnoreCase("img")
+                    || tagName.equalsIgnoreCase("input") || tagName.equalsIgnoreCase("keygen") || tagName.equalsIgnoreCase("source")
+                    || tagName.equalsIgnoreCase("link") || tagName.equalsIgnoreCase("meta") || tagName.equalsIgnoreCase("param")
+                    || tagName.equalsIgnoreCase("track") || tagName.equalsIgnoreCase("wbr")) {
+                if (hm.containsKey(tagName)) {
+                    count = hm.get(tagName);
+                }
+                hm.put(tagName, count + 1);
             } else {
-                if (buffer.isEmpty())
-                    return false;
-                if (!tag.substring(1).equals(buffer.pop()))
-                    return false;
+                if (!tagName.contains("/")) {
+                    buffer.push(tagName);
+                    if (hm.containsKey(tagName)) {
+                        count = hm.get(tagName);
+                    }
+                    hm.put(tagName, count + 1);
+                } else if (tagName.startsWith("!")) {
+                    System.out.println("Bo qua");
+                } else {
+                    if (buffer.top().equalsIgnoreCase(tagName)) {
+                        buffer.pop();
+                    }
+                }
             }
-            j = html.indexOf('<', k + 1);
+//
+//            System.out.println(tagName);
+
+            i = s.indexOf("<", k + 1);
         }
-        return buffer.isEmpty();
+
+
     }
 
 
-
-
-    
 }
