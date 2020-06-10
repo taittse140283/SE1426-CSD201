@@ -39,13 +39,13 @@ public class PriorytiQueue {
         if (list.isEmpty()) {
             list.insertFirst(player);
         } else if (player.getPoint() >= list.getHeader().getElement().getPoint()) {
-            if (player.getPoint() > list.getFirst().getPoint()) {
+            if (player.getPoint() > list.getHeader().getElement().getPoint()) {
                 list.insertFirst(player);
             } else {
                 DoublyLinkedList.Node<Player> current = list.getHeader();
                 list.addBetween(player, current, current.getNext());
             }
-        } else if (player.getPoint() <= list.getLast().getPoint()) {
+        } else if (player.getPoint() <= list.getTrailer().getElement().getPoint()) {
             list.insertLast(player);
         } else {
             DoublyLinkedList.Node<Player> current = list.getHeader();
