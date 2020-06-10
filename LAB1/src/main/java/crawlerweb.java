@@ -39,7 +39,18 @@ public class crawlerweb {
 //        bw.close();
 //        return result;
 //    }
+    public static String FiletoString(String fileName) throws IOException {
+        InputStream is = new FileInputStream(fileName);
+        BufferedReader buf = new BufferedReader(new InputStreamReader(is));
+        String line = buf.readLine();
+        StringBuilder sb = new StringBuilder();
+        while (line != null) {
+            sb.append(line).append("\n");
+            line = buf.readLine();
+        }
 
+        return sb.toString();
+    }
 
     public static void countTag(String s, HashMap<String, Integer> hm) {
         Stack<String> buffer = new ArrayStack<>();
