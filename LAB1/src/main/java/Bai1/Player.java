@@ -9,8 +9,14 @@ package Bai1;
  *
  * @author User
  */
-public class Player implements Comparable<Player>{
-    
+
+/*
+  * Create class Player to save information of player. 
+  * It contains two properties: email and point
+  * Create some setter and getter to support for querying data
+*/
+public class Player {
+
     private String email;
     private int point;
 
@@ -38,15 +44,12 @@ public class Player implements Comparable<Player>{
         this.point = point;
     }
 
+    /*
+       * xuat thong tin theo mong muon
+    */
     @Override
     public String toString() {
         return this.getEmail() + "," + this.getPoint();
     }
 
-    @Override
-    public int compareTo(Player o) {
-        return this.getPoint() < o.getPoint() ? 1 : this.getPoint() > o.getPoint() ? -1 : 0;
-    }
-    
-    
 }
