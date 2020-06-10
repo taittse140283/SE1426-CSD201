@@ -9,6 +9,21 @@ package Bai1;
  *
  * @author User
  */
+
+/*
+ * Create class doublyLinkedList to save Player
+ * Its class contains some method: 
+    - isEmpty: return size == 0, it means list empty
+    - insertFirst: add Player in top of list
+    - insertLast: add player in last of list
+    - getFirst: return Node on the top of list
+    - getLast: return Node in last of list
+    - removeFirst: delete Node on the top of list
+    - removeLast:  delete Node in last of list
+    - removeAtPos: delete Node at any position
+    - addbetween: add new Node between two given nodes
+    - get: return data of node at specific position
+ */
 public class DoublyLinkedList<E> {
 
     /**
@@ -16,17 +31,17 @@ public class DoublyLinkedList<E> {
      *
      * @param <E>
      */
-    public class Node<E> {
+    public static class Node<E> {
 
-        private Player data;
+        private E data;
         private Node<E> prev;
         private Node<E> next;
 
-        public Node(Player data) {
+        public Node(E data) {
             this.data = data;
         }
 
-        public Node(Player data, Node<E> prev, Node<E> next) {
+        public Node(E data, Node<E> prev, Node<E> next) {
             this.data = data;
             this.prev = prev;
             this.next = next;
@@ -35,7 +50,7 @@ public class DoublyLinkedList<E> {
         /*
             Return data of Node
          */
-        public Player getElement() {
+        public E getElement() {
             return data;
         }
 
@@ -68,9 +83,9 @@ public class DoublyLinkedList<E> {
         }
     }
 
-    private Node<E> header; // Khai bao node header
-    private Node<E> trailer; // khai bao node trailer
-    public int size = 0; // khoi tao kich thuoc cua danh sach
+    private Node<E> header; 
+    private Node<E> trailer; 
+    public int size = 0; 
 
     /*
         Constructor default
@@ -80,58 +95,70 @@ public class DoublyLinkedList<E> {
         header = new Node<>(null, null, null);
         trailer = new Node<>(null, header, null);
         header.setNext(trailer);
+        size = 0;
     }
 
+    //=====================
     /*
-        Return size fo list
+        Create method for Setter and Getter for Node header and trailer
      */
-    public int size() {
+    public Node<E> getHeader() {
+        return header.getNext();
+    }
+
+    public void setHeader(Node<E> header) {
+        this.header = header;
+    }
+
+    public Node<E> getTrailer() {
+        return trailer.getPrev();
+    }
+
+    public void setTrailer(Node<E> trailer) {
+        this.trailer = trailer;
+    }
+
+    public int getSize() {
         return size;
     }
 
-    /*
-        Return true if size = 0
-     */
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    //=================================
+   
+    
     public boolean isEmpty() {
         return size == 0;
     }
 
-    /*
-        Return element in top of list 
-        Chuc nang: neu list duoc sap xep, co the tim ra element largest or smallest
-     */
-    public Player getFirst() {
+    
+    public E getFirst() {
         if (isEmpty()) {
             return null;
         }
         return header.getNext().getElement();
     }
 
-    /*
-        Return element in last of list
-        Chuc nang: neu list duoc sap xep, co the tim ra element largest or smallest
-     */
-    public Player getLast() {
+    
+    public E getLast() {
         if (isEmpty()) {
             return null;
         }
         return trailer.getPrev().getElement();
     }
 
-    /*
-        Add new Node at between two given Node
-     */
-    private void addBetween(Player e, Node<E> p, Node<E> s) {
-        Node<E> newNode = new Node<>(e, p, s); // create new node
-        p.setNext(newNode);  // set address for pointer
-        s.setPrev(newNode); // ""
-        size++; // tang kich thuoc danh sach len 1
+    
+    public void addBetween(E e, Node<E> p, Node<E> s) {
+        Node<E> newNode = new Node<>(e, p, s); 
+        p.setNext(newNode);  
+        s.setPrev(newNode); 
+        size++; 
     }
 
-    /*
-        Remove existed Node in list
-     */
-    private Player remove(Node<E> node) {
+ 
+    private E remove(Node<E> node) {
         Node<E> p = node.getPrev();
         Node<E> s = node.getNext();
         p.setNext(s);
@@ -141,33 +168,29 @@ public class DoublyLinkedList<E> {
     }
 
     /*
-        Add newNode in top of list
-     */
-    public void insertFirst(Player e) {
+      *input: value of object
+    */
+    public void insertFirst(E e) {
         addBetween(e, header, header.getNext());
     }
 
     /*
-        Add newNode in last of list
-     */
-    public void insertLast(Player e) {
+      *input: value of object
+    */
+    public void insertLast(E e) {
         addBetween(e, trailer.getPrev(), trailer);
     }
 
-    /*
-        Xoa node dau danh sach
-     */
-    public Player removeFirst() {
+    
+    public E removeFirst() {
         if (isEmpty()) {
             return null;
         }
         return remove(header.getNext());
     }
 
-    /*
-        Xoa node cuoi cung
-     */
-    public Player removeLast() {
+  
+    public E removeLast() {
         if (isEmpty()) {
             return null;
         }
@@ -175,8 +198,8 @@ public class DoublyLinkedList<E> {
     }
 
     /*
-        Xoa mot phan tu trong list tai vi tri bat ki cho truoc
-     */
+      *input: vi tri cua not can xoa
+    */
     public void removeAtPosition(int n) {
         if (size == 0 || n < 0) { // neu size = 0 thi ko co phan tu de remove, neu vi tri < 0 thi error index
             return;
@@ -192,9 +215,10 @@ public class DoublyLinkedList<E> {
     }
 
     /*
-        Tim kiem element bat ki trong list.
-     */
-    public Player get(int index) {
+      * input: vi tri cua node can tim
+      * output: tra ve gia tri cua node do
+    */   
+    public E get(int index) {
         if (size != 0) {
             Node<E> current = header.getNext();
             for (int i = 0; (current != null) && (i < index); i++) {
