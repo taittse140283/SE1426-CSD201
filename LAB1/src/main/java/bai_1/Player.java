@@ -9,24 +9,25 @@ package bai_1;
  *
  * @author W10
  */
-
-/*khoi tao object player*/
+/**
+ * Player class to setup information of player 
+ * 
+ */
 public class Player {
 
-    private String email;//dang chuoi
-    private Double point;//dang so thuc
+    //Contain non param and param constructor getter setter and toString to output result
+    //fields: email and point
+    private String email;
+    private Double point;
 
-    /*constructer ko tham so*/
     public Player() {
     }
 
-    /*constructer co tham so*/
     public Player(String email, Double point) {
         this.email = email;
         this.point = point;
     }
 
-    /*getter,setter*/
     public String getEmail() {
         return email;
     }
@@ -43,10 +44,13 @@ public class Player {
         this.point = point;
     }
 
+    /**
+     * 
+     * @return (email)||(point)
+     */
     @Override
     public String toString() {
         return email + "||" + point;
     }
-
 
 }
