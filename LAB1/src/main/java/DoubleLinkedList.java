@@ -214,7 +214,8 @@ public class DoubleLinkedList<E> {
         DataOutputStream dos = new DataOutputStream(fos);
 //        PrintWriter pw = new PrintWriter("C:\\Users\\Admin\\Desktop\\".concat(file));
         dos.writeBytes("Email, Point\n");
-        for (Node<E> n = header.next; n != trailer; n = n.next) {
+        for (Node<E> n = trailer.prev; n != header; n = n.prev) {
+        //for (Node<E> n = header.next; n != trailer; n = n.next) {
             dos.writeBytes(n.getE() + "\n");
         }
         fos.close();

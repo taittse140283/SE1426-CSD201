@@ -19,7 +19,8 @@ public class Main {
     /**
      * This is main method which makes uses of CLI and some methods
      * to manages info players, crawler data html tag
-     *
+     *<b>Note:</b>File just read file that live in Desktop and save
+     * output file on Desktop
      * @param args the command line arguments
      * @throws IOException on input error, ...
      * @see IOException, ArrayIndexOutOfBoundsException, ...
@@ -61,8 +62,8 @@ public class Main {
                                         System.out.println("add 6");
                                         if (!args[7].trim().isEmpty()) {
                                             point = Integer.parseInt(args[7]);
-                                            sl.insert(new Entry(point, email));
                                             getData(fileInput, sl);
+                                            sl.insert(new Entry(point, email));
                                             sl.printtoFile(fileOutput);
                                             System.out.println("add new user");
                                         } else {
@@ -167,13 +168,16 @@ public class Main {
     public static void copyFile(String input, String output) {
         try {
             FileInputStream fis = new FileInputStream("C:\\Users\\Admin\\Desktop\\".concat(input));
-            DataInputStream dis = new DataInputStream(fis);
             FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(output));
-            DataOutputStream dos = new DataOutputStream(fos);
-            int Data;
 
-            while ((Data = fis.read()) != -1) {
-                fos.write(Data);
+            int Data;
+//
+//            while ((Data = fis.read()) != -1) {
+//                fos.write(Data);
+//            }
+            byte[] b = new byte[10000];
+            while ((Data = fis.read(b)) >= 0){
+                fos.write(b, 0, Data);
             }
             fos.close();
             fis.close();
