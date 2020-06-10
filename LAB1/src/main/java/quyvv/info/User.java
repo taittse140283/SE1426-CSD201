@@ -48,4 +48,8 @@ public class User {
          System.out.println("Input Point");
          Point= Integer.parseInt(sc.nextLine());
      }
+     
+     public void output(){
+         System.out.println("Email: "+Email+"---"+ "Point: "+Point);
+     }
 }
