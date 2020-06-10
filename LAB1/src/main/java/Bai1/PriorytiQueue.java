@@ -12,7 +12,7 @@ package Bai1;
 
 /*
   * Its class will be get list of doublyLinkedList to process
-  * Create class priorityQueue contains method:
+  * Create class priorityQueue contains main method:
    - addAndSort: Add new player into list and sort its point
    - update: Edit information of player
    - removePlayerHasMaxPoint with O(1)
@@ -20,6 +20,15 @@ package Bai1;
    - delete any player with specific email of player
 */
 public class PriorytiQueue {
+    
+    DoublyLinkedList<Player> list = new DoublyLinkedList<>();
+    
+    /*
+        * get list of doublyLinkedList to process
+    */
+    public DoublyLinkedList<Player> getList() {
+        return list;
+    }
     
     
 }
