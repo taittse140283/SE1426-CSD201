@@ -95,4 +95,26 @@ public class PriorytiQueue {
             list.get(pos).setPoint(point);
         }
     }
+    
+    public void removePlayerHasMaxPoint() {
+        list.removeFirst();
+    }
+    
+    public void getPlayerHasMaxPoint() {
+        list.getHeader();
+    }
+    
+    public void delete(String email) {
+        if(list.isEmpty()) {
+            System.out.println("Error: List empty");
+            return;
+        }
+        
+        int pos = getNodePosition(email);
+        if(pos < 0) {
+            System.out.println("No information found");
+        } else {
+            list.removeAtPosition(pos);
+        }
+    }
 }
