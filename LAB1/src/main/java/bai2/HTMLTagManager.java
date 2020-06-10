@@ -17,30 +17,8 @@ public class HTMLTagManager {
     }
     public void getHTMLTag(/*String link*/)
     {
-        String html=ContentWebsite.getContentOnWebsite("https://vnexpress.net/");
+        String html=ContentWebsite.getContentOnWebsite("https://tuoitre.vn/");
         HashMap<String, Integer> frequencyOfTag=new HashMap<>();
-        /*String html="<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "	<meta charset=\"UTF-8\">\n" +
-                "	<title>Photo Gallery</title>\n" +
-                "	<link rel=\"stylesheet\" href=\"CSS\\gallery.css\">\n" +
-                "	<script src = \"js/gallery.js\"></script>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "	\n" +
-                "	<div id = \"image\">\n" +
-                "		Hover over an image below to display here.\n" +
-                "	</div>\n" +
-                "	\n" +
-                "	<img class = \"preview\" alt = \"Styling with a Bandana\" src = \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/389177/bacon.jpg\" onmouseover = \"upDate(this)\" onmouseout = \"unDo()\">\n" +
-                "	\n" +
-                "	<img class = \"preview\" alt = \"With My Boy\" src = \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/389177/bacon2.JPG\" onmouseover = \"upDate(this)\" onmouseout = \"unDo()\">\n" +
-                "	\n" +
-                "	<img class = \"preview\" src = \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/389177/bacon3.jpg\" alt = \"Young Puppy\" onmouseover = \"upDate(this)\" onmouseout = \"unDo()\">\n" +
-                "\n" +
-                "</body>\n" +
-                "</html>";*/
         //Check for normal tag
         int j = html.indexOf('<'); // find first ’<’ character (if any)
         while (j!=(-1)) {
@@ -78,34 +56,26 @@ public class HTMLTagManager {
                         frequencyOfTag=this.countFrequencyOfTag(frequencyOfTag,tag);
 
                     } else {
-                        stack.push(tag);
+                        if(tag.equals("<script>"))
+                        {
+                            frequencyOfTag=this.countFrequencyOfTag(frequencyOfTag,tag);
+                        }
+                        else stack.push(tag);
                    }
                 } else {//for some tag like <p>abcxyz<p>
-                    stack.push(tag);
+                    if(tag.equals("<script>"))
+                    {
+                        frequencyOfTag=this.countFrequencyOfTag(frequencyOfTag,tag);
+                    }
+                    else stack.push(tag);
                 }
             }
 
             else { // this is a closing tag
-               if (stack.isEmpty())
-                     //no tag to match
+                if(!tag.equals("</script>"))
                 {
-                   System.out.println("Error: Mismatch HTML tag");
-                    return;
-                }
                 String checkTag=stack.pop();
-               if (!tag.replace("</","<").equals(checkTag))
-                {
-                     //mismatched tag
-                    //System.out.println("Error: Mismatch HTML tag");
-                    System.out.println(tag);
-                    System.out.println(checkTag);
-                    //return;
-                 }
-                else
-                {
-                    frequencyOfTag=this.countFrequencyOfTag(frequencyOfTag,tag.replace("</","<"));
-                }
-
+              frequencyOfTag=this.countFrequencyOfTag(frequencyOfTag,tag.replace("</","<"));}
             }
             j = html.indexOf('<', k+1); // find next ’<’ character (if any)
         }

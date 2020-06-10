@@ -61,7 +61,10 @@ public class ArrayStack implements Stack{
         }
         else
         {
-            return list[--count];//no need to clear the last element, cause will have another element replace it
+            String answer=list[count-1];
+            list[count-1]=null;
+            count--;
+            return answer;
 
         }
         return null;
