@@ -20,6 +20,10 @@ import java.util.StringTokenizer;
 
 /*
     *Create IOFile class to get and write data.
+    * Ham co 2 phuong thuc: 
+      - Doc file: dau vao la 1 file can doc, dau ra la mot danh sach doc duoc tu file va dc sap xep
+      - Ghi file: ghi file theo de bai yeu cau.
+        + Dau vao: la mot danh sach luu infor cua nguoi choi, va file can ghi
 */
 public class IOFile {
 
