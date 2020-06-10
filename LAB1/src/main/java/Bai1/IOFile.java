@@ -28,13 +28,13 @@ import java.util.StringTokenizer;
 public class IOFile {
 
     public static PriorytiQueue readFromFile(String file) {
-        File f = null;
+//        File f = null;
         FileReader fr = null;
         BufferedReader br = null;
         PriorytiQueue queue = new PriorytiQueue();
         try {
-            f = new File(file);
-            fr = new FileReader(f);
+//            f = new File(file);
+            fr = new FileReader(file);
             br = new BufferedReader(fr);
             String s = br.readLine();
             while (br.ready()) {
