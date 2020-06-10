@@ -5,6 +5,8 @@
  */
 package quyvv.info;
 
+import java.util.Scanner;
+
 /**
  *
  * 
@@ -39,4 +41,11 @@ public class User {
     }
     
     
+     public void input(){
+         Scanner sc = new Scanner(System.in);
+         System.out.println("Input Email");
+         Email= sc.nextLine();
+         System.out.println("Input Point");
+         Point= Integer.parseInt(sc.nextLine());
+     }
 }
