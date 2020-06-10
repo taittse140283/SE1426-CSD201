@@ -33,7 +33,17 @@ public class DoublyLinkedList {
     }
     /**
      * Hàm để lấy thông tin của người chơi đầu tiên của danh sách
-     * @param node
+     * @return Information
+     */
+    
+    public Information getLast(){
+        if(isEmpty()){
+            return null;
+        }
+        return trailer.getLeft().getData();
+    }
+    /**
+     * Trả về người chơi ở cuối danh sách
      * @return Information
      */
     
@@ -80,6 +90,46 @@ public class DoublyLinkedList {
      * Hàm xóa người chơi cuối của danh sách 
      * @param data
      * @return dữ liệu của người chơi cuối sẽ bị xóa 
+     */
+    
+    public DLLNode findPlayerByEmail(String email){
+        if(isEmpty()){
+            System.out.println("The list is empty!!!");
+        } else{
+            DLLNode rightNode = header.getRight();
+            do{
+                if(rightNode.getData().getEmail().equalsIgnoreCase(email)){
+                    return rightNode;
+                } else{
+                    rightNode = rightNode.getRight();
+                }
+            }
+            while(rightNode != trailer);
+        }
+        return null;
+    }
+    /**
+     * Tìm người chơi có email giống với email cần tìm kiếm
+     * @param email 
+     * @return có thì lấy dữ liệu(point), không thì trả về null
+     */
+    
+    public void deletedPlayer(String email){
+        if(isEmpty()){
+            System.out.println("The list is empty!!!");
+        } else{
+            DLLNode findPlayer = findPlayerByEmail(email);
+            if(findPlayer == null){
+                System.out.println("Player doesn't exit!!!");
+            } else{
+                int point = findPlayer.getData().getPoint();
+                System.out.println("Email: " + email + " | Point: " + point);
+            }
+        }
+    }
+    /**
+     * Xóa người chơi thông qua emial nhập vào thực hiện trong hàng đợi ưu tiên
+     * @param email
      */
     
     private void add(Information data, DLLNode rightNode, DLLNode leftNode){
@@ -161,4 +211,71 @@ public class DoublyLinkedList {
             }
         }
     }
+    
+    public void DisplayPoint(String email){
+        if(isEmpty()){
+            System.out.println("The list is empty!!!");
+        } else{
+            DLLNode findPlayer = findPlayerByEmail(email);
+            if(findPlayer == null){
+                System.out.println("Player doesn't exit!!!");
+            } else{
+                int point = findPlayer.getData().getPoint();
+                System.out.println("Email: " + email + " | Point: " + point);
+            }
+        }
+    }
+    /**
+     * In ra màn hình điểm của người chơi được tiềm kiếm trong hàm đợi ưu tiên
+     * @param email
+     */
+    
+    public void displayPointTop(){
+        if(getLast() == null){
+            System.out.println("The list is empty!!!");
+        } else{
+            Information pointTopPlayer = getLast();
+            String email = pointTopPlayer.getEmail();
+            int point = pointTopPlayer.getPoint();
+            System.out.println("Email: " + email + " | Point: " + point);
+        }
+    }
+    /**
+     * In ra màn hình người chơi có đứng đầu trong danh sách ưu tiên
+     */
+    
+    public void updateUser(String email, int point){
+        if(isEmpty()){
+            System.out.println("The list is empty!!!");
+        } else{
+            DLLNode nodeUser = findPlayerByEmail(email);
+            if(nodeUser == null){
+                System.out.println("Player doesn't exit!!!");
+            } else{
+                nodeUser.getData().setEmail(email);
+                nodeUser.getData().setPoint(point);
+                checkUpdate(nodeUser);
+            }
+        }
+    }
+    /**
+     * Cập nhật lại diểm của người chơi bằng cách sử dụng email và hàm ưu tiên
+     * @param email
+     * @param point
+     */
+    
+    public void checkUpdate(DLLNode player){
+        DLLNode checkUpdate = findNode(player.getData().getPoint());
+        if(checkUpdate == null){
+            remove(player);
+            addLast(player.getData());
+        } else{
+            remove(player);
+            addBetween(player.getData(), checkUpdate);
+        }
+    }
+    /**
+     * Cập nhật lại vị trí của người chơi sau khi cập nhật điểm, cấu trúc hàng đợi ưu tiên
+     * @param player
+     */
 }
