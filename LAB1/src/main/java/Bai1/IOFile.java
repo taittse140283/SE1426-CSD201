@@ -17,6 +17,10 @@ import java.util.StringTokenizer;
  *
  * @author User
  */
+
+/*
+    *Create IOFile class to get and write data.
+*/
 public class IOFile {
 
     public static PriorytiQueue readFromFile(String file) {
@@ -67,10 +71,10 @@ public class IOFile {
                 fw = new FileWriter(f);
                 pw = new PrintWriter(fw);
                 pw.println("Email, point");
-                DoublyLinkedList.Node<Player> current = queue.getList().getHeader();
-                while(current.getNext() != null) {
+                DoublyLinkedList.Node<Player> current = queue.getList().getHeader();// lay gia tri dau tien cua hang doi
+                while(current.getNext() != null) {// duyet danh sach cho den phan tu cuoi cung
                     pw.println(current.getElement().toString());
-                    current = current.getNext();
+                    current = current.getNext();// buoc nhay
                 }
             } catch (IOException e) {
                 e.printStackTrace();
