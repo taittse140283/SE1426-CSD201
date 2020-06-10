@@ -8,7 +8,9 @@ package Bai1;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 /**
@@ -40,10 +42,10 @@ public class IOFile {
             e.printStackTrace();
         } finally {
             try {
-                if(br != null) {
+                if (br != null) {
                     br.close();
                 }
-                if(fr != null) {
+                if (fr != null) {
                     fr.close();
                 }
             } catch (IOException e) {
@@ -53,4 +55,37 @@ public class IOFile {
         return queue;
     }
 
+    public static void writeToFile(PriorytiQueue queue, String file) {
+        if (queue.getList().getSize() == 0) {
+            System.out.println("Error: List empty");
+        } else {
+            File f = null;
+            FileWriter fw = null;
+            PrintWriter pw = null;
+            try {
+                f = new File(file);
+                fw = new FileWriter(f);
+                pw = new PrintWriter(fw);
+                pw.println("Email, point");
+                DoublyLinkedList.Node<Player> current = queue.getList().getHeader();
+                while(current.getNext() != null) {
+                    pw.println(current.getElement().toString());
+                    current = current.getNext();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if(pw != null) {
+                        pw.close();
+                    }
+                    if(fw != null) {
+                        fw.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
