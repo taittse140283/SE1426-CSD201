@@ -5,6 +5,8 @@
  */
 package Bai1;
 
+import java.util.Scanner;
+
 /**
  *
  * @author User
@@ -67,5 +69,30 @@ public class PriorytiQueue {
             }
         }
         return -1;
+    }
+    
+    public void update(String email) {
+        if(list.isEmpty()) {
+            System.out.println("List empty");
+            return;
+        }
+        
+        int pos = getNodePosition(email);
+        if(pos < 0) {
+            System.out.println("Error: No information found.");
+        } else {
+            Scanner scanner = new Scanner(System.in);
+            String newEmail = scanner.nextLine();
+            int point;
+            try {
+                point = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Got an exception");
+                return;
+            }
+            
+            list.get(pos).setEmail(newEmail);
+            list.get(pos).setPoint(point);
+        }
     }
 }
