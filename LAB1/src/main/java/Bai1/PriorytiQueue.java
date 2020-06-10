@@ -18,41 +18,54 @@ package Bai1;
    - removePlayerHasMaxPoint with O(1)
    - getPlayerHasMaxPoint with O(1)
    - delete any player with specific email of player
-*/
+ */
 public class PriorytiQueue {
-    
+
     DoublyLinkedList<Player> list = new DoublyLinkedList<>();
-    
+
     /*
         * get list of doublyLinkedList to process
-    */
+     */
     public DoublyLinkedList<Player> getList() {
         return list;
     }
-    
+
     /*
         *input: player information
-    */
+     */
     public void addAndSort(Player player) {
-        if(list.isEmpty()) { 
+        if (list.isEmpty()) {
             list.insertFirst(player);
-        } else if(player.getPoint() >= list.getHeader().getElement().getPoint()) {
-            if(player.getPoint() > list.getFirst().getPoint()) {
+        } else if (player.getPoint() >= list.getHeader().getElement().getPoint()) {
+            if (player.getPoint() > list.getFirst().getPoint()) {
                 list.insertFirst(player);
             } else {
                 DoublyLinkedList.Node<Player> current = list.getHeader();
                 list.addBetween(player, current, current.getNext());
             }
-        } else if(player.getPoint() <= list.getLast().getPoint()) {
+        } else if (player.getPoint() <= list.getLast().getPoint()) {
             list.insertLast(player);
         } else {
             DoublyLinkedList.Node<Player> current = list.getHeader();
-            while(current.getElement().getPoint() > player.getPoint()) {
+            while (current.getElement().getPoint() > player.getPoint()) {
                 current = current.getNext();
             }
-            
+
             // them node moi vao truoc node current
             list.addBetween(player, current.getPrev(), current);
         }
+    }
+
+    /*
+        *input: email of player
+        *output: return node position
+     */
+    private int getNodePosition(String email) {
+        for (int i = 0; i < list.size; i++) {
+            if (list.get(i).getEmail().equals(email)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
