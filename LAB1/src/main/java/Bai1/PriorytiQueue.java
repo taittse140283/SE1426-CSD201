@@ -71,7 +71,7 @@ public class PriorytiQueue {
         return -1;
     }
     
-    public void update(String email) {
+    public void update(String email, int point) {
         if(list.isEmpty()) {
             System.out.println("List empty");
             return;
@@ -82,7 +82,6 @@ public class PriorytiQueue {
             System.out.println("Error: No information found.");
         } else {
             Scanner scanner = new Scanner(System.in);
-            int point;
             try {
                 point = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
