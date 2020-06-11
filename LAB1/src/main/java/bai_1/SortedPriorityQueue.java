@@ -17,7 +17,7 @@ public class SortedPriorityQueue {
     }
     
     //Add new node into the queue and sort it
-    public void addAndSort(String email, int point) {
+    public void addNewPlayer(String email, int point) {
         Player p = new Player(email, point); //Create a new player
         Node newNode = new Node(p, head, tail); //Create new node stores player info
         
@@ -30,6 +30,15 @@ public class SortedPriorityQueue {
             return;
         }
         
+        sortPlayerBasedOnPoint(newNode);
+    }
+    
+    /**
+     * Sort a new player into suitable position in order descending
+     * I use the point of each player as their rank, the higher the point, the higher the rank
+     * @param newNode 
+     */
+    public void sortPlayerBasedOnPoint(Node newNode) {
         //I use the point of player as rank of them
         //Based on their rank, i can sort the position of them in the queue
         int rank = newNode.getInfo().getPoint();
@@ -67,7 +76,7 @@ public class SortedPriorityQueue {
                     return;
                 }
             }
-        }   
+        }
     }
     
     /**
@@ -90,7 +99,7 @@ public class SortedPriorityQueue {
         head.setPrev(null);
     }
     
-    
+
     //Print to the screen for testing
     public void print() {
         for(Node n = head; n != null; n = n.getNext())
