@@ -82,7 +82,6 @@ public class PriorytiQueue {
             System.out.println("Error: No information found.");
         } else {
             Scanner scanner = new Scanner(System.in);
-            String newEmail = scanner.nextLine();
             int point;
             try {
                 point = Integer.parseInt(scanner.nextLine());
@@ -91,7 +90,6 @@ public class PriorytiQueue {
                 return;
             }
             
-            list.get(pos).setEmail(newEmail);
             list.get(pos).setPoint(point);
         }
     }
