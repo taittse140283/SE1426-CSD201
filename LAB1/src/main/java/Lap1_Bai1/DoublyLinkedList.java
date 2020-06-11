@@ -5,6 +5,8 @@
  */
 package Lap1_Bai1;
 
+import java.io.PrintWriter;
+
 /**
  *
  * @author PC
@@ -68,7 +70,7 @@ public class DoublyLinkedList {
      * @return dữ liệu của người chơi bị xóa
      */
     
-    private Information removeFirst(){
+    public Information removeFirst(){
         if(isEmpty()){
             return null;
         }
@@ -80,7 +82,7 @@ public class DoublyLinkedList {
      * @return dữ liệu của người chơi đầu tiên bị xóa  
      */
     
-    private Information removeLast(){
+    public Information removeLast(){
         if(isEmpty()){
             return null;
         }
@@ -277,5 +279,49 @@ public class DoublyLinkedList {
     /**
      * Cập nhật lại vị trí của người chơi sau khi cập nhật điểm, cấu trúc hàng đợi ưu tiên
      * @param player
+     */
+    
+    public void writeData(DoublyLinkedList list, String fileName){
+        if(list == null || list.isEmpty()){
+            return;
+        }
+        PrintWriter writeFile = null;
+        try {
+            writeFile = new PrintWriter(fileName);
+            DLLNode node = header.getRight();
+            while(node != trailer){
+                writeFile.println(node.getData().toString());
+                node = node.right;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                if(writeFile != null){
+                    writeFile.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    /**
+     * Hàm để ghi file
+     * @param list
+     * @param fileName
+     */
+    
+    public void printList(DoublyLinkedList list){
+        DLLNode node = header.getRight();
+        while(node != trailer){
+            String email = node.getData().getEmail();
+            int point = node.getData().getPoint();
+            System.out.println("Email: " + email + " | Point: " + point);
+            node = node.right;
+        }
+    }
+    /**
+     * Hàm để in ra màn hình
+     * @param list
      */
 }
