@@ -140,10 +140,26 @@ public class SortedPriorityQueue {
                 removeNode.getNext().setPrev(removeNode.getPrev());
             }
             else {
-                System.out.println("This email is not exist in the queue.");
+                System.out.println("The email " + email + " is not exist in the queue.");
             }
         }
     }    
+    
+    /**
+     * Update new point for player and rearrange the position for this player
+     * @param email
+     * @param newPoint 
+     */
+    public void updateNewPoint(String email, int newPoint) {
+        Node updatedNode = search(email);
+        
+        if(updatedNode != null) {
+            updatedNode.getInfo().setPoint(newPoint);
+            sortPlayerBasedOnPoint(updatedNode);
+        }
+        else
+            System.out.println("The email " + email + " is not exist in the queue.");
+    }
     
     //Print to the screen for testing
     public void print() {
