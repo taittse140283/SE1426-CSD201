@@ -30,6 +30,7 @@ public class Manager {
             // kiem tra co phai the comment 
             else if(check = true && s.charAt(i) == '-'){
                 tag = tag + "-";
+                processTag(tag);
                 check = false;
             }
             // bo qua noi dung trong the HTML
@@ -40,6 +41,7 @@ public class Manager {
             else if(check == true && (s.charAt(i) == '>' || s.charAt(i) != ' ')){
                 tag = tag + ">";
                 check = false;
+                processTag(tag);
             }
         }
     }
@@ -84,10 +86,6 @@ public class Manager {
                 count(tag);
             else if(tag.equalsIgnoreCase("input"))
                 count(tag);
-            else if(tag.equalsIgnoreCase("<!DOCTYPE>"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("<![endif]-->"))
-                count("<![endif]-->");
             else if(tag.equalsIgnoreCase("meta"))
                 count(tag);
             else if(tag.equalsIgnoreCase("param"))
@@ -98,7 +96,9 @@ public class Manager {
                 count(tag);
         }
     }
-    public void Manager(){
-        
+    public void Manager(String url , String fileName){
+        String content = get.readContent(url);
+        analyzeHTMLTag(content);
+        wr.(fileName);
     }
 }
