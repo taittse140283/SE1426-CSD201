@@ -169,6 +169,27 @@ public class DoublyLinkedList {
     }
     
     /**
+     * Because the request to remove players by email
+     * 
+     * @param email
+     * @return 
+     */
+    public Player searchPlayerByEmail(String email){
+        if(isEmpty()){
+            return null;
+        }else{
+            Node search = head.getNext(); //get node
+            // loop (chua biet dung vong lap gi)
+
+            if(search.getData().getEmail().equals(email)){
+                return search;
+            }else{ //if not found, continue
+                search = search.getNext();
+            }
+        }
+        return null; // return null if no found
+    }
+    /**
      * add a new player into the data structure
      * If if the list is empty, addFirst
      * @param data 
