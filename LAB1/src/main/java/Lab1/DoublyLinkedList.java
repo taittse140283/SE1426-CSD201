@@ -145,7 +145,7 @@ public class DoublyLinkedList {
      * @return data Of Player
      */
     public Player getFirst(){
-        if(isEmpty()){     //Case, if the list is empty, it will return null.
+        if(isEmpty()){     //Case, if the list is empty, it will return null
             return null;
         }
         return head.getNext().getData();
@@ -156,7 +156,7 @@ public class DoublyLinkedList {
      * @return data Of Player
      */
     public Player getLast(){
-        if(isEmpty()){      //Case, if the list is empty, it will return null.
+        if(isEmpty()){      //Case, if the list is empty, it will return null       
             return null;
         }
         return tail.getPrev().getData();
