@@ -31,11 +31,11 @@ public class PriorityQueue{
         search(email);
     }
     
-    public void getTop(){
+    public void max(){
         
     }
     
-    public void removeTop(){
+    public void removeMax(){
         
     }
     
