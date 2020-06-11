@@ -114,17 +114,25 @@ public class DoublyLinkedList {
         size++;
     }
     
+    private Node remove(Node n){
+        if(n != head && n != tail){
+            Node front = n.getNext();
+            Node back = n.getPrev();
+            front.setNext(back);
+            back.setPrev(front);
+            size--;
+        }
+        return n;
+    }
     /**
      * this method removes element from the start of the linked list
      * @return
      */
     public Player removeFirst() {
-        if (size == 0) throw new NoSuchElementException();
-        Node deleteNode = head;
-        head = head.next;
-        head.prev = null;
-        size--;
-        return deleteNode.data;
+        if (isEmpty()){
+            return null;
+        }
+        return remove(head.getNext());
     }
     
     /**
