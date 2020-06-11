@@ -97,8 +97,8 @@ public class PriorytiQueue {
         list.removeFirst();
     }
     
-    public void getPlayerHasMaxPoint() {
-        list.getHeader();
+    public DoublyLinkedList.Node<Player> getPlayerHasMaxPoint() {
+        return list.getHeader();
     }
     
     public void delete(String email) {
@@ -113,5 +113,13 @@ public class PriorytiQueue {
         } else {
             list.removeAtPosition(pos);
         }
+    }
+    
+    public DoublyLinkedList.Node<Player> getNodePlayer(String email) {
+        DoublyLinkedList.Node<Player> current = list.getHeader();
+        while(!current.getElement().getEmail().equals(email)) {
+            current = current.getNext();
+        }
+        return current;
     }
 }
