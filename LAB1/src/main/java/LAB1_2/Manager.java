@@ -17,29 +17,29 @@ public class Manager {
     GetWebsite get = new GetWebsite();
     WriteToFile wr = new WriteToFile();
     // kiem tra tagHTML
-    public void analyzeTag(String s){
+    public void analyzeTag(String content){
         String tag="";
         boolean check = false;
         // chay vong lap cho chuoi
-        for(int i = 0;i < s.length(); i++){
+        for(int i = 0;i < content.length(); i++){
             // kiem tra cho phai the HTML hay khong
-            if(s.charAt(i) == '<'){
+            if(content.charAt(i) == '<'){
                 tag = "<";
                 check = true;
             }
             // kiem tra co phai the comment 
-            else if(s.charAt(i) == '-' && check == true){
-                tag = tag + "-";
+            else if(content.charAt(i) == '-' && check == true){
+                tag += "-";
                 processTag(tag);
                 check = false;
             }
             // bo qua noi dung trong the HTML
-            else if(s.charAt(i) != '>' && s.charAt(i) != ' ' && check == true ){
-                tag = tag + s.charAt(i);
+            else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true ){
+                tag += content.charAt(i);
             }
             // kiem tra cac the con lai va cac the dac biet (ex : <link href ... >)
-            else if((s.charAt(i) == '>' || s.charAt(i) != ' ') && check == true){
-                tag = tag + ">";
+            else if((content.charAt(i) == '>' || content.charAt(i) != ' ') && check == true){
+                tag += ">";
                 check = false;
                 processTag(tag);
             }
@@ -54,53 +54,54 @@ public class Manager {
             hashmap.put(tag, hashmap.get(tag) + 1);
         }
     }
-    public void processTag(String tag){
+    public void processTag(String tag) {
         // kiem tra cac the dac biet
-        if (tag.equalsIgnoreCase("area"))
+        if (tag.equalsIgnoreCase("<area>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("base"))
+        } else if (tag.equalsIgnoreCase("<base>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("br"))
+        } else if (tag.equalsIgnoreCase("<br>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("command"))
+        } else if (tag.equalsIgnoreCase("<command>")) {
             count(tag);
-        else if(tag.equalsIgnoreCase("<!DOCTYPE>"))
-        count(tag);
-        else if(tag.equalsIgnoreCase("<!-"))
-        count("<!--comment-->");
-        else if (tag.equalsIgnoreCase("embeb"))
+        } else if (tag.equalsIgnoreCase("<!DOCTYPE>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("hr"))
+        } else if (tag.equalsIgnoreCase("<!-")) {
+            count("<!--comment-->");
+        } else if (tag.equalsIgnoreCase("<embeb>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("img"))
+        } else if (tag.equalsIgnoreCase("<hr>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("input"))
+        } else if (tag.equalsIgnoreCase("<img>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("meta"))
+        } else if (tag.equalsIgnoreCase("<input>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("param"))
+        } else if (tag.equalsIgnoreCase("<link>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("track"))
+        } else if (tag.equalsIgnoreCase("<meta>")) {
             count(tag);
-        else if (tag.equalsIgnoreCase("wbr"))
+        } else if (tag.equalsIgnoreCase("<param>")) {
             count(tag);
-        else{
+        } else if (tag.equalsIgnoreCase("<track>")) {
+            count(tag);
+        } else if (tag.equalsIgnoreCase("<wbr>")) {
+            count(tag);
+        } else {
             //kiem tra cac the co the dong trong HTML
-            if(tag.contains("</") == false) {
+            if (tag.contains("</") == false) {
                 stack.push(tag);   // neu khong co the dong thi push tag vao stack
-                stack.print(); 
+                stack.print();
                 System.out.println();
-            }
-            //kiem tra the dong voi the mo trong HTML
-            else if(stack.Top().equalsIgnoreCase(tag.replace("/","")) == true) {
-                stack.pop(); 
+            } //kiem tra the dong voi the mo trong HTML
+            else if (stack.Top().equalsIgnoreCase(tag.replace("/", "")) == true) {
+                stack.pop();
                 count(tag);
                 stack.print();
                 System.out.println();
             }
-        }  
+        }
     }
-    public void Manager(String url , String fileName){
+    public Manager(String url , String fileName){
         String content;
         try {
             content = get.readContent(url);
