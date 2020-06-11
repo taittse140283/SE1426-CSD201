@@ -28,17 +28,17 @@ public class Manager {
                 check = true;
             }
             // kiem tra co phai the comment 
-            else if(check = true && s.charAt(i) == '-'){
+            else if(s.charAt(i) == '-' && check == true){
                 tag = tag + "-";
                 processTag(tag);
                 check = false;
             }
             // bo qua noi dung trong the HTML
-            else if(check = true && s.charAt(i) != '>' && s.charAt(i) != ' '){
+            else if(s.charAt(i) != '>' && s.charAt(i) != ' ' && check == true ){
                 tag = tag + s.charAt(i);
             }
             // kiem tra cac the con lai va cac the dac biet (ex : <link href ... >)
-            else if(check == true && (s.charAt(i) == '>' || s.charAt(i) != ' ')){
+            else if((s.charAt(i) == '>' || s.charAt(i) != ' ') && check == true){
                 tag = tag + ">";
                 check = false;
                 processTag(tag);
@@ -55,46 +55,50 @@ public class Manager {
         }
     }
     public void processTag(String tag){
-        //kiem tra cac the co the dong trong HTML
-        if(tag.contains("</") == false) {
-            stack.push(tag);   // neu khong co the dong thi push tag vao stack
-            stack.print(); 
-            System.out.println("\n");
-        }
-        //kiem tra the dong voi the mo trong HTML
-        else if(stack.Top().equalsIgnoreCase(tag.replace("/", "")) == true) {
-            stack.pop(); 
-            count(tag);
-            stack.print();
-            System.out.println("\n");
-        }
         // kiem tra cac the dac biet
+        if (tag.equalsIgnoreCase("area"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("base"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("br"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("command"))
+            count(tag);
+        else if(tag.equalsIgnoreCase("<!DOCTYPE>"))
+        count(tag);
+        else if(tag.equalsIgnoreCase("<!-"))
+        count("<!--comment-->");
+        else if (tag.equalsIgnoreCase("embeb"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("hr"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("img"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("input"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("meta"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("param"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("track"))
+            count(tag);
+        else if (tag.equalsIgnoreCase("wbr"))
+            count(tag);
         else{
-            if(tag.equalsIgnoreCase("area"))
+            //kiem tra cac the co the dong trong HTML
+            if(tag.contains("</") == false) {
+                stack.push(tag);   // neu khong co the dong thi push tag vao stack
+                stack.print(); 
+                System.out.println();
+            }
+            //kiem tra the dong voi the mo trong HTML
+            else if(stack.Top().equalsIgnoreCase(tag.replace("/","")) == true) {
+                stack.pop(); 
                 count(tag);
-            else if(tag.equalsIgnoreCase("base"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("br"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("command"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("embeb"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("hr"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("img"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("input"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("meta"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("param"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("track"))
-                count(tag);
-            else if(tag.equalsIgnoreCase("wbr"))
-                count(tag);
-        }
+                stack.print();
+                System.out.println();
+            }
+        }  
     }
     public void Manager(String url , String fileName){
         String content;
