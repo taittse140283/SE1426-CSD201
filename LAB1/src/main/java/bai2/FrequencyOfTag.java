@@ -16,13 +16,21 @@ public class FrequencyOfTag{
         frequencyOfTag=new HashMap<>();
     }
 
+    public HashMap<String, Integer> getFrequencyOfTag() {
+        return frequencyOfTag;
+    }
+
+    public void setFrequencyOfTag(HashMap<String, Integer> frequencyOfTag) {
+        this.frequencyOfTag = frequencyOfTag;
+    }
+
     /**
      * Count frequency of tag
      * @param tag This is tag will be check if contain in hashmap or not
      * If not contain, then set value of this key Tag equals 1
      * If contain, then get the old value of this key Tag and add 1 into it
      */
-    public void getFrequencyOfTag(String tag)
+    public void countOfTag(String tag)
     {
         if(!frequencyOfTag.containsKey(tag))//if tag is not one of key of this HashMap
         {
@@ -34,27 +42,25 @@ public class FrequencyOfTag{
         }
     }
     //test sort, do not comment clearly yet
-    public  static HashMap<String, Integer> sortHashMap(HashMap<String, Integer> frequency)
+    public  void sortHashMap()
     {
         //Get Entry Set of Hash Map and put it into ArrayList listEntry
-        ArrayList<Entry<String,Integer>> listEntry = new ArrayList(frequency.entrySet());
+        ArrayList<Entry<String,Integer>> listEntry = new ArrayList(frequencyOfTag.entrySet());
         //Call method sort of class Collections
         //Create anonymous Comparator class(use one time) to compare value of entry
-
         Collections.sort(listEntry, new Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> e1,
                                Map.Entry<String, Integer> e2) {
-                if(e1.getValue()<e2.getValue()) return 1;//frequency of e2.key higher than e1.key then swap to entry
+                if(e1.getValue()<e2.getValue()) return 1;//frequency of e2.key higher than e1.key then swap two entry
                 else if(e1.getValue()>e2.getValue()) return -1;//
                 return 0;
             }
         });
-        frequency = new LinkedHashMap();
+        frequencyOfTag = new LinkedHashMap();
         for (Entry<String,Integer> entry:listEntry)
         {
-            frequency.put(entry.getKey(),entry.getValue());
+            frequencyOfTag.put(entry.getKey(),entry.getValue());
         }
-        return frequency;
     }
 
 }

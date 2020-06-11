@@ -57,7 +57,6 @@ public class ContentWebsite {
                e.printStackTrace();
            }
         }
-
         return content;
 
     }
