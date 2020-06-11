@@ -26,16 +26,15 @@ public class WriteToFile {
         for (Map.Entry<String, Integer> entry : sort.entrySet()) {
             String key = entry.getKey();
             Integer value = entry.getValue();
-            System.out.print("tag: " + key + " value: " + value);
+            System.out.println("tag: " + key + " value: " + value);
         }
             File f = new File(fileName);
         PrintWriter print = new PrintWriter(f);
-        print.println("Tag,Value");
-        print.println("");
+        print.println("Tag,Value\n");
         for (Map.Entry<String, Integer> entry : sort.entrySet()) {
                 String key = entry.getKey();
                 Integer value = entry.getValue();
-                print.print(key + "," + value); 
+                print.println(key + "," + value); 
         }      
         print.close();
     }
