@@ -97,8 +97,13 @@ public class Manager {
         }
     }
     public void Manager(String url , String fileName){
-        String content = get.readContent(url);
-        analyzeHTMLTag(content);
-        wr.(fileName);
+        String content;
+        try {
+            content = get.readContent(url);
+            analyzeTag(content);
+            wr.WriteToFile(hashmap,fileName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
