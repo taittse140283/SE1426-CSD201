@@ -4,14 +4,9 @@ public class BSTree {
     private class Node {
         private int info;
         private Node left, right;
-        public Node(int info) {
+        public  Node(int info) {
             this.info = info;
             left = right =  null;
-        }
-        public String toString() {
-            String result = "";
-            result += info;
-            return result;
         }
     }
     Node root;
@@ -32,41 +27,46 @@ public class BSTree {
         }
         return p;
     }
-    private Node search(int value,  Node tree) {
+    private Node search(int value, Node p) {
+        if(p == null) return null;
+        if(value > p.info)
+            return search(value, p.right);
+        else if(value < p.info)
+            return search(value, p.left);
+        else
+            return p;
+    }
+    private Node getParent(Node tree, Node n) {
         if(tree == null) return null;
-        if(value < tree.info ) return search(value, tree.left);
-        else if (value > tree.info ) return search(value, tree.right);
-        else return tree;
+        if(tree.left == n || tree.right == n) return tree;
+        else if(n.info > tree.info) return getParent(tree.right , n);
+        else return getParent(tree.left , n);
     }
-
-    private Node parent(Node n, Node tree) {
-        if(tree == null) return null;
-        if(n == tree.left || n == tree.right) return tree;
-        else if(n.info > tree.info) return parent(n, tree.right);
-        else if(n.info < tree.info) return parent(n, tree.left);
-        else return null;
+    private Node getRight(Node p) {
+        if(p.right == null) return p;
+        return getRight(p.right);
     }
-    private Node right(Node tree) {
-        if(tree.right == null) return tree;
-        else return right(tree.right);
-    }
+    
     public void delete(int value) {
         Node n = search(value, root);
-        Node p = parent(n, root);
-        if(n.left == n.right && n.right == null) {
+        Node p = getParent(root, n);
+        if(n.left == n.right && n.right == null)
             if(p.right == n) p.right = null;
             else p.left = null;
-        } else if(n.left == null || n.right == null) {
-            if(n.right != null)
-                if(p.right == n) p.right = n.right;
-                else p.left = n.right;
-            else
-                if(p.right == n) p.right = n.left;
-                else p.left = n.left;
-        } else {
-            Node r = right(n.left);
+        else if(n.left == null)
+            if(p.left == n) p.left = n.right;
+            else p.right = n.right;
+        else if(n.right == null)
+            if(p.left == n) p.left = n.left;
+            else p.right = n.left;
+        else {
+            Node r = getRight(n.left);
+            r.right = n.right;
+            if(p == null) root = r;
+            else if(p.right == n) p.right = r;
+            else p.left = r;
         }
-
+        n.left = n.right = null;
     }
     void inOrder(Node p) {
         if (p == null) return;
