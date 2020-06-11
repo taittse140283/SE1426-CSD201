@@ -9,13 +9,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.HashMap;
 
 /**
  *
  * @author Dell
  */
 public class webContent {
-    private String readContent(String urlString) throws Exception{
+    private static String readContent(String urlString) throws Exception{
         BufferedReader br=null;
         String content="";
         try{
@@ -27,7 +28,7 @@ public class webContent {
                 content += line +"\n";
             }
             br.close();
-            return content;
+           
         } catch(Exception e){
             System.out.println("Error");
         } finally{
@@ -41,5 +42,29 @@ public class webContent {
         }
         return content;
     }
-    
+    public static boolean countTag(String content){
+        Stack<String> buffer= new ArrayStack<>();
+        int j=content.indexOf('<'); //tìm kí tư '<' dau tien
+        while(j!=-1){
+            int k=content.indexOf('>', j+1); //tim ki tu '>' tiep theo
+            if(k==-1){
+                System.out.println("Error! Invalid tag");
+            }
+            String tag= content.substring(j+1,k);
+            if(!tag.startsWith("/")){
+                buffer.push(tag);
+            }
+            else{
+                if(buffer.isEmpty()){
+                    return false;
+                }
+                if(!tag.substring(1).equals(buffer.pop())){
+                    return false;
+                }
+            }
+            j=content.indexOf('<',k+1);
+            
+        }
+      return buffer.isEmpty();
+    }
 }
