@@ -99,7 +99,22 @@ public class SortedPriorityQueue {
         head.setPrev(null);
     }
     
-
+    /**
+     * Find the node stores info of player based on email
+     * @param email
+     * If email exist in queue
+     * @return n
+     * If email is not exist in queue
+     * @return null
+     */
+    public Node search(String email) {
+        for(Node n = head; n != null; n = n.getNext())
+            if(n.getInfo().getEmail().equalsIgnoreCase(email)){
+                return n;
+            }
+        return null;
+    }
+    
     //Print to the screen for testing
     public void print() {
         for(Node n = head; n != null; n = n.getNext())
