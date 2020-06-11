@@ -16,7 +16,11 @@ public class SortedPriorityQueue {
         head = tail = null;
     }
     
-    //Add new node into the queue and sort it
+    /**
+     * Add new player into the queue and sort
+     * @param email
+     * @param point 
+     */
     public void addNewPlayer(String email, int point) {
         Player p = new Player(email, point); //Create a new player
         Node newNode = new Node(p, head, tail); //Create new node stores player info
@@ -114,6 +118,32 @@ public class SortedPriorityQueue {
             }
         return null;
     }
+    
+    /**
+     * Find and remove a player out of the queue
+     * @param email 
+     */
+    public void removePlayer(String email) {
+        //If email same with the top player's email => call removePlayerHasBiggestPoint()
+        if(email.equalsIgnoreCase(head.getInfo().getEmail())) 
+            removePlayerHasBiggestPoint();
+        
+        //If email same with the smallest point player's email => remove last node
+        else if(email.equalsIgnoreCase(tail.getInfo().getEmail())) {
+            tail = tail.getPrev();
+            tail.setNext(null);
+        }
+        else {
+            Node removeNode = search(email); //find node to remove it
+            if(removeNode != null) {
+                removeNode.getPrev().setNext(removeNode.getNext());
+                removeNode.getNext().setPrev(removeNode.getPrev());
+            }
+            else {
+                System.out.println("This email is not exist in the queue.");
+            }
+        }
+    }    
     
     //Print to the screen for testing
     public void print() {
