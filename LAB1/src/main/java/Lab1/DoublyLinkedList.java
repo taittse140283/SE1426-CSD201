@@ -140,12 +140,10 @@ public class DoublyLinkedList {
      * @return
      */
     public Player removeLast() {
-        if (size == 0) throw new NoSuchElementException();
-        Node deleteNode = tail;
-        tail = tail.prev;
-        tail.next = null;
-        size--;
-        return deleteNode.data;
+        if (isEmpty()){
+            return null;
+        }
+        return remove(tail.getPrev());
     }
     
     /**
