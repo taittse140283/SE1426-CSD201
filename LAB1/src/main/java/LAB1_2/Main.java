@@ -11,14 +11,17 @@ package LAB1_2;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        String url = "https://vnexpress.net/";
-        GetWebsite a = new GetWebsite();
-        Stack stack = new Stack();
-        stack.push("ABV");
-        stack.push("ABC");
-        stack.pop();
-        stack.print();
-        a.readContent(url);
-        a.print();
+        Manager manager = new Manager();
+        String url = "https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
+        String file = "output.csv";
+//        GetWebsite a = new GetWebsite();
+//        Stack stack = new Stack();
+//        stack.push("ABV");
+//        stack.push("ABC");
+//        stack.pop();
+//        stack.print();
+//        a.readContent(url);
+//        a.print();
+        manager.Manager(url,file);
     }
 }
