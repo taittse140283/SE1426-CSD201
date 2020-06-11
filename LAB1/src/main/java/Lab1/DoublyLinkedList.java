@@ -169,13 +169,34 @@ public class DoublyLinkedList {
     }
     
     /**
-     * add a new user into the data strucutre
+     * add a new player into the data structure
      * If if the list is empty, addFirst
      * @param data 
      */
     public void add(Player data){
         if(isEmpty()){
             addFirst(data);
+        }
+    }
+    
+    /**
+     * remove a new player into the data structure
+     * case, if the list is empty , show message
+     * Search the location the player wants to delete
+     * case If search fails, the player does not exist in the list.
+     * @param data 
+     */
+    public void delete(Player data){
+        if(isEmpty()){
+            System.err.println("Empty List!");
+        }else{
+            //1.search player 
+            
+            if(searchPlayer = null){
+                System.err.println("The player doesn't exist.");
+            }else{
+                remove(searchPlayer);
+            }
         }
     }
 }
