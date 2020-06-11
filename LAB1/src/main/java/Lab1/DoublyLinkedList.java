@@ -139,4 +139,26 @@ public class DoublyLinkedList {
         size--;
         return deleteNode.data;
     }
+    
+    /**
+     * Return Player at the top of list
+     * @return data Of Player
+     */
+    public Player getFirst(){
+        if(isEmpty()){     //Case, if the list is empty, it will return null.
+            return null;
+        }
+        return head.getNext().getData();
+    }
+    
+    /**
+     * Return Player at the last of list
+     * @return data Of Player
+     */
+    public Player getLast(){
+        if(isEmpty()){      //Case, if the list is empty, it will return null.
+            return null;
+        }
+        return tail.getPrev().getData();
+    }
 }
