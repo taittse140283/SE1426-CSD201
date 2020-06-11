@@ -161,4 +161,14 @@ public class DoublyLinkedList {
         }
         return tail.getPrev().getData();
     }
+    
+    /**
+     * If if the list is empty, addFirst
+     * @param data 
+     */
+    public void add(Player data){
+        if(isEmpty()){
+            addFirst(data);
+        }
+    }
 }
