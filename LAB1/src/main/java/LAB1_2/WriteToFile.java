@@ -30,7 +30,8 @@ public class WriteToFile {
         }
             File f = new File(fileName);
         PrintWriter print = new PrintWriter(f);
-        print.println("Tag,Value\n");
+        print.println("Tag,Value");
+        print.println("");
         for (Map.Entry<String, Integer> entry : sort.entrySet()) {
                 String key = entry.getKey();
                 Integer value = entry.getValue();
