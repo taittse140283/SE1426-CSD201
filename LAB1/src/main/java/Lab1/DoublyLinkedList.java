@@ -11,23 +11,63 @@ import java.util.NoSuchElementException;
  *
  * @author Admin
  */
-public class DoublyLinkedList<Player> {
+public class DoublyLinkedList {
+    private class Node{
+        Player data;
+        Node next;
+        Node prev;
+
+        /**
+         * Constructor
+         * @param data
+         * @param next
+         * @param prev 
+         */
+        public Node(Player data, Node next, Node prev) {
+            this.data = data;
+            this.next = next;
+            this.prev = prev;
+        }
+        //Getter & Setter
+        public Player getData() {
+            return data;
+        }
+
+        public void setData(Player data) {
+            this.data = data;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
+
+        public Node getPrev() {
+            return prev;
+        }
+
+        public void setPrev(Node prev) {
+            this.prev = prev;
+        }
+        
+    }
     /**
      * head node 
      * tail node
      * A variable for tracking size
      */
-    private Node<Player> head;
-    private Node<Player> tail;
+    private Node head = null;
+    private Node tail = null;
     private int size;
 
-    /**
-     * Constructor empty list
-     */
+    
     public DoublyLinkedList(){
-        head = null;
-        tail = null;
-        size = 0;
+        head = new Node(null, null, null);
+        tail = new Node(null, null, head);
+        head.setNext(tail);
     }
     /**
      * return whether the list is empty or not
@@ -52,7 +92,7 @@ public class DoublyLinkedList<Player> {
     public void addFirst(Player data) {
         Node newNode = new Node(data, head, null);
         if(head != null ) {
-            head.previous = newNode;
+            head.prev = newNode;
         }
         head = newNode;
         if(tail == null) {
@@ -80,9 +120,9 @@ public class DoublyLinkedList<Player> {
      */
     public Player removeFirst() {
         if (size == 0) throw new NoSuchElementException();
-        Node<Player> deleteNode = head;
+        Node deleteNode = head;
         head = head.next;
-        head.previous = null;
+        head.prev = null;
         size--;
         return deleteNode.data;
     }
@@ -93,8 +133,8 @@ public class DoublyLinkedList<Player> {
      */
     public Player removeLast() {
         if (size == 0) throw new NoSuchElementException();
-        Node<Player> deleteNode = tail;
-        tail = tail.previous;
+        Node deleteNode = tail;
+        tail = tail.prev;
         tail.next = null;
         size--;
         return deleteNode.data;
