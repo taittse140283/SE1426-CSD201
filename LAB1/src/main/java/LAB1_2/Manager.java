@@ -14,6 +14,8 @@ import java.util.HashMap;
 public class Manager {
     HashMap<String,Integer> hashmap = new HashMap<>(); //tao hashmap
     Stack stack = new Stack();
+    GetWebsite get = new GetWebsite();
+    WriteToFile wr = new WriteToFile();
     // kiem tra tagHTML
     public void analyzeTag(String s){
         String tag="";
@@ -95,5 +97,8 @@ public class Manager {
             else if(tag.equalsIgnoreCase("wbr"))
                 count(tag);
         }
+    }
+    public void Manager(){
+        
     }
 }
