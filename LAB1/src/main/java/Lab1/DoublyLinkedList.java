@@ -212,7 +212,7 @@ public class DoublyLinkedList {
             System.err.println("Empty List!");
         }else{
             //1.search player 
-            
+            Node searchPlayer = searchPlayerByEmail(email);
             //2.
             if(searchPlayer = null){
                 System.err.println("The player doesn't exist.");
