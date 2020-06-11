@@ -192,6 +192,7 @@ public class DoublyLinkedList {
         }else{
             //1.search player 
             
+            //2.
             if(searchPlayer = null){
                 System.err.println("The player doesn't exist.");
             }else{
