@@ -114,7 +114,7 @@ public class DoublyLinkedList {
         size++;
     }
     
-    private Node remove(Node n){
+    private Player remove(Node n){
         if(n != head && n != tail){
             Node front = n.getNext();
             Node back = n.getPrev();
@@ -122,7 +122,7 @@ public class DoublyLinkedList {
             back.setPrev(front);
             size--;
         }
-        return n;
+        return n.getData();
     }
     /**
      * this method removes element from the start of the linked list
