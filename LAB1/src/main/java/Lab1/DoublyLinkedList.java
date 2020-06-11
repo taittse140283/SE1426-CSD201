@@ -163,6 +163,7 @@ public class DoublyLinkedList {
     }
     
     /**
+     * add a new user into the data strucutre
      * If if the list is empty, addFirst
      * @param data 
      */
