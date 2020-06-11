@@ -24,7 +24,7 @@ import java.util.StringTokenizer;
       - Doc file: dau vao la 1 file can doc, dau ra la mot danh sach doc duoc tu file va dc sap xep
       - Ghi file: ghi file theo de bai yeu cau.
         + Dau vao: la mot danh sach luu infor cua nguoi choi, va file can ghi
-*/
+ */
 public class IOFile {
 
     public static PriorytiQueue readFromFile(String file) {
@@ -76,7 +76,7 @@ public class IOFile {
                 pw = new PrintWriter(fw);
                 pw.println("Email, point");
                 DoublyLinkedList.Node<Player> current = queue.getList().getHeader();// lay gia tri dau tien cua hang doi
-                while(current.getNext() != null) {// duyet danh sach cho den phan tu cuoi cung
+                while (current.getNext() != null) {// duyet danh sach cho den phan tu cuoi cung
                     pw.println(current.getElement().toString());
                     current = current.getNext();// buoc nhay
                 }
@@ -84,10 +84,10 @@ public class IOFile {
                 e.printStackTrace();
             } finally {
                 try {
-                    if(pw != null) {
+                    if (pw != null) {
                         pw.close();
                     }
-                    if(fw != null) {
+                    if (fw != null) {
                         fw.close();
                     }
                 } catch (IOException e) {
