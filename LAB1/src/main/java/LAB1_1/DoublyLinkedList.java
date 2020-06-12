@@ -9,7 +9,7 @@ package LAB1_1;
  *
  * @author TAN
  */
-public class DoublyLinkedList {
+public class DoublyLinkedList<Player> {
     
     Node<Player> head,tail;
     private int size = 0; // kiem tra danh sach
@@ -39,11 +39,18 @@ public class DoublyLinkedList {
     public boolean isEmpty(){
         return size == 0;
     }
-    //them phan tu vao list
+    //them phan tu vao dau list
     public void addFirst(Node<Player> newNode){
         newNode.setNext(head);
         head.setPrev(newNode);
         head = newNode;
+        size++;
+    }
+    //them phan tu vao cuoi list
+    public void addLast(Node<Player> newNode){
+        newNode.setPrev(tail);
+        tail.setNext(newNode);
+        tail = newNode;
         size++;
     }
     
@@ -77,5 +84,6 @@ public class DoublyLinkedList {
         }
         return null;
     }
+     
 
 }
