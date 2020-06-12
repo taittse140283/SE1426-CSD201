@@ -166,6 +166,13 @@ public class Main {
 
     }
 
+    /**
+     * This method is used to get html of web
+     * @param web url of website
+     * @return String This is html of web
+     * @throws IOException
+     */
+
     public static String getStringfromweb(String web) throws IOException {
         String result = "";
         URL url = new URL(web);
@@ -206,7 +213,12 @@ public class Main {
         }
     }
 
-
+    /**
+     * This method used to craw data from web
+     * @param url This is url of web
+     * @param filenameout Name of file when finished processing
+     * @throws IOException
+     */
 
 
     public static void crawWeb(String url, String filenameout) throws IOException {
@@ -225,6 +237,11 @@ public class Main {
 
     }
 
+    /**
+     * This method used to count tags in html
+     * @param s html covert to string
+     * @param hm hashmap to save data
+     */
     public static void countTag(String s, HashMap<String, Integer> hm) {
         ArrayStack<String> buffer = new ArrayStack<>();
         int i = s.indexOf("<");
