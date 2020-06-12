@@ -127,9 +127,9 @@ public class PriorytiQueue {
     */
     public int  getNodePlayerPoint(String email) {
         DoublyLinkedList.Node<Player> current = list.getHeader();
-        while(!current.getElement().getEmail().equals(email)) {
+        while(!current.getElement().getEmail().equals(email)) { // tim email cua nguoi choi do trong danh sach
             current = current.getNext();
         }
-        return current.getElement().getPoint();
+        return current.getElement().getPoint();// tra ve diem cua nguoi choi
     }
 }
