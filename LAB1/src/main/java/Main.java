@@ -35,7 +35,7 @@ public class Main {
             }
             else
             {
-                System.out.println("Not valid arguments");
+                System.out.println("Error: The problem name is not correct!");
             }
         }
 
