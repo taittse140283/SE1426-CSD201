@@ -11,7 +11,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -41,7 +43,12 @@ public class Manager {
         BufferedReader br = null;
         try {
             URL url = new URL(urlWeb);
-            br = new BufferedReader(new InputStreamReader(url.openStream()));
+            URLConnection uRLConnection = url.openConnection();
+            HttpURLConnection connection = null;
+            if(uRLConnection instanceof HttpURLConnection) {
+                connection = (HttpURLConnection) uRLConnection;
+            }
+            br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
             while ((line = br.readLine()) != null) { // readline
                 html += line + "\n";
