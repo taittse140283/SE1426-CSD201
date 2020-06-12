@@ -40,14 +40,15 @@ public class DoublyLinkedList {
         return size == 0;
     }
     //them phan tu vao list
-    public void add(Node<Player> newNode){
+    public void addFirst(Node<Player> newNode){
         newNode.setNext(head);
         head.setPrev(newNode);
         head = newNode;
         size++;
     }
+    
     //xoa phan dau tien vao list
-    public Player remove(){
+    public Player removeFirst(){
         if(isEmpty()){
             System.out.println("Stack rong");
         }
@@ -58,7 +59,20 @@ public class DoublyLinkedList {
             size--;
             if(head == tail){
             head = tail = null;
-            System.out.println("Danh sach trong");
+            }
+        }
+        return null;
+    }
+     public Player remove(Node<Player> node) {
+        if (isEmpty()) {
+            System.out.println("Stack rong");
+        } else {
+            Player value = node.getInfo();
+            node.getPrev().setNext(node.getNext());
+            node.getNext().setPrev(node.getPrev());
+            size--;
+            if (head == tail){
+                head = tail = null;
             }
         }
         return null;
