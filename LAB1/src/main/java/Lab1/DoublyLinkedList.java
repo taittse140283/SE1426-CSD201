@@ -84,33 +84,39 @@ public class DoublyLinkedList {
         return size;
     }
     
+    private void insert(Player data, Node front, Node back){
+        Node newNode = new Node(data, front, back);
+        front.setPrev(newNode);
+        back.setNext(newNode);
+        size++;
+    }
     /**
-     * adds element at the starting of the linked list
-     * @param element
+     * adds element at the start of the list
+     * @param data
      */
     public void addFirst(Player data) {
-        Node newNode = new Node(data, head, null);
-        if(head != null ) {
-            head.prev = newNode;
-        }
-        head = newNode;
-        if(tail == null) {
-            tail = newNode;
-        }
-        size++;
+        insert(data, head, head.getNext());
     }
     
     /**
-     * adds element at the end of the linked list
-     * @param element
+     * adds element at the end of the list
+     * @param data
      */
     public void addLast(Player data) {
-         
-        Node newNode = new Node(data, null, tail);
-        if(tail != null) {tail.next = newNode;}
-        tail = newNode;
-        if(head == null) { head = newNode;}
-        size++;
+        insert(data, tail.getPrev(), tail);
+    }
+    
+    public void addBetween(Player data, Node front){
+        if(front == null){
+            addLast(data);
+        }else{
+            Node back = front.getPrev();
+            Node newNode = new Node(data, front, back);
+            front.setPrev(newNode);
+            back.setNext(newNode);
+            size++;
+        }
+        
     }
     
     private Player remove(Node n){
@@ -189,6 +195,7 @@ public class DoublyLinkedList {
         }
         return null; // return null if no found
     }
+    
     /**
      * add a new player into the data structure
      * If if the list is empty, addFirst
@@ -212,12 +219,26 @@ public class DoublyLinkedList {
             System.err.println("Empty List!");
         }else{
             //1.search player 
-            Node searchPlayer = searchPlayerByEmail(email);
+            Node deletePlayer = searchPlayerByEmail(email);
             //2.
-            if(searchPlayer == null){
+            if(deletePlayer == null){
                 System.err.println("The player doesn't exist.");
             }else{
-                remove(searchPlayer);
+                remove(deletePlayer);
+            }
+        }
+    }
+    
+    public void update(String email, int point){
+        if(isEmpty()){
+            System.err.println("Empty List!");
+        }else{
+            Node updatePlayer = searchPlayerByEmail(email);
+            if(updatePlayer == null){
+                System.err.println("The player doesn't exist.");
+            }else{
+                updatePlayer.getData().setEmail(email);
+                updatePlayer.getData().setPoint(point);
             }
         }
     }
