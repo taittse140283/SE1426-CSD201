@@ -28,18 +28,18 @@ public class Manager {
                 check = true;
             }
             // kiem tra co phai the comment 
-            else if(content.charAt(i) == '-' && check == true){
-                tag += "-";
+            else if(content.charAt(i) == '-' && check == true) {
+                tag = tag + "-";
                 processTag(tag);
                 check = false;
             }
             // bo qua noi dung trong the HTML
-            else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true ){
-                tag += content.charAt(i);
+            else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true) {
+                tag = tag + content.charAt(i);
             }
             // kiem tra cac the con lai va cac the dac biet (ex : <link href ... >)
-            else if((content.charAt(i) == '>' || content.charAt(i) != ' ') && check == true){
-                tag += ">";
+            else if(((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
+                tag = tag + ">";
                 check = false;
                 processTag(tag);
             }
@@ -90,18 +90,18 @@ public class Manager {
             //kiem tra cac the co the dong trong HTML
             if (tag.contains("</") == false) {
                 stack.push(tag);   // neu khong co the dong thi push tag vao stack
+                count(tag);
                 stack.print();
                 System.out.println();
             } //kiem tra the dong voi the mo trong HTML
             else if (stack.Top().equalsIgnoreCase(tag.replace("/", "")) == true) {
                 stack.pop();
-                count(tag);
                 stack.print();
                 System.out.println();
             }
         }
     }
-    public Manager(String url , String fileName){
+    public void Manager(String url , String fileName){
         String content;
         try {
             content = get.readContent(url);
