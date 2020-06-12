@@ -1,5 +1,5 @@
 public class ArrayStack<E> implements Stack<E> {
-    public static final int CAPACITY = 1000;
+    public static final int CAPACITY = 10000;
     private E[] data;
     private int top = -1;
     public ArrayStack(){

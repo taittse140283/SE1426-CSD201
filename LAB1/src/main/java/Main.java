@@ -58,18 +58,14 @@ public class Main {
                             if (!args[4].trim().isEmpty()) {
                                 fileOutput = args[4];
                                 copyFile(fileInput, fileOutput);
-                                System.out.println("Copy file succes");
                                 if (args[5].equals("-a")) {
-                                    System.out.println("add success 5");
                                     if (!args[6].trim().isEmpty()) {
                                         email = args[6];
-                                        System.out.println("add 6");
                                         if (!args[7].trim().isEmpty()) {
                                             point = Integer.parseInt(args[7]);
                                             getData(fileInput, sl);
                                             sl.insert(new Entry(point, email));
                                             sl.printtoFile(fileOutput);
-                                            System.out.println("add new user");
                                         } else {
                                             System.out.println(Error);
                                         }
@@ -122,13 +118,11 @@ public class Main {
                     System.out.println(Error);
                 }
             } else if (args[0].equals("2")) {
-                System.out.println("vao 2 r");
                 if (!args[1].trim().isEmpty()) {
-                    String filename = args[1];
+                    String url = args[1];
                     if (!args[2].trim().isEmpty()){
                         String filenameoutput = args[2];
-                        crawWeb(filename, filenameoutput);
-                        System.out.println("jfksjkdf");
+                        crawWeb(url, filenameoutput);
                     }
                 }
             } else {
@@ -139,7 +133,7 @@ public class Main {
 //                System.out.println(args[i]);
 //            }
         } catch (Exception e) {
-            System.out.println("OK");
+            System.out.println("OK hoac Loi");
         }
 
     }
@@ -159,10 +153,7 @@ public class Main {
             FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(output));
 
             int Data;
-//
-//            while ((Data = fis.read()) != -1) {
-//                fos.write(Data);
-//            }
+
             byte[] b = new byte[10000];
             while ((Data = fis.read(b)) >= 0) {
                 fos.write(b, 0, Data);
@@ -181,8 +172,7 @@ public class Main {
         BufferedReader readr = new BufferedReader(new InputStreamReader(url.openStream()));
         String line;
         while ((line = readr.readLine()) != null) {
-            result = line + "\n";
-            System.out.println(line + "\n");
+            result += line + "\n";
         }
         readr.close();
         return result;
@@ -217,9 +207,8 @@ public class Main {
     }
 
 
-    /**
-     *
-     */
+
+
     public static void crawWeb(String url, String filenameout) throws IOException {
         SortList sl1 = new SortList();
         HashMap<String, Integer> hm = new HashMap<>();
@@ -232,13 +221,12 @@ public class Main {
             Integer value = entry.getValue();
             sl1.insert(new Entry(value, key));
         }
-        sl1.print();
         sl1.printoFilehtml(filenameout);
 
     }
 
     public static void countTag(String s, HashMap<String, Integer> hm) {
-        Stack<String> buffer = new ArrayStack<>();
+        ArrayStack<String> buffer = new ArrayStack<>();
         int i = s.indexOf("<");
         while (i != -1) {
             int k = s.indexOf(">", i + 1);
@@ -257,18 +245,19 @@ public class Main {
                 }
                 hm.put(tagName, count + 1);
             } else {
-                if (!tagName.contains("/") && !tagName.contains("!")) {
+                if (!tagName.startsWith("/") && !tagName.startsWith("!")) {
                     buffer.push(tagName);
                     if (hm.containsKey(tagName)) {
                         count = hm.get(tagName);
                     }
                     hm.put(tagName, count + 1);
                 } else if (tagName.startsWith("!")) {
-                    System.out.println("Ignore tags have '!' ");
+
                 } else {
-                    if (buffer.top().equalsIgnoreCase(tagName)) {
+                    if (buffer.top().equalsIgnoreCase(tagName.substring(1))) {
                         buffer.pop();
                     }
+
                 }
             }
             i = s.indexOf("<", k + 1);

@@ -228,7 +228,7 @@ public class DoubleLinkedList<E> {
     public void printtoFileofhtml(String file) throws IOException {
         FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(file));
         DataOutputStream dos = new DataOutputStream(fos);
-        dos.writeBytes("Tag, Frequency\n");
+        dos.writeBytes("Tag, Frequency" + "\n");
         for (Node<E> n = trailer.prev; n != header; n = n.prev) {
             dos.writeBytes(n.getE() + "\n");
         }
