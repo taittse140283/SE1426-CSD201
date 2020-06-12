@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class crawlerweb {
     public static void main(String[] args) throws IOException {
@@ -14,6 +16,7 @@ public class crawlerweb {
         ArrayStack<String> as = new ArrayStack<>();
         String html = FiletoString("C:\\Users\\Admin\\Desktop\\html1.txt");
         countTag(html,hm);
+//        TreeSet ss = new TreeSet<(hm.entrySet(), hm.values());
 
         for (Map.Entry<String, Integer> entry : hm.entrySet()) {
             String key = entry.getKey();
@@ -21,6 +24,9 @@ public class crawlerweb {
             System.out.println(key + "\t" + value);
 
         }
+//        for (Object s1 : hm) {
+//            System.out.println(s1);
+//        }
     }
 
     //    public static String getHtml(String link, String nameFile) throws IOException {
@@ -72,14 +78,14 @@ public class crawlerweb {
                 }
                 hm.put(tagName, count + 1);
             } else {
-                if (!tagName.contains("/")) {
+                if (!tagName.contains("/") && !tagName.contains("!")) {
                     buffer.push(tagName);
                     if (hm.containsKey(tagName)) {
                         count = hm.get(tagName);
                     }
                     hm.put(tagName, count + 1);
                 } else if (tagName.startsWith("!")) {
-                    System.out.println("Bo qua");
+                    System.out.println("Ignore tags have '!' ");
                 } else {
                     if (buffer.top().equalsIgnoreCase(tagName)) {
                         buffer.pop();

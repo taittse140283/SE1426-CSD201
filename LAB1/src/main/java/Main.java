@@ -5,6 +5,9 @@
  */
 
 import java.io.*;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -19,8 +22,9 @@ public class Main {
     /**
      * This is main method which makes uses of CLI and some methods
      * to manages info players, crawler data html tag
-     *<b>Note:</b>File just read file that live in Desktop and save
+     * <b>Note:</b>File just read file that live in Desktop and save
      * output file on Desktop
+     *
      * @param args the command line arguments
      * @throws IOException on input error, ...
      * @see IOException, ArrayIndexOutOfBoundsException, ...
@@ -118,7 +122,15 @@ public class Main {
                     System.out.println(Error);
                 }
             } else if (args[0].equals("2")) {
-
+                System.out.println("vao 2 r");
+                if (!args[1].trim().isEmpty()) {
+                    String filename = args[1];
+                    if (!args[2].trim().isEmpty()){
+                        String filenameoutput = args[2];
+                        crawWeb(filename, filenameoutput);
+                        System.out.println("jfksjkdf");
+                    }
+                }
             } else {
                 System.out.println(Error);
             }
@@ -126,36 +138,12 @@ public class Main {
 //            for (int i = 0; i < args.length; i++) {
 //                System.out.println(args[i]);
 //            }
-
-
-            String notMatches = "<h1> fkjasjdf </h1>";
-
         } catch (Exception e) {
             System.out.println("OK");
         }
 
     }
 
-
-    public static boolean checkMatches(String html) {
-        Stack<String> buffer = new ArrayStack<>();
-        int j = html.indexOf('<');
-        while (j != -1) {
-            int k = html.indexOf('>', j + 1);
-            if (k == -1) return false;
-            String tag = html.substring(j + 1, k);
-            if (!tag.startsWith("/")) {
-                buffer.push(tag);
-            } else {
-                if (buffer.isEmpty())
-                    return false;
-                if (!tag.substring(1).equals(buffer.pop()))
-                    return false;
-            }
-            j = html.indexOf('<', k + 1);
-        }
-        return buffer.isEmpty();
-    }
 
     /**
      * This method is used to copy data of file to another file
@@ -176,7 +164,7 @@ public class Main {
 //                fos.write(Data);
 //            }
             byte[] b = new byte[10000];
-            while ((Data = fis.read(b)) >= 0){
+            while ((Data = fis.read(b)) >= 0) {
                 fos.write(b, 0, Data);
             }
             fos.close();
@@ -185,6 +173,19 @@ public class Main {
             System.out.println(e);
         }
 
+    }
+
+    public static String getStringfromweb(String web) throws IOException {
+        String result = "";
+        URL url = new URL(web);
+        BufferedReader readr = new BufferedReader(new InputStreamReader(url.openStream()));
+        String line;
+        while ((line = readr.readLine()) != null) {
+            result = line + "\n";
+            System.out.println(line + "\n");
+        }
+        readr.close();
+        return result;
     }
 
     /**
@@ -216,4 +217,61 @@ public class Main {
     }
 
 
+    /**
+     *
+     */
+    public static void crawWeb(String url, String filenameout) throws IOException {
+        SortList sl1 = new SortList();
+        HashMap<String, Integer> hm = new HashMap<>();
+
+        String html = getStringfromweb(url);
+        countTag(html, hm);
+
+        for (Map.Entry<String, Integer> entry : hm.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            sl1.insert(new Entry(value, key));
+        }
+        sl1.print();
+        sl1.printoFilehtml(filenameout);
+
+    }
+
+    public static void countTag(String s, HashMap<String, Integer> hm) {
+        Stack<String> buffer = new ArrayStack<>();
+        int i = s.indexOf("<");
+        while (i != -1) {
+            int k = s.indexOf(">", i + 1);
+            String tagName = s.substring(i + 1, k);
+            String[] n = tagName.split(" ");
+            tagName = n[0];
+            int count = 0;
+            if (tagName.equalsIgnoreCase("area") || tagName.equalsIgnoreCase("base") || tagName.equalsIgnoreCase("br")
+                    || tagName.equalsIgnoreCase("col") || tagName.equalsIgnoreCase("!DOCTYPE") || tagName.equalsIgnoreCase("command")
+                    || tagName.equalsIgnoreCase("embed") || tagName.equalsIgnoreCase("hr") || tagName.equalsIgnoreCase("img")
+                    || tagName.equalsIgnoreCase("input") || tagName.equalsIgnoreCase("keygen") || tagName.equalsIgnoreCase("source")
+                    || tagName.equalsIgnoreCase("link") || tagName.equalsIgnoreCase("meta") || tagName.equalsIgnoreCase("param")
+                    || tagName.equalsIgnoreCase("track") || tagName.equalsIgnoreCase("wbr")) {
+                if (hm.containsKey(tagName)) {
+                    count = hm.get(tagName);
+                }
+                hm.put(tagName, count + 1);
+            } else {
+                if (!tagName.contains("/") && !tagName.contains("!")) {
+                    buffer.push(tagName);
+                    if (hm.containsKey(tagName)) {
+                        count = hm.get(tagName);
+                    }
+                    hm.put(tagName, count + 1);
+                } else if (tagName.startsWith("!")) {
+                    System.out.println("Ignore tags have '!' ");
+                } else {
+                    if (buffer.top().equalsIgnoreCase(tagName)) {
+                        buffer.pop();
+                    }
+                }
+            }
+            i = s.indexOf("<", k + 1);
+        }
+    }
 }

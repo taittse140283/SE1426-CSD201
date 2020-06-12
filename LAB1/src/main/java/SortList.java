@@ -138,4 +138,13 @@ public class SortList implements LinkList {
         dbl.printtoFile(Filename);
     }
 
+    /**
+     * This method used to print value of node in list to file
+     *
+     * @param filename of file that wants to write to
+     */
+    public void printoFilehtml(String filename) throws IOException {
+        dbl.printtoFileofhtml(filename);
+    }
+
 }

@@ -212,10 +212,24 @@ public class DoubleLinkedList<E> {
     public void printtoFile(String file) throws IOException {
         FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(file));
         DataOutputStream dos = new DataOutputStream(fos);
-//        PrintWriter pw = new PrintWriter("C:\\Users\\Admin\\Desktop\\".concat(file));
         dos.writeBytes("Email, Point\n");
         for (Node<E> n = trailer.prev; n != header; n = n.prev) {
-        //for (Node<E> n = header.next; n != trailer; n = n.next) {
+            dos.writeBytes(n.getE() + "\n");
+        }
+        fos.close();
+        dos.close();
+    }
+
+    /**
+     * This method used to print value of node in list to file
+     *
+     * @param file name of file that wants to write to
+     */
+    public void printtoFileofhtml(String file) throws IOException {
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(file));
+        DataOutputStream dos = new DataOutputStream(fos);
+        dos.writeBytes("Tag, Frequency\n");
+        for (Node<E> n = trailer.prev; n != header; n = n.prev) {
             dos.writeBytes(n.getE() + "\n");
         }
         fos.close();
