@@ -104,4 +104,17 @@ public class DoublyLinkedList<Player> {
         }
         return null;
     }
+    public void removePos(int n) {
+        if (size == 0 || n < 0) {
+            return;
+        }
+        Node temp = head.getNext();
+        for (int i = 0;i < n; i++) {
+            temp = temp.getNext();
+        }
+        if (temp == null) {
+            return;
+        }
+        remove(temp);
+    }
 }
