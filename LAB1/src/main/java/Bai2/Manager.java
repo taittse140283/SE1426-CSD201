@@ -35,14 +35,14 @@ public class Manager {
      * @return
      */
     public static String readHtlmFromWeb(String urlWeb) {
-
+        
         String html = ""; // tao chuoi voi gia tri rong de luu noi dung tu web
         String line; // luu noi dung tung dong tu web size
         BufferedReader br = null;
         try {
             URL url = new URL(urlWeb);
             br = new BufferedReader(new InputStreamReader(url.openStream()));
-
+            
             while ((line = br.readLine()) != null) { // readline
                 html += line + "\n";
             }
@@ -92,11 +92,11 @@ public class Manager {
         for (Entry<String, Integer> entry : list) {
             sortHashMap.put(entry.getKey(), entry.getValue());
         }
-
+        
         File f = null;
         FileWriter fw = null;
         PrintWriter pw = null;
-
+        
         try {
             f = new File(fileName);
             fw = new FileWriter(f);
@@ -140,7 +140,9 @@ public class Manager {
 
             if (tagName.contains(" ")) { // the tag chua gia tri khoang trang ex: < p class="">
                 String[] s = tagName.split(" "); // tach chuoi thanh mang ki tu bang dau phan cach la khoang trang
-                tagName = s[0]; // lay gia tri dau tien trong mang tim dc
+                if (!s[0].equalsIgnoreCase(" ")) {
+                    tagName = s[0]; // lay gia tri dau tien trong mang tim dc
+                }
             }
 
             // luu thang vao danh sach cac the dac biet
