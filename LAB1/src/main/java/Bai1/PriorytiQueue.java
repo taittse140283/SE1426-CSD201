@@ -98,29 +98,38 @@ public class PriorytiQueue {
         list.removeFirst();
     }
     
-    public DoublyLinkedList.Node<Player> getPlayerHasMaxPoint() {
-        return list.getHeader();
+    /*
+        lay diem so nguoi choi co diem so cao nhat
+        Kieu tra ve la so nguyen vi la diem so
+    */
+    public int getPlayerHasMaxPoint() {
+        return list.getHeader().getElement().getPoint();
     }
     
     public void delete(String email) {
-        if(list.isEmpty()) {
+        if(list.isEmpty()) { // truong hop danh sach trong ko the xoa dc
             System.out.println("Error: List empty");
             return;
         }
         
-        int pos = getNodePosition(email);
-        if(pos < 0) {
+        int pos = getNodePosition(email); // tim vi tri email can xoa trong danh sach
+        if(pos < 0) {// truong hop ko tim thay
             System.out.println("No information found");
-        } else {
+        } else {// xoa nguoi choi tai vi tri nay
             list.removeAtPosition(pos);
         }
     }
     
-    public DoublyLinkedList.Node<Player> getNodePlayer(String email) {
+    /*
+        *Lay diem so cua nguoi choi bat ky trong danh sach
+        * Input: dia chi email cua nguoi choi
+        *Output: tra lai so diem cua nguoi choi do
+    */
+    public int  getNodePlayerPoint(String email) {
         DoublyLinkedList.Node<Player> current = list.getHeader();
         while(!current.getElement().getEmail().equals(email)) {
             current = current.getNext();
         }
-        return current;
+        return current.getElement().getPoint();
     }
 }
