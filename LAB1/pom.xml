@@ -20,7 +20,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>pro1.Main1</mainClass>
+                            <mainClass>CLI.Main1</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
