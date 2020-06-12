@@ -27,13 +27,13 @@ import java.util.HashMap;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
 
         commandLine(args);
 
     }
 
-    public static void commandLine(String[] cmdStrings) {
+    public static void commandLine(String[] cmdStrings) throws MalformedURLException {
 
         if (cmdStrings.length == 0 || cmdStrings.length > 8) {
             System.out.println("Enter java -jar LAB1.jar -h to be helped.");
@@ -141,7 +141,7 @@ public class Main {
 
     }
 
-    public static void lab2(String[] cmd) {
+    public static void lab2(String[] cmd) throws MalformedURLException {
         
         String url, file;
         url = cmd[1];
