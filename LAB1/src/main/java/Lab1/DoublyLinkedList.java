@@ -5,7 +5,6 @@
  */
 package Lab1;
 
-import java.util.NoSuchElementException;
 
 /**
  *
@@ -174,7 +173,7 @@ public class DoublyLinkedList {
      * @param email
      * @return 
      */
-    public Player searchPlayerByEmail(String email){
+    public Node searchPlayerByEmail(String email){
         if(isEmpty()){
             return null;
         }else{
@@ -207,14 +206,14 @@ public class DoublyLinkedList {
      * case If search fails, the player does not exist in the list.
      * @param data 
      */
-    public void delete(Player data){
+    public void delete(String email){
         if(isEmpty()){
             System.err.println("Empty List!");
         }else{
             //1.search player 
             Node searchPlayer = searchPlayerByEmail(email);
             //2.
-            if(searchPlayer = null){
+            if(searchPlayer == null){
                 System.err.println("The player doesn't exist.");
             }else{
                 remove(searchPlayer);
