@@ -13,6 +13,14 @@ public class DoublyLinkedList<Player> {
     
     Node<Player> head,tail;
     private int size = 0; // kiem tra danh sach
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
     public Node<Player> getHead() {
         return head;
     }
@@ -70,7 +78,7 @@ public class DoublyLinkedList<Player> {
         }
         return null;
     }
-     public Player remove(Node<Player> node) {
+    public Player remove(Node<Player> node) {
         if (isEmpty()) {
             System.out.println("Stack rong");
         } else {
@@ -84,6 +92,16 @@ public class DoublyLinkedList<Player> {
         }
         return null;
     }
-     
-
+    public Player get(int index) {
+        if (size != 0) {
+            Node<Player> current = head.getNext();
+            for (int i = 0; (current != null) && (i < index); i++) {
+                current = current.getNext();
+            }
+            if (current != null) {
+                return current.getInfo();
+            }
+        }
+        return null;
+    }
 }
