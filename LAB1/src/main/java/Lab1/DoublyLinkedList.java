@@ -106,13 +106,13 @@ public class DoublyLinkedList {
         insert(data, tail.getPrev(), tail);
     }
     
-    public void addBetween(Player data, Node front){
-        if(front == null){
+    public void addBetween(Player data, Node nodeNext){
+        if(nodeNext == null){
             addLast(data);
         }else{
-            Node back = front.getPrev();
-            Node newNode = new Node(data, front, back);
-            front.setPrev(newNode);
+            Node back = nodeNext.getPrev();
+            Node newNode = new Node(data, nodeNext, back);
+            nodeNext.setPrev(newNode);
             back.setNext(newNode);
             size++;
         }
@@ -183,19 +183,34 @@ public class DoublyLinkedList {
         if(isEmpty()){
             return null;
         }else{
-            Node search = head.getNext(); //get node
-            while(search != tail){
+            Node nodeNext = head.getNext(); //get node
+            while(nodeNext != tail){
 
-                if(search.getData().getEmail().equals(email)){
-                    return search;
+                if(nodeNext.getData().getEmail().equals(email)){
+                    return nodeNext;
                 }else{ //if not found, continue
-                    search = search.getNext();
+                    nodeNext = nodeNext.getNext();
                 }
             }
         }
         return null; // return null if no found
     }
     
+    public Node searchPositionOfPlayer(int point){
+        if(isEmpty()){
+            return null;
+        }else{
+            Node nodeNext = head.getNext(); //get node
+            while(nodeNext != tail){
+                if(point > nodeNext.getData().getPoint()){
+                    return nodeNext;
+                }else{ //if not found, continue
+                    nodeNext = nodeNext.getNext();
+                }
+            }
+        }
+        return null; // return null if no found
+    }
     /**
      * add a new player into the data structure
      * If if the list is empty, addFirst
@@ -209,16 +224,16 @@ public class DoublyLinkedList {
     
     /**
      * remove a new player into the data structure
-     * case, if the list is empty , show message
-     * Search the location the player wants to delete
-     * case If search fails, the player does not exist in the list.
+ case, if the list is empty , show message
+ Search the location the player wants to delete
+ case If nodeNext fails, the player does not exist in the list.
      * @param data 
      */
     public void delete(String email){
         if(isEmpty()){
             System.err.println("Empty List!");
         }else{
-            //1.search player 
+            //1.nodeNext player 
             Node deletePlayer = searchPlayerByEmail(email);
             //2.
             if(deletePlayer == null){
@@ -240,6 +255,17 @@ public class DoublyLinkedList {
                 updatePlayer.getData().setEmail(email);
                 updatePlayer.getData().setPoint(point);
             }
+        }
+    }
+    
+    public void checkPlayerAfterUpdate(Node player){
+        Node checkNode = searchPositionOfPlayer(player.getData().getPoint());
+        if(checkNode == null){
+            remove(player);
+            addLast(player.getData());
+        }else{
+            remove(player);
+            addBetween(player.getData(), checkNode);
         }
     }
 }
