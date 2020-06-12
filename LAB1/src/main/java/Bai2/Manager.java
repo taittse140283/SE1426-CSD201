@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -35,8 +36,9 @@ public class Manager {
      *
      * @param urlWeb
      * @return
+     * @throws java.net.MalformedURLException
      */
-    public static String readHtlmFromWeb(String urlWeb) {
+    public static String readHtlmFromWeb(String urlWeb) throws MalformedURLException{
 
         String html = ""; // tao chuoi voi gia tri rong de luu noi dung tu web
         String line; // luu noi dung tung dong tu web size
