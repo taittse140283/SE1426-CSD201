@@ -10,7 +10,6 @@ package Lab1;
  * @author Admin
  */
 public class PriorityQueue{
-    DoublyLinkedList list = new  DoublyLinkedList();
 
     public PriorityQueue() {
     }
@@ -19,11 +18,11 @@ public class PriorityQueue{
         add(data);
     }
     
-    public void delete(Player data){
-        delete(data);
+    public void delete(String email){
+        delete(email);
     }
     
-    public void update(Player data){
+    public void update(String email, int point){
         
     }
     
