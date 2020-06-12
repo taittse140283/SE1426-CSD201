@@ -1,5 +1,7 @@
 package bai1;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class PlayerManager {
     SortedPriorityQueue queue=new SortedPriorityQueue();
 
@@ -40,15 +42,32 @@ public class PlayerManager {
                         }
                         break;
                     case "-d":
+                        queue.deletePlayer(args[i+1]);//delete Player
+                        break;
                     case "-u":
+                        queue.updatePlayer(args[i+1],args[i+2]);//update Player
+                        break;
                     case "-dt":
+                        queue.removeMax();//remove Player has highest score
+                        break;
                     case "-g":
+                        if(queue.getNode(args[i+1])!=null) {
+                            System.out.println("Point of Player " + args[i + 1] + "is " + queue.getNode(args[i + 1]).getInfo().getPoint());
+                        }else
+                            System.out.println("Error: Not found player");
+                        break;
                     case "-t":
+                        System.out.println("Highest point: "+queue.getMax().getPoint());
+                        break;
+                    default:
+                        System.out.println("Error: Not valid arguments");
+                        break;
                 }
             }
         }
         catch (IndexOutOfBoundsException e)
         {
+            System.out.println("Error: Not enough arguments");
 
         }
         
