@@ -12,6 +12,7 @@ import Bai1.IOFile;
 import Bai1.Player;
 import Bai1.PriorytiQueue;
 import Bai2.Manager;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 
 /**
@@ -177,7 +178,7 @@ public class Main {
         return queue.getNodePlayerPoint(email);
     }
     
-    public static void reportHTML(String url, String file) {
+    public static void reportHTML(String url, String file) throws MalformedURLException {
         HashMap<String, Integer> hashMap = new HashMap<>();
         Manager.process(hashMap, Manager.readHtlmFromWeb(url));
         Manager.writeToFile(hashMap, file);
