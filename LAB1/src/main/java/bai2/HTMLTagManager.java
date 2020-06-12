@@ -6,10 +6,11 @@ public class HTMLTagManager {
     ArrayStack stack=new ArrayStack();
 
     /**
-     * Processing tag, Count frequency of Tag and write to CSV file
+     * Processing tag, Count frequency of Tag
      * @param link This is URL to get content of website want to count frequency of tag
+     * @return HashMap<String, Interger> with key is tag và value is frequency of tag
      */
-    public void countHTMLTagAndWriteIntoFile(String link)
+    private HashMap<String,Integer> countHTMLTag(String link)
     {
         String html=ContentWebsite.getContentOnWebsite(link);
         FrequencyOfTag frequency=new FrequencyOfTag();
@@ -67,10 +68,19 @@ public class HTMLTagManager {
             j = html.indexOf('<', k+1); // find next ’<’ character (if any)
         }
         frequency.sortHashMap();
-        CSV.writeFile("output.csv", frequency.getFrequencyOfTag());
+        return frequency.getFrequencyOfTag();
     }
     public void parsingArguments(String[] args)
     {
+        if(args.length==2)
+        {
+            HashMap<String,Integer> frequencyOfTag=countHTMLTag(args[0]);
+            CSV.writeFile(args[1],frequencyOfTag);
+        }
+        else
+        {
+            System.out.println("Error:Not enough/over arguments");
+        }
 
     }
 
