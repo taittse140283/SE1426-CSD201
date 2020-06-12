@@ -11,6 +11,7 @@ public class PlayerManager {
      */
     public void parsingArguments(String[] args)
     {
+        String outputfileName="";
         try {
             for(int i=0;i<args.length;i++)
             {
@@ -20,7 +21,8 @@ public class PlayerManager {
                         queue=CSV.readFile(args[i+1]);//read file
                         break;
                     case "-s":
-                        CSV.writeFile(args[i+1],queue);//save to file
+                        outputfileName=args[i+1];
+                        CSV.writeFile(outputfileName,queue);//save to file
                         break;
                     case "-a":
                         try {
@@ -40,15 +42,19 @@ public class PlayerManager {
                         catch (Exception e) {
                             System.out.println(e.getMessage());
                         }
+                        CSV.writeFile(outputfileName,queue);//save to file
                         break;
                     case "-d":
                         queue.deletePlayer(args[i+1]);//delete Player
+                        CSV.writeFile(outputfileName,queue);//save to file
                         break;
                     case "-u":
                         queue.updatePlayer(args[i+1],args[i+2]);//update Player
+                        CSV.writeFile(outputfileName,queue);//save to file
                         break;
                     case "-dt":
                         queue.removeMax();//remove Player has highest score
+                        CSV.writeFile(outputfileName,queue);//save to file
                         break;
                     case "-g":
                         if(queue.getNode(args[i+1])!=null) {
@@ -68,7 +74,6 @@ public class PlayerManager {
         catch (IndexOutOfBoundsException e)
         {
             System.out.println("Error: Not enough arguments");
-
         }
         
 
