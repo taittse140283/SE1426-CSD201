@@ -53,7 +53,7 @@ public class Manager {
             br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
             while ((line = br.readLine()) != null) { // readline
-                html += line + "\n";
+                html += line;
             }
         } catch (IOException e) {
             System.out.println("Got an exception: " + e.getMessage());
@@ -151,7 +151,7 @@ public class Manager {
                 String[] s = tagName.split(" "); // tach chuoi thanh mang ki tu bang dau phan cach la khoang trang
                 tagName = s[0]; // lay gia tri dau tien trong mang tim dc
             }
-
+            
             // luu thang vao danh sach cac the dac biet
             if (tagName.equalsIgnoreCase("area") || tagName.equalsIgnoreCase("base") || tagName.equalsIgnoreCase("br")
                     || tagName.equalsIgnoreCase("col") || tagName.equalsIgnoreCase("!DOCTYPE") || tagName.equalsIgnoreCase("command")
