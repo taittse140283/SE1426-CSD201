@@ -27,7 +27,7 @@ import java.util.StringTokenizer;
  */
 public class IOFile {
 
-    public static PriorytiQueue readFromFile(String file) {
+    public static PriorytiQueue readFile(String file) {
 //        File f = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -62,7 +62,7 @@ public class IOFile {
         }
         return queue;
     }
-
+    
     public static void writeToFile(PriorytiQueue queue, String file) {
         if (queue.getList().getSize() == 0) {
             System.out.println("Error: List empty");
