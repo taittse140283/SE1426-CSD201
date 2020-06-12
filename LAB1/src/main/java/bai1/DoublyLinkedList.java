@@ -150,4 +150,23 @@ public class DoublyLinkedList<Player> {
         return null;
     }
 
+    public Player removeLast() {
+        if(isEmpty())
+        {
+            System.out.println("Error:Empty List");
+        }
+        else
+        {
+            Player value=trailer.getInfo();
+            trailer=trailer.getPrev();
+            size--;
+            if (size == 0)//if clear all node
+            {
+                header = trailer = null;//set header and trailer to be null(cause there's no more node)
+            }
+            return value;
+        }
+        return null;
+    }
 }
+

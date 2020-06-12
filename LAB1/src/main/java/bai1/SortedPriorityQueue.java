@@ -163,21 +163,19 @@ public class SortedPriorityQueue {
     public void deletePlayer(String email) {
         DLLNode<Player> deletePlayer = getNode(email);
         if (deletePlayer != null) {
-            System.out.println("Deleted player:" + list.remove(deletePlayer).toString());
+            if(deletePlayer==list.getHeader())
+            {
+                System.out.println("Deleted player:"+list.removeFirst());
+            }
+            else if(deletePlayer==list.getTrailer())
+            {
+                System.out.println("Deleted player:"+list.removeLast());
+            }
+            else {
+                System.out.println("Deleted player:" + list.remove(deletePlayer).toString());
+            }
         } else {
             System.out.println("Error:Not found player");
-        }
-    }
-
-    /**
-     * Print to check the list
-     * Will be delete later =)))))))
-     */
-    public void print() {
-        DLLNode<Player> temp = list.getHeader();
-        while (temp != null) {
-            System.out.println(temp.getInfo().toString());
-            temp = temp.getNext();
         }
     }
 
