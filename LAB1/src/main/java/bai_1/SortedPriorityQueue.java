@@ -147,18 +147,13 @@ public class SortedPriorityQueue {
     
     /**
      * Update new point for player and rearrange the position for this player
+     * My idea, remove this player if exist and re-add this player with new point 
      * @param email
      * @param newPoint 
      */
     public void updateNewPoint(String email, int newPoint) {
-        Node updatedNode = search(email);
-        
-        if(updatedNode != null) {
-            updatedNode.getInfo().setPoint(newPoint);
-            sortPlayerBasedOnPoint(updatedNode);
-        }
-        else
-            System.out.println("The email " + email + " is not exist in the queue.");
+            removePlayer(email);
+            addNewPlayer(email, newPoint);
     }
     
     //Print to the screen for testing
