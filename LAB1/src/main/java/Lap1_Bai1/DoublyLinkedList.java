@@ -27,7 +27,7 @@ public class DoublyLinkedList {
     }
     //kiểm tra danh sách có trống hay không
     
-    private Information getFirst(){
+    public Information getFirst(){
         if(isEmpty()){
             return null;
         }
@@ -65,7 +65,7 @@ public class DoublyLinkedList {
         return node.getData();
     }
     /**
-     * Xóa 1 node từ danh sách.
+     * Xóa 1 node từ danh sách. Không cần biết vị trị của node
      * @param node
      * @return dữ liệu của người chơi bị xóa
      */
@@ -78,7 +78,7 @@ public class DoublyLinkedList {
     }
     /**
      * Hàm xóa người chơi đầu tiên của danh sách 
-     * @param 
+     * @param data
      * @return dữ liệu của người chơi đầu tiên bị xóa  
      */
     
