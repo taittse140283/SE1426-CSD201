@@ -14,6 +14,13 @@ import java.net.URL;
  * @author Linh
  */
 public class GetContentFromWebsite {
+    
+    /**
+     * Open a connection to this URL and read the content from that connection
+     * @param urlWeb
+     * @return content
+     * @throws Exception 
+     */
     public String readContent(String urlWeb) throws Exception{
         String content = "";
         String line;
