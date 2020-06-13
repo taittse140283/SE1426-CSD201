@@ -1,5 +1,9 @@
 package bai1;
 
+/**
+ * Class PlayerManager call method to execute command
+ * Field: SortedPriorityQueue queue
+ */
 public class PlayerManager {
     SortedPriorityQueue queue=new SortedPriorityQueue();
 

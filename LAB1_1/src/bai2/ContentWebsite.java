@@ -7,6 +7,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Class ContentWebsite contains method can get content of Website by URL
+ */
 public class ContentWebsite {
     /**
      * This method gets content(HTML commands and textual content) of Website(by its URL)

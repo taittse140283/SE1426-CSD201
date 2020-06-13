@@ -125,7 +125,7 @@ public class DoublyLinkedList<Player> {
         if (isEmpty()) {//is list is empty
             System.out.println("Error:Empty list");//print error
         } else {
-            Player value = deleteNode.getInfo();//get info odd the node be removed
+            Player value = deleteNode.getInfo();//get info of the node be removed
             //link 2 node that the removed node places between
             deleteNode.getPrev().setNext(deleteNode.getNext());
             deleteNode.getNext().setPrev(deleteNode.getPrev());
@@ -150,8 +150,8 @@ public class DoublyLinkedList<Player> {
         }
         else
         {
-            Player value=trailer.getInfo();
-            trailer=trailer.getPrev();
+            Player value=trailer.getInfo();//get info of the node be removed
+            trailer=trailer.getPrev();//set trailer reference to its prev
             size--;
             if (size == 0)//if clear all node
             {

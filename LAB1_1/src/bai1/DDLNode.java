@@ -53,7 +53,7 @@ public class DDLNode<Player> implements Cloneable {
         this.next = next;
     }
     /**
-     * Overrid clone() method of Cloneable interface
+     * Override clone() method of Cloneable interface
      * @return DLLNode<Player>
      * @throws CloneNotSupportedException if can't not clone
      */

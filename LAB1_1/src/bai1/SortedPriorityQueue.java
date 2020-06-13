@@ -143,7 +143,7 @@ public class SortedPriorityQueue {
      *
      * @param email This is email need to find in the list
      *if can't find, print error
-     *if can find, delete the node(use remove(DLLNode<Player>  deleteNode) of DoublyLinkedList)
+     *if can find, delete the node
      */
     public void deletePlayer(String email) {
         DDLNode<Player> deletePlayer = getNode(email);
