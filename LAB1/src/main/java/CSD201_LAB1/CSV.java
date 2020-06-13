@@ -8,47 +8,56 @@ package CSD201_LAB1;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author truong
  */
 public class CSV {
+    
     /**
      * Read data from CSV
-     *
-     * @ read data from user.csv
      * check EOF
-     * @fileReader
-     * @BufferedReader
+     * @param csvFileName
+     * @return 
      */
 public static String readFile(String csvFileName){
-    FileReader fr=null;
-    BufferedReader br=null;
+    FileReader f=null;
+    BufferedReader r=null;
     String s="";
     try {
-        fr=new FileReader(csvFileName);
-        br=new BufferedReader(fr);
-        while(fr.ready()){
-            s=s+br.readLine();
+         f=new FileReader(csvFileName);
+         r=new BufferedReader(f);
+        while(r.ready()){
+            try {
+                s=r.readLine();
+                String []arr=s.split(",");
+                String email=arr[0];
+                String point=arr[1];
+                
+                
+            } catch (Exception e) {
+            }
+            
         }
     } catch (Exception e) {
         e.printStackTrace();
     }finally{
         try {
-            if(fr!=null)
-                fr.close();
-            if(br!=null)
-                br.close();
+            if(f!=null)
+            f.close();
+            if(r!=null)
+                r.close();
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
     return s;
 }
 /**
- * Write file 
- * @printWrite
+ * write file
+ * @param outputCSVFile
+ * @param s 
  */
 public static void writeFile(String outputCSVFile,String s){
     PrintWriter w=null;
