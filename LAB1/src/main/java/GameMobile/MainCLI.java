@@ -12,7 +12,7 @@ package GameMobile;
 public class MainCLI {
 
     public static void main(String[] args) {
-        System.out.println("Hello");
+//        System.out.println("Hello");
 //        System.out.println("java -jar LAB1.jar -h\n"
 //                + "Help: \n"
 //                + "java -jar LAB1.jar 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>>: Problem 1, read the user csv file and save the data strucutre into csv file\n"
