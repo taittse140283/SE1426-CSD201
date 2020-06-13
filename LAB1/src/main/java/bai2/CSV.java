@@ -32,12 +32,12 @@ public class CSV {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Error: Something's wrong");
             } finally {
                 try {
                     if (pw != null) pw.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println("Error:Something's wrong");
                 }
             }
 

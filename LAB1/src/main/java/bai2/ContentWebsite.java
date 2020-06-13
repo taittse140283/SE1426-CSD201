@@ -23,7 +23,7 @@ public class ContentWebsite {
         try {
             url = new URL(link);//create a url object from link
             HttpURLConnection http = (HttpURLConnection)url.openConnection();
-            if(http.getResponseCode()==200)//standard success response code(wiki)
+            if(http.getResponseCode()==200)//standard success response code
             {
                 isr=new InputStreamReader(url.openStream());//openStream() method get a stream from which you can read the contents of the URL
                 br=new BufferedReader(isr);//create buffer to get content of isr
@@ -45,7 +45,11 @@ public class ContentWebsite {
         }
         catch(IOException e)
         {
-            System.out.println("Error: There's something wrong when read from buffer");
+            System.out.println("Error: There's something wrong in file process");
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error: Something's wrong");
         }
         finally {
 
@@ -54,7 +58,7 @@ public class ContentWebsite {
            }
            catch(Exception e)
            {
-               e.printStackTrace();
+               System.out.println("Error: Something's wrong");
            }
         }
         return content;

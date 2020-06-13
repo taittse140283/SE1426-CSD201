@@ -37,7 +37,7 @@ public class ArrayStack implements Stack{
     public void push(String tag) {
         if(count>capacity)//if over capacity of the list
         {
-            System.out.println("Error:Stack over flow");
+            System.out.println("Error:Stack is not enough space");
             return;
         }
         else
@@ -70,16 +70,6 @@ public class ArrayStack implements Stack{
         return null;
     }
 
-
-    /**
-     * Get tag in last position
-     * @return tag in last position
-     */
-    @Override
-    public String top() {
-        return list[count];
-    }
-
     /**
      * Check if the list is empty
      * @return true if count=0
@@ -87,27 +77,6 @@ public class ArrayStack implements Stack{
     @Override
     public boolean isEmpty() {
         return count==0;
-    }
-
-    /**
-     * Get the number of element in the list
-     * @return the number of element in the list
-     */
-    @Override
-    public int size() {
-        return count;
-    }
-
-    /**
-     * Method to check output
-     * Will be delete later
-     */
-    @Override
-    public void print() {
-        for(int i=0;i<count;i++)
-        {
-            System.out.println(list[i]);
-        }
     }
     
 }
