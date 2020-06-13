@@ -9,8 +9,6 @@ package CountTagHTML;
  *
  * @author Loi Lam
  */
-public class NewClass {
-    public static void main(String[] args) {
-        System.out.println("Hello");
-    }
+public class TagHTML {
+    
 }
