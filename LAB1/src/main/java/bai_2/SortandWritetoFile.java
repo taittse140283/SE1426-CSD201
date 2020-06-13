@@ -34,7 +34,13 @@ public class SortandWritetoFile {
             map.put(tag, map.get(tag) + 1);
         }
     }
-    
+    /**
+     * This method below here is used to sort and write the data has been search to file csv. Then store at linkedHashmap
+     * Input data is fileName
+     * Output is a list of tag 
+     * @param fileName
+     * @throws FileNotFoundException 
+     */
      public void sortAndWriteToFile(String fileName) throws FileNotFoundException {
         
        try{
