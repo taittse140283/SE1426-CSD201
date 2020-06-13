@@ -52,5 +52,20 @@ public class PriorityQueue {
         }
         return current;
     }
+    public void updateNewPoint(String email, int newPoint) {
+        Node<Player> updatedNode = getNode(email);
+        
+        if(updatedNode == null) {
+            System.out.println("Email khong ton tai.");
+        }
+        else{
+            updatedNode.getInfo().setPoint(newPoint);
+            updatedNode.getPrev().setNext(updatedNode.getNext());
+            updatedNode.getNext().setPrev(updatedNode.getPrev());
+            add(updatedNode);
+            list.setSize(list.getSize()-1);
+            System.out.println("Updated" + email + "success");
+        }
+    }
     
 }
