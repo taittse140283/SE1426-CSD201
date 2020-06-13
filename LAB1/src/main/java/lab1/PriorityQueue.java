@@ -50,6 +50,21 @@ public class PriorityQueue {
         }
     }
      
+     /**
+      * this method to remove a person base on the email of them
+      * @param The email 
+      * @return if remove success, return immediately out of the list
+      */
+     public void remove(String email) {
+        int size = _list.size();
+        for (int i = 0; i < size; i++) {
+            if (email.equals(_list.getElementNode(i).getEmail())) {
+                _list.remove(_list.getNode(i));
+                return;
+            }
+        }
+        System.out.println("The Entry person doesn't exit!!!!");
+    }
    
     
    
