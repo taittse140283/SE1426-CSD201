@@ -70,6 +70,11 @@ public class HTMLTagManager {
         frequency.sortHashMap();
         return frequency.getFrequencyOfTag();
     }
+
+    /**
+     * Parsing arguments for CLI for problem 2
+     * @param args This is list of arguments will be parsed
+     */
     public void parsingArguments(String[] args)
     {
         if(args.length==2)
