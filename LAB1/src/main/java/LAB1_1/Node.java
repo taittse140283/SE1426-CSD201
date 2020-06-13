@@ -14,6 +14,9 @@ public class Node<Player> {
     private Player info;
     private Node<Player> prev;
     private Node<Player> next;
+
+    public Node() {
+    }
     
     public Node(Player info, Node<Player> prev, Node<Player> next) {
         this.info = info;

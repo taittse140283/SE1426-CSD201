@@ -13,7 +13,12 @@ public class Player {
 
     private String email;
     private int point;
-        public Player(String email, int point) {
+    
+    public Player() {
+        email="";
+        point=0;
+    }
+    public Player(String email, int point) {
         this.email = email;
         this.point = point;
     }
