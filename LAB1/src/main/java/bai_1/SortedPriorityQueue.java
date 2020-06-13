@@ -5,6 +5,8 @@
  */
 package bai_1;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Linh
@@ -162,6 +164,15 @@ public class SortedPriorityQueue {
                 addNewPlayer(email, newPoint);
             else
                 System.out.println("The email " + email + " is not exist in the queue.");
+    }
+    
+    /**
+     * Add all Player to the array list for printing to file
+     * @param list 
+     */
+    public void addToList(ArrayList<Player> list) {
+        for(Node n = head; n != null; n = n.getNext())
+            list.add(n.getInfo());
     }
     
     //Print to the screen for testing
