@@ -15,15 +15,32 @@ import java.net.URL;
  */
 public class Website {
     String content="";
-    String S;
+    String line;
     public String readContent(String urlWeb) throws Exception{
-        URL url = new URL(urlWeb); 
-        BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream()));
-        while(( S = bf.readLine() ) != null){ 
-        content += S+ "\n";
+        BufferedReader br=null;
+        try{
+            URL url= new URL(urlWeb);
+            br= new BufferedReader(new InputStreamReader(url.openStream()));
+            String line;
+            while((line=br.readLine())!= null){
+                content += line +"\n";
+            }
+            br.close();
+           
+        } catch(Exception e){
+            System.out.println("Error");
+        } finally{
+            try{
+                if(br!=null){
+                    br.close();
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
-        bf.close();
         return content;
     }
 }
+
+
 
