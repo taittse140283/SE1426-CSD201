@@ -1,10 +1,5 @@
 package bai2;
 
-import bai1.DLLNode;
-import bai1.Player;
-import bai1.SortedPriorityQueue;
-import jdk.jshell.execution.Util;
-
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -32,12 +27,12 @@ public class CSV {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Error: Something's wrong");
             } finally {
                 try {
                     if (pw != null) pw.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println("Error:Something's wrong");
                 }
             }
 

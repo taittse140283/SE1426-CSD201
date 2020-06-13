@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bai1;
 
 /**
@@ -10,7 +5,7 @@ package bai1;
  * @author Admin
  */
 /**
-  Class Player stores information of player include email and point
+ Class Player stores information of player include email and point
  Fields: String email, int point
  */
 public class Player {
@@ -25,7 +20,7 @@ public class Player {
         email="";
         point=0;
     }
-    
+
 
     public Player(String email, int point) {
         this.email = email;
@@ -56,6 +51,6 @@ public class Player {
     public String toString() {
         return email+", "+point;
     }
-    
-    
+
+
 }

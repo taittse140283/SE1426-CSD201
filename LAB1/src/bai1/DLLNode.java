@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bai1;
 
 /**
@@ -18,7 +13,7 @@ public class DLLNode<Player> implements Cloneable{
     private Player info;//contains information of player include email and point
     private DLLNode<Player> prev;//reference to previous node
     private DLLNode<Player> next;//reference to next node
-    //constructor, getter, setter 
+    //constructor, getter, setter
 
     /**
      * Default Constructor
@@ -65,7 +60,7 @@ public class DLLNode<Player> implements Cloneable{
     }
 
     /**
-     * Overrid clone() method of Cloneable interface
+     * Override clone() method of Cloneable interface
      * @return DLLNode<Player>
      * @throws CloneNotSupportedException if can't not clone
      */
@@ -73,6 +68,6 @@ public class DLLNode<Player> implements Cloneable{
     public DLLNode<Player> clone() throws CloneNotSupportedException {
         return (DLLNode<Player>) super.clone();
     }
-    
+
 
 }

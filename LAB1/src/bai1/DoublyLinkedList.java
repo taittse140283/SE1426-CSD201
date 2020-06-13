@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bai1;
 
 /**
@@ -82,7 +77,7 @@ public class DoublyLinkedList<Player> {
      */
     public void addFirst(DLLNode<Player> newest) {
         newest.setNext(header);//set next of newest reference to header
-        header.setPrev(newest);//set previous of header reference to newest 
+        header.setPrev(newest);//set previous of header reference to newest
         header = newest;//newest become the header
         size++;//increasing size of the list
     }
@@ -94,15 +89,10 @@ public class DoublyLinkedList<Player> {
      */
     public void addLast(DLLNode<Player> newest) {
         newest.setPrev(trailer);//set prev of newest reference to trailer
-        newest.setNext(null);//set next of newest refernce to null(next of trailer reference to null )
-        if (size == 0)//if list is empty
-        {
-            header = trailer = newest;//set header and trailer are newest
-        } else {
-            trailer.setNext(newest);//set next of trailer reference to newest
-            trailer = newest;//set newest become trailer
-        }
-        size++;//increading size of the list
+        newest.setNext(null);//set next of newest reference to null(next of trailer reference to null )
+        trailer.setNext(newest);//set next of trailer reference to newest
+        trailer = newest;//set newest become trailer
+        size++;//increasing size of the list
     }
 
     /**
@@ -169,4 +159,3 @@ public class DoublyLinkedList<Player> {
         return null;
     }
 }
-

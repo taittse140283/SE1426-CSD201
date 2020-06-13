@@ -1,13 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bai1;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 /**
  *
  * @author Admin
@@ -45,8 +36,8 @@ public class SortedPriorityQueue {
             list.setTrailer(newest);
             list.setSize(list.getSize() + 1);
         } else {
-            //The header has the greatest point of Player 
-            if (newest.getInfo().getPoint() > list.getHeader().getInfo().getPoint())//compare with header, 
+            //The header has the greatest point of Player
+            if (newest.getInfo().getPoint() > list.getHeader().getInfo().getPoint())//compare with header,
             //if point of Player in newest Node greater than point of Player in header Node
             //then add it at first position of the list
             {
@@ -60,10 +51,10 @@ public class SortedPriorityQueue {
             } else {
                 DLLNode<Player> temp = list.getHeader();
                 //find the position can insert new node
-                while (temp.getInfo().getPoint() > newest.getInfo().getPoint()) {
+                while (temp.getInfo().getPoint() >=newest.getInfo().getPoint()) {
                     temp = temp.getNext();
                 }
-                //new node is inserted in front of temp  
+                //new node is inserted in front of temp
                 (temp.getPrev()).setNext(newest);
                 newest.setPrev(temp.getPrev());
                 temp.setPrev(newest);
@@ -144,7 +135,7 @@ public class SortedPriorityQueue {
             updatePlayer.getNext().setPrev(updatePlayer.getPrev());
             //Link clone update node with right position
             this.add(tempUpdate);
-            list.setSize(list.getSize()-1);//no need to increasing size, cause it like replace the node 
+            list.setSize(list.getSize()-1);//no need to increasing size, cause it like replace the node
 
             //print to check updated
             System.out.println("Updated player:" + updatePlayer.toString());

@@ -1,8 +1,6 @@
 package bai2;
 
-
 import java.util.*;
-import java.util.Map.Entry;
 
 /**
  * Class FrequencyOfTag
@@ -45,7 +43,7 @@ public class FrequencyOfTag{
     public  void sortHashMap()
     {
         //Get Entry Set of Hash Map and put it into ArrayList listEntry
-        ArrayList<Entry<String,Integer>> listEntry = new ArrayList(frequencyOfTag.entrySet());
+        ArrayList<Map.Entry<String,Integer>> listEntry = new ArrayList(frequencyOfTag.entrySet());
         //Call method sort of class Collections
         //Create anonymous Comparator class(use one time) to compare value of entry
         Collections.sort(listEntry, new Comparator<Map.Entry<String, Integer>>() {
@@ -57,7 +55,7 @@ public class FrequencyOfTag{
             }
         });
         frequencyOfTag = new LinkedHashMap();
-        for (Entry<String,Integer> entry:listEntry)
+        for (Map.Entry<String,Integer> entry:listEntry)
         {
             frequencyOfTag.put(entry.getKey(),entry.getValue());
         }

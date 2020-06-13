@@ -1,20 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bai1;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 
-/**
- *
- * @author Admin
- */
+import java.io.*;
 
 /**
  * CSV class read and write file CSV
@@ -39,17 +26,25 @@ public class CSV {
                 s=br.readLine();
                 String[] arr=s.split(", ");
                 if(arr.length==2){
-                Player player=new Player();//create new player
-                player.setEmail(arr[0]);
-                player.setPoint(Integer.parseInt(arr[1]));
-                DLLNode<Player> newNode=new DLLNode();//create node to add into list
-                newNode.setInfo(player);
-                queue.add(newNode);
+                    Player player=new Player();//create new player
+                    player.setEmail(arr[0]);
+                    player.setPoint(Integer.parseInt(arr[1]));
+                    DLLNode<Player> newNode=new DLLNode();//create node to add into list
+                    newNode.setInfo(player);
+                    queue.add(newNode);
                 }
                 else throw new Exception("Not compatible");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: Can't not find file");
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error: There's something wrong in file process!");
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
         }
         finally
         {
@@ -57,6 +52,7 @@ public class CSV {
                 if(br!=null) br.close();
                 if(fr!=null) fr.close();
             } catch (Exception e) {
+                System.out.println("Error: Something's wrong");
             }
         }
         return queue;
@@ -84,16 +80,16 @@ public class CSV {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Error: Something's wrong");
             } finally {
                 try {
                     if (pw != null) pw.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println("Error: Something's wrong");
                 }
             }
 
         }
     }
-    
+
 }
