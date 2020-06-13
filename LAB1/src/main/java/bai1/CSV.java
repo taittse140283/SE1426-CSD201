@@ -5,7 +5,11 @@
  */
 package bai1;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 /**
  *
@@ -44,16 +48,8 @@ public class CSV {
                 }
                 else throw new Exception("Not compatible");
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: Can't not find file");
-        }
-        catch (IOException e)
-        {
-            System.out.println("Error: There's something wrong in file process!");
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         finally
         {
@@ -61,7 +57,6 @@ public class CSV {
                 if(br!=null) br.close();
                 if(fr!=null) fr.close();
             } catch (Exception e) {
-                System.out.println("Error: Something's wrong");
             }
         }
         return queue;
@@ -89,12 +84,12 @@ public class CSV {
                 }
 
             } catch (Exception e) {
-                System.out.println("Error: Something's wrong");
+                e.printStackTrace();
             } finally {
                 try {
                     if (pw != null) pw.close();
                 } catch (Exception e) {
-                    System.out.println("Error: Something's wrong");
+                    e.printStackTrace();
                 }
             }
 

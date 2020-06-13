@@ -65,7 +65,7 @@ public class DLLNode<Player> implements Cloneable{
     }
 
     /**
-     * Override clone() method of Cloneable interface
+     * Overrid clone() method of Cloneable interface
      * @return DLLNode<Player>
      * @throws CloneNotSupportedException if can't not clone
      */

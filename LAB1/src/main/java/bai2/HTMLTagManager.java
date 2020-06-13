@@ -14,61 +14,60 @@ public class HTMLTagManager {
     {
         String html=ContentWebsite.getContentOnWebsite(link);
         FrequencyOfTag frequency=new FrequencyOfTag();
-        if(!html.equals("")) {
-            int j = html.indexOf('<'); // find first ’<’ character (if any)
-            while (j != (-1)) {
-                int k = html.indexOf('>', j + 1); // find next ’>’ character
-                String tag = html.substring(j, k + 1);
-                if (!tag.startsWith("</")) // this is an opening tag
+        int j = html.indexOf('<'); // find first ’<’ character (if any)
+        while (j!=(-1)) {
+            int k = html.indexOf('>', j+1); // find next ’>’ character
+            String tag = html.substring(j, k+1);
+            if (!tag.startsWith("</")) // this is an opening tag
+            {
+                if(!tag.contains(" ")&&!html.contains(tag.replace("<","</")))//check for unpaired tag like <br>
                 {
-                    if (!tag.contains(" ") && !html.contains(tag.replace("<", "</")))//check for unpaired tag like <br>
+                    if(!tag.matches("<[A-Za-z0-9!]+>"))//if tag contains special character except ! then pass it and continue the loop
                     {
-                        if (!tag.matches("<[A-Za-z0-9!]+>"))//if tag contains special character except ! then pass it and continue the loop
-                        {
-                            j = html.indexOf('<', k + 1);
-                            continue;
-                        }
-                        //if not, then count this tag
+                        j = html.indexOf('<', k+1);
+                        continue;
+                    }
+                    //if not, then count this tag
+                    frequency.countOfTag(tag);
+
+                }
+                else if (tag.contains(" ")) {
+                    String[] validTag = tag.split(" ",2);//spit into 2 string like <tag and abcxyz>
+                    tag = validTag[0] + ">";//concat string to it like <tag>
+                    if(!tag.matches("<[A-Za-z0-9!]+>"))//if tag contains special character except ! then pass it and continue the loop
+                    {
+                        j = html.indexOf('<', k+1);
+                        continue;
+                    }
+                    //if not
+                    if (!html.contains(tag.replace("<","</"))) {//check for unpaired tag like img
                         frequency.countOfTag(tag);
 
-                    } else if (tag.contains(" ")) {
-                        String[] validTag = tag.split(" ", 2);//spit into 2 string like <tag and abcxyz>
-                        tag = validTag[0] + ">";//concat string to it like <tag>
-                        if (!tag.matches("<[A-Za-z0-9!]+>"))//if tag contains special character except ! then pass it and continue the loop
+                    } else {
+                        if(tag.equals("<script>"))//script tag has some problem so it's treated specially
                         {
-                            j = html.indexOf('<', k + 1);
-                            continue;
-                        }
-                        //if not
-                        if (!html.contains(tag.replace("<", "</"))) {//check for unpaired tag like img
                             frequency.countOfTag(tag);
-
-                        } else {
-                            if (tag.equals("<script>"))//script tag has some problem so it's treated specially
-                            {
-                                frequency.countOfTag(tag);
-                            } else stack.push(tag);
                         }
-                    } else {//for some tag like <p>abcxyz<p>
-                        if (tag.equals("<script>")) {
-                            frequency.countOfTag(tag);
-                        } else stack.push(tag);
-                    }
-                } else { // this is a closing tag
-                    if (!tag.equals("</script>"))//cause in above not push script into stack
+                        else stack.push(tag);
+                   }
+                } else {//for some tag like <p>abcxyz<p>
+                    if(tag.equals("<script>"))
                     {
-                        String checkTag = stack.pop();
-                        frequency.countOfTag(tag.replace("</", "<"));
+                        frequency.countOfTag(tag);
                     }
+                    else stack.push(tag);
                 }
-                j = html.indexOf('<', k + 1); // find next ’<’ character (if any)
             }
-            frequency.sortHashMap();
+            else { // this is a closing tag
+                if(!tag.equals("</script>"))//cause in above not push script into stack
+                {
+                    String checkTag=stack.pop();
+                    frequency.countOfTag(tag.replace("</","<"));
+                }
+            }
+            j = html.indexOf('<', k+1); // find next ’<’ character (if any)
         }
-        else
-        {
-            System.out.println("Error: There's something wrong when load URL");
-        }
+        frequency.sortHashMap();
         return frequency.getFrequencyOfTag();
     }
 

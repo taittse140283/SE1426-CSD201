@@ -12,6 +12,8 @@ package bai2;
 public interface Stack {
     public void push(String tag);
     public String pop();
+    public String top();
     public boolean isEmpty();
-
+    public int size();
+    public void print();
 }
