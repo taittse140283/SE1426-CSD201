@@ -15,8 +15,14 @@ import java.util.HashMap;
  *
  * @author Dell
  */
+/**
+* This is constructor. It will be read content from the page on website. 
+* Below constructor is method readContent. This method is use to read the content
+*Input data of method is urlString
+*Output data is content
+*/
 public class webContent {
-    private static String readContent(String urlString) throws Exception{
+   static String readContent(String urlString) throws Exception{
         BufferedReader br=null;
         String content="";
         try{
@@ -41,30 +47,5 @@ public class webContent {
             }
         }
         return content;
-    }
-    public static boolean countTag(String content){
-        Stack<String> buffer= new ArrayStack<>();
-        int j=content.indexOf('<'); //tìm kí tư '<' dau tien
-        while(j!=-1){
-            int k=content.indexOf('>', j+1); //tim ki tu '>' tiep theo
-            if(k==-1){
-                System.out.println("Error! Invalid tag");
-            }
-            String tag= content.substring(j+1,k);
-            if(!tag.startsWith("/")){
-                buffer.push(tag);
-            }
-            else{
-                if(buffer.isEmpty()){
-                    return false;
-                }
-                if(!tag.substring(1).equals(buffer.pop())){
-                    return false;
-                }
-            }
-            j=content.indexOf('<',k+1);
-            
-        }
-      return buffer.isEmpty();
     }
 }
