@@ -60,7 +60,7 @@ public class DoublyLinkedList {
      */
     private Node head = null;
     private Node tail = null;
-    private int size;
+    private int size = 0;
 
     
     public DoublyLinkedList(){
@@ -254,6 +254,7 @@ public class DoublyLinkedList {
             }else{
                 updatePlayer.getData().setEmail(email);
                 updatePlayer.getData().setPoint(point);
+                checkPlayerAfterUpdate(updatePlayer);
             }
         }
     }
@@ -267,5 +268,16 @@ public class DoublyLinkedList {
             remove(player);
             addBetween(player.getData(), checkNode);
         }
+    }
+    
+    public void displayTop(){
+        Player top = getFirst();
+        String email = top.getEmail();
+        int point = top.getPoint();
+        System.out.println(email+ ", " + point);
+    }
+    
+    public Player removeTop(){
+        return removeFirst();
     }
 }
