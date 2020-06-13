@@ -9,45 +9,50 @@ package mobilegame;
  *
  * @author Admin
  */
-public class DoublyLinkedList {
+public class DoublyLinkedList<E> {
     // khai báo class Node
-    private class Node{
-        private int value; // tham chiếu giá trị lưu trữ trong nodde
-        private Node next; // tham chiếu giá trị tiếp theo
-        private Node prev; // tham chiếu giá trị sau đó
-        public Node (int v, Node n, Node p) {
-            this.value = v;
+    private static class Node<E>{
+        private E element; // tham chiếu giá trị lưu trữ trong nodde
+        private Node<E> next; // tham chiếu giá trị tiếp theo
+        private Node<E> prev; // tham chiếu giá trị sau đó
+        public Node (E e, Node<E> n, Node<E> p) {
+            this.element = e;
             this.next = n;
             this.prev = p;
         }
 
-        public int getValue() {
-            return value;
+        public E getElement() {
+            return element;
         }
 
-        public Node getNext() {
+        public Node<E> getNext() {
             return next;
         }
 
-        public Node getPrev() {
+        public Node<E> getPrev() {
             return prev;
         }
 
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        public void setNext(Node next) {
+        public void setNext(Node<E> next) {
             this.next = next;
         }
 
-        public void setPrev(Node prev) {
+        public void setPrev(Node<E> prev) {
             this.prev = prev;
         }
         
     }
 
-    private 
-   
+    private Node<E> header;
+    private Node<E> trailer;
+    private int size=0;
+    
+    public DoublyLinkedList(){
+    header=new Node(null, null, null);
+    trailer=new Node(null, header, null);
+    header.setNext(trailer);
+    }
+  
+    
 
 }
