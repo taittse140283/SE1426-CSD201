@@ -1,5 +1,5 @@
 
-##Hoang Gia Thien Phuc-SE141133 LAB1
+# Hoang Gia Thien Phuc-SE141133 LAB1
 
 Hello, this is some notes for project and highlights of project  
 -Problem 1:
