@@ -121,7 +121,14 @@ public class checkWeb{
                 tag = "";
                 check = false;   
             }
-           
+            else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true) {
+                tag += content.charAt(i);
+            }
+            else if(((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
+                tag += ">";
+                check = false;
+                processingHTMLTag(tag);
+            }
         }
     }
 }
