@@ -213,6 +213,10 @@ public class DoublyLinkedList {
             }
         }
     }
+    /**
+     * Thêm 1 node vào hàng đợi ưu tiên
+     * @param data
+     */
     
     public void DisplayPoint(String email){
         if(isEmpty()){
@@ -261,7 +265,7 @@ public class DoublyLinkedList {
         }
     }
     /**
-     * Cập nhật lại diểm của người chơi bằng cách sử dụng email và hàm ưu tiên
+     * Cập nhật lại diểm của người chơi bằng cách sử dụng email trong hàng đợi ưu tiên
      * @param email
      * @param point
      */
