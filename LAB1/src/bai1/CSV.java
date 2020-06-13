@@ -1,9 +1,5 @@
 package bai1;
 
-/**
- *
- * @author Admin
- */
 
 import java.io.*;
 
