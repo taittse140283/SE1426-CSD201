@@ -60,7 +60,7 @@ public class SortedPriorityQueue {
             } else {
                 DLLNode<Player> temp = list.getHeader();
                 //find the position can insert new node
-                while (temp.getInfo().getPoint() >=newest.getInfo().getPoint()) {
+                while (temp.getInfo().getPoint() > newest.getInfo().getPoint()) {
                     temp = temp.getNext();
                 }
                 //new node is inserted in front of temp  
