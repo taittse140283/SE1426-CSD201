@@ -14,6 +14,13 @@ import java.util.ArrayList;
  * @author Thuan Le
  */
 public class Manager {
+    /**
+     * Input a URL then read line by line
+     * Output its contents
+     * @param urlString
+     * @return
+     * @throws Exception 
+     */
     public static String readHTML(String urlString) throws Exception{
         String content = "";        
         BufferedReader br = null;
