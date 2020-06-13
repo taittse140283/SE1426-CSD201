@@ -11,9 +11,11 @@ package bai_1;
  */
 public class SortedPriorityQueue {
     Node head, tail;
+    boolean exist;
 
     public SortedPriorityQueue() {
         head = tail = null;
+        exist = true;
     }
     
     /**
@@ -141,6 +143,7 @@ public class SortedPriorityQueue {
             }
             else {
                 System.out.println("The email " + email + " is not exist in the queue.");
+                exist = false;
             }
         }
     }    
@@ -152,13 +155,13 @@ public class SortedPriorityQueue {
      * @param newPoint 
      */
     public void updateNewPoint(String email, int newPoint) {
-        Node n = search(email);
-        if(n !=  null) {
+            exist = true;
             removePlayer(email);
-            addNewPlayer(email, newPoint);
-        }
-        else
-            System.out.println("The email " + email + " is not exist in the queue.");
+            
+            if(exist == true)
+                addNewPlayer(email, newPoint);
+            else
+                System.out.println("The email " + email + " is not exist in the queue.");
     }
     
     //Print to the screen for testing
