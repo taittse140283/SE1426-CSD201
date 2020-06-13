@@ -108,6 +108,18 @@ public class SortedPriorityQueue {
     }
     
     /**
+     * Get the point of user from the queue based the email
+     * @param email 
+     */
+    public void getPointOfPlayer(String email) {
+        Node n = search(email);
+        if(n != null)
+            System.out.println("The player has email: " + email + " gain: " + n.getInfo().getPoint() + " point");
+        else
+            System.out.println("The email " + email + " is not exist in the queue.");
+    }
+    
+    /**
      * Find the node stores info of player based on email
      * @param email
      * If email exist in queue
