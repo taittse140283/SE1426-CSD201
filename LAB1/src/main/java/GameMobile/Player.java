@@ -5,6 +5,8 @@
  */
 package GameMobile;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Loi Lam
@@ -43,8 +45,17 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player: " +name + ".\t" + "Point: " + point + ".";
+        return "Player: " + name + ".\t" + "Point: " + point + ".";
     }
-    
-    
+
+    public void input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Input email: ");
+        name = sc.nextLine();
+        System.out.println("Input point: ");
+        point = sc.nextInt();
+        System.out.println("Added.");
+        System.out.println("Email: " + name + "Point: " + point);
+    }
+
 }
