@@ -11,6 +11,7 @@ package Bai2;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        
+        String url="https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
+        String file="output1.csv";
     }
 }
