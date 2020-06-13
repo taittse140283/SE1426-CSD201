@@ -45,7 +45,7 @@ public class SortedPriorityQueue {
             } else {
                 DDLNode<Player> temp = list.getHeader();
                 //find the position can insert new node
-                while (temp.getInfo().getPoint() > newest.getInfo().getPoint()) {
+                while (temp.getInfo().getPoint() >=newest.getInfo().getPoint()) {
                     temp = temp.getNext();
                 }
                 //new node is inserted in front of temp  
