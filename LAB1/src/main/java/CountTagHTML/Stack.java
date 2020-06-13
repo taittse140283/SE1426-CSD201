@@ -13,4 +13,8 @@ public class Stack {
 
     TagHTML head, tail;
 
+    //Constructor
+    public Stack() {
+        head = tail = null;
+    }
 }
