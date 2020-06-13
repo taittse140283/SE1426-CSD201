@@ -82,4 +82,9 @@ public class checkWeb{
             System.out.print(t.getTag() + "   ");
     }
 }
+    webContent g = new webContent();
+    SortandWritetoFile csv = new SortandWritetoFile();
+    Stack s = new Stack();
+    Map<String, Integer> map= new HashMap<>();
+    
 }
