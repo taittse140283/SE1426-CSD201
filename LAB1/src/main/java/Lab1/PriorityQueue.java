@@ -10,7 +10,6 @@ package Lab1;
  * @author Admin
  */
 public class PriorityQueue extends DoublyLinkedList{
-    DoublyLinkedList list = new DoublyLinkedList();
 
     public PriorityQueue() {
     }
