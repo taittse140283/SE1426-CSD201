@@ -34,4 +34,20 @@ public class Stack {
         tail = th;
         tail.next = null;
     }
+    
+    //remove tail of stack
+    public void pop(){
+        if(head == null){
+            return;
+        }
+        //set head and tail to null when stack have 1 node
+        if(head == tail){
+            head = null;
+            tail = null;
+            return;
+        }
+        //set tail to prev node
+        tail = tail.prev;
+        tail.next = null;
+    }
 }
