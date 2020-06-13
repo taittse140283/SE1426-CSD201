@@ -82,6 +82,7 @@ public class HTMLTagManager {
         {
             HashMap<String,Integer> frequencyOfTag=countHTMLTag(args[0]);
             CSV.writeFile(args[1],frequencyOfTag);
+            System.out.println("Check your output file!!!");
         }
         else
         {

@@ -48,6 +48,7 @@ public class PlayerManager {
                         }
                     }
                     CSV.writeFile(args[3],queue);
+                    System.out.println("Check your output file!!!");
                 }
                 else if(args[2].equals("-g"))
                 {
