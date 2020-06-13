@@ -224,9 +224,9 @@ public class DoublyLinkedList {
     
     /**
      * remove a new player into the data structure
- case, if the list is empty , show message
- Search the location the player wants to delete
- case If nodeNext fails, the player does not exist in the list.
+        case, if the list is empty , show message
+        Search the location the player wants to delete
+            case If nodeNext fails, the player does not exist in the list.
      * @param data 
      */
     public void delete(String email){
