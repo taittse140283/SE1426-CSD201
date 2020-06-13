@@ -6,7 +6,10 @@
 package bai_1;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,9 +17,11 @@ import java.io.FileReader;
  */
 public class Program {
     SortedPriorityQueue s;
+    ArrayList<Player> list;
 
     public Program() {
         s = new SortedPriorityQueue();
+        list = new ArrayList<>();
     }
     
     /**
@@ -38,9 +43,31 @@ public class Program {
                 int point = Integer.parseInt(info[1]);
                 s.addNewPlayer(email, point); //Add a player into the queue
             }
+            br.close();
+            fr.close();
         } catch (Exception e) {
             System.out.println("Not found the input file");
         }
         s.print(); //Print to the screen for tesing 
+    }
+    
+    /**
+     * Print all players to file
+     * @param fileName 
+     */
+    public void printToFile(String fileName) {
+        File f;
+        PrintWriter pw;
+        try {
+            f = new File(fileName);
+            pw = new PrintWriter(f);
+            s.addToList(list);
+            pw.println("Email, Point");
+            for(int i = 0; i < list.size(); i++)
+                pw.println(list.get(i).getEmail() + ", " + list.get(i).getPoint());
+            pw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
