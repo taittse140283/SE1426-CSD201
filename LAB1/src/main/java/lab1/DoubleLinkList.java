@@ -119,8 +119,23 @@ public class DoubleLinkList<Entry> {
         }
         return node;
     }
-    /***/
     
+    /**
+     * this method print the Node(include email and point) to the file with address in desktop(in file have header is: Email, Point)
+     * @param input is a file
+     * @return  no return
+    */
+     public void printtoFile(String file) throws IOException {
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\");
+        DataOutputStream dos = new DataOutputStream(fos);
+        dos.writeBytes("Email, Point\n");
+        for (Node<Entry> n =  header.next; n != tailer; n = n.next) {
+            dos.writeBytes(n.getElement() + "\n");
+        }
+        fos.close();
+        dos.close();
+    }
+     
     
     public void print(){
         for(Node<Entry> n=header; n!=tailer;n=n.next){
