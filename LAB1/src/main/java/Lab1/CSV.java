@@ -6,8 +6,11 @@
 package Lab1;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 /**
@@ -16,12 +19,12 @@ import java.util.StringTokenizer;
  */
 public class CSV {
     
-    public static PriorityQueue readFile (String file) throws IOException{
+    public static PriorityQueue readFile (String fileName) throws IOException{
         FileReader fr = null;
         BufferedReader br = null;
         PriorityQueue queue = new PriorityQueue();
         try {
-            fr = new FileReader(file);
+            fr = new FileReader(fileName);
             br=new BufferedReader(fr);
             String s = br.readLine();
             while (br.ready()) {
@@ -44,5 +47,26 @@ public class CSV {
             }
         }
         return queue;
+    }
+    
+    public static void saveFile(PriorityQueue queue, String fileName) throws IOException{
+        File f =null;
+        FileWriter fw =null;
+        PrintWriter pw = null;
+        try {
+            f= new File(fileName);
+            fw = new FileWriter(f);
+            pw = new PrintWriter(fw);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            if (pw != null){
+                pw.close();
+            }
+            if(fw != null){
+                fw.close();
+            }
+        }
     }
 }
