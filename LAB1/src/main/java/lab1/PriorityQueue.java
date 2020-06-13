@@ -9,7 +9,7 @@ package lab1;
  *
  * @author Admin
  */
-import 
+
 public class PriorityQueue {
  
     private DoubleLinkList<Entry> _list = new DoubleLinkList<Entry>();
@@ -65,6 +65,22 @@ public class PriorityQueue {
         }
         System.out.println("The Entry person doesn't exit!!!!");
     }
+     
+     /**
+      * this method will find a entry person base on the email of them, if find, return them, or not, print the person doesn't exit.
+      *
+      */
+     public void find(String mail) {
+        int size = _list.size();
+        for (int i = 0; i < size; i++) {
+            if (mail.equals(_list.getElementNode(i).getEmail())) {
+                System.out.println("Email:\n" + _list.getElementNode(i));
+                return;
+            }
+        }
+        System.out.println("The person you entered does not exist");
+    }
+     
    
     
    
