@@ -24,6 +24,7 @@ public class Player {
         this.point = point;
     }
 //Tạo getter và setter
+
     public String getName() {
         return name;
     }
@@ -40,5 +41,10 @@ public class Player {
         this.point = point;
     }
 
+    @Override
+    public String toString() {
+        return "Player: " +name + ".\t" + "Point: " + point + ".";
+    }
+    
     
 }
