@@ -50,8 +50,8 @@ public class DoublyLinkedList {
         } 
     }
     /*Instance variable */
-    private Node header;
-    private Node trailer;
+    private Node<E> header = null;
+    private Node<E> trailer = null;
     private int size = 0;
     /*contructor a new empty list*/
     public DoublyLinkedList(){
@@ -82,7 +82,7 @@ public class DoublyLinkedList {
     public void addFirst(E e){
         addBetween(e, header, header.getNext());
     }
-     /*Add last element infornt of the list*/
+     /*Add last element back of the list*/
     public void addLast(E e){
         addBetween(e, trailer.getPrev(), trailer);
     }
@@ -94,5 +94,23 @@ public class DoublyLinkedList {
        successor.setPrev(newest);
        size++;
     }
-}
+    /*Remove first node in the list (return its element)
+    @param Node
+    @return element*/
+    private Player remove(Node<Player> node){
+        /*Re*/        
+        if(isEmpty()){
+        Node<Player> predecessor = node.getPrev();
+        Node<Player> successor = node.getNext();
+        predecessor.setNext(successor);
+        successor.setPrev(predecessor);
+        size --;
+        }else return null;
+        if(size == 0){
+         trailer = null;     
+        return node.getElement();
+        }
+        return null;    
+    }
+}   
 
