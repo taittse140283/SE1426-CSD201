@@ -5,6 +5,11 @@
  */
 package lab1;
 
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+
 /**
  *
  * @author Admin
@@ -12,7 +17,7 @@ package lab1;
 public class DoubleLinkList<Entry> {
 
    
-    private class Node<Entry>{
+    public class Node<Entry>{
         private Entry element;
         private Node<Entry> next;
         private Node<Entry> back;
@@ -68,13 +73,13 @@ public class DoubleLinkList<Entry> {
      *@param e
      */
     public void addFirst(Entry e){
-        addBetween(e,header,header.getNext()); 
+        addBetween(e,header,header.next); 
     }
     /** add element to the last the list
      *@param e
      */
     public void addLast(Entry e){
-        addBetween(e,tailer.getBack(), tailer);
+        addBetween(e,tailer.back, tailer);
     }
     /** Removes and returns the first element of the list. */
     public Entry removeFirst(){
@@ -86,13 +91,14 @@ public class DoubleLinkList<Entry> {
         if(isEmpty()) return null;
         return remove(tailer.getBack());
     }
+    
+    
     /** 
     * this method remove a node in linkedList
     * @param node
     * no output
     
     */
-    
     private Entry remove(Node <Entry> node){
         Node<Entry> infontof= node.getBack();
         Node<Entry> back=node.getNext();
@@ -101,6 +107,29 @@ public class DoubleLinkList<Entry> {
         size--;
         return node.getElement();
     }
+    /**
+     * this method to take the node with the position user need, anywhere in the list
+     * @param position whew  user want to get  
+     * @return the node in the needed position
+     */
+    public Node<Entry> getNode(int position){
+        Node<Entry> node= header.next;
+        for(int i=0;i<position;i++){
+            node=node.next;
+        }
+        return node;
+    }
+    /***/
+    
+    
+    public void print(){
+        for(Node<Entry> n=header; n!=tailer;n=n.next){
+            System.out.println(n.getElement() + " ");
+        }
+    }
+}
+    
+
     
     
     
@@ -108,4 +137,4 @@ public class DoubleLinkList<Entry> {
     
     
     
-}
+
