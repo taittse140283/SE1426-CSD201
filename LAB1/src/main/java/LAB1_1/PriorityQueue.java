@@ -59,13 +59,28 @@ public class PriorityQueue {
             System.out.println("Email khong ton tai.");
         }
         else{
-            updatedNode.getInfo().setPoint(newPoint);
+            updatedNode.getInfo().setPoint(newPoint); 
             updatedNode.getPrev().setNext(updatedNode.getNext());
             updatedNode.getNext().setPrev(updatedNode.getPrev());
             add(updatedNode);
             list.setSize(list.getSize()-1);
-            System.out.println("Updated" + email + "success");
+            System.out.println("Update" + email + "thanh cong");
         }
     }
-    
+    public void deletePlayer(String email) {
+        Node<Player> player = getNode(email);
+        if (player == null) {
+            System.out.println("Khong tim thay player");
+        } else {
+            if(player == list.getHead()){
+                list.removeFirst();
+            }
+            else if(player == list.getTail()){
+                list.removeLast();
+            }
+            else {
+                list.remove(player);
+            }
+        }
+    }
 }
