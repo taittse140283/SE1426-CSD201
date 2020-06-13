@@ -54,7 +54,7 @@ public class CSV {
                 if(br!=null) br.close();
                 if(fr!=null) fr.close();
             } catch (Exception e) {
-                System.out.println("Error: Something's wrong");
+                System.out.println(e.getMessage());
             }
         }
         return queue;
@@ -87,7 +87,7 @@ public class CSV {
                 System.out.println("Error:Something's wrong in file processing");
             }
             catch (Exception e) {
-                System.out.println("Error:Something's wrong");
+                System.out.println("Error:Something's error");
             } finally {
                 try {
                     if (pw != null) pw.close();

@@ -37,7 +37,7 @@ public class SortedPriorityQueue {
             {
                 list.addFirst(newest);
             } //The trailer has the lowest point of Player
-            else if (newest.getInfo().getPoint() < list.getTrailer().getInfo().getPoint())//compare with trailer
+            else if (newest.getInfo().getPoint() <= list.getTrailer().getInfo().getPoint())//compare with trailer
             //if point of Player in newest Node lower than point of Player in trailer Node
             //then add it at last position of the list
             {
@@ -45,14 +45,14 @@ public class SortedPriorityQueue {
             } else {
                 DDLNode<Player> temp = list.getHeader();
                 //find the position can insert new node
-                while (temp.getInfo().getPoint() >=newest.getInfo().getPoint()) {
+                while (temp.getInfo().getPoint()>=newest.getInfo().getPoint()) {
                     temp = temp.getNext();
                 }
-                //new node is inserted in front of temp  
-                (temp.getPrev()).setNext(newest);
-                newest.setPrev(temp.getPrev());
-                temp.setPrev(newest);
+                //new node is inserted in front of temp
                 newest.setNext(temp);
+                newest.setPrev(temp.getPrev());
+                temp.getPrev().setNext(newest);
+                temp.setPrev(newest);
                 list.setSize(list.getSize() + 1);
             }
         }
@@ -85,7 +85,7 @@ public class SortedPriorityQueue {
      */
     public DDLNode<Player> getNode(String email) {
         DDLNode<Player> temp = list.getHeader();//get header
-        while (!temp.getInfo().getEmail().equals(email) && temp != null)//traverse the list to find Node has the same email
+        while (temp != null&&!temp.getInfo().getEmail().equals(email))//traverse the list to find Node has the same email
         {
             temp = temp.getNext();
         }
