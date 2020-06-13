@@ -34,4 +34,27 @@ public class SortandWritetoFile {
             map.put(tag, map.get(tag) + 1);
         }
     }
+    
+     public void sortAndWriteToFile(String fileName) throws FileNotFoundException {
+        
+       try{
+           Map<String, Integer> sortedByFrequences = map.entrySet().stream()
+            .sorted((Map.Entry.<String, Integer> comparingByValue().reversed()))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        
+        //Print out the map after sorting
+        System.out.println("\nList tag:");
+        for (Map.Entry<String, Integer> entry : sortedByFrequences.entrySet()) {
+            String key = entry.getKey();
+            int value = entry.getValue();
+            System.out.println("Tag:" + key +"\t\t"+ " Count: " + value);
+            
+      
+        }
+       }
+        catch(Exception e){
+                e.printStackTrace();
+                }
+        
+}
 }
