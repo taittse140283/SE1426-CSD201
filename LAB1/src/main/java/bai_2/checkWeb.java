@@ -102,4 +102,26 @@ public class checkWeb{
             e.printStackTrace();
         }    
     }
+    /**
+     *This method below here is used to find the tag of websites by checking the first and ending characters(<),(>)
+     * Input data: each line in file html (content)
+     * Output data: no
+     * @param content
+     */
+    public void analyzeHTMLTag(String content) {
+        String tag = "";
+        boolean check = false;
+        
+        for(int i = 0; i < content.length(); i++) {
+            if(content.charAt(i) == '<') {
+                tag = "<";
+                check = true;
+            }
+            else if(content.charAt(i) == '-' && check == true) {
+                tag = "";
+                check = false;   
+            }
+           
+        }
+    }
 }
