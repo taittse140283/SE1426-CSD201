@@ -45,24 +45,12 @@ public class PriorityQueue {
             }
         }       
     }
-    private int getNode(String email) {
-        for (int i = 0; i < list.getSize(); i++) {
-            if (list.get(i).getEmail().equals(email)) {
-                return i;
-            }
+    public Node<Player> getNode(String email) {
+        Node<Player> current = list.getHead();
+        while (!current.getInfo().getEmail().equals(email)){
+            current = current.getNext();
         }
-        return -1;
+        return current;
     }
-
-    public void deletePlayer(String email) {
-        int check = getNode(email);
-        if(list.isEmpty()){
-            System.out.println("Danh sach trong");
-        }
-        if (check < 0) {
-            System.out.println("Khong tim thay player");
-        }else{
-            list.removePos(check);
-        }
-    }
+    
 }

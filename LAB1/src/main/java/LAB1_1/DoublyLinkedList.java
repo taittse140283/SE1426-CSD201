@@ -71,6 +71,23 @@ public class DoublyLinkedList<Player> {
         else{
             Player value = head.getInfo();
             head = head.getNext();
+            head.setPrev(null);
+            size--;
+            if(head == tail){
+            head = tail = null;
+            }
+        }
+        return null;
+    }
+        public Player removeLast(){
+        if(isEmpty()){
+            System.out.println("Stack rong");
+        }
+        //Neu xoa khi chi con 1 phan 
+        else{
+            Player value = tail.getInfo();
+            tail = tail.getPrev();
+            tail.setNext(null);
             size--;
             if(head == tail){
             head = tail = null;
@@ -92,29 +109,5 @@ public class DoublyLinkedList<Player> {
         }
         return null;
     }
-    public Player get(int index) {
-        if (size != 0) {
-            Node<Player> current = head.getNext();
-            for (int i = 0; (current != null) && (i < index); i++) {
-                current = current.getNext();
-            }
-            if (current != null) {
-                return current.getInfo();
-            }
-        }
-        return null;
-    }
-    public void removePos(int n) {
-        if (size == 0 || n < 0) {
-            return;
-        }
-        Node temp = head.getNext();
-        for (int i = 0;i < n; i++) {
-            temp = temp.getNext();
-        }
-        if (temp == null) {
-            return;
-        }
-        remove(temp);
-    }
+    
 }
