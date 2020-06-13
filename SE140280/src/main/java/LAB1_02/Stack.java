@@ -28,13 +28,15 @@ public class Stack {
     public boolean isEmpty(){
        return size == 0; 
     }
-   
+    /*Insert element in top of the stack
+    @return top element in the stack or null if empty*/
     public void push(String tagHTML){
         NodeHTML tag= new NodeHTML(tagHTML, head, tail);
-        
+        /*check if stack is empty*/
         if(isEmpty()){
-            
+        head.prev = tail.next = null;
+        return;
         }
+        
     }
-   
-}
+ 
