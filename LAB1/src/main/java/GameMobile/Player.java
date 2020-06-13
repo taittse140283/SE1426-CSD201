@@ -16,17 +16,16 @@ public class Player {
     private String name;
     private int point;
 
-    //Constructor không tham số
+    //Constructor no parameters
     public Player() {
     }
-//Constructor có tham số
-
+    //Constructor have parameters
     public Player(String name, int point) {
         this.name = name;
         this.point = point;
     }
-//Tạo getter và setter
-
+    
+    // getter and setter
     public String getName() {
         return name;
     }
@@ -41,21 +40,6 @@ public class Player {
 
     public void setPoint(int point) {
         this.point = point;
-    }
-
-    @Override
-    public String toString() {
-        return "Player: " + name + ".\t" + "Point: " + point + ".";
-    }
-
-    public void input() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Input email: ");
-        name = sc.nextLine();
-        System.out.println("Input point: ");
-        point = sc.nextInt();
-        System.out.println("Added.");
-        System.out.println("Email: " + name + "Point: " + point);
     }
 
 }
