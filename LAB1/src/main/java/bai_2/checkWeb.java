@@ -86,5 +86,20 @@ public class checkWeb{
     SortandWritetoFile csv = new SortandWritetoFile();
     Stack s = new Stack();
     Map<String, Integer> map= new HashMap<>();
-    
+    /**
+     * This is constructor with parameter 
+     * @param urlWeb
+     * @param fileName 
+     */
+    public checkWeb(String urlWeb, String fileName) {
+        try {
+            String content = g.readContent(urlWeb);
+            System.out.println("The processing is running:");
+            analyzeHTMLTag(content);
+            csv.sortAndWriteToFile(fileName);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    
+    }
 }
