@@ -152,8 +152,13 @@ public class SortedPriorityQueue {
      * @param newPoint 
      */
     public void updateNewPoint(String email, int newPoint) {
+        Node n = search(email);
+        if(n !=  null) {
             removePlayer(email);
             addNewPlayer(email, newPoint);
+        }
+        else
+            System.out.println("The email " + email + " is not exist in the queue.");
     }
     
     //Print to the screen for testing
