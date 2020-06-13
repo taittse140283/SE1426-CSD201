@@ -54,9 +54,16 @@ public class SortandWritetoFile {
             String key = entry.getKey();
             int value = entry.getValue();
             System.out.println("Tag:" + key +"\t\t"+ " Count: " + value);
-            
-      
         }
+        File f = new File(fileName);  //Write the file
+        PrintWriter pw = new PrintWriter(f);
+        pw.println("Tag,Count\n");
+        for (Map.Entry<String, Integer> entry : sortedTag.entrySet()) {
+                String key = entry.getKey();
+                Integer value = entry.getValue();
+                pw.println(key + "," + value); 
+        }
+        pw.close();
        }
         catch(Exception e){
                 e.printStackTrace();
