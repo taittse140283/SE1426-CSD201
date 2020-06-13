@@ -22,6 +22,7 @@ public class Program {
     public Program(String urlWeb, String fileName) {
         try {
             String content = g.readContent(urlWeb);
+            System.out.println("The processing push và pop the tag in stack:");
             analyzeHTMLTag(content);
             csv.print(); //Testing count function
             csv.sortAndWriteToFile(fileName);
@@ -48,12 +49,10 @@ public class Program {
                 check = true;
             }
             
-            // Only comment tag has '-' character => <!--comment-->
+            // Only comment tag has '-' character => ignore it and keep checking another tag
             else if(content.charAt(i) == '-' && check == true) {
-                tag += "-";
-                processingHTMLTag(tag);
-                check = false;
-                
+                tag = "";
+                check = false;   
             }
             
             //Normal character => write append this character to tag
@@ -86,8 +85,6 @@ public class Program {
         //such as: !DOCTYPE, comment, meta, link, img...
         if(tag.equalsIgnoreCase("<!DOCTYPE>"))
             csv.countingFrequenceAppearance(tag);
-        else if(tag.equalsIgnoreCase("<!-"))
-            csv.countingFrequenceAppearance("<!--comment-->");
         else if(tag.equalsIgnoreCase("<meta>"))
             csv.countingFrequenceAppearance(tag);
         else if(tag.equalsIgnoreCase("<link>"))
@@ -100,8 +97,6 @@ public class Program {
             csv.countingFrequenceAppearance(tag);
         else if(tag.equalsIgnoreCase("<input>"))
             csv.countingFrequenceAppearance(tag);
-        else if(tag.equalsIgnoreCase("<![endif]-")) //This is not a comment
-            csv.countingFrequenceAppearance("<![endif]-->");
         
         //Compare close tag with top of stack tag
         else {
@@ -111,9 +106,9 @@ public class Program {
                 System.out.println();
             }
             //If is a close tag and it equals top of stack tag => pop it out off of stack
-            else if(s.getTop().equalsIgnoreCase(tag.replace("/", "")) == true) {
+            else if(s.getTop().equalsIgnoreCase(tag.replace("/","")) == true) {
                 s.pop(); 
-                csv.countingFrequenceAppearance(tag);
+                csv.countingFrequenceAppearance(tag.replace("/",""));
                 s.print(); //print to screen for testing
                 System.out.println();
             }
