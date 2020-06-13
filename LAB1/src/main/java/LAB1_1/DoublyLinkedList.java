@@ -47,6 +47,9 @@ public class DoublyLinkedList<Player> {
     public boolean isEmpty(){
         return size == 0;
     }
+    public Player getHeadInfo(){
+        return head.getInfo();
+    }
     //them phan tu vao dau list
     public void addFirst(Node<Player> newNode){
         newNode.setNext(head);

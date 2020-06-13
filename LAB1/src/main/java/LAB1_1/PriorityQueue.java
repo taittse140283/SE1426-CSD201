@@ -83,7 +83,10 @@ public class PriorityQueue {
             }
         }
     }
-    public void removePlayerMax() {
+    public void removePlayerMax(){
         list.removeFirst();
+    }
+    public Player getPlayerMax(){
+        return list.getHeadInfo();
     }
 }
