@@ -1,10 +1,14 @@
 package bai2;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * Class CSV contains method that write Frequency of Tag into csv file
+ */
 public class CSV {
     /**
      * Write data into file csv
@@ -26,7 +30,12 @@ public class CSV {
                     pw.println(s);
                 }
 
-            } catch (Exception e) {
+            }
+            catch(IOException e)
+            {
+                System.out.printf("Error: Something's wrong in file processing");
+            }
+            catch (Exception e) {
                 System.out.println("Error: Something's wrong");
             } finally {
                 try {

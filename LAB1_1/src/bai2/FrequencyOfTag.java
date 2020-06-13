@@ -7,7 +7,7 @@ import java.util.*;
  * Create class to can get and compare frequency of Tag
  */
 public class FrequencyOfTag {
-    HashMap<String, Integer> frequencyOfTag;
+    HashMap<String, Integer> frequencyOfTag;//Hash map with key is Tag and value is frequency of Tag
     public FrequencyOfTag()
     {
         frequencyOfTag=new HashMap<>();
@@ -38,7 +38,11 @@ public class FrequencyOfTag {
             frequencyOfTag.put(tag, frequencyOfTag.get(tag)+1);//set value of it equals past frequency plus 1(cause appear again)
         }
     }
-    //test sort, do not comment clearly yet
+
+    /**
+     * Sort HashMap by value(The frequency of Tag)
+     * @return nothing
+     */
     public  void sortHashMap()
     {
         //Get Entry Set of Hash Map and put it into ArrayList listEntry
