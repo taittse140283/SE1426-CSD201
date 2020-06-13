@@ -9,6 +9,7 @@ package lab1;
  *
  * @author Admin
  */
+import 
 public class PriorityQueue {
  
     private DoubleLinkList<Entry> _list = new DoubleLinkList<Entry>();
@@ -19,21 +20,41 @@ public class PriorityQueue {
     public Entry dequeue(){
         return _list.removeFirst();
     }
-    public  Entry first(){
-        for(int i=0; i<_list.size(); i++){
-            
-        }
+    public  Entry findMax(){
         return _list.first();
     }
-    public boolean isEmpty(){
-        return _list.isEmpty();
+    /**
+     * this method to add the entry node to the queue base on the Point of them
+     * @param The Node entry
+     * 
+     */
+     public void insert(Entry e) {
+        int point = e.getPoint();
+        int size = _list.size();
+        if (size == 0) {
+            _list.addFirst(e);
+        } else {
+            if (point > _list.first().getPoint()) {
+                _list.addFirst(e);
+            } else if (point <= _list.last().getPoint()) {
+                _list.addLast(e);
+            } else {
+                for (int i = 0; i < size; i++) {
+                    if (point <= _list.getNode(i).getElement().getPoint()) {
+                        _list.addBetween(e, _list.getNode(i + 1), _list.getNode(i));
+                        return;
+                    }
+                }
+            }
+
+        }
     }
-    public int size(){
-        return _list.size();
-    }
-    public String toString(){
-        return _list.toString();
-    }
+     
+   
+    
+   
+ }
+     
                         
                    
-}
+
