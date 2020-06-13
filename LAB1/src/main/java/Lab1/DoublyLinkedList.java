@@ -10,11 +10,11 @@ package Lab1;
  *
  * @author Admin
  */
-public class DoublyLinkedList {
-    private class Node{
+public class DoublyLinkedList<Player> {
+    private class Node<Player>{
         Player data;
-        Node next;
-        Node prev;
+        Node<Player> next;
+        Node<Player> prev;
 
         /**
          * Constructor
@@ -22,7 +22,7 @@ public class DoublyLinkedList {
          * @param next
          * @param prev 
          */
-        public Node(Player data, Node next, Node prev) {
+        private Node(Player data, Node next, Node prev) {
             this.data = data;
             this.next = next;
             this.prev = prev;
@@ -36,7 +36,7 @@ public class DoublyLinkedList {
             this.data = data;
         }
 
-        public Node getNext() {
+        public Node<Player> getNext() {
             return next;
         }
 
@@ -44,7 +44,7 @@ public class DoublyLinkedList {
             this.next = next;
         }
 
-        public Node getPrev() {
+        public Node<Player> getPrev() {
             return prev;
         }
 
@@ -58,8 +58,8 @@ public class DoublyLinkedList {
      * tail node
      * A variable for tracking size
      */
-    private Node head = null;
-    private Node tail = null;
+    private Node<Player> head = null;
+    private Node<Player> tail = null;
     private int size = 0;
 
     
@@ -127,7 +127,7 @@ public class DoublyLinkedList {
             back.setPrev(front);
             size--;
         }
-        return n.getData();
+        return (Player) n.getData();
     }
     /**
      * this method removes element from the start of the linked list
@@ -159,7 +159,7 @@ public class DoublyLinkedList {
         if(isEmpty()){     //Case, if the list is empty, it will return null
             return null;
         }
-        return head.getNext().getData();
+        return (Player) head.getNext().getData();
     }
     
     /**
@@ -170,7 +170,7 @@ public class DoublyLinkedList {
         if(isEmpty()){      //Case, if the list is empty, it will return null       
             return null;
         }
-        return tail.getPrev().getData();
+        return (Player) tail.getPrev().getData();
     }
     
     /**
