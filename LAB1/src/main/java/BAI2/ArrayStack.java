@@ -12,14 +12,25 @@ package BAI2;
  * @author Thuan Le
  */
 public class ArrayStack<E> implements Stack<E> {
+    /**
+     * Default array capacity
+     * Generic array E used for storage
+     * Index "t" of the top element in stack
+     */
     public static final int CAPACITY =1000;
     private E[] data;
     private int top = -1;
 
+    /**
+     * Constructs stack with default capacity
+     */
     public ArrayStack() {
         this(CAPACITY);
     }
-    
+    /**
+     * Constructs stack with given capacity
+     * @param capacity 
+     */
     public ArrayStack(int capacity){
         data = (E[]) new Object[capacity];
     }
