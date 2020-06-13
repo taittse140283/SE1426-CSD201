@@ -9,20 +9,11 @@ package Bai2;
  *
  * @author Asus
  */
-public class Stack {
-    TgHTML head,tail;
-    public void Stack(){
-        head=tail=null;
-    }
-    public void push(String tagHTML){
-        TgHTML tg= new TgHTML(tagHTML,head,tail);
-        if(head==null){
-            head=tail=tg;
-            head.prev=tail.prev=null;
-            return;
-        }
-        tg.NEXT= head;
-        head.prev= head=tg;
-        head.prev = null;
-    }
+public interface Stack<E> {
+    public int size( );
+    public boolean isEmpty();
+    public void push(E e);
+    E top();
+    E pop();
+    public void print();
 }

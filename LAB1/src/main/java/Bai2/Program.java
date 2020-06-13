@@ -9,10 +9,6 @@ package Bai2;
  *
  * @author Asus
  */
-public class Main {
-    public static void main(String[] args) throws Exception {
-        Program p = new Program();
-        String url="https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
-        String file="output1.csv";
-    }
+public class Program {
+    
 }
