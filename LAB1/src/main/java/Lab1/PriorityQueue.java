@@ -9,33 +9,34 @@ package Lab1;
  *
  * @author Admin
  */
-public class PriorityQueue{
+public class PriorityQueue extends DoublyLinkedList{
+    DoublyLinkedList list = new DoublyLinkedList();
 
     public PriorityQueue() {
     }
     
-    public void add(Player data){
+    public void addPlayer(Player data){
         add(data);
     }
     
-    public void delete(String email){
+    public void deletePlayer(String email){
         delete(email);
     }
     
-    public void update(String email, int point){
-        
+    public void updatePlayer(String email, int point){
+        update(email, point);
     }
     
-    public void search(String email){
-        search(email);
+    public void searchPlayer(String email){
+        searchPlayerByEmail(email);
     }
     
-    public void max(){
-        
+    public void getTopPlayer(){
+        displayTop();
     }
     
-    public void removeMax(){
-        
+    public void removeTopPlayer(){
+        removeTop();
     }
     
 }
