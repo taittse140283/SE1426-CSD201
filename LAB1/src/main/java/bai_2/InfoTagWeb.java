@@ -24,4 +24,33 @@ public class InfoTagWeb {
         this.next = n;
         this.prev = p;
     }
+    /**
+     * All method below here is used to access to private modify(read and write)
+     * Input: with set, the data input is tag, NodeHTML next, NodeHTML prev. With get, no input
+     * Output: with get, the data output is next, prev, tag. With set, no data output
+     * @return 
+     */
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public InfoTagWeb getNext() {
+        return next;
+    }
+
+    public void setNext(InfoTagWeb next) {
+        this.next = next;
+    }
+
+    public InfoTagWeb getPrev() {
+        return prev;
+    }
+
+    public void setPrev(InfoTagWeb prev) {
+        this.prev = prev;
+    }
 }
