@@ -48,7 +48,6 @@ public class Program1 {
         } catch (Exception e) {
             System.out.println("Not found the input file");
         }
-        s.print(); //Print to the screen for tesing 
     }
     
     /**
@@ -89,6 +88,7 @@ public class Program1 {
                 if(args[0].equals("-r") && args[2].equals("-s")) {
                     getPlayerFromFile(args[1]);
                     printToFile(args[3]);
+                    System.out.println("Save successful!");
                 }
                 else if(args[0].equals("-r") && args[2].equals("-g")) {
                     boolean valid = args[3].matches("\\w+@+\\w+.+\\w+(.\\w)?");
@@ -107,6 +107,7 @@ public class Program1 {
                     getPlayerFromFile(args[1]);
                     s.removePlayerHasBiggestPoint();
                     printToFile(args[3]);
+                    System.out.println("Delete and save to file successful!");
                 }
                 else
                     System.out.println("Not valid argument!");
@@ -118,6 +119,7 @@ public class Program1 {
                         getPlayerFromFile(args[1]);
                         s.removePlayer(args[5]);
                         printToFile(args[3]);
+                        System.out.println("Delete and save to file successful!");
                     }
                     else
                         System.out.println("Wrong email format. Its must be <account name>@<domain>");
@@ -133,6 +135,7 @@ public class Program1 {
                             getPlayerFromFile(args[1]);
                             s.addNewPlayer(args[5], Integer.parseInt(args[6]));
                             printToFile(args[3]);
+                            System.out.println("Add and save to file successful!");
                         }
                         else
                             System.out.println("Wrong email format. Its must be <account name>@<domain>");
@@ -147,6 +150,7 @@ public class Program1 {
                             getPlayerFromFile(args[1]);
                             s.updateNewPoint(args[5], Integer.parseInt(args[6]));
                             printToFile(args[3]);
+                            System.out.println("Update and and save to file successful!");
                         }
                         else
                             System.out.println("Wrong email format. Its must be <account name>@<domain>");
