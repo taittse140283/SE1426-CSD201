@@ -158,6 +158,21 @@ public class DoublyLinkedList {
             }while(font!=trailer);
         }
         return null;
+        
+    }
+    public void delete(String email){
+        Node tam= seachByEmail(email);
+        boolean check =true;
+        if(tam!=trailer){
+            tam.prev.next=tam.next;
+            tam.next.prev=tam.prev;
+            tam=null;
+            System.out.println("delete sucess");
+            check =false;
+        }
+        if(check==true){
+            System.out.println("delete fail");
+        }
     }
   
     /**
@@ -165,7 +180,7 @@ public class DoublyLinkedList {
      */
     public void print() {
         for (Node n = header.next; n != trailer; n = n.next) {
-            System.out.println(n.point);
+            System.out.println("Email"+n.email+""+"Point"+n.point);
         }
     }
 
