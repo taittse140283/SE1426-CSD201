@@ -145,4 +145,13 @@ public class checkWeb{
         else if(tag.equalsIgnoreCase("<hr>")){
             csv.countTag(tag);
         }
+        else if(tag.equalsIgnoreCase("<input>")){
+            csv.countTag(tag);
+        }          
+        else if(tag.equalsIgnoreCase("<audio>")){
+            csv.countTag(tag);
+        }
+        else if(tag.equalsIgnoreCase("<video>")){
+            csv.countTag(tag);
+        }
 }
