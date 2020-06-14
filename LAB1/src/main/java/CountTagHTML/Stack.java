@@ -50,4 +50,11 @@ public class Stack {
         tail = tail.prev;
         tail.next = null;
     }
+    
+    //display all node in stack to screen
+    public void print(){
+        for(TagHTML t = head; t != null; t = t.next){
+            System.out.println(t.getTag() + "\t");
+        }
+    }
 }
