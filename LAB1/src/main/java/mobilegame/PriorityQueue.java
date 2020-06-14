@@ -94,6 +94,9 @@ public class PriorityQueue {
     public void removeMax() {
         list.removeFirst();
     }
+    public void removeMin() {
+        list.removeLast();
+    }
 
     public boolean isEmpty() {
         return list.isEmpty();
