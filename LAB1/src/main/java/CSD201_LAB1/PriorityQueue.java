@@ -44,6 +44,15 @@ public class PriorityQueue {
                 currentNode.left=newNode;
             }
         }
+        
     }
+    public node SearchByEmail(String email){
+        node currentNode=list.head.right;
+        while(!(currentNode.getEmail().contentEquals(email))&&(currentNode!=list.tail)){
+            currentNode=currentNode.right;
+        }
+        return currentNode;
+    }
+    
     
 }
