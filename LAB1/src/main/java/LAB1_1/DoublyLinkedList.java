@@ -93,6 +93,24 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
             }
         }
     }
+    
+    /**
+     * Remove the head node and 
+     * @return  return the object that is contained in the removed node
+     */
+    public E removeFirst() {
+        if (size == 0) {  // if list is empty, return null
+            return null;
+        } else {
+            Node<E> temp = head;
+            head = head.next;
+            size--;
+            if (head == null) {
+            tail = null;
+            }
+            return temp.element;
+        }
+    }
         
     @Override
     public void clear() {
