@@ -38,5 +38,23 @@ public class Stack {
         head = tag;
         head.prev = null;
     }
+    //xoa phan tu (remove first) 
+        public void pop(){
+        //check stack rong
+        
+        if(isEmpty()){
+            System.out.println("Stack empty");
+        }
+        //xoa khi chi con 1 node
+        else if(head == tail) {
+            head = tail = null;
+            //after remove, print it.
+            System.out.println("list is empty");
+            return;
+        }else{
+        head = head.next;
+        head.prev = null;}
+    }
+    
 
 }
