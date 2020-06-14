@@ -18,6 +18,10 @@ public class DoublyLinkedList<E> {
         private Node<E> next; // tham chiếu giá trị tiếp theo
         private Node<E> prev; // tham chiếu giá trị sau đó
 
+        public Node(E element) {
+            this.element = element;
+        }
+
         public Node(E e, Node<E> n, Node<E> p) {
             this.element = e;
             this.next = n;
@@ -49,6 +53,31 @@ public class DoublyLinkedList<E> {
     private Node<E> header;
     private Node<E> trailer;
     private int size = 0;
+
+    public Node<E> getHeader() {
+        return header.getNext();
+    }
+
+    public Node<E> getTrailer() {
+        return trailer.getPrev();
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setHeader(Node<E> header) {
+        this.header = header;
+    }
+
+    public void setTrailer(Node<E> trailer) {
+        this.trailer = trailer;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+    
 
     public DoublyLinkedList() {
         header = new Node(null, null, null);
@@ -111,4 +140,6 @@ public class DoublyLinkedList<E> {
         if(isEmpty()) return null;
         return  remove(trailer.getPrev());
     }
+    
+    
 }
