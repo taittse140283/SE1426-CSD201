@@ -38,7 +38,21 @@ public class PriorityQueue {
 
         this.list.add(0, infor);
     }
+    /**
+     * This method below here is used to get the email and point from player
+     * Input data is email
+     * @param email
+     * @return 
+     */
+    public long get(String email) {
+        for(int i = 0; i < this.size(); ++i) {
+            if (((Infor)this.list.get(i)).getEmail().equals(email)) {
+                return ((Infor)this.list.get(i)).getPoint();
+            }
+        }
 
+        return -1;
+    }
     
    
 }
