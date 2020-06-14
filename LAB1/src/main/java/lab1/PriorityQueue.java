@@ -56,77 +56,69 @@ public class PriorityQueue {
             }
         }       
     }
-    public  void findMax(){
-         list.first();
+    /**
+     * this method will find the entry 
+     * @param is a email
+     */
+    public Node<Entry> getNode(String email) {
+        Node<Entry> current = list.getHeader();
+        while (!current.getElement().getEmail().equals(email)){
+            current = current.getNext();
+        }
+        return current;
     }
     
-     
+    
+    
      /**
       * this method to remove a person base on the email of them
       * @param The email 
-      * @return if remove success, return immediately out of the list
+      * 
       */
-     public void remove(String email) {
-        int size = list.getSize();
-        for (int i = 0; i < size; i++) {
-            if (email.equals(list.getElementNode(i).getEmail())) {
-                list.remove(list.getNode(i));
-                return;
+    public void deletePlayer(String email) {
+        Node<Entry> player = getNode(email);
+        if (player == null) { 
+            System.out.println("Not found email");
+        } else {
+            if(player == list.getHeader()){
+                list.removeFirst();
+            }
+            else if(player == list.getTailer()){
+                list.removeLast();
+            }
+            else {
+                list.remove(player);
             }
         }
-        System.out.println("The Entry person doesn't exit!!!!");
     }
+    //xoa nguoi choi dau danh sach O(1)
+    public Entry removePlayerMax(){
+        return list.removeFirst();
+    }
+    //xoa nguoi choi cuoi danh sach
+    public Entry removePlayerMin(){
+        return list.removeLast();
+    }
+    //tim kiem nguoi choi dau danh sach O(1)
+    public Entry getPlayerMax(){
+        return list.getHeadElement();
+    }
+    
+     
+    
+  
      
      /**
       * this method will find a entry person base on the email of them, if find, return them, or not, print the person doesn't exit.
       *@param the entry email of the person want to find
       * @return the person you finded.
       */
-     public void find(String mail) {
-        int size = list.size();
-        for (int i = 0; i < size; i++) {
-            if (mail.equals(list.getElementNode(i).getEmail())) {
-                System.out.println("Email:\n" + list.getElementNode(i));
-                return;
-            }
-        }
-        System.out.println("The person you entered does not exist");
-    }
-     /**
-      * this method will update the person's Point base on the email you enter.
-      * @param the email and new Point you want to update
-      * @return new Point of the email you entered
-      * 
-      */
-      public void update(String mail, int new_point) {
-        String new_email;
-        int size = list.size();
-        for (int i = 0; i < size; i++) {
-            if (mail.equals(list.getElementNode(i).getEmail())) {
-                list.getElementNode(i).setPoint(new_point);
-                System.out.println("Successfully!");
-                return;
-            }
-        }
-        System.out.println("he person you entered does not exist");
-    }
-      /** print the list
-       */
-      public void print() {
-        list.print();
-    }
+   
+     
+    
       
-      /**
-      *print the list to file 
-      * @param a file name you want to write
-      */
-      public void printtoFile(String Filename) throws IOException {
-        list.printtoFile(Filename);
-    }
-      public String toString(){
-          
-          return list.toString();
-      }
+      
+     
 
     
    
