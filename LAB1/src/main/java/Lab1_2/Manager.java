@@ -21,7 +21,7 @@ public class Manager {
     /**
      * this method count the tag in the URL
      *
-     * @param tag
+     * @param is tag
      */
     public void count(String tag) {
         if (hs.containsKey(tag) == false) {
@@ -34,7 +34,7 @@ public class Manager {
     /**
      * this method check kind of tag and count
      *
-     * @param tag
+     * @param is tag
      */
     public void checkTag(String tag) {
         // check special tag 
@@ -79,6 +79,32 @@ public class Manager {
                 s.pop();
                 s.print();
                 System.out.println();
+            }
+        }
+    }
+
+    /**
+     * this method check tag with "<", ">" "-"
+     *
+     * @param is content of URL
+     */
+    public void solveTag(String content) {
+        String tag = "";
+        boolean check = false;
+        for (int i = 0; i < content.length(); i++) {
+            if (content.charAt(i) == '<') {
+                tag = "<";
+                check = true;
+            } else if (content.charAt(i) == '-' && check == true) {
+                tag = tag + "-";
+                checkTag(tag);
+                check = false;
+            } else if (content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true) {
+                tag = tag + content.charAt(i);
+            } else if (((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
+                tag = tag + ">";
+                check = false;
+                checkTag(tag);
             }
         }
     }
