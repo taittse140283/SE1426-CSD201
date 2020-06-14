@@ -44,6 +44,10 @@ public class DoubleLinkList {
         node newNode=new node(email, point);
         return newNode;
     }
+    public boolean isEmpty(){
+        return(head.right==tail);
+    }
+    
     
 
 }
