@@ -53,6 +53,34 @@ public class PriorityQueue {
 
         return -1;
     }
-    
+    /**
+     * This method below here is used to delete the player by use input email
+     * Input data is email
+     * @param email 
+     */
+     public void remove(String email) {
+        for(int i = 0; i < this.size(); ++i) {
+            if (((Infor)this.list.get(i)).getEmail().equals(email)) {
+                this.list.remove(i);
+            }
+        }
+
+    }
+     /**
+      * This method below here is used to update the email and point of player and update the list
+      * Input data is email and point
+      * @param email
+      * @param point 
+      */
+    public void update(String email, int point) {
+        for(int i = 0; i < this.size(); ++i) {
+            if (((Infor)this.list.get(i)).getEmail().equals(email)) {
+                Infor info = (Infor)this.list.remove(i);
+                info.setPoint(point);
+                this.add(info);
+            }
+        }
+
+    }
    
 }
