@@ -30,7 +30,7 @@ public class Manager {
      * @return
      * @throws Exception 
      */
-    public static String readHTML(String urlString) throws Exception{
+    public String readHTML(String urlString) throws Exception{
         String content = "";        
         BufferedReader br = null;
         
@@ -61,7 +61,7 @@ public class Manager {
      * @param fileName
      * @throws FileNotFoundException 
      */
-    public static void writeToFile(HashMap<String, Integer> hashMap, String fileName) throws FileNotFoundException{
+    public void writeToFile(HashMap<String, Integer> hashMap, String fileName) throws FileNotFoundException{
         Map<String, Integer> sort = hashMap.entrySet().stream()
                 .sorted((Map.Entry.<String, Integer> comparingByValue().reversed()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
@@ -149,6 +149,18 @@ public class Manager {
                 check = false;
                 addTag(tag);
             }
+        }
+    }
+    
+    public void runLab2(String url, String fileName){
+        
+        try {
+            String content = null;
+            readHTML(url);
+            analyzeTagHTML(content);
+            writeToFile(hashMap, fileName);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
