@@ -53,6 +53,20 @@ public class PriorityQueue {
         }
         return currentNode;
     }
-    
-    
+    public void delete(String email){
+        node currentNode=SearchByEmail(email);
+        if(currentNode==list.tail){
+            System.err.println("can't find");
+        }else{
+            delete(currentNode.toString());
+            System.out.println("delete"+email+"from queue");
+            
+            
+        }
+    }
+    public void delete(node currentNode){
+        currentNode.left.right=currentNode.right;
+        currentNode.right.left=currentNode.left;
+        currentNode=null;
+    }
 }
