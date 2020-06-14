@@ -10,7 +10,7 @@ package BAI1;
  * @author Thuan Le
  */
 public class Argument {
-    public void runlab1(){
-        
+    Manager obj = new Manager();
+    public void parsingArgument(String[] args){
     }
 }
