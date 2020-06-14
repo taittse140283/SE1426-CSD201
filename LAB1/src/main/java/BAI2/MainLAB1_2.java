@@ -11,7 +11,7 @@ package BAI2;
  */
 public class MainLAB1_2 { 
     public static void main(String[] args) {
-        String url = "https://www.facebook.com/?ref=tn_tnmn";
+        String url = "https://hamtruyen.com/";
         String file = "outputlab2.csv";
         Manager run = new Manager();
         run.runLab2(url, file);
