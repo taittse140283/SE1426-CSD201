@@ -12,12 +12,12 @@ package CSD201_LAB1;
 public class DoublyLinkedList {
 
     //---------nested Node class---------
-    private static class Node {
+    public static class Node {
 
-        private double point;//reference to the point at this node
+        private int point;//reference to the point at this node
         private String email;//reference to email at this node
-        private Node next;//reference to the subsequent node in the list 
-        private Node prev;//reference to the previous node in the list
+        public Node next;//reference to the subsequent node in the list 
+        public Node prev;//reference to the previous node in the list
 
         /**
          *
@@ -25,7 +25,7 @@ public class DoublyLinkedList {
          * @param next_node
          * @param prev_mode
          */
-        public Node(double point, String email, Node next_node, Node prev_mode) {
+        public  Node(String email,int point, Node next_node, Node prev_mode) {
             this.point = point;
             this.email = email;
             this.next = next_node;
@@ -36,7 +36,7 @@ public class DoublyLinkedList {
             return point;
         }
 
-        public void setPoint(double point) {
+        public void setPoint(int point) {
             this.point = point;
         }
 
@@ -66,8 +66,8 @@ public class DoublyLinkedList {
 
     }//------end of nested Node class---------
     //instance variables of the DoublyLinkedList
-    private Node header;//header sentinel
-    private Node trailer;//trailer sentinel
+    public Node header;//header sentinel
+    public Node trailer;//trailer sentinel
 
     /**
      * COnstructs a new empty list
@@ -76,13 +76,13 @@ public class DoublyLinkedList {
      *
      */
     public DoublyLinkedList() {
-        header = new Node(Double.MAX_VALUE, null, null, null);//create header
-        trailer = new Node(Double.MIN_VALUE, null, null, header);//trailer is preceded by header
+        header = new Node(null, 0, null, null);//create header
+        trailer = new Node(null, 0, null, header);//trailer is preceded by header
         header.next = trailer;//header is followed by trailer
     }
 
-    private void insert(double point, String email, Node font, Node back) {
-        Node new_node = new Node(point, email, back, font);
+    public void insert(int point, String email, Node font, Node back) {
+        Node new_node = new Node(email,point, back, font);
         font.next = new_node;
         back.prev = new_node;
 
@@ -122,7 +122,7 @@ public class DoublyLinkedList {
     }
 
     /*remove and return the Node*/
-    private Node remove(Node n) {
+    public Node remove(Node n) {
         if (n != header && n != trailer) {
             Node font = n.prev;
             Node back = n.next;
@@ -159,6 +159,7 @@ public class DoublyLinkedList {
         }
         return null;
     }
+  
     /**
      * print point
      */
