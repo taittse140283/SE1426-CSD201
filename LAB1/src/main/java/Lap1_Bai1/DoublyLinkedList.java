@@ -5,6 +5,8 @@
  */
 package Lap1_Bai1;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
@@ -12,9 +14,54 @@ import java.io.PrintWriter;
  * @author PC
  */
 public class DoublyLinkedList {
-    private DLLNode header;
-    private DLLNode trailer;
-    private int listSize = 0;
+    public class DLLNode {
+    public Information data;
+    public DLLNode left = null;
+    public DLLNode right = null;
+    
+    public DLLNode(Information data, DLLNode next, DLLNode Prev){
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+    
+    public DLLNode(Information data){
+        this.data = data;
+    }
+    
+    public Information getData() {
+        return data;
+    }
+
+    public void setData(Information data) {
+        this.data = data;
+    }
+
+    public DLLNode getLeft() {
+        return left;
+    }
+
+    public void setLeft(DLLNode left) {
+        this.left = left;
+    }
+
+    public DLLNode getRight() {
+        return right;
+    }
+
+    public void setRight(DLLNode Right) {
+        this.right = right;
+    }
+    //getter, setter
+
+        void setPoint(int point) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+    public DLLNode header;
+    public DLLNode trailer;
+    public int listSize = 0;
     
     public DoublyLinkedList(){
         header = new DLLNode(null, null, null);
@@ -37,18 +84,7 @@ public class DoublyLinkedList {
      * Hàm để lấy thông tin của người chơi đầu tiên của danh sách
      * @return Information
      */
-    
-    public Information getLast(){
-        if(isEmpty()){
-            return null;
-        }
-        return trailer.getLeft().getData();
-    }
-    /**
-     * Trả về người chơi ở cuối danh sách
-     * @return Information
-     */
-    
+ 
     public int listSize(){
         return listSize;
     }
@@ -72,7 +108,7 @@ public class DoublyLinkedList {
     
     public Information removeFirst(){
         if(isEmpty()){
-            return null;
+            System.err.println("The list is empty!!!");
         }
         return remove(header.getRight());
     }
@@ -84,7 +120,7 @@ public class DoublyLinkedList {
     
     public Information removeLast(){
         if(isEmpty()){
-            return null;
+            System.err.println("The list is empty!!!");
         }
         return remove(trailer.getLeft());
     }
@@ -95,20 +131,12 @@ public class DoublyLinkedList {
      */
     
     public DLLNode findPlayerByEmail(String email){
-        if(isEmpty()){
-            System.out.println("The list is empty!!!");
-        } else{
-            DLLNode rightNode = header.getRight();
-            do{
-                if(rightNode.getData().getEmail().equalsIgnoreCase(email)){
-                    return rightNode;
-                } else{
-                    rightNode = rightNode.getRight();
-                }
-            }
-            while(rightNode != trailer);
-        }
-        return null;
+        for (DLLNode n = header.right; n != trailer; n = n.right) {
+	    if (n.getData().getEmail().equalsIgnoreCase(email)) {
+		return n.getRight();
+	    }
+	}
+	return null;
     }
     /**
      * Tìm người chơi có email giống với email cần tìm kiếm
@@ -116,25 +144,7 @@ public class DoublyLinkedList {
      * @return có thì lấy dữ liệu(point), không thì trả về null
      */
     
-    public void deletedPlayer(String email){
-        if(isEmpty()){
-            System.out.println("The list is empty!!!");
-        } else{
-            DLLNode findPlayer = findPlayerByEmail(email);
-            if(findPlayer == null){
-                System.out.println("Player doesn't exit!!!");
-            } else{
-                int point = findPlayer.getData().getPoint();
-                System.out.println("Email: " + email + " | Point: " + point);
-            }
-        }
-    }
-    /**
-     * Xóa người chơi thông qua emial nhập vào thực hiện trong hàng đợi ưu tiên
-     * @param email
-     */
-    
-    private void add(Information data, DLLNode rightNode, DLLNode leftNode){
+    public void add(Information data, DLLNode rightNode, DLLNode leftNode){
         DLLNode newNode = new DLLNode(data, rightNode, leftNode);
         rightNode.setLeft(newNode);
         leftNode.setRight(newNode);
@@ -147,8 +157,11 @@ public class DoublyLinkedList {
      * @param leftNode 
      */
     
-    private void addFirst(Information data){
-        add(data, header.getRight(), header);
+    public void addFirst(DLLNode newNode){
+        header.right.left = newNode;
+	newNode.right = header.right;
+	newNode.left = header;
+	header.right = newNode;;
     }
     /**
      * Thêm dữ liệu của người chơi vào ở đầu danh sách
@@ -157,24 +170,48 @@ public class DoublyLinkedList {
      * @return 
      */
     
-    private void addLast(Information data){
-        add(data, trailer, trailer.getLeft());
+    public void addLast(DLLNode newNode){
+        trailer.left.right = newNode;
+	newNode.left = trailer.left;
+	newNode.right = trailer;
+	trailer.left = newNode;
     }
     /**
      * Thêm một người chơi vào cuối danh sách
      * @param data
      */
     
-    private void addBetween(Information data, DLLNode rightNode){
-        if(rightNode == null){
-            addLast(data);
-        } else{
-            DLLNode nodeLeft = rightNode.getLeft();
-            DLLNode nodeRight = new DLLNode(data, rightNode, nodeLeft);
-            rightNode.setLeft(nodeRight);
-            nodeLeft.setRight(rightNode);
-            listSize++;
-        }
+    public void addBetween(Information data){
+        DLLNode newbie = new DLLNode(data, trailer, header);
+	int point = data.getPoint();
+	//if list is empty
+	if(isEmpty()){
+	    header.right = newbie;
+	    newbie.left = header;
+	    newbie.right = trailer;
+	    trailer.left = newbie;
+	} else{
+	    int pointOfHeader = header.right.getData().getPoint();
+	    int pointOfTrailer = trailer.left.getData().getPoint();
+	    //if input point < point of trailer, add new trailer
+	    if (point < pointOfTrailer) {
+		addLast(newbie);
+	    } //if input point > point of header, add new header
+	    else if (point > pointOfHeader) {
+		addFirst(newbie);
+	    } //normal case, go through the list and compare every node until get right position
+	    else{
+		DLLNode currentNode = trailer.left;
+		while (currentNode.getData().getPoint() < newbie.getData().getPoint()){
+		    currentNode = currentNode.left;
+		}
+		currentNode.right.left = newbie;
+		newbie.left = currentNode;
+		newbie.right = currentNode.right;
+		currentNode.right = newbie;
+	    }
+	}
+	listSize++;
     }
     /**
      * Thêm 1 người chơi mới vào giữa 2 người chơi trong hàng ưu tiên
@@ -182,150 +219,70 @@ public class DoublyLinkedList {
      * @param rightNode
      */
     
-    public DLLNode findNode(int point){
-        DLLNode rightNode = header.getRight();
-        do{
-            if(rightNode.getData().getPoint() > point){
-                return rightNode;
-            } else{
-                rightNode = rightNode.getRight();
-            }
-        } while(rightNode != trailer);
-        return null;
+    public void printList() {
+	//begin in the first node after header
+	DLLNode currentNode = header.getRight();
+	//this loop will scan every node and it will stop until meet the trailer
+	while(currentNode != trailer){
+	    System.out.println(currentNode.getData() + "\n");
+	    currentNode = currentNode.getRight();
+	}
     }
     /**
-     * Tìm kiếm vị trí node để chèn trong hàng đợi ưu tiên
-     * @param data 
+     * Dùng để in ra tất cả các người chơi trong list 
      */
     
-    public void addNode(Information data){
-        int point = data.getPoint();
-        if(isEmpty()){
-            addFirst(data);
-        } else{
-            if(point < header.getRight().getData().getPoint()){
-                addFirst(data);
-            } else if(point > trailer.getLeft().getData().getPoint()){
-                addLast(data);
-            } else{
-                DLLNode nodeFind = findNode(point);
-                addBetween(data, nodeFind);
-            }
-        }
+    public DLLNode findPlayerDelete(String email){
+	for(DLLNode n = trailer.left; n != header; n = n.left){
+	    if(n.getData().getEmail().equalsIgnoreCase(email)){
+		return n;
+	    }
+	}
+	return null;
     }
     /**
-     * Thêm 1 node vào hàng đợi ưu tiên
-     * @param data
-     */
-    
-    public void DisplayPoint(String email){
-        if(isEmpty()){
-            System.out.println("The list is empty!!!");
-        } else{
-            DLLNode findPlayer = findPlayerByEmail(email);
-            if(findPlayer == null){
-                System.out.println("Player doesn't exit!!!");
-            } else{
-                int point = findPlayer.getData().getPoint();
-                System.out.println("Email: " + email + " | Point: " + point);
-            }
-        }
-    }
-    /**
-     * In ra màn hình điểm của người chơi được tiềm kiếm trong hàm đợi ưu tiên
+     * Dùng để tìm email của người chơi do người dùng nhập 
      * @param email
+     * @return DLLNode
      */
     
-    public void displayPointTop(){
-        if(getLast() == null){
-            System.out.println("The list is empty!!!");
-        } else{
-            Information pointTopPlayer = getLast();
-            String email = pointTopPlayer.getEmail();
-            int point = pointTopPlayer.getPoint();
-            System.out.println("Email: " + email + " | Point: " + point);
-        }
+    public Information removeNode(String email){
+	DLLNode delNode = findPlayerDelete(email);
+	if(delNode != null){
+	    return remove(delNode);
+	}
+	return null;
     }
     /**
-     * In ra màn hình người chơi có đứng đầu trong danh sách ưu tiên
-     */
-    
-    public void updateUser(String email, int point){
-        if(isEmpty()){
-            System.out.println("The list is empty!!!");
-        } else{
-            DLLNode nodeUser = findPlayerByEmail(email);
-            if(nodeUser == null){
-                System.out.println("Player doesn't exit!!!");
-            } else{
-                nodeUser.getData().setEmail(email);
-                nodeUser.getData().setPoint(point);
-                checkUpdate(nodeUser);
-            }
-        }
-    }
-    /**
-     * Cập nhật lại diểm của người chơi bằng cách sử dụng email trong hàng đợi ưu tiên
+     * Dùng để xóa node của người chơi có email được nhập vào
      * @param email
-     * @param point
+     * @return người chơi bị xóa
      */
     
-    public void checkUpdate(DLLNode player){
-        DLLNode checkUpdate = findNode(player.getData().getPoint());
-        if(checkUpdate == null){
-            remove(player);
-            addLast(player.getData());
-        } else{
-            remove(player);
-            addBetween(player.getData(), checkUpdate);
-        }
+    public void writeToCSVfile(String fileName) throws IOException{
+	FileWriter fr = null;
+	try {
+	    fr = new FileWriter(fileName);
+	    fr.append("Email, Point\n");
+	    for (DLLNode n = header.right; n != trailer; n = n.right){
+		String data = String.format("%s, %d\n", n.getData().getEmail(), n.getData().getPoint());
+		fr.append(data);
+	    }
+	} catch (IOException e) {
+	    System.out.println("Something wrong with writing to file!!");
+	} finally{
+	    try {
+		if(fr != null) {
+		    fr.close();
+		}
+	    } catch (IOException e) {
+		System.out.println("File not exist!!");
+	    }
+	}
     }
     /**
-     * Cập nhật lại vị trí của người chơi sau khi cập nhật điểm, cấu trúc hàng đợi ưu tiên
-     * @param player
-     */
-    
-    public void writeData(DoublyLinkedList list, String fileName){
-        if(list == null || list.isEmpty()){
-            return;
-        }
-        PrintWriter writeFile = null;
-        try {
-            writeFile = new PrintWriter(fileName);
-            DLLNode node = header.getRight();
-            while(node != trailer){
-                writeFile.println(node.getData().toString());
-                node = node.right;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally{
-            try {
-                if(writeFile != null){
-                    writeFile.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    /**
-     * Hàm để ghi file
-     * @param list
+     * Dùng để lấy danh sách vào ghi tất cả thông tin của người chơi 
      * @param fileName
-     */
-    
-    public void printList(DoublyLinkedList list){
-        DLLNode node = header.getRight();
-        while(node != trailer){
-            String email = node.getData().getEmail();
-            int point = node.getData().getPoint();
-            System.out.println("Email: " + email + " | Point: " + point);
-            node = node.right;
-        }
-    }
-    /**
-     * Hàm để in ra màn hình
-     * @param list
+     * @throws IOException
      */
 }
