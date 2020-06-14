@@ -68,5 +68,11 @@ public class Manager {
         
         File f = new File(fileName);
         PrintWriter pw = new PrintWriter(f);
+        pw.println("Tag-Value\n");
+        for(Map.Entry<String, Integer> entry : sort.entrySet()){
+            String key = entry.getKey();
+            Integer val = entry.getValue();
+            pw.println(key + ", " + val );
+        }
     }
 }
