@@ -51,6 +51,11 @@ public class Stack {
         tail.next = null;
     }
     
+    //Get the top tag of stack
+    //@return tail.tag
+    public String getTop(){
+        return tail.getTag();
+    }
     //display all node in stack to screen
     public void print(){
         for(TagHTML th = head; th != null; th = th.next){
