@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import mobilegame.Gamer;
 import mobilegame.PriorityQueue;
+import mobilegame.FileCSV;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -76,17 +77,17 @@ public class Main {
         String msg = CLIChecker(args);
         if (msg.equals("") && args[0].equals("1")) {
             try {
-                PriorityQueue queue = readFile(args[contains(args, "-r") + 1]);
+                PriorityQueue queue = FileCSV.readFile(args[contains(args, "-r") + 1]);
                 long point;
                 if (contains(args, "-g") != -1) {
-                    point = queue.get(args[contains(args, "-g") + 1]);
+                    point = queue.searchPoint(args[contains(args, "-g") + 1]);
                     if (point == -1L) {
                         System.out.println("Error: Cannot find the input email");
                     } else {
                         System.out.println(point);
                     }
                 } else if (contains(args, "-t") != -1) {
-                    point = queue.min().getPoint();
+                    point = queue.searchMaxPoint();
                     System.out.println(point);
                 } else {
                     String email;
