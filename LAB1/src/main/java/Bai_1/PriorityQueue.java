@@ -80,7 +80,17 @@ public class PriorityQueue {
                 this.add(info);
             }
         }
+    }
+    /**
+     * This method below here is used to delete min value
+     * @return 
+     */
+    public Infor removeMin() {
+        return (Infor)this.list.remove(0);
+    }
 
+    public Infor min() {
+        return (Infor)this.list.get(0);
     }
    
 }
