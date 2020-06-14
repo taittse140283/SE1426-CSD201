@@ -39,5 +39,38 @@ public class Stack {
         head = tag;
         head.prev = null;        
     }
-   
+    /**
+     * this method will remove a node in the stack
+     * @param no parametter
+     */
+    public void pop(){
+        //check the stack is empty?
+        
+        if(isEmpty()){
+            System.out.println("empty stack");
+        }
+        //remove when the stack just have only one node
+        else if(head == tail) {
+            head = tail = null;
+            //after remove, print it.
+            System.out.println("list is empty");
+            return;
+        }else{
+        head = head.next;
+        head.prev = null;}
+    }
+    /**
+     * this method will get the top of the stack 
+     * @param no parametter
+     */
+    public String Top() {
+        return head.getTagHTML();
+    }
+    /**
+     * this method will to print
+     */
+    public void print() {
+        for(NodeHTML tag = tail; tag != null; tag = tag.prev)
+            System.out.print(tag.tag + " ");
+    }
 }
