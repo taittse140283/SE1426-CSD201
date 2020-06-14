@@ -36,7 +36,8 @@ public class DoubleLinkedList {
         }
         return (result.getPoint().compareTo(point) == 0) ? result : null;
     }
-     public Gamer add(Gamer x) {
+
+    public Gamer add(Gamer x) {
         Gamer newEle = x;
         Gamer after = ceiling(x.point);
         if (head == null) {
@@ -60,12 +61,14 @@ public class DoubleLinkedList {
         }
         return newEle;
     }
-     public void add(Gamer... groupGamer) {
+
+    public void add(Gamer... groupGamer) {
         for (Gamer gamer : groupGamer) {
             add(gamer);
         }
     }
-     public Gamer removeLast() {
+
+    public Gamer removeLast() {
         Gamer gamer = tail;
         Gamer gamerLast = tail.previous;
         tail = gamerLast;
@@ -73,7 +76,8 @@ public class DoubleLinkedList {
 
         return gamer;
     }
-     private class Traverser implements MyIterator<Gamer> {
+
+    private class Traverser implements MyIterator<Gamer> {
 
         Gamer curRef;
 
@@ -93,6 +97,13 @@ public class DoubleLinkedList {
             return curRef;
         }
 
+    }
+
+    public MyIterator iterator() {
+        if (head == null) {
+            return null;
+        }
+        return new Traverser();
     }
 
 }
