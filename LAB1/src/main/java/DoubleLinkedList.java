@@ -8,7 +8,6 @@
  * @author Admin
  */
 public class DoubleLinkedList {
-    
 
     Gamer head;
     Gamer tail;
@@ -16,11 +15,13 @@ public class DoubleLinkedList {
     public DoubleLinkedList() {
         head = tail = null;
     }
-     //check empty
+    //check empty
+
     public boolean isEmpty() {
         return head == null;
     }
-     public Gamer ceiling(Comparable point) {
+
+    public Gamer ceiling(Comparable point) {
         Gamer t = head;
         while (t != null && t.getPoint().compareTo(point) < 0) {
             t = t.next;
@@ -28,6 +29,12 @@ public class DoubleLinkedList {
         return t;
     }
 
+    public Gamer search(Comparable point) {
+        Gamer result = ceiling(point);
+        if (result == null) {
+            return null;
+        }
+        return (result.getPoint().compareTo(point) == 0) ? result : null;
+    }
 
-      
 }
