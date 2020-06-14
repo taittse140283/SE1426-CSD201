@@ -15,6 +15,7 @@ public class Manager {
      HashMap<String,Integer> hashmap = new HashMap<>(); 
     Stack stack = new Stack();
     GetURl get = new GetURl();
+    WriteFile wr = new WriteFile();
     
     
     /**this method will check  tagHTML? base on character "<", ">" "-"
@@ -110,4 +111,19 @@ public class Manager {
             }
         }
 }
+    /**
+     * this method will do the job instead of main(like read content url,check tag, then write tag to file)
+     * @param a url of the web want do check
+     * @param a file name want to write to
+     */
+    public void Manager(String url , String fileName){
+        String content;
+        try {
+            content = get.readContent(url);
+            analyzeTag(content);
+            wr.WriteFile(hashmap,fileName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
