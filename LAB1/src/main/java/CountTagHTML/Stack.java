@@ -53,8 +53,8 @@ public class Stack {
     
     //display all node in stack to screen
     public void print(){
-        for(TagHTML t = head; t != null; t = t.next){
-            System.out.println(t.getTag() + "\t");
+        for(TagHTML th = head; th != null; th = th.next){
+            System.out.println(th.getTag() + "\t");
         }
     }
 }
