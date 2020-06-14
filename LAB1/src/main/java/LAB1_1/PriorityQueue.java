@@ -34,4 +34,23 @@ public class PriorityQueue{
             }
         }
     }
+    
+    public void update(String email, int point){
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getEmail().equals(email)){
+                Player data = list.remove(i);
+                data.setPoint(point);
+                addPlayer(data);
+            }
+        }
+    }
+    
+    public long get(String email){
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getEmail().equals(email)){
+                return list.get(i).getPoint();
+            }
+        }
+        return 0;
+    }
 }
