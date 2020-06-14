@@ -49,9 +49,18 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
             return tail.element;
         }
     }
+    
+    /**
+     * Add an element to the beginning of the list
+     * @param index
+     * @param e 
+     */
     @Override
     public void add(int index, E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Node<E> newNode = new Node<E>(e); //Create a newNode
+        newNode.next = head; // Attach newNode with head
+        head = newNode; // head point to the newNode
+        size++; // Icrease size
     }
 
     @Override
