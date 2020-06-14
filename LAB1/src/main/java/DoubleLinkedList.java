@@ -73,5 +73,26 @@ public class DoubleLinkedList {
 
         return gamer;
     }
+     private class Traverser implements MyIterator<Gamer> {
+
+        Gamer curRef;
+
+        public Traverser() {
+            curRef = new Gamer(0, "");
+            curRef.next = head;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return curRef.next != null;
+        }
+
+        @Override
+        public Gamer next() {
+            curRef = curRef.next;
+            return curRef;
+        }
+
+    }
 
 }
