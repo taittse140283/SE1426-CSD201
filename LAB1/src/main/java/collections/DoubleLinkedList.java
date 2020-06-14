@@ -23,8 +23,8 @@ public class DoubleLinkedList<E> {
         public void setElement(E e) { element = e; }
     }
     /*Define variable*/
-    private Node<E> head;
-    private Node<E> tail;
+    private final Node<E> head;
+    private final Node<E> tail;
     private int size = 0;
     public Node<E> getHead() {
         return this.head;
@@ -61,26 +61,26 @@ public class DoubleLinkedList<E> {
         addBetween(e, tail.getPrev(), tail);
     }
     /*Remove and return the first element of the list*/
-    public E removeFirst(E e) {
+    public E removeFirst() {
         if (isEmpty()) return null;
         return remove(head.getNext());
     }
     /*Remove and return the last elment of the list*/
-    public E removeLast(E e) {
+    public E removeLast() {
         if (isEmpty()) return null;
         return remove(tail.getPrev());
     }
 
     /*Adds an element to between two next element in the list*/
-    protected void addBetween(E e, Node<E> predecessor, Node<E> successor) {
+    public void addBetween(E e, Node<E> predecessor, Node<E> successor) {
         Node<E> newest = new Node<>(e, predecessor, successor);
         predecessor.setNext(newest);
         successor.setPrev(newest);
         size++;
     }
     /*Remove an element of the list*/
-    private E remove(Node<E> node) {
-        Node<E> predecessor = node.getNext();
+    public E remove(Node<E> node) {
+        Node<E> predecessor = node.getPrev();
         Node<E> successor = node.getNext();
         predecessor.setNext(successor);
         successor.setPrev(predecessor);

@@ -30,7 +30,7 @@ public class SortedPriorityQueue extends DoubleLinkedList<Player> {
     }
     
     public long get(String email) {
-        long result = 1L;
+        long result = Long.MAX_VALUE;
         Node<Player> walk = list.getHead();
         while (walk.getNext() != list.getTail()) {
             walk = walk.getNext();
@@ -52,12 +52,14 @@ public class SortedPriorityQueue extends DoubleLinkedList<Player> {
         }
     }
     
-    public long getMin() {
-        Node<Player> top = list.getHead();
-        return top.getElement().getPoint();
+    public void removeMin() {
+        list.removeFirst();
     }
     
-    
+    public long getMin() {
+        Node<Player> top = list.getHead().getNext();
+        return top.getElement().getPoint();
+    }
     
     @Override
     public String toString() {
@@ -68,5 +70,16 @@ public class SortedPriorityQueue extends DoubleLinkedList<Player> {
             result += walk.getElement() + "\n";
         }
         return result;
+    }
+
+    void update(String email, long point) {
+        Node<Player> walk = list.getHead();
+        while (walk.getNext() != list.getTail()) {
+            walk = walk.getNext();
+            if (walk.getElement().getEmail().equals(email)) {
+                walk.getElement().setPoint(point);
+                break;
+            }
+        }
     }
 }

@@ -5,8 +5,16 @@ package problem1;
  * @author SE140834
  */
 public class Player implements Comparable<Player> {
-    String email;
-    long point;
+    private String email;
+    private long point;
+    
+    public Player() {
+    }
+    
+    public Player(String email, long point) {
+        this.email = email;
+        this.point = point;
+    }
 
     public String getEmail() {
         return this.email;
@@ -22,6 +30,11 @@ public class Player implements Comparable<Player> {
 
     public void setPoint(long point) {
         this.point = point;
+    }
+    
+    @Override
+    public String toString() {
+        return this.email + ", " + this.point;
     }
 
     @Override
