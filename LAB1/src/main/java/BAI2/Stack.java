@@ -20,7 +20,7 @@ public class Stack {
     }
     
     /**
-     * Create new node
+     * Add element to the top
      * @param tag 
      */
     public void  push(String tag){
