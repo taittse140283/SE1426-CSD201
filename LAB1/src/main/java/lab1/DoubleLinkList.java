@@ -96,7 +96,7 @@ public class DoubleLinkList<Entry> {
         
     } 
     /** add element to the front of the list
-     *@param e
+     *@param new Node
      */
     public void addFirst(Node<Entry> newNode){
         newNode.setNext(header);
@@ -105,10 +105,13 @@ public class DoubleLinkList<Entry> {
         size++;
     }
     /** add element to the last the list
-     *@param e
+     *@param new Node
      */
-    public void addLast(Entry e){
-        addBetween(e,tailer.back, tailer);
+     public void addLast(Node<Entry> newNode){
+        newNode.setBack(tailer);
+        tailer.setNext(newNode);
+        tailer = newNode;
+        size++;
     }
     /** Removes and returns the first element of the list. */
     public Entry removeFirst(){
@@ -129,12 +132,18 @@ public class DoubleLinkList<Entry> {
     
     */
     public Entry remove(Node <Entry> node){
-        Node<Entry> infontof= node.getBack();
-        Node<Entry> back=node.getNext();
-        infontof.setNext(back);
-        back.setBack(infontof);
-        size--;
-        return node.getElement();
+        if (isEmpty()) {
+            System.out.println("Stack rong");
+        } else {
+            Entry value = node.getElement();
+            node.getBack().setNext(node.getNext());
+            node.getNext().setPrev(node.getBack());
+            size--;
+            if (header == tailer){
+                header = tailer = null;
+            }
+        }
+        return null;
     }
     /**
      * this method to take the node with the position user need, anywhere in the list
