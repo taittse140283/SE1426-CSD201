@@ -90,7 +90,43 @@ public class Program{
         }
     }
     public void HTMLTag(String tag) {
+         if(tag.equalsIgnoreCase("<!DOCTYPE>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<meta>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<link>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<img>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<br>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<hr>")){
+            csv.countTag(tag);
+        }
+        else if(tag.equalsIgnoreCase("<input>")){
+            csv.countTag(tag);
+        }          
+        else if(tag.equalsIgnoreCase("<audio>")){
+            csv.countTag(tag);
+        }
+        else if(tag.equalsIgnoreCase("<video>")){
+            csv.countTag(tag);
+        }
+        else {
+            if(tag.contains("</") == false) {
+                s.push(tag);
+                s.print(); 
+                System.out.println();
+            }
+            else if(s.getTop().equalsIgnoreCase(tag.replace("/","")) == true) {
+                s.pop(); 
+                csv.countTag(tag.replace("/",""));
+                s.print();
+                System.out.println();
+            }
+        } 
+    }
 }
-}
+
 
     
