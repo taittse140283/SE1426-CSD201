@@ -11,6 +11,18 @@ package LAB1_1;
  * @author Admin
  */
 public class DoublyLinkedList<E> extends MyAbstractList<E>{
+    
+    /**
+     * Create Class Node
+     * @param <E> 
+     */
+    public static class Node<E> {
+        E element;
+        Node<E> next;
+        public Node(E element) {
+            this.element = element;
+        }
+    }
 
     @Override
     public void add(int index, E e) {
