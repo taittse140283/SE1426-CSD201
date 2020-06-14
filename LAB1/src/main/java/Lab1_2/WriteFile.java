@@ -23,12 +23,6 @@ public class WriteFile {
         Map<String, Integer> sort = hs.entrySet().stream()
                 .sorted((Map.Entry.<String, Integer>comparingByValue().reversed()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        System.out.println("After sort by value:");
-        for (Map.Entry<String, Integer> entry : sort.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            System.out.println("Tag:" + key + "Value:" + value);
-        }
         File f = new File(fileName);
         PrintWriter pw = new PrintWriter(f);
         pw.println("Tag,Value\n");
