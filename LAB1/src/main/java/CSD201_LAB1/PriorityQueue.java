@@ -79,4 +79,21 @@ public class PriorityQueue {
             System.out.println("update"+email+"new point"+newPoint);
         }
     }
+    public void printAll(){
+        node currentNode=list.head;
+        while(currentNode.right!=null){
+            if(currentNode!=list.head){
+                System.out.println(currentNode.getEmail()+""+currentNode.getPoint());
+            }
+            currentNode=currentNode.right;
+        }
+    }
+    public int getPoint(String email){
+        node currentNode=SearchByEmail(email);
+        if(currentNode!=list.tail){
+            return currentNode.getPoint();
+        }
+        return 0;
+    }
+    
 }
