@@ -18,18 +18,18 @@ public class FileInOut {
             fr=new FileReader(fileName);
             br=new BufferedReader(fr);
             String s ;
-            s = br.readLine();//First line is Email, Point-->pass this line
-            while(br.ready())//check EOF
+            s = br.readLine();
+            while(br.ready())
             {
                 s=br.readLine();
                 String[] arr=s.split(", ");
                 if(arr.length==2){
-                    Player player=new Player();//create new player
+                    Player player=new Player();
                     player.setEmail(arr[0]);
                     player.setPoint(Integer.parseInt(arr[1]));
-                    Node<Player> newNode=new Node();//create node to add into list
+                    Node<Player> newNode=new Node();
                     newNode.setInfo(player);
-                    queue.add1(newNode);
+                    queue.add(newNode);
                 }
             }
         br.close();
