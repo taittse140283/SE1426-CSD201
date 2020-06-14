@@ -12,7 +12,8 @@ package bai2;
 public class Main {
      public static void main(String[] args) throws Exception {
         Manager manager = new Manager();
-        String url = "https://www.stylecraze.com/articles/most-beautiful-flowers-in-the-world/";
-        String file = "output1.csv";
-        
+        String url = "https://quantrimang.com/the-comment-trong-html-162885";
+        String file = "output4.csv";
+        manager.Manager(url,file);
+}
 }
