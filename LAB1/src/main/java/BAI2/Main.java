@@ -14,6 +14,6 @@ public class Main {
         String url = "https://vnexpress.net/";
         String file = "outputlab2.csv";
         Manager run = new Manager();
-        
+        run.runLab2(url, file);
     }
 }
