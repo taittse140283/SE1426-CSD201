@@ -80,8 +80,8 @@ public class DoublyLinkedList<E> {
     
 
     public DoublyLinkedList() {
-        header = new Node(null, null, null);
-        trailer = new Node(null, header, null);
+        header = new Node<>(null, null, null);
+        trailer = new Node<>(null, header, null);
         header.setNext(trailer);
     }
 
@@ -93,14 +93,14 @@ public class DoublyLinkedList<E> {
         return size == 0;
     }
 
-    public E first() {
+    public E getFirst() {
         if (isEmpty()) {
             return null;
         }
         return header.getNext().getElement();
     }
 
-    public E last() {
+    public E getLast() {
         if (isEmpty()) {
             return null;
         }
@@ -140,6 +140,31 @@ public class DoublyLinkedList<E> {
         if(isEmpty()) return null;
         return  remove(trailer.getPrev());
     }
+    public E get(int index) {
+        if (size != 0) {
+            Node<E> current = header.getNext();
+            for (int i = 0; (current != null) && (i < index); i++) {
+                current = current.getNext();
+            }
+            if (current != null) {
+                return current.getElement();
+            }
+        }
+        return null;
+    }
     
+    public void removeAt(int n) {
+        if (size == 0 || n < 0) { 
+            return;
+        }
+        Node current = header.getNext(); 
+        for (int i = 0; (current != null) && (i < n); i++) { 
+            current = current.getNext();
+        }
+        if (current == null) {
+            return;
+        }
+        remove(current);
+    }
     
 }
