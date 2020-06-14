@@ -12,7 +12,7 @@ import java.net.MalformedURLException;
 
 /**
  *
- * @author Admin
+ * @author TrinhAnhTai
  */
 public class Main {
     public static void main(String[] args) throws MalformedURLException {
@@ -129,3 +129,31 @@ public static void laB1(String[] cmd) {
                 break;
         }
     }
+/*
+     * 6 methods defined in class
+     */
+    public static void addPlayer(PriorityQueue queue, String email, String point) {
+        Player player = new Player(email, Integer.parseInt(point));
+        queue.addAndSort(player);
+    }
+
+    public static void deletePlayer(PriorityQueue queue, String email) {
+        queue.delete(email);
+    }
+
+    public static void updatePlayer(PriorityQueue queue, String email, String point) {
+        queue.update(email, Integer.parseInt(point));
+    }
+
+    public static void deletePlayerOnTop(PriorityQueue queue) {
+        queue.removePlayerHasMaxPoint();
+    }
+
+    public static int getPointPlayerOnTop(PriorityQueue queue) {
+        return queue.getPlayerHasMaxPoint();
+    }
+
+    public static int getPointPlayer(PriorityQueue queue, String email) {
+        return queue.getNodePlayerPoint(email);
+    }
+}
