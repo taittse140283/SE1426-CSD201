@@ -58,7 +58,7 @@ public class PriorityQueue {
         if(currentNode==list.tail){
             System.err.println("can't find");
         }else{
-            delete(currentNode.toString());
+            delete(currentNode);
             System.out.println("delete"+email+"from queue");
             
             
@@ -68,5 +68,15 @@ public class PriorityQueue {
         currentNode.left.right=currentNode.right;
         currentNode.right.left=currentNode.left;
         currentNode=null;
+    }
+    public void update(String email,int newPoint){
+        node currentNode=SearchByEmail(email);
+        if(currentNode==list.tail){
+            System.err.println("cant't find by email");
+        }else{
+            delete(currentNode);
+            add(email, newPoint);
+            System.out.println("update"+email+"new point"+newPoint);
+        }
     }
 }
