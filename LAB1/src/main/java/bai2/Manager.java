@@ -25,27 +25,38 @@ public class Manager {
         boolean check = false;
         
         for(int i = 0;i < content.length(); i++){
-            // kiem tra cho phai the HTML hay khong
+            // check the charater is a tag or not base on '<' mo dau cho moi tag
             if(content.charAt(i) == '<'){
                 tag = "<";
-                check = true;
+                check = true; //(*)
             }
-            // kiem tra co phai the comment 
+            // check the tag comment base on the tag have checked before (*)and the character (-)
             else if(content.charAt(i) == '-' && check == true) {
                 tag = tag + "-";
                 processTag(tag);
                 check = false;
             }
-            // bo qua noi dung trong the HTML
+            // ignore the content of tag
             else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true) {
                 tag = tag + content.charAt(i);
             }
-            // kiem tra cac the con lai va cac the dac biet (ex : <link href ... >)
+            //check the special tag
             else if(((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
                 tag = tag + ">";
                 check = false;
                 processTag(tag);
             }
+        }
+    }
+    /** this method will count how many the tag appear in the HTML
+     * @param tag of HTML. 
+     */
+    public void count(String tag){
+         if(hashmap.containsKey(tag) == false) {
+            hashmap.put(tag, 1);
+        }
+        else {
+            hashmap.put(tag, hashmap.get(tag) + 1);
         }
     }
 }
