@@ -4,20 +4,13 @@
  * and open the template in the editor.
  */
 
-/**
- *
- * @author tieuminh
- */
+/*
+ *Main class for test file
+*/
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        System.out.print("Hello World");
-        System.out.println("yttuyyiy");
-        System.out.println("This issssss theeeeee lasssssssst");
-        // TODO code application logic here
+        PriorityQueue queue = CSVFile.readFile("user.csv");
+        queue.printPlayerList();
+        CSVFile.writeFile(queue, "outputPlayer.csv");
     }
-    
 }
