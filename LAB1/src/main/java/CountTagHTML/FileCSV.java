@@ -5,7 +5,9 @@
  */
 package CountTagHTML;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -55,5 +57,16 @@ public class FileCSV {
             Integer value = entry.getValue();
             System.out.println("Tag: " + key + " - frequence: " + value);
         }
+        
+        //write result to output.csv
+        File f = new File(fileName);
+        PrintWriter pw = new PrintWriter(f);
+        pw.println("Tag, Frequence\n");
+        for (Map.Entry<String, Integer> entry : sortFre.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            pw.println(key + ", " + value);
+        }
+        pw.close();
     }
 }
