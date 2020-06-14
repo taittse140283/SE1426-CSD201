@@ -45,20 +45,63 @@ public class Manager {
      * @param tag 
      */
     public void addTag(String tag){
-        if(tag.equalsIgnoreCase("<area>") || tag.equalsIgnoreCase("<base>") || tag.equalsIgnoreCase("<br>")
-            || tag.equalsIgnoreCase("<strong>") || tag.equalsIgnoreCase("<!DOCTYPE>") || tag.equalsIgnoreCase("<embed>")
-            || tag.equalsIgnoreCase("<hr>") || tag.equalsIgnoreCase("<img>") || tag.equalsIgnoreCase("<input>")
-            || tag.equalsIgnoreCase("<link>") || tag.equalsIgnoreCase("<meta>") || tag.equalsIgnoreCase("<param>")
-            || tag.equalsIgnoreCase("<track>") || tag.equalsIgnoreCase("<wbr>") || tag.equalsIgnoreCase("<col>")
-            || tag.equalsIgnoreCase("<command>") || tag.equalsIgnoreCase("<keygen>") || tag.equalsIgnoreCase("<source>")
-            || tag.equalsIgnoreCase("<pre>") || tag.equalsIgnoreCase("<em>") || tag.equalsIgnoreCase("<small>") 
-            || tag.equalsIgnoreCase("<ins>") || tag.equalsIgnoreCase("<sub>") ) {
+//        if(tag.equalsIgnoreCase("<area>") || tag.equalsIgnoreCase("<base>") || tag.equalsIgnoreCase("<br>")
+//            || tag.equalsIgnoreCase("<strong>") || tag.equalsIgnoreCase("<!DOCTYPE>") || tag.equalsIgnoreCase("<embed>")
+//            || tag.equalsIgnoreCase("<hr>") || tag.equalsIgnoreCase("<img>") || tag.equalsIgnoreCase("<input>")
+//            || tag.equalsIgnoreCase("<link>") || tag.equalsIgnoreCase("<meta>") || tag.equalsIgnoreCase("<param>")
+//            || tag.equalsIgnoreCase("<track>") || tag.equalsIgnoreCase("<wbr>") || tag.equalsIgnoreCase("<col>")
+//            || tag.equalsIgnoreCase("<command>") || tag.equalsIgnoreCase("<keygen>") || tag.equalsIgnoreCase("<source>")
+//            || tag.equalsIgnoreCase("<pre>") || tag.equalsIgnoreCase("<em>") || tag.equalsIgnoreCase("<small>") 
+//            || tag.equalsIgnoreCase("<ins>") || tag.equalsIgnoreCase("<sub>") ) {
+//            countTag(tag);
+//        }
+        if(tag.equalsIgnoreCase("<area>")){
+            countTag(tag);
+        } else if(tag.equalsIgnoreCase("<base>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<br>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<strong>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<!DOCTYPE>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<embed>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<hr>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<img>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<input>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<link>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<meta>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<param>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<track>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<wbr>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<col>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<command>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<keygen>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<source>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<pre>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<sub>")) {
+            countTag(tag);
+        }else if(tag.equalsIgnoreCase("<ins>")) {
             countTag(tag);
         }
+        
         else{
             if(tag.contains("</") == false){
                 stack.push(tag);
-                countTag(tag);
                 stack.print();
                 System.out.print("\n");
             } else if(stack.getTop().equalsIgnoreCase(tag.replace("/", "")) == true){
@@ -84,11 +127,10 @@ public class Manager {
             } 
             else if(content.charAt(i) == '-' && check ==  true){
                 tag += "-";
-                addTag(tag);
                 check = false;
             }else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true){
                 tag += content.charAt(i);
-            }else if((content.charAt(i) == '>' || content.charAt(i) ==' ' ) && check == true){
+            }else if(((content.charAt(i) == '>' || content.charAt(i) ==' ' )) && check == true){
                 tag += ">";
                 check = false;
                 addTag(tag);
