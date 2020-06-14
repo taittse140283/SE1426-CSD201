@@ -77,6 +77,9 @@ public class DoubleLinkList<Entry> {
     /** tests whether the linked list is empty */
     public boolean isEmpty(){return size==0;}
     /** Returns the first element of the list */
+     public Entry getHeadElemnt(){
+        return header.getElement();
+    }
     public Entry first(){
         if(isEmpty()) return null;
         return header.getNext().getElement();
@@ -86,15 +89,8 @@ public class DoubleLinkList<Entry> {
         if(isEmpty()) return null;
         return tailer.getBack().getElement();
     }
-    //** add element to the linked list int the between the given nodes  */
-    public void addBetween(Entry Element, Node<Entry> infontof, Node<Entry> back){
-        /** Create and link a node */
-        Node<Entry> new_Node= new Node<>(Element, infontof, back);
-        infontof.setNext(new_Node);
-        back.setBack(new_Node);
-        size++;
-        
-    } 
+    
+     
     /** add element to the front of the list
      *@param new Node
      */
@@ -132,8 +128,20 @@ public class DoubleLinkList<Entry> {
     }
     /** Removes and returns the last element of the list. */
     public Entry removeLast(){
-        if(isEmpty()) return null;
-        return remove(tailer.getBack());
+        if(isEmpty()){
+            System.out.println("Empty list");
+        }
+       
+        else{
+            Entry value = tailer.getElement();
+            tailer = tailer.getBack();
+            tailer.setNext(null);
+            size--;
+            if(header == tailer){
+            header = tailer = null;
+            }
+        }
+        return null;
     }
     
     
@@ -176,32 +184,13 @@ public class DoubleLinkList<Entry> {
     public Entry getElementNode(int post) {
         return getNode(post).getElement();
     }
+}
+
     
-    /**
-     * this method print the Node(include email and point) to the file with address in desktop(in file have header is: Email, Point)
-     * @param input is a file
-     * @return  no return
-    */
-     public void printtoFile(String file) throws IOException {
-        FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\");
-        DataOutputStream dos = new DataOutputStream(fos);
-        dos.writeBytes("Email, Point\n");
-        for (Node<Entry> n =  header.next; n != tailer; n = n.next) {
-            dos.writeBytes(n.getElement() + "\n");
-        }
-        fos.close();
-        dos.close();
-    }
      
     
-    public void print(){
-        for(Node<Entry> n=header; n!=tailer;n=n.next){
-            System.out.println(n.getElement() +" ");
-        }
-    }
-    
    
-}
+
     
 
     
