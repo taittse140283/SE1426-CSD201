@@ -6,20 +6,20 @@
 
 /**
  *
- * @author Trịnh Anh Tài
+ * @author TrinhAnhTai
  */
 
-/**
+/*
   * Create class Player to save information of player. 
-  * Two properties: email and point(điểm số)
-  * Getter,Setter to support for querying data
+  * Two properties: email and point
+  * Getter,setter for email and point
 */
 public class Player {
     private String email;
     private int point;
-    
+
     public Player() {}
-    
+
     public Player(String email, int point) {
         this.email = email;
         this.point = point;
@@ -40,8 +40,12 @@ public class Player {
     public void setPoint(int point) {
         this.point = point;
     }
-    
+
+    /*
+     * Export information
+     */
+    @Override
     public String toString() {
-        return this.getEmail() + ", " + this.getPoint();
-    } 
+        return this.getEmail() + "," + this.getPoint();
+    }
 }
