@@ -23,66 +23,10 @@ import java.util.stream.Collectors;
 public class Manager {  
     HashMap<String, Integer> hashMap = new HashMap<>();
     Stack stack = new Stack();
-    /**
-     * Input a URL then read line by line
-     * Output its contents
-     * @param urlString
-     * @return
-     * @throws Exception 
-     */
-    public String readHTML(String urlString) throws Exception{
-        String content = "";        
-        BufferedReader br = null;
-        
-        try {
-            URL url = new URL(urlString);
-            br = new BufferedReader(new InputStreamReader(url.openStream()));
-            String line;          
-            while((line = br.readLine()) != null){
-                content += line + "\n";
-            }
-            
-        } catch (IOException e){
-            e.printStackTrace();
-        }finally {
-            try {                
-                if(br != null){
-                    br.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return content;
-    }
-    /**
-     * Sort and write to file
-     * @param hashMap
-     * @param fileName
-     * @throws FileNotFoundException 
-     */
-    public void writeToFile(HashMap<String, Integer> hashMap, String fileName) throws FileNotFoundException{
-        Map<String, Integer> sort = hashMap.entrySet().stream()
-                .sorted((Map.Entry.<String, Integer> comparingByValue().reversed()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        System.out.println("\n After sorted: ");
-        
-        for(Map.Entry<String, Integer> entry : sort.entrySet()){
-            String key = entry.getKey();
-            Integer val = entry.getValue();
-            System.out.println("Tag: " + key + " value: " + val);
-        }
-        
-        File f = new File(fileName);
-        PrintWriter pw = new PrintWriter(f);
-        pw.println("Tag-Value\n");
-        for(Map.Entry<String, Integer> entry : sort.entrySet()){
-            String key = entry.getKey();
-            Integer val = entry.getValue();
-            pw.println(key + ", " + val );
-        }
-        pw.close();
-    }
+    ReadURL read = new ReadURL();
+    WrieToFile wr = new WrieToFile();
+    
+    
     
     /**
      * Count tags in the html
@@ -156,9 +100,9 @@ public class Manager {
         
         try {
             String content = null;
-            readHTML(url);
+            content = read.readHTML(url);
             analyzeTagHTML(content);
-            writeToFile(hashMap, fileName);
+            wr.writeToFile(hashMap, fileName);
         } catch (Exception e) {
             e.printStackTrace();
         }
