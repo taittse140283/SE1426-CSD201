@@ -7,9 +7,21 @@ package problem1;
 import collections.*;
 
 public class Problem1 {
-    DoubleLinkedList data;
+    public static void main(String[] args) {
+        Player p = new Player();
+        
+    }
+    private DoubleLinkedList data;
 
-    public void enter() {
+    public Problem1() {
+        data = new DoubleLinkedList<Player>();
+    }
+
+    public void readFile() {
+
+    }
+
+    public void writeFile() {
 
     }
 }

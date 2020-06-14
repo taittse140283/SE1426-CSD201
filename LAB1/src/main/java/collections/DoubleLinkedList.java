@@ -6,7 +6,7 @@ package collections;
 
 public class DoubleLinkedList<E> {
     /*Nested Node class*/
-    private static class Node<E> {
+    protected static class Node<E> {
         private E element;
         private Node<E> prev;
         private Node<E> next;
@@ -26,6 +26,12 @@ public class DoubleLinkedList<E> {
     private Node<E> head;
     private Node<E> tail;
     private int size = 0;
+    public Node<E> getHead() {
+        return this.head;
+    }
+    public Node<E> getTail() {
+        return this.tail;
+    }
     /*Constructor*/
     public DoubleLinkedList() {
         head = new Node<>(null, null, null);
@@ -64,9 +70,9 @@ public class DoubleLinkedList<E> {
         if (isEmpty()) return null;
         return remove(tail.getPrev());
     }
-    //Private
+
     /*Adds an element to between two next element in the list*/
-    private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
+    protected void addBetween(E e, Node<E> predecessor, Node<E> successor) {
         Node<E> newest = new Node<>(e, predecessor, successor);
         predecessor.setNext(newest);
         successor.setPrev(newest);
