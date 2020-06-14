@@ -38,7 +38,7 @@ public class Player {
     public void setPoint(int point) {
         this.point = point;
     }
-    public void print(){
-        System.out.print(email + "," + point);
+    public String toString() {
+        return email+", "+point;
     }
 }
