@@ -16,18 +16,27 @@ public class FileCSV {
 
     Map<String, Integer> csv;
 
-    public FileCSV(){
-    csv = new HashMap<>();
+    public FileCSV() {
+        csv = new HashMap<>();
     }
-    
+
     //count tag appear
     //param tag
-    public void countTag(String tag){
-        if(csv.containsKey(tag) == false){
+    public void countTag(String tag) {
+        if (csv.containsKey(tag) == false) {
             csv.put(tag, 1);
-        }
-        else {
+        } else {
             csv.put(tag, csv.get(tag) + 1);
         }
     }
+
+    //print out tag and frequency
+    public void print() {
+        for (Map.Entry<String, Integer> entry : csv.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            System.out.println("Tag: " + key + " - Frequences: " + value);
+        }
+    }
+
 }
