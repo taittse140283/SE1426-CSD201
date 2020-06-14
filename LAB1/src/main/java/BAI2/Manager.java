@@ -20,7 +20,9 @@ import java.util.stream.Collectors;
  *
  * @author Thuan Le
  */
-public class Manager {    
+public class Manager {  
+    HashMap<String, Integer> hashMap = new HashMap<>();
+    Stack stack = new Stack();
     /**
      * Input a URL then read line by line
      * Output its contents
@@ -85,12 +87,42 @@ public class Manager {
     /**
      * Count tags in the html
      */
-    HashMap<String, Integer> hashMap = new HashMap<>();
+    
     public void countTag(String tag){
         if(hashMap.containsKey(tag) == false){
             hashMap.put(tag, 1);
         } else{
             hashMap.put(tag, hashMap.get(tag) + 1);
+        }
+    }
+    public void addTag(String tag){
+        
+    }
+    /**
+     * Check and selective tags in html
+     * Don't select cmt tag
+     * @param content 
+     */
+    public void analyzeTagHTML(String content){
+        String tag ="";
+        boolean check = false;
+        
+        for (int i = 0; i < content.length(); i++) {
+            if(content.charAt(i) == '<'){
+                tag ="<";
+                check = true;
+            } 
+            else if(content.charAt(i) == '-' && check ==  true){
+                tag += "-";
+                addTag(tag);
+                check = false;
+            }else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true){
+                tag = tag + content.charAt(i);
+            }else if((content.charAt(i) == '>' || content.charAt(i) ==' ' ) && check == true){
+                tag += ">";
+                check = false;
+                addTag(tag);
+            }
         }
     }
 }
