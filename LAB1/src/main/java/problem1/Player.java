@@ -41,7 +41,7 @@ public class Player implements Comparable<Player> {
     public int compareTo(Player player) {
         int result = 0;
         if (this.point > player.point) result = 1;
-        else if (this.point < player.point) result = 0;
+        else if (this.point < player.point) result = -1;
         return result;
     }
 }

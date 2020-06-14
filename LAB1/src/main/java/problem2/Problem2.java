@@ -10,7 +10,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Problem2 {
     HashMap<String, Integer> map = new HashMap<>();
@@ -50,21 +53,26 @@ public class Problem2 {
         }
     }
     public void writeFile(String filename) throws IOException {
+        StringBuilder builder = new StringBuilder();
         try (FileWriter f = new FileWriter(filename)) {
             f.write("Tag, Frequency\n");
-            StringBuilder builder = new StringBuilder();
-            map.entrySet().forEach((entry) -> {
-                String key = entry.getKey();
-                key = key.replace("/", "");
-                key = key.replace("<", "");
-                key = key.replace(">", "");
-                Integer value = entry.getValue();
-                builder.append(key);
+            ArrayList<Tag> arr = new ArrayList();
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                arr.add(new Tag(entry.getKey(), entry.getValue()));
+            }
+            Collections.sort(arr);
+            for (Tag tag : arr) {
+                String name = tag.getName();
+                name = name.replace("/", "").replace("<", "").replace(">", "");
+                long frequency = tag.getFrequency();
+                builder.append(name);
                 builder.append(", ");
-                builder.append(value);
+                builder.append(frequency);
                 builder.append("\n");
-            });
+            }
             f.write(builder.toString());
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
     public void process(String _url, String filename) throws MalformedURLException, IOException {

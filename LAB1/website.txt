@@ -1,19 +1,2 @@
 Tag, Frequency
-u, 1
-table, 1
-title, 1
-style, 3
-div, 14
-tr, 1
-body, 1
-a, 19
-nobr, 2
-center, 1
-b, 1
-span, 8
-script, 7
-head, 1
-html, 1
-form, 1
-p, 1
-td, 3
+/u, 1/table, 1/title, 1/style, 3/div, 14/tr, 1/body, 1/a, 19/nobr, 2/center, 1/b, 1/span, 8/script, 7/head, 1/html, 1/form, 1/p, 1/td, 3
