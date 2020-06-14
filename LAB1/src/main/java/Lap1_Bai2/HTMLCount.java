@@ -134,6 +134,7 @@ public class HTMLCount {
 	try {
 	    String htmlString = DoWithFile.readFile(fileName);
 	    slitTag(htmlString);
+            DoWithFile.writeFile(csvFile);
 	    DoWithFile.output();
 	} catch (Exception e) {
 	    e.printStackTrace();

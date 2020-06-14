@@ -55,10 +55,4 @@ public class FirstStack {
         }
         return html[top];
     }
-    
-    public void display(){
-        for(int i = top; i >= 0; i--){
-            System.out.println(html[i] + "\n");
-        }
-    }
 }
