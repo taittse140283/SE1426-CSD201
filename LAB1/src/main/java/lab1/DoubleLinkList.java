@@ -115,8 +115,20 @@ public class DoubleLinkList<Entry> {
     }
     /** Removes and returns the first element of the list. */
     public Entry removeFirst(){
-        if(isEmpty()) return null;
-        return remove(header.getNext());
+        if(isEmpty()){
+            System.out.println("Empty List!!!");
+        }
+        
+        else{
+            Entry value = header.getElement();
+            header = header.getNext();
+            header.setBack(null);
+            size--;
+            if(header == tailer){
+            header = tailer = null;
+            }
+        }
+        return null;
     }
     /** Removes and returns the last element of the list. */
     public Entry removeLast(){
@@ -133,11 +145,11 @@ public class DoubleLinkList<Entry> {
     */
     public Entry remove(Node <Entry> node){
         if (isEmpty()) {
-            System.out.println("Stack rong");
+            System.out.println("Empty List");
         } else {
             Entry value = node.getElement();
             node.getBack().setNext(node.getNext());
-            node.getNext().setPrev(node.getBack());
+            node.getNext().setBack(node.getBack());
             size--;
             if (header == tailer){
                 header = tailer = null;
