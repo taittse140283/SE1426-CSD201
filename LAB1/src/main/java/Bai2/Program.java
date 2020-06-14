@@ -31,7 +31,20 @@ public class Program{
         tail = t;
         tail.NEXT = null;
     }
-   }
-}    
-
+    public void pop() {
+        if(head == null)
+            return;
+        if(head == tail) {
+            head = null;
+            tail = null;
+            return;
+        }
+        tail = tail.prev;
+        tail.NEXT = null;
+    }
+    public String getTop() {
+        return tail.getTagHTML();
+    }
+}
+}
     
