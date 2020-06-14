@@ -40,7 +40,7 @@ public class FileCSV {
         for (Map.Entry<String, Integer> entry : csv.entrySet()) {
             String key = entry.getKey();
             Integer value = entry.getValue();
-            System.out.println("Tag: " + key + " - Frequences: " + value);
+//            System.out.println("Tag: " + key + " - Frequences: " + value);
         }
     }
 
@@ -51,11 +51,11 @@ public class FileCSV {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap:: new));
         
         //print out after sort
-        System.out.println("After sort");
+        System.out.println("Sorting done.");
         for(Map.Entry<String, Integer> entry : sortFre.entrySet()){
             String key = entry.getKey();
             Integer value = entry.getValue();
-            System.out.println("Tag: " + key + " - frequence: " + value);
+//            System.out.println("Tag: " + key + " - frequence: " + value);
         }
         
         //write result to output.csv
