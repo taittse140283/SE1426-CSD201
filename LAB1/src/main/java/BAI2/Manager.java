@@ -51,8 +51,8 @@ public class Manager {
             || tag.equalsIgnoreCase("<link>") || tag.equalsIgnoreCase("<meta>") || tag.equalsIgnoreCase("<param>")
             || tag.equalsIgnoreCase("<track>") || tag.equalsIgnoreCase("<wbr>") || tag.equalsIgnoreCase("<col>")
             || tag.equalsIgnoreCase("<command>") || tag.equalsIgnoreCase("<keygen>") || tag.equalsIgnoreCase("<source>")
-            || tag.equalsIgnoreCase("<script>") || tag.equalsIgnoreCase("<pre>") || tag.equalsIgnoreCase("<em>")
-            || tag.equalsIgnoreCase("<small>") || tag.equalsIgnoreCase("<ins>") || tag.equalsIgnoreCase("<sub>") ) {
+            || tag.equalsIgnoreCase("<pre>") || tag.equalsIgnoreCase("<em>") || tag.equalsIgnoreCase("<small>") 
+            || tag.equalsIgnoreCase("<ins>") || tag.equalsIgnoreCase("<sub>") ) {
             countTag(tag);
         }
         else{
