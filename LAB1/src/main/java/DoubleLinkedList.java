@@ -20,6 +20,14 @@ public class DoubleLinkedList {
     public boolean isEmpty() {
         return head == null;
     }
+     public Gamer ceiling(Comparable point) {
+        Gamer t = head;
+        while (t != null && t.getPoint().compareTo(point) < 0) {
+            t = t.next;
+        }
+        return t;
+    }
+
 
       
 }
