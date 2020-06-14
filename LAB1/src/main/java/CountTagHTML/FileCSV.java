@@ -5,8 +5,11 @@
  */
 package CountTagHTML;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -39,4 +42,18 @@ public class FileCSV {
         }
     }
 
+    //sort output
+    public void sortAndPrint(String fileName) throws FileNotFoundException{
+        Map<String, Integer> sortFre = csv.entrySet().stream()
+                .sorted((Map.Entry.<String, Integer> comparingByValue().reversed()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap:: new));
+        
+        //print out after sort
+        System.out.println("After sort");
+        for(Map.Entry<String, Integer> entry : sortFre.entrySet()){
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            System.out.println("Tag: " + key + " - frequence: " + value);
+        }
+    }
 }
