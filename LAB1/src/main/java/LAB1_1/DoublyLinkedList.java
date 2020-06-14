@@ -210,7 +210,7 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
         }
         return -1;
     }
-
+    
     @Override
     public int lastIndexOf(E e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
