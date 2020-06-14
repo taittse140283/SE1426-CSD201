@@ -12,7 +12,10 @@ public class Information {
     private String email;
     private int point;
     
-    public Information(){}
+    public Information(){
+        email = "";
+        point = 0;
+    }
     //contructor không tham số
     
     public Information(String email, int point){

@@ -16,6 +16,14 @@ import java.io.IOException;
 public class PriorityQueue{
     private DoublyLinkedList list = new DoublyLinkedList();
 
+    public DoublyLinkedList getList() {
+        return list;
+    }
+
+    public void setList(DoublyLinkedList list) {
+        this.list = list;
+    }
+
     public void push(Information data){
 	list.addBetween(data);
 	System.out.println("push Gamer data successful!!");
@@ -61,7 +69,7 @@ public class PriorityQueue{
      */
     
     public void updatePlayer(String email, int point) {
-	Information data = list.findPlayerByEmail(email);
+	DLLNode<Information> data = list.findPlayerByEmail(email);
 	if (data == null) {
 	    System.out.println("Not found!!");
 	} else {

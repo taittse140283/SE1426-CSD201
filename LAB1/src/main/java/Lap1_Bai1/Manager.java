@@ -14,12 +14,7 @@ import java.io.IOException;
 public class Manager {
     public static PriorityQueue queue;
 
-    /**
-     * this method use to add new Gamer to queue
-     *
-     * @param email
-     * @param point
-     */
+    
     public void insertNewGamer(String email, String point) {
 	try {
 	    int checkPoint = Integer.parseInt(point.trim());
@@ -28,13 +23,14 @@ public class Manager {
 	    System.out.println("Point must be integer!!");
 	}
     }
-
     /**
-     * this method use to Find point of Gamer depend on email input
+     * Dùng để thêm người chơi vào hàng đợi
      *
      * @param email
+     * @param point
      */
-    public void searchGamer(String email) {
+
+    public void findPlayer(String email) {
 	Information data = queue. findPlayer(email);
 	if (data == null) {
 	    System.out.println("Not found!!");
@@ -42,13 +38,13 @@ public class Manager {
 	    System.out.println("Email: " + email + ", Point: " + data.getPoint());
 	}
     }
-
     /**
-     * this method use to Delete Gamer depend on email input
-     *
+     * Dùng để tim kiếm điểm của người chơi bằng việc nhập email từ người dùng
      * @param email
      */
-    public void deleteGame(String email) {
+    
+    
+    public void deletePlayer(String email) {
 	Information data = queue.deletePlayer(email);
 	if (data == null) {
 	    System.out.println("Not found!!");
@@ -56,14 +52,13 @@ public class Manager {
 	    System.out.println("Remove " + email + " successful!");
 	}
     }
-
     /**
-     * this method use to update point of Gamer depend on email input
-     *
+     * Dùng để xóa người chơi bằng việc nhập email từ người dùng
      * @param email
-     * @param point
      */
-    public void updateGamer(String email, String point) {
+    
+    
+    public void updatePlayer(String email, String point) {
 	try {
 	    int newPoint = Integer.parseInt(point.trim());
 	    queue.updatePlayer(email, newPoint);
@@ -71,34 +66,38 @@ public class Manager {
 	    System.out.println("Point must be Integer!!");
 	}
     }
-
     /**
-     * this method use to get top 1 Gamer and print info to screen
+     * Dùng đề cập nhật lại điểm của người chơi bangwg việc nhập email từ người dùng
+     * @param email
+     * @param point
      */
-    public void getTopGamer() {
+    
+    public void getTopPlayer() {
 	Information data = queue.getTop();
 	System.out.println("Top 1 Gamer:");
 	System.out.println("Email: " + data.getEmail() + ", Point: " + data.getPoint());
     }
-
     /**
-     * this method use to delete top 1 Gamer
+     * Dùng để lấy người ở top 1 và in thông tin lên màn hình
      */
-    public void deleteTopGamer() {
+    
+    public void deleteTopPlayer() {
 	queue.deleteTop();
 	System.out.println("Remove top successful!!");
     }
-
     /**
-     * this method use to write all the queue to the file
-     *
-     * @param fileName
-     * @throws java.io.IOException
+     * Dùng để xóa người chơi top 1
      */
+    
     public void saveToFile(String fileName) throws IOException {
 	queue.writeFile(fileName);
     }
-
+    /**
+     * Dùng để ghi tất cả người chơi vào hàng đợi
+     * @param fileName
+     * @throws java.io.IOException
+     */
+    
     public void printQueue() {
 	queue.printQueue();
     }
@@ -110,36 +109,36 @@ public class Manager {
 	try {
 	    for (int i = 0; i < args.length; i++) {
 		switch (args[i]) {
-		    case "-r": //read CSV file and add to queue
+		    case "-r": 
 			queue = new PriorityQueue();
 			inputFile = args[i + 1];
 			queue.ReadFile(queue, inputFile);
 			break;
-		    case "-s": //import the queue to new CSV file
+		    case "-s": 
 			outputFile = args[i + 1];
 			ex.saveToFile(outputFile);
 			break;
-		    case "-a": //insert new Gamer to queue
+		    case "-a": 
 			ex.insertNewGamer(args[i + 1], args[i + 2]);
 			ex.saveToFile(outputFile);
 			break;
-		    case "-d": //delete gamer from queue
-			ex.deleteGame(args[i + 1]);
+		    case "-d":
+			ex.deletePlayer(args[i + 1]);
 			ex.saveToFile(outputFile);
 			break;
-		    case "-u": //update gamer
-			ex.updateGamer(args[i + 1], args[i + 2]);
+		    case "-u":
+			ex.updatePlayer(args[i + 1], args[i + 2]);
 			ex.saveToFile(outputFile);
 			break;
-		    case "-dt": //delete top gamer
-			ex.deleteTopGamer();
+		    case "-dt": 
+			ex.deleteTopPlayer();
 			ex.saveToFile(outputFile);
 			break;
-		    case "-g": //get point of gamer
-			ex.searchGamer(args[i + 1]);
+		    case "-g": 
+			ex.findPlayer(args[i + 1]);
 			break;
-		    case "-t": //get point of top gamer
-			ex.getTopGamer();
+		    case "-t": 
+			ex.getTopPlayer();
 			break;
 		}
 	    }
