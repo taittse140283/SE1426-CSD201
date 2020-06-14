@@ -58,4 +58,9 @@ public class Validations {
             }
         }
     }
+    
+    //define and ignore some tag
+    public void defineTagHTML(String tag){
+        
+    }
 }
