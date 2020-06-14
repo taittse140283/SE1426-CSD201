@@ -22,29 +22,34 @@ public class PriorityQueue {
     
     public void add(Node<Player> player){
         int rank = player.getInfo().getPoint();
-        if(list.isEmpty()){
-            list.addFirst(player);
+        if(list.getSize() == 0) {
+            list.setHead(player);
+            list.setTail(player);
+            list.setSize(list.getSize() + 1);
         }
         else{
-            if (rank >= list.getHead().getInfo().getPoint())
+            //Neu nguoi choi lon hon nguoi dau tien danh sach thi them vao dau danh sach
+            if (rank > list.getHead().getInfo().getPoint())
                 list.addFirst(player);
+            //Neu nguoi choi nho hon nguoi cuoi danh sach thi them vao cuoi danh sach
             else if (rank <= list.getTail().getInfo().getPoint())
                 list.addLast(player);
             else {
                 Node<Player> current  = list.getHead();
-                //find the position can insert new node
-                while (current.getInfo().getPoint() > player.getInfo().getPoint()) {
+                //Tim vi tri de chen player moi
+                while (current.getInfo().getPoint() >= player.getInfo().getPoint()) {
                     current = current.getNext();
                 }
-                //new node is inserted in front of temp  
-                (current.getPrev()).setNext(player);
-                player.setPrev(current.getPrev());
-                current.setPrev(player);
+                //Them nguoi choi moi vay chuoi
                 player.setNext(current);
+                player.setPrev(current.getPrev());
+                current.getPrev().setNext(player);
+                current.setPrev(player);
                 list.setSize(list.getSize() + 1);
             }
         }       
     }
+    // Tim kiem nguoi choi tu dau danh sach 
     public Node<Player> getNode(String email) {
         Node<Player> current = list.getHead();
         while (!current.getInfo().getEmail().equals(email)){
@@ -52,19 +57,19 @@ public class PriorityQueue {
         }
         return current;
     }
-    public void updateNewPoint(String email, int newPoint) {
+    public void updateNewPoint(String email, String newPoint) {
         Node<Player> updatedNode = getNode(email);
         
         if(updatedNode == null) {
             System.out.println("Email khong ton tai.");
         }
         else{
-            updatedNode.getInfo().setPoint(newPoint); 
+            updatedNode.getInfo().setPoint(Integer.parseInt(newPoint)); 
             updatedNode.getPrev().setNext(updatedNode.getNext());
             updatedNode.getNext().setPrev(updatedNode.getPrev());
             add(updatedNode);
             list.setSize(list.getSize()-1);
-            System.out.println("Update" + email + "thanh cong");
+            System.out.println("Update " + email + " thanh cong");
         }
     }
     public void deletePlayer(String email) {
@@ -83,8 +88,8 @@ public class PriorityQueue {
             }
         }
     }
-    public void removePlayerMax(){
-        list.removeFirst();
+    public Player removePlayerMax(){
+        return list.removeFirst();
     }
     public Player getPlayerMax(){
         return list.getHeadInfo();
