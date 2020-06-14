@@ -18,6 +18,12 @@ import java.util.stream.Collectors;
  * @author Thuan Le
  */
 public class WrieToFile {
+    /**
+     * Sort and write to file
+     * @param hashMap
+     * @param fileName
+     * @throws FileNotFoundException 
+     */
     public void writeToFile(HashMap<String, Integer> hashMap, String fileName)throws FileNotFoundException{
         Map<String, Integer> sort = hashMap.entrySet().stream()
                 .sorted((Map.Entry.<String, Integer> comparingByValue().reversed()))
