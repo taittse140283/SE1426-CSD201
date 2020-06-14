@@ -32,6 +32,21 @@ public class Stack {
             trailer.next = null;
             return;
         }
+        th.prev = trailer;
+        trailer.next = th;
+        trailer = th;
+        trailer.next = null;
+        
     }
-   
-}
+    
+    public void pop(){
+        if(header == null){ return;}
+        if(header == trailer){ 
+            header = null; 
+            trailer = null;
+            return;
+        } 
+        trailer = trailer.prev;
+        trailer.next = null;
+    }
+}    
