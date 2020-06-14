@@ -10,27 +10,54 @@ import java.io.*;
  * @author TAN
  */
 public class FileInOut {
-    PriorityQueue queue = new PriorityQueue();
-    public void getFile(String fileName){
+     public static PriorityQueue getFile(String fileName){
+        PriorityQueue queue = new PriorityQueue();
         FileReader fr=null;
         BufferedReader br=null;
-        String line = "";
-        try {
-            fr = new FileReader(fileName);
-            br = new BufferedReader(fr); 
-            while((line = br.readLine()) != null) { 
-                if(line.contains("Email")) 
-                    continue;
-            String[] info = line.split(", "); 
-                Player p = new Player();
-                p.setEmail(info[0]);
-                p.setPoint(Integer.parseInt(info[1]));
-                Node<Player> node =new Node();
-                node.setInfo(p);
-                queue.add(node);
+         try {
+            fr=new FileReader(fileName);
+            br=new BufferedReader(fr);
+            String s ;
+            s = br.readLine();//First line is Email, Point-->pass this line
+            while(br.ready())//check EOF
+            {
+                s=br.readLine();
+                String[] arr=s.split(", ");
+                if(arr.length==2){
+                    Player player=new Player();//create new player
+                    player.setEmail(arr[0]);
+                    player.setPoint(Integer.parseInt(arr[1]));
+                    Node<Player> newNode=new Node();//create node to add into list
+                    newNode.setInfo(player);
+                    queue.add1(newNode);
+                }
             }
+        br.close();
+        fr.close();
         } catch (Exception e) {
-            e.printStackTrace();
+                e.printStackTrace();
         }
+        return queue;
+
     }
+    public static void writeFile(String fileName , PriorityQueue queue) {
+        File f = null;
+        FileWriter fw = null;
+        PrintWriter pw = null;
+        try {
+            f = new File(fileName);
+            fw = new FileWriter(f);
+            pw = new PrintWriter(fw);
+            pw.println("Email, point");
+            Node<Player> cur = queue.getList().getHead();
+            while (cur.getNext() != null){
+            pw.println(cur.getInfo().toString());
+            cur = cur.getNext();
+            }
+        fw.close();
+        pw.close();
+        } catch (Exception e) {
+                e.printStackTrace();
+        }
+    }  
 }
