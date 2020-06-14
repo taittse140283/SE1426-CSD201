@@ -63,3 +63,69 @@ public class Main {
                 + "java -jar LAB1.jar 1 -r <<user_CSV_file>> -g <<email>>: Problem 1, get the point of user from the data strucutre\n"
                 + "java -jar LAB1.jar 1 -r <<user_CSV_file>> -t: Problem 1, get the point of the top user from the data strucutre\n");
     }
+    
+public static void laB1(String[] cmd) {
+        String luachon1, tep1, luachon2, tep2, luachon3, tep3, tep4;
+
+        // lựa chọn 1
+        luachon1 = cmd[1];
+        tep1 = cmd[2];
+        if (luachon1 == null || !luachon1.equals("-r") || tep1 == null) {
+            return;
+        }
+
+        // read file
+        PriorityQueue queue = CSVFile.readFile(tep1);
+
+        // lựa chọn 2
+        luachon2 = cmd[3];
+        tep2 = cmd[4];
+        if (luachon2 == null || (luachon2.equals("-g") && tep2 == null)) {
+            return;
+        }
+
+        switch (luachon2) {
+            case "-s":
+                CSVFile.writeFile(queue, tep2);
+                break;
+            case "-g":
+                System.out.println(getPointPlayer(queue, tep2));
+                break;
+            case "-t":
+                System.out.println(getPointPlayerOnTop(queue));
+                break;
+        }
+
+        // lựa chọn 3
+        luachon3 = cmd[5];
+        tep3 = cmd[6];
+        tep4 = cmd[7];
+        if (luachon3 == null
+            || ((luachon3.equals("-u") || luachon3.equals("-a")) && (tep3 == null || tep4 == null))
+            || ((luachon3.equals("-d")) && tep3 == null)) {
+            return;
+        }
+
+        switch (luachon3) {
+            case "-a":
+                addPlayer(queue, tep3, tep4);
+                CSVFile.writeFile(queue, tep2);
+                CSVFile.writeFile(queue, tep1);
+                break;
+            case "-d":
+                deletePlayer(queue, tep3);
+                CSVFile.writeFile(queue, tep2);
+                CSVFile.writeFile(queue, tep1); 
+                break;
+            case "-u":
+                updatePlayer(queue, tep3, tep4);
+                CSVFile.writeFile(queue, tep2);
+                CSVFile.writeFile(queue, tep1);
+                break;
+            case "-dt":
+                deletePlayerOnTop(queue);
+                CSVFile.writeFile(queue, tep2);
+                CSVFile.writeFile(queue, tep1); 
+                break;
+        }
+    }
