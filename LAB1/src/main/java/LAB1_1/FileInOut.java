@@ -9,7 +9,11 @@ import java.io.*;
  *
  * @author TAN
  */
+/*
+ Doc file va in ra danh sach duoc doc tu file va sap xep
+*/
 public class FileInOut {
+    
      public static PriorityQueue getFile(String fileName){
         PriorityQueue queue = new PriorityQueue();
         FileReader fr=null;
@@ -49,8 +53,8 @@ public class FileInOut {
             fw = new FileWriter(f);
             pw = new PrintWriter(fw);
             pw.println("Email, point");
-            Node<Player> cur = queue.getList().getHead();
-            while (cur.getNext() != null){
+            Node<Player> cur = queue.getList().getHead(); // doc gia tri tu dau danh sach
+            while (cur.getNext() != null){ //chay den cuoi danh sach
             pw.println(cur.getInfo().toString());
             cur = cur.getNext();
             }

@@ -19,7 +19,7 @@ public class PriorityQueue {
     public void setList(DoublyLinkedList<Player> list) {
         this.list = list;
     }
-    
+    // input : thong tin cua nguoi choi
     public void add(Node<Player> player){
         int rank = player.getInfo().getPoint();
         if(list.getSize() == 0) {
@@ -57,30 +57,46 @@ public class PriorityQueue {
         }
         return current;
     }
-    public void updateNewPoint(String email, String newPoint) {
+    // Input : so diem va email cua nguoi choi can cap nhat
+    public void updateNewPoint(String email, int newPoint) {
         Node<Player> updatedNode = getNode(email);
         
         if(updatedNode == null) {
             System.out.println("Email khong ton tai.");
         }
         else{
-            updatedNode.getInfo().setPoint(Integer.parseInt(newPoint)); 
-            updatedNode.getPrev().setNext(updatedNode.getNext());
-            updatedNode.getNext().setPrev(updatedNode.getPrev());
-            add(updatedNode);
+            if(updatedNode == list.getHead()){ // truong hop update nguoi choi dau danh sach
+//                updatedNode.getInfo().setPoint(Integer.parseInt(newPoint)); 
+//                updatedNode.getPrev().setNext(updatedNode.getNext());
+                  removePlayerMax();
+            }
+            else if (updatedNode == list.getTail()){ // truong hop update nguoi choi cuoi danh sach
+//              updatedNode.getInfo().setPoint(Integer.parseInt(newPoint)); 
+//              updatedNode.getNext().setPrev(updatedNode.getPrev());
+                removePlayerMin();
+            }else{
+                updatedNode.getInfo().setPoint(newPoint); 
+                updatedNode.getPrev().setNext(updatedNode.getNext());
+                updatedNode.getNext().setPrev(updatedNode.getPrev());
+            }
+//            add(updatedNode);
+            Player p = new Player(email, newPoint);
+            Node<Player> n = new Node<>(p, list.getHead(), list.getTail());
+            add(n);
             list.setSize(list.getSize()-1);
             System.out.println("Update " + email + " thanh cong");
         }
     }
+    // Input : so diem va email cua nguoi choi can xoa
     public void deletePlayer(String email) {
         Node<Player> player = getNode(email);
-        if (player == null) {
+        if (player == null) { 
             System.out.println("Khong tim thay player");
         } else {
-            if(player == list.getHead()){
+            if(player == list.getHead()){ // truong hop delete nguoi choi dau danh sach
                 list.removeFirst();
             }
-            else if(player == list.getTail()){
+            else if(player == list.getTail()){// truong hop delete nguoi choi cuoi danh sach
                 list.removeLast();
             }
             else {
@@ -88,9 +104,15 @@ public class PriorityQueue {
             }
         }
     }
+    //xoa nguoi choi dau danh sach O(1)
     public Player removePlayerMax(){
         return list.removeFirst();
     }
+    //xoa nguoi choi cuoi danh sach
+    public Player removePlayerMin(){
+        return list.removeLast();
+    }
+    //tim kiem nguoi choi dau danh sach O(1)
     public Player getPlayerMax(){
         return list.getHeadInfo();
     }

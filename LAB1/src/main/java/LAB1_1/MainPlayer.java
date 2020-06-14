@@ -5,6 +5,7 @@
  */
 package LAB1_1;
 public class MainPlayer {
+    //CLI LAB1_1 
     public void parsingArguments(String[] args){
         PriorityQueue queue = new PriorityQueue();
         try {
@@ -14,9 +15,9 @@ public class MainPlayer {
                 if(args[2].equals("-s"))
                 {
                     if(args.length>4) {
-                        if (args[4].equals("-a")) {
+                        if (args[4].equals("-a")) { //them nguoi choi moi
                             try {
-                                Node<Player> player = new Node<>();
+                                Node<Player> player = new Node<>();//tao nguoi choi
                                 Player newPlayer = new Player();
                                 newPlayer.setEmail(args[5]);
                                 newPlayer.setPoint(Integer.parseInt(args[6]));
@@ -28,9 +29,9 @@ public class MainPlayer {
                         } else if (args[4].equals("-d")) {
                             queue.deletePlayer(args[5]);
                         } else if (args[4].equals("-u")) {
-                            queue.updateNewPoint(args[5], args[6]);
+                            queue.updateNewPoint(args[5], Integer.parseInt(args[6]));
                         } else if (args[4].equals("-dt")) {
-                            System.out.println("Delete top player:" + queue.removePlayerMax());
+                            System.out.println("Da xoa nguoi choi cao diem nhat:" + queue.removePlayerMax());
                         } else {
                             System.out.println("Error: Arguments not supported.");
                         }
@@ -41,7 +42,7 @@ public class MainPlayer {
                 else if(args[2].equals("-g"))
                 {
                     if(queue.getNode(args[3])!=null) {
-                        System.out.println("Diem cua " + args[3] + "la : " + queue.getNode(args[3]).getInfo().getPoint());
+                        System.out.println("Diem cua " + args[3] + " la : " + queue.getNode(args[3]).getInfo().getPoint());
                     }else
                         System.out.println("Khong tim thay nguoi choi");
                 }
