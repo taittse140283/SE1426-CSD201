@@ -10,9 +10,11 @@ package CSD201_LAB1;
  * @author truong
  */
 public class DoubleLinkList {
-    public static class node{
-        node left=null;
-        node right= null;
+
+    public static class node {
+
+        node left = null;
+        node right = null;
         private String email;
         private int point;
 
@@ -36,9 +38,12 @@ public class DoubleLinkList {
         public void setPoint(int point) {
             this.point = point;
         }
-        
-        
+    }
+    public node head,tail;
+    public node createNode(String email,int point){
+        node newNode=new node(email, point);
+        return newNode;
+    }
     
-}
-    
+
 }
