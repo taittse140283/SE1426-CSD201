@@ -18,11 +18,13 @@ import java.util.stream.Collectors;
  * @author TAN
  */
 public class WriteToFile {
+    //Ghi ra so luong HTML va sap xep 
     public void WriteToFile(HashMap<String,Integer> hashmap,String fileName) throws FileNotFoundException{
+        //Sap xep tag giam dan 
         Map<String, Integer> sort = hashmap.entrySet().stream()
             .sorted((Map.Entry.<String, Integer> comparingByValue().reversed()))
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-            File f = new File(fileName);
+        File f = new File(fileName);
         PrintWriter print = new PrintWriter(f);
         print.println("Tag,Value\n");
         for (Map.Entry<String, Integer> entry : sort.entrySet()) {

@@ -11,6 +11,7 @@ import java.util.HashMap;
  *
  * @author TAN
  */
+//CLI LAB1_2
 public class MainHTMLTag {
     Manager manager = new Manager();
     public void parsingArguments(String[] args){

@@ -12,7 +12,7 @@ package LAB1_2;
 public class Main {
     public static void main(String[] args) throws Exception {
         Manager manager = new Manager();
-        String url = "https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
+        String url = "https://vnexpress.net/";
         String file = "output1.csv";
 //        GetWebsite a = new GetWebsite();
 //        Stack stack = new Stack();

@@ -66,8 +66,6 @@ public class Manager {
             count(tag);
         } else if (tag.equalsIgnoreCase("<!DOCTYPE>")) {
             count(tag);
-        } else if (tag.equalsIgnoreCase("<!-")) {
-            count("<!--comment-->");
         } else if (tag.equalsIgnoreCase("<embeb>")) {
             count(tag);
         } else if (tag.equalsIgnoreCase("<hr>")) {
@@ -79,12 +77,6 @@ public class Manager {
         } else if (tag.equalsIgnoreCase("<link>")) {
             count(tag);
         } else if (tag.equalsIgnoreCase("<meta>")) {
-            count(tag);
-        } else if (tag.equalsIgnoreCase("<param>")) {
-            count(tag);
-        } else if (tag.equalsIgnoreCase("<track>")) {
-            count(tag);
-        } else if (tag.equalsIgnoreCase("<wbr>")) {
             count(tag);
         } else {
             //kiem tra cac the co the dong trong HTML
@@ -110,5 +102,5 @@ public class Manager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }   
 }
