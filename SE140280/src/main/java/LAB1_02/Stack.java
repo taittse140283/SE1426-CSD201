@@ -37,6 +37,25 @@ public class Stack {
         head.prev = tail.next = null;
         return;
         }
-        
+        tag.next = head;
+        head.prev =  tag;
+        head = tag;
+        head.prev = null;
     }
+    /*Remove a node in the stack*/
+    public void pop(){
+        /*Check if the tag is empty*/
+        if(isEmpty()){
+            System.out.println("Stack is empty!!");
+        } else if(head == tail){
+            head = tail = null; 
+            System.out.println("List is empty");
+            return;
+        }else {
+            head = head.next;
+            head.prev = null;
+        }
+      
+    }
+   
  
