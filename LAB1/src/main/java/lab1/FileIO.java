@@ -41,4 +41,24 @@ public class FileIO {
         return queue;
 
     }
+    public static void writeFile(String fileName , PriorityQueue queue) {
+        File f = null;
+        FileWriter fw = null;
+        PrintWriter pw = null;
+        try {
+            f = new File(fileName);
+            fw = new FileWriter(f);
+            pw = new PrintWriter(fw);
+            pw.println("Email, point");
+            Node<Entry> cur = queue.getList().getHeader();//read from the first of the list to the end
+            while (cur.getNext() != null){ //chay den cuoi danh sach
+            pw.println(cur.getElement().toString());
+            cur = cur.getNext();
+            }
+        fw.close();
+        pw.close();
+        } catch (Exception e) {
+                e.printStackTrace();
+        }
+    }  
 }
