@@ -131,4 +131,18 @@ public class checkWeb{
             }
         }
     }
+    public void processingHTMLTag(String tag) {
+        if(tag.equalsIgnoreCase("<!DOCTYPE>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<meta>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<link>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<img>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<br>"))
+            csv.countTag(tag);
+        else if(tag.equalsIgnoreCase("<hr>")){
+            csv.countTag(tag);
+        }
 }
