@@ -53,11 +53,11 @@ public class SortandWritetoFile {
         for (Map.Entry<String, Integer> entry : sortedByFrequences.entrySet()) {
             String key = entry.getKey();
             int value = entry.getValue();
-            System.out.println("Tag:" + key +"\t\t"+ " Count: " + value);
+            System.out.println("Tag:" + key +"\t\t"+ " Frequency: " + value);
         }
         File f = new File(fileName);  //Write the file
         PrintWriter pw = new PrintWriter(f);
-        pw.println("Tag,Count\n");
+        pw.println("Tag,Frequency\n");
         for (Map.Entry<String, Integer> entry : sortedTag.entrySet()) {
                 String key = entry.getKey();
                 Integer value = entry.getValue();
