@@ -102,12 +102,10 @@ public class Manager {
         else{
             if(tag.contains("</") == false){
                 stack.push(tag);
-                stack.print();
                 System.out.print("\n");
             } else if(stack.getTop().equalsIgnoreCase(tag.replace("/", "")) == true){
                 stack.pop();
                 countTag(tag.replace("/", ""));
-                stack.print();
                 System.out.print("\n");
             }
         }
