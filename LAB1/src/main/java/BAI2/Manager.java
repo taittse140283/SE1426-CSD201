@@ -140,7 +140,7 @@ public class Manager {
     public void runLab2(String url, String fileName){
         
         try {
-            String content = null;
+            String content;
             content = read.readHTML(url);
             analyzeTagHTML(content);
             wr.writeToFile(hashMap, fileName);
