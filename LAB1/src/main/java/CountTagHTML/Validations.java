@@ -27,6 +27,13 @@ public class Validations {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    }
+    
+    //check tag html in content
+    public void splitTagHTML(String content){
+        String tag = "";
+        boolean check = false;
+        
+        
     }
 }
