@@ -74,5 +74,6 @@ public class Manager {
             Integer val = entry.getValue();
             pw.println(key + ", " + val );
         }
+        pw.close();
     }
 }
