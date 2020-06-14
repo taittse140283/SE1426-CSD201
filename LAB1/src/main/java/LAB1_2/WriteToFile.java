@@ -22,12 +22,6 @@ public class WriteToFile {
         Map<String, Integer> sort = hashmap.entrySet().stream()
             .sorted((Map.Entry.<String, Integer> comparingByValue().reversed()))
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        System.out.println("\nAfter sorting by value:");
-        for (Map.Entry<String, Integer> entry : sort.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            System.out.println("tag: " + key + " value: " + value);
-        }
             File f = new File(fileName);
         PrintWriter print = new PrintWriter(f);
         print.println("Tag,Value\n");
