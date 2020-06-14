@@ -16,6 +16,8 @@ public class Node<Player> {
     private Node<Player> next;
 
     public Node() {
+        info = null;
+        prev = next = null;
     }
     
     public Node(Player info, Node<Player> prev, Node<Player> next) {
