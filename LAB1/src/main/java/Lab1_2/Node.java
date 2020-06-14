@@ -10,16 +10,20 @@ package Lab1_2;
  * @author hiep
  */
 public class Node {
-    Node next;
-    Node prev;
     String tag;
-
-    public Node() {
-    }
-
-    public Node(Node next, Node prev, String tag) {
+    Node next,prev;
+  
+    public Node(String tag,Node next, Node prev) {
+        this.tag = tag;
         this.next = next;
         this.prev = prev;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
         this.tag = tag;
     }
 
@@ -37,14 +41,6 @@ public class Node {
 
     public void setPrev(Node prev) {
         this.prev = prev;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
     }
     
     
