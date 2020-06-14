@@ -48,6 +48,8 @@ public class Main {
                     else
                         System.out.println("Not valid argument!");
                 }
+                else
+                    System.out.println("Not valid argument!");
             }
         }
         catch(Exception e) {
