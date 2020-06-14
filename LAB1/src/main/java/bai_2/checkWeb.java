@@ -131,6 +131,12 @@ public class checkWeb{
             }
         }
     }
+    /**
+     * This method below here is used to count special tag and compared to the end character of the tag(compare open and close tag)
+     * with "/" it means it the close tag. Without "/", it means it the open tag
+     * Input data is tag
+     * Output no
+     */
     public void processingHTMLTag(String tag) {
         if(tag.equalsIgnoreCase("<!DOCTYPE>"))
             csv.countTag(tag);
@@ -154,4 +160,18 @@ public class checkWeb{
         else if(tag.equalsIgnoreCase("<video>")){
             csv.countTag(tag);
         }
+        else {
+            if(tag.contains("</") == false) {
+                s.push(tag);
+                s.print(); 
+                System.out.println();
+            }
+            else if(s.getTop().equalsIgnoreCase(tag.replace("/","")) == true) {
+                s.pop(); 
+                csv.countTag(tag.replace("/",""));
+                s.print();
+                System.out.println();
+            }
+        } 
+    }
 }
