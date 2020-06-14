@@ -8,7 +8,8 @@ package CSD201_LAB1;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
-import org.w3c.dom.Node;
+import CSD201_LAB1.DoublyLinkedList;
+
 
 /**
  *
@@ -22,7 +23,7 @@ public class CSV {
      * @param csvFileName
      * @return 
      */
-public static String readFile(String csvFileName){
+public static String readFile(String csvFileName,DoublyLinkedList ls){
     FileReader f=null;
     BufferedReader r=null;
     String s="";
@@ -33,8 +34,8 @@ public static String readFile(String csvFileName){
             try {
                 s=r.readLine();
                 String []arr=s.split(",");
-                String email=arr[0];
-                String point=arr[1];
+                DoublyLinkedList.Node n =new DoublyLinkedList.Node(arr[0], 0, null, null);
+                ls.add(n);
                 
                 
             } catch (Exception e) {
