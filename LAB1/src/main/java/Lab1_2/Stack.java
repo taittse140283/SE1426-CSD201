@@ -14,8 +14,7 @@ public class Stack {
     Node head, tail;
 
     public Stack() {
-        head = null;
-        tail = null;
+        head = tail = null;
     }
 
     public boolean isEmpty() {
@@ -23,7 +22,7 @@ public class Stack {
     }
 
     public void push(String tagHTML) {
-        Node tag = new Node(head, tail, tagHTML);
+        Node tag = new Node(tagHTML, head, tail);
         // check list rongg
         if (isEmpty()) {
             head = tag;
@@ -38,30 +37,33 @@ public class Stack {
         head = tag;
         head.prev = null;
     }
+
     //xoa phan tu (remove first) 
-        public void pop(){
+    public void pop() {
         //check stack rong
-        
-        if(isEmpty()){
+
+        if (isEmpty()) {
             System.out.println("Stack empty");
-        }
-        //xoa khi chi con 1 node
-        else if(head == tail) {
+        } //xoa khi chi con 1 node
+        else if (head == tail) {
             head = tail = null;
             //after remove, print it.
             System.out.println("list is empty");
             return;
-        }else{
-        head = head.next;
-        head.prev = null;}
+        } else {
+            head = head.next;
+            head.prev = null;
+        }
     }
+
     //lay tag tren cung cua stack
-        public String Top(){
-            return head.getTag();
+    public String getTop() {
+        return head.getTag();
+    }
+
+    public void print() {
+        for (Node tag = tail; tag != null; tag = tag.prev) {
+            System.out.println(tag.tag + "");
         }
-        public void print(){
-            for(Node tag=tail;tag!=null;tag=tag.prev){
-                System.out.println(tag.tag+"");
-            }
-        }
+    }
 }
