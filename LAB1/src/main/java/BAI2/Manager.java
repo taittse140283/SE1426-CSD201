@@ -53,7 +53,12 @@ public class Manager {
         }
         return content;
     }
-    
+    /**
+     * Sort and write to file
+     * @param hashMap
+     * @param fileName
+     * @throws FileNotFoundException 
+     */
     public static void writeToFile(HashMap<String, Integer> hashMap, String fileName) throws FileNotFoundException{
         Map<String, Integer> sort = hashMap.entrySet().stream()
                 .sorted((Map.Entry.<String, Integer> comparingByValue().reversed()))
@@ -75,5 +80,17 @@ public class Manager {
             pw.println(key + ", " + val );
         }
         pw.close();
+    }
+    
+    /**
+     * Count tags in the html
+     */
+    HashMap<String, Integer> hashMap = new HashMap<>();
+    public void countTag(String tag){
+        if(hashMap.containsKey(tag) == false){
+            hashMap.put(tag, 1);
+        } else{
+            hashMap.put(tag, hashMap.get(tag) + 1);
+        }
     }
 }
