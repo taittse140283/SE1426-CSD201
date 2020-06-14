@@ -36,18 +36,10 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
         this.size = 0;
     }
     
-    /** Return the number of elements in this list
-     * @return  
-     */
-    @Override
-    public int size(){
-        return this.size;
+    public DoublyLinkedList(E[] objects) {
+        super();
     }
     
-    @Override
-    public boolean isEmpty(){
-        return this.size == 0;
-    }
     /**
      * Returns top element in the list
      * @return 
