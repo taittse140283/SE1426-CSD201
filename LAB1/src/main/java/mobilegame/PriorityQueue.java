@@ -18,7 +18,7 @@ public class PriorityQueue {
     }
 
     public void addAndSort(Gamer gamer) {
-        int size=this.size();
+        int size = this.size();
         if (list.isEmpty()) {
             list.addFirst(gamer);
         } else {
@@ -44,20 +44,20 @@ public class PriorityQueue {
             }
         }
     }
-    
-    public long searchMaxPoint(){
+
+    public long searchMaxPoint() {
         return list.getHeader().getElement().getPoint();
     }
-    
-    public long searchPoint(String email){
+
+    public long searchPoint(String email) {
         DoublyLinkedList.Node<Gamer> current = list.getHeader();
-        while(!current.getElement().getEmail().equals(email)) { 
+        while (!current.getElement().getEmail().equals(email)) {
             current = current.getNext();
         }
         return current.getElement().getPoint();
     }
-    
-     private int searchPosition(String email) {
+
+    private int searchPosition(String email) {
         for (int i = 0; i < list.size; i++) {
             if (list.get(i).getEmail().equals(email)) {
                 return i;
@@ -65,31 +65,32 @@ public class PriorityQueue {
         }
         return -1;
     }
+
     public void delete(String email) {
-           
-        int pos = searchPosition(email); 
-        if(pos < 0) {
+
+        int pos = searchPosition(email);
+        if (pos < 0) {
             System.out.println("Error: No information found");
         } else {
             list.removeAtPosition(pos);
         }
     }
-    
-    public void update(String email, int point) {
-       
+
+    public void update(String email, long point) {
+
         int pos = searchPosition(email);
-        if(pos < 0) { 
+        if (pos < 0) {
             System.out.println("Error: No information found.");
-        } else { 
-            list.get(pos).setPoint(point); 
-            String updateEmail = list.get(pos).getEmail(); 
-            int updatePoint = list.get(pos).getPoint(); 
-            delete(list.get(pos).getEmail()); 
+        } else {
+            list.get(pos).setPoint(point);
+            String updateEmail = list.get(pos).getEmail();
+            long updatePoint = list.get(pos).getPoint();
+            delete(list.get(pos).getEmail());
             Gamer gm = new Gamer(updateEmail, updatePoint);
             addAndSort(gm);
         }
     }
-    
+
     public void removeMax() {
         list.removeFirst();
     }
