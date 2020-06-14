@@ -14,34 +14,18 @@ import java.net.URL;
  * @author hiep
  */
 public class getURL {
-
-    String content;
-    String s;
-
-    //l
-    public String readContent(String urlString) throws Exception {
-        BufferedReader bf = null;
-        try {
-
-            URL url = new URL(urlString);
-            bf = new BufferedReader(new InputStreamReader(url.openStream()));
-            while ((s = bf.readLine()) != null) {
-                content += s + "\n";
-            }
-            bf.close();
-        } catch (Exception e) {
-        } finally {
-            try {
-                if (bf != null) {
-                    bf.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    String content="";
+    String S;
+    // lay URL trang web
+    public String readContent(String urlWeb) throws Exception{
+        URL url = new URL(urlWeb); 
+        BufferedReader bf = new BufferedReader(new InputStreamReader(url.openStream()));
+        while(( S = bf.readLine() ) != null){ 
+        content += S+ "\n";
         }
+        bf.close();
         return content;
     }
-
     //in ra url wed
     public void print() {
         System.out.println("" + content);
