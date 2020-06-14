@@ -91,9 +91,9 @@ public class Manager {
             countTag(tag);
         }else if(tag.equalsIgnoreCase("<source>")) {
             countTag(tag);
-        }else if(tag.equalsIgnoreCase("<pre>")) {
+        }else if(tag.equalsIgnoreCase("<video>")) {
             countTag(tag);
-        }else if(tag.equalsIgnoreCase("<sub>")) {
+        }else if(tag.equalsIgnoreCase("<audio>")) {
             countTag(tag);
         }else if(tag.equalsIgnoreCase("<ins>")) {
             countTag(tag);
@@ -106,6 +106,7 @@ public class Manager {
                 System.out.print("\n");
             } else if(stack.getTop().equalsIgnoreCase(tag.replace("/", "")) == true){
                 stack.pop();
+                countTag(tag.replace("/", ""));
                 stack.print();
                 System.out.print("\n");
             }
