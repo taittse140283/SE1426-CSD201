@@ -76,6 +76,22 @@ public class Validations {
         }else if(tag.equalsIgnoreCase("<input>")){
             csv.countTag(tag);
         }
+        //compare close tag with top of stack tag
+        else {
+            if(tag.contains("</") == false){
+                s.pop();
+                csv.countTag(tag.replace("/", ""));
+                s.print();
+                System.out.println();
+            }
+            //pop tag out off of stack if it is a close tag and it equals top of stack tag
+            else if(s.getTop().equalsIgnoreCase(tag.replace("/", "")) == true){
+                s.pop();
+                csv.countTag(tag.replace("/", ""));
+                s.print();
+                System.out.println();
+            }
+        }
     }
     
     
