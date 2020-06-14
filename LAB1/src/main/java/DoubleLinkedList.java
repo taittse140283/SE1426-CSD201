@@ -60,5 +60,10 @@ public class DoubleLinkedList {
         }
         return newEle;
     }
+     public void add(Gamer... groupGamer) {
+        for (Gamer gamer : groupGamer) {
+            add(gamer);
+        }
+    }
 
 }
