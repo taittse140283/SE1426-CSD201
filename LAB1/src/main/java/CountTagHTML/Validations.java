@@ -5,7 +5,6 @@
  */
 package CountTagHTML;
 
-
 /**
  *
  * @author Loi Lam
@@ -17,7 +16,7 @@ public class Validations {
     Stack s = new Stack();
 
     //read line of urlWeb, sort and write to file
-    public Validations(String urlWeb, String fileName){
+    public Validations(String urlWeb, String fileName) {
         try {
             String content = rl.readLine(urlWeb);
             System.out.println("Processing push and pop the tag in stack");
@@ -28,64 +27,56 @@ public class Validations {
             e.printStackTrace();
         }
     }
-    
+
     //check tag html in content
-    public void splitTagHTML(String content){
+    public void splitTagHTML(String content) {
         String tag = "";
         boolean check = false;
-        
+
         //check each character with loop
-        for(int i = 0; i < content.length(); i++){
+        for (int i = 0; i < content.length(); i++) {
             //'<' is begin of every tag
-            if(content.charAt(i) == '<'){
+            if (content.charAt(i) == '<') {
                 tag = "<";
                 check = true;
-            }
-            //ignore comment tag '-' and keep checking another tag
-            else if(content.charAt(i) == '-' && check == true){
+            } //ignore comment tag '-' and keep checking another tag
+            else if (content.charAt(i) == '-' && check == true) {
                 tag = "";
                 check = false;
-            }
-            //write append normal character to tag
-            else if(content.charAt(i) != '>' && content.charAt(i) == ' ' && check == true){
+            } //write append normal character to tag
+            else if (content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true) {
                 tag += content.charAt(i);
-            }
-            //'>' is end of every tag
-            else if(((content.charAt(i) =='>') || (content.charAt(i) == ' ')) && check == true){
+            } //'>' is end of every tag
+            else if (((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
                 tag += ">";
                 check = false;
                 defineTagHTML(tag);
             }
         }
     }
-    
+
     //define and ignore some tag
-    public void defineTagHTML(String tag){
+    public void defineTagHTML(String tag) {
         //some tag need ignore
         //
-        if(tag.equalsIgnoreCase("<!DOCTYPE>")){
+        if (tag.equalsIgnoreCase("<!DOCTYPE>")) {
             csv.countTag(tag);
-        }else if(tag.equalsIgnoreCase("<meta>")){
+        } else if (tag.equalsIgnoreCase("<meta>")) {
             csv.countTag(tag);
-        }else if(tag.equalsIgnoreCase("<link>")){
+        } else if (tag.equalsIgnoreCase("<link>")) {
             csv.countTag(tag);
-        }else if(tag.equalsIgnoreCase("<img>")){
+        } else if (tag.equalsIgnoreCase("<hr>")) {
             csv.countTag(tag);
-        }else if(tag.equalsIgnoreCase("<hr>")){
+        } else if (tag.equalsIgnoreCase("<input>")) {
             csv.countTag(tag);
-        }else if(tag.equalsIgnoreCase("<input>")){
-            csv.countTag(tag);
-        }
-        //compare close tag with top of stack tag
+        } //compare close tag with top of stack tag
         else {
-            if(tag.contains("</") == false){
-                s.pop();
-                csv.countTag(tag.replace("/", ""));
-                s.print();
+            if (tag.contains("</") == false) {
+                s.push(tag);//if it is not close stack will push this to stack
+                s.print();//print in output to check
                 System.out.println();
-            }
-            //pop tag out off of stack if it is a close tag and it equals top of stack tag
-            else if(s.getTop().equalsIgnoreCase(tag.replace("/", "")) == true){
+            } //pop tag out off of stack if it is a close tag and it equals top of stack tag
+            else if (s.getTop().equalsIgnoreCase(tag.replace("/", "")) == true) {
                 s.pop();
                 csv.countTag(tag.replace("/", ""));
                 s.print();
@@ -93,6 +84,5 @@ public class Validations {
             }
         }
     }
-    
-    
+
 }
