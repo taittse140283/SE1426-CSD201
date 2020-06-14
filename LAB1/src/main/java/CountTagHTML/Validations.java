@@ -19,9 +19,10 @@ public class Validations {
     public Validations(String urlWeb, String fileName) {
         try {
             String content = rl.readLine(urlWeb);
-            System.out.println("Processing push and pop the tag in stack");
+            System.out.println("Processing push and pop the tag in stack...");
             splitTagHTML(content);
             csv.print();
+            System.out.println("Done");
             csv.sortAndPrint(fileName);
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,13 +75,13 @@ public class Validations {
             if (tag.contains("</") == false) {
                 s.push(tag);//if it is not close stack will push this to stack
                 s.print();//print in output to check
-                System.out.println();
+//                System.out.println();
             } //pop tag out off of stack if it is a close tag and it equals top of stack tag
             else if (s.getTop().equalsIgnoreCase(tag.replace("/", "")) == true) {
                 s.pop();
                 csv.countTag(tag.replace("/", ""));
                 s.print();
-                System.out.println();
+//                System.out.println();
             }
         }
     }
