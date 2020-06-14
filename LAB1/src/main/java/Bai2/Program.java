@@ -55,6 +55,42 @@ public class Program{
     WritetoFile csv = new WritetoFile();
     Stack s = new Stack();
     Map<String, Integer> map= new HashMap<>();
+    public Program(String urlWeb, String fileName) {
+        try {
+            String content = g.readContent(urlWeb);
+            System.out.println("The processing is running:");
+            analyzeHTMLTag(content);
+            csv.WritetoFile(fileName);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    
+    }
+    public void analyzeHTMLTag(String content) {
+        String tag = "";
+        boolean check = false;
+        
+        for(int i = 0; i < content.length(); i++) {
+            if(content.charAt(i) == '<') {
+                tag = "<";
+                check = true;
+            }
+            else if(content.charAt(i) == '-' && check == true) {
+                tag = "";
+                check = false;   
+            }
+            else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true) {
+                tag += content.charAt(i);
+            }
+            else if(((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
+                tag += ">";
+                check = false;
+                HTMLTag(tag);
+            }
+        }
+    }
+    public void HTMLTag(String tag) {
+}
 }
 
     
