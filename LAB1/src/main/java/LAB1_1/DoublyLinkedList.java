@@ -43,6 +43,11 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
     public int size(){
         return this.size;
     }
+    
+    @Override
+    public boolean isEmpty(){
+        return this.size == 0;
+    }
     /**
      * Returns top element in the list
      * @return 
