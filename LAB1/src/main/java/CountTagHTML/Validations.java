@@ -63,7 +63,7 @@ public class Validations {
     public void defineTagHTML(String tag){
         //some tag need ignore
         //
-        if(tag.equalsIgnoreCase("<!DONTYPE>")){
+        if(tag.equalsIgnoreCase("<!DOCTYPE>")){
             csv.countTag(tag);
         }else if(tag.equalsIgnoreCase("<meta>")){
             csv.countTag(tag);
