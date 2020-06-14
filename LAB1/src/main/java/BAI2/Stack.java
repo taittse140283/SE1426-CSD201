@@ -12,9 +12,26 @@ package BAI2;
 public class Stack {
    TagOfHTML header, trailer;
 
+    /**
+     * Constructor
+     */
     public Stack() {
         header = trailer = null;
     }
     
+    /**
+     * Create new node
+     * @param tag 
+     */
+    public void  push(String tag){
+        TagOfHTML th = new TagOfHTML(tag, header, trailer);
+        if(header  == null){
+            header = th;
+            header.prev = null;
+            trailer = th;
+            trailer.next = null;
+            return;
+        }
+    }
    
 }
