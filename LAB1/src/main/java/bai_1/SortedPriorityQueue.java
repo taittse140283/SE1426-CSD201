@@ -168,14 +168,14 @@ public class SortedPriorityQueue {
      * @param email
      * @param newPoint 
      */
-    public void updateNewPoint(String email, int newPoint) {
+    public boolean updateNewPoint(String email, int newPoint) {
             exist = true;
             removePlayer(email);
             
             if(exist == true)
                 addNewPlayer(email, newPoint);
-            else
-                System.out.println("The email " + email + " is not exist in the queue.");
+            
+            return exist;
     }
     
     /**
