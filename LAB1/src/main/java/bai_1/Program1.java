@@ -148,9 +148,11 @@ public class Program1 {
                         boolean valid = args[5].matches("\\w+@+\\w+.+\\w+(.\\w)?");
                         if(valid == true) {
                             getPlayerFromFile(args[1]);
-                            s.updateNewPoint(args[5], Integer.parseInt(args[6]));
-                            printToFile(args[3]);
-                            System.out.println("Update and and save to file successful!");
+                            boolean exist = s.updateNewPoint(args[5], Integer.parseInt(args[6]));
+                            if(exist == true) {
+                                printToFile(args[3]);
+                                System.out.println("Update and and save to file successful!");
+                            }
                         }
                         else
                             System.out.println("Wrong email format. Its must be <account name>@<domain>");
