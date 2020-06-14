@@ -59,6 +59,9 @@ public class Stack {
         public String Top(){
             return head.getTag();
         }
-        
-
+        public void print(){
+            for(Node tag=tail;tag!=null;tag=tag.prev){
+                System.out.println(tag.tag+"");
+            }
+        }
 }
