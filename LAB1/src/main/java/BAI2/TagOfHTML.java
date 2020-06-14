@@ -24,5 +24,29 @@ public class TagOfHTML {
         this.next = next;
         this.prev = prev;
     }
+
+    public String getTagHtml() {
+        return tagHtml;
+    }
+
+    public void setTagHtml(String tagHtml) {
+        this.tagHtml = tagHtml;
+    }
+
+    public TagOfHTML getNext() {
+        return next;
+    }
+
+    public void setNext(TagOfHTML next) {
+        this.next = next;
+    }
+
+    public TagOfHTML getPrev() {
+        return prev;
+    }
+
+    public void setPrev(TagOfHTML prev) {
+        this.prev = prev;
+    }
     
 }
