@@ -36,5 +36,29 @@ public class DoubleLinkedList {
         }
         return (result.getPoint().compareTo(point) == 0) ? result : null;
     }
+     public Gamer add(Gamer x) {
+        Gamer newEle = x;
+        Gamer after = ceiling(x.point);
+        if (head == null) {
+            head = tail = newEle;
+        } else if (after == null) {
+            newEle.next = null;
+            newEle.previous = tail;
+            tail.next = newEle;
+            tail = newEle;
+        } else if (after == head) {
+            newEle.previous = null;
+            newEle.next = head;
+            head.previous = newEle;
+            head = newEle;
+        } else {
+            Gamer before = after.previous;
+            newEle.next = after;
+            newEle.previous = before;
+            after.previous = newEle;
+            before.next = newEle;
+        }
+        return newEle;
+    }
 
 }
