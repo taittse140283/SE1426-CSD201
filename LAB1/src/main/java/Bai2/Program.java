@@ -5,7 +5,7 @@
  */
 package Bai2;
 
-
+import java.util.HashMap;
 
 /**
  *
@@ -17,6 +17,21 @@ public class Program{
     public Stack() {
         head = tail = null;
     }
- }
-}
+    public void push(String tag) {
+        TgHTML t = new TgHTML(tag, head, tail);
+        if(head == null) {
+            head = t;
+            head.prev = null;
+            tail = t;
+            tail.NEXT = null;
+            return;
+        }
+        t.prev = tail;
+        tail.NEXT = t;
+        tail = t;
+        tail.NEXT = null;
+    }
+   }
+}    
+
     
