@@ -16,6 +16,10 @@ public class DoubleLinkedList {
     public DoubleLinkedList() {
         head = tail = null;
     }
+     //check empty
+    public boolean isEmpty() {
+        return head == null;
+    }
 
       
 }
