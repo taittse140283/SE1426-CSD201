@@ -28,14 +28,14 @@ public class WrieToFile {
         Map<String, Integer> sort = hashMap.entrySet().stream()
                 .sorted((Map.Entry.<String, Integer> comparingByValue().reversed()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        System.out.println("After sorted");
-        
-        for(Map.Entry<String, Integer> entry : sort.entrySet()){
-            String key = entry.getKey();
-            Integer val = entry.getValue();
-            System.out.println("Tag: " + key + " Frequency: " + val);
-        }
-        
+//        System.out.println("After sorted");
+//        
+//        for(Map.Entry<String, Integer> entry : sort.entrySet()){
+//            String key = entry.getKey();
+//            Integer val = entry.getValue();
+//            System.out.println("Tag: " + key + " Frequency: " + val);
+//        }
+//        
         File f = new File(fileName);
         PrintWriter pw = new PrintWriter(f);
         pw.println("Tag, Frequency\n");
