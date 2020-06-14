@@ -33,7 +33,7 @@ public class WrieToFile {
         for(Map.Entry<String, Integer> entry : sort.entrySet()){
             String key = entry.getKey();
             Integer val = entry.getValue();
-            System.out.println("Tag: " + key + " Value: " + val);
+            System.out.println("Tag: " + key + " Frequency: " + val);
         }
         
         File f = new File(fileName);
