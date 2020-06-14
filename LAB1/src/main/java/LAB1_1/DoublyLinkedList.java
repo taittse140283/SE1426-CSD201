@@ -52,23 +52,48 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
     
     /**
      * Add an element to the beginning of the list
-     * @param index
-     * @param e 
+     * @param e element
      */
     public void addFirst(E e) {
         Node<E> newNode = new Node<E>(e); //Create a newNode
         newNode.next = head; // Attach newNode with head
         head = newNode; // head point to the newNode
         size++; // Icrease size
+        if(tail == null){ // the newNode is the only node in list
+            tail = head; 
+        }
     }
     
+    /**
+     * Add an element to the end of the list 
+     * @param e element
+     */
     public void addLast(E e){
         Node<E> newNode = new Node<E>(e); //Create a newNode
         tail.next = newNode; // Attach newNode with head
         tail = tail.next; // tail point to the last node
         size++; // Icrease size
     }
-
+    
+    /**
+     * Add a new element at the specified index in this list
+     * @param index  index of the head element is 0
+     * @param e element
+     */
+    @Override
+    public void add (int index, E e){
+        if(index == 0){
+            addFirst(e);
+        } else if (index >= size){
+            addLast(e);
+        } else {
+            Node<E> current =head;
+            for (int i=1 ; i< index; i++){
+                current = current.next;
+            }
+        }
+    }
+        
     @Override
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
