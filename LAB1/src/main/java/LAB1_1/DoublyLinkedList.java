@@ -226,6 +226,21 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override 
+    public String toString() {
+        StringBuilder result = new StringBuilder("[");
+        Node<E> current = head;
+        for (int i = 0; i < size; i++) {
+            result.append(current.element);
+            current = current.next;
+            if (current != null) {
+            result.append(", "); // Separate two elements with a comma
+            } else {
+            result.append("]"); // Insert the closing ] in the string
+            }
+        }
+        return result.toString();
+    }
 }
     
 
