@@ -68,7 +68,39 @@ public class PriorityQueue {
         return current;
     }
     
-    
+    /**
+      * this method will update the person's Point base on the email you enter.
+      * if the email is a header or tailer, first remove it, then add the new entry with the email and new Point you entered!!
+      * @param the email and new Point you want to update
+      * 
+      */
+    public void updateNewPoint(String email, int newPoint) {
+        Node<Entry> updatedNode = getNode(email);
+        
+        if(updatedNode == null) {
+            System.out.println("Email does not exit.");
+        }
+        else{
+            if(updatedNode == list.getHeader()){ 
+              
+                  removePlayerMax();
+            }
+            else if (updatedNode == list.getTailer()){ 
+     
+                removePlayerMin();
+            }else{
+                updatedNode.getElement().setPoint(newPoint); 
+                updatedNode.getBack().setNext(updatedNode.getNext());
+                updatedNode.getNext().setBack(updatedNode.getBack());
+            }
+//            add(updatedNode);
+            Entry p = new Entry(email, newPoint);
+            Node<Entry> n = new Node<>(p, list.getHeader(), list.getTailer());
+            add(n);
+            list.setSize(list.getSize()-1);
+            System.out.println("Update " + email + " success.");
+        }
+    }
     
      /**
       * this method to remove a person base on the email of them
@@ -76,18 +108,18 @@ public class PriorityQueue {
       * 
       */
     public void deletePlayer(String email) {
-        Node<Entry> player = getNode(email);
-        if (player == null) { 
+        Node<Entry> entry = getNode(email);
+        if (entry == null) { 
             System.out.println("Not found email");
         } else {
-            if(player == list.getHeader()){
+            if(entry == list.getHeader()){
                 list.removeFirst();
             }
-            else if(player == list.getTailer()){
+            else if(entry == list.getTailer()){
                 list.removeLast();
             }
             else {
-                list.remove(player);
+                list.remove(entry);
             }
         }
     }
