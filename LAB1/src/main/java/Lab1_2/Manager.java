@@ -21,7 +21,7 @@ public class Manager {
     /**
      * this method count the tag in the URL
      *
-     * @param is tag
+     * @param  tag
      */
     public void count(String tag) {
         if (hs.containsKey(tag) == false) {
@@ -34,7 +34,7 @@ public class Manager {
     /**
      * this method check kind of tag and count
      *
-     * @param is tag
+     * @param  tag
      */
     public void checkTag(String tag) {
         // check special tag 
@@ -48,8 +48,6 @@ public class Manager {
             count(tag);
         } else if (tag.equalsIgnoreCase("<!DOCTYPE>")) {
             count(tag);
-        } else if (tag.equalsIgnoreCase("<!-")) {
-            count("<!--comment-->");
         } else if (tag.equalsIgnoreCase("<embeb>")) {
             count(tag);
         } else if (tag.equalsIgnoreCase("<hr>")) {
@@ -62,21 +60,14 @@ public class Manager {
             count(tag);
         } else if (tag.equalsIgnoreCase("<meta>")) {
             count(tag);
-        } else if (tag.equalsIgnoreCase("<param>")) {
-            count(tag);
-        } else if (tag.equalsIgnoreCase("<track>")) {
-            count(tag);
-        } else if (tag.equalsIgnoreCase("<wbr>")) {
-            count(tag);
         } else {
-
             if (tag.contains("</") == false) {
-                s.push(tag);
-                count(tag);
+                s.push(tag);               
                 s.print();
                 System.out.println();
-            } else if (s.Top().equalsIgnoreCase(tag.replace("/", "")) == true) {
+            } else if (s.getTop().equalsIgnoreCase(tag.replace("/", "")) == true) {
                 s.pop();
+                count(tag.replace("/", ""));
                 s.print();
                 System.out.println();
             }
@@ -86,7 +77,7 @@ public class Manager {
     /**
      * this method check tag with "<", ">" "-"
      *
-     * @param is content of URL
+     * @param content of URL
      */
     public void solveTag(String content) {
         String tag = "";
@@ -108,9 +99,10 @@ public class Manager {
             }
         }
     }
-        /**
+     /**
      * this method read content and write to file after check tag
-     * @param a url and file name
+     * @param url 
+     * @param fileName
      */
     public void Manager(String url , String fileName){
         String content;
@@ -122,5 +114,4 @@ public class Manager {
             e.printStackTrace();
         }
     }
-
 }
