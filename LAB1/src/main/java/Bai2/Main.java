@@ -5,6 +5,7 @@
  */
 //package Bai2;
 //
+//import java.net.MalformedURLException;
 //import java.util.HashMap;
 //
 ///**
@@ -13,10 +14,10 @@
 // */
 //public class Main {
 //
-//    public static void main(String[] args) {
+//    public static void main(String[] args) throws MalformedURLException {
 //        HashMap<String, Integer> hashMap = new HashMap<>();
-//        String url = "https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
-//        String output = "output8.csv";
+//        String url = "https://vnexpress.net/?fbclid=IwAR22hMxE_-zTckjENlmvtCj3fJMpkCERIs4vab4iZO3wAsLvGIwOvOSoco8";
+//        String output = "outputTest.csv";
 //
 //            // test
 //        Manager.process(hashMap, Manager.readHtlmFromWeb(url));
