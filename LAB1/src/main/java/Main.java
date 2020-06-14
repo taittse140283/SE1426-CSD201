@@ -1,6 +1,8 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import mobilegame.Gamer;
 import mobilegame.PriorityQueue;
@@ -94,10 +96,10 @@ public class Main {
                     if (contains(args, "-a") != -1) {
                         point = Long.parseLong(args[contains(args, "-a") + 2]);
                         email = args[contains(args, "-a") + 1].trim();
-                        queue.insert(Gamer.add(email, point));
+                        queue.addAndSort(Gamer.add(email, point));
                         saveFile(args[contains(args, "-s") + 1].trim(), queue, args[0]);
                     } else if (contains(args, "-d") != -1) {
-                        queue.remove(args[contains(args, "-d") + 1]);
+                        queue.delete(args[contains(args, "-d") + 1]);
                         saveFile(args[contains(args, "-s") + 1].trim(), queue, args[0]);
                     } else if (contains(args, "-u") != -1) {
                         point = Long.parseLong(args[contains(args, "-u") + 2]);
@@ -116,16 +118,23 @@ public class Main {
             } catch (IOException var8) {
                 System.out.println("Error: Cannot save the output file !");
             }
-        } else if (msg.equals("") && args[0].equals("2")) {
-            try {
-                saveFile(args[2], readURL(args[1]), args[0]);
-            } catch (IOException var6) {
-                System.out.println("Error: Cannot access the url !");
-            }
+//        } else if (msg.equals("") && args[0].equals("2")) {
+//            try {
+//                FileCSVsaveFile(args[2], readURL(args[1]), args[0]);
+//            } catch (IOException var6) {
+//                System.out.println("Error: Cannot access the url !");
+//            }
         } else {
             System.out.println(msg);
         }
 
     }
-    
+    private static void saveFile(String filename, PriorityQueue queue, String lab_number) throws IOException {
+        FileWriter file = new FileWriter(filename);
+        if (lab_number.equals("1")) {
+            file.write("Email, Point\n");
+        } else if (lab_number.equals("2")) {
+            file.write("Tag, Frequency\n");
+        }
+    }
 }
