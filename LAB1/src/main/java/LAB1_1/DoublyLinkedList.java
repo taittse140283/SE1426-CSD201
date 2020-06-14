@@ -23,7 +23,20 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
             this.element = element;
         }
     }
-
+    private Node<E> head;
+    private Node<E> tail;
+    
+    /**
+     * Returns top element in the list
+     * @return 
+     */
+    public E getFirst(){
+        if(size ==0){
+            return null;
+        } else {
+            return head.element;
+        }
+    }
     @Override
     public void add(int index, E e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
