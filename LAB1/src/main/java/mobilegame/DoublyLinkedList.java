@@ -10,89 +10,91 @@ package mobilegame;
  * @author Admin
  */
 public class DoublyLinkedList<E> {
+   
+    public static class Node<E> {
 
-    // khai báo class Node
-    private static class Node<E> {
+        private E data;
+        private Node<E> prev;
+        private Node<E> next;
 
-        private E element; // tham chiếu giá trị lưu trữ trong nodde
-        private Node<E> next; // tham chiếu giá trị tiếp theo
-        private Node<E> prev; // tham chiếu giá trị sau đó
-
-        public Node(E element) {
-            this.element = element;
+        public Node(E data) {
+            this.data = data;
         }
 
-        public Node(E e, Node<E> n, Node<E> p) {
-            this.element = e;
-            this.next = n;
-            this.prev = p;
+        public Node(E data, Node<E> prev, Node<E> next) {
+            this.data = data;
+            this.prev = prev;
+            this.next = next;
         }
 
+        
         public E getElement() {
-            return element;
+            return data;
         }
 
-        public Node<E> getNext() {
-            return next;
-        }
-
+      
         public Node<E> getPrev() {
             return prev;
         }
 
-        public void setNext(Node<E> next) {
-            this.next = next;
+       
+        public Node<E> getNext() {
+            return next;
         }
 
-        public void setPrev(Node<E> prev) {
-            this.prev = prev;
+      
+        public void setPrev(Node<E> p) {
+            prev = p;
         }
 
+        
+        public void setNext(Node<E> n) {
+            next = n;
+        }
     }
 
-    private Node<E> header;
-    private Node<E> trailer;
-    private int size = 0;
+    private Node<E> header; 
+    private Node<E> trailer; 
+    public int size = 0; 
 
+  
+    public DoublyLinkedList() {
+        header = new Node<>(null, null, null);
+        trailer = new Node<>(null, header, null);
+        header.setNext(trailer);
+        size = 0;
+    }
+
+   
     public Node<E> getHeader() {
         return header.getNext();
-    }
-
-    public Node<E> getTrailer() {
-        return trailer.getPrev();
-    }
-
-    public int getSize() {
-        return size;
     }
 
     public void setHeader(Node<E> header) {
         this.header = header;
     }
 
+    public Node<E> getTrailer() {
+        return trailer.getPrev();
+    }
+
     public void setTrailer(Node<E> trailer) {
         this.trailer = trailer;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     public void setSize(int size) {
         this.size = size;
-    }
-    
-
-    public DoublyLinkedList() {
-        header = new Node<>(null, null, null);
-        trailer = new Node<>(null, header, null);
-        header.setNext(trailer);
-    }
-
-    public int size() {
-        return size;
     }
 
     public boolean isEmpty() {
         return size == 0;
     }
 
+    
     public E getFirst() {
         if (isEmpty()) {
             return null;
@@ -100,6 +102,7 @@ public class DoublyLinkedList<E> {
         return header.getNext().getElement();
     }
 
+    
     public E getLast() {
         if (isEmpty()) {
             return null;
@@ -107,53 +110,52 @@ public class DoublyLinkedList<E> {
         return trailer.getPrev().getElement();
     }
 
-    private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
-        Node<E> newest = new Node<>(e, predecessor, successor);
-        predecessor.setNext(newest);
-        successor.setPrev(newest);
-        size++;
+    
+    public void addBetween(E e, Node<E> p, Node<E> s) {
+        Node<E> newNode = new Node<>(e, p, s); 
+        p.setNext(newNode);  
+        s.setPrev(newNode); 
+        size++; 
     }
 
+ 
+    private E remove(Node<E> node) {
+        Node<E> p = node.getPrev();
+        Node<E> s = node.getNext();
+        p.setNext(s);
+        s.setPrev(p);
+        size--;
+        return node.getElement();
+    }
+
+   
     public void addFirst(E e) {
         addBetween(e, header, header.getNext());
     }
 
+    
     public void addLast(E e) {
         addBetween(e, trailer.getPrev(), trailer);
     }
 
-    private E remove(Node<E> node){
-        Node<E> predecessor= node.getPrev();
-        Node<E> successor=node.getNext();
-        predecessor.setNext(successor);
-        successor.setPrev(predecessor);
-        size--;
-        return node.getElement();
-    }
     
-    public E removeFirst(){
-        if(isEmpty()) return null;
+    public E removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
         return remove(header.getNext());
     }
-    
-    public E removeLast(){
-        if(isEmpty()) return null;
-        return  remove(trailer.getPrev());
-    }
-    public E get(int index) {
-        if (size != 0) {
-            Node<E> current = header.getNext();
-            for (int i = 0; (current != null) && (i < index); i++) {
-                current = current.getNext();
-            }
-            if (current != null) {
-                return current.getElement();
-            }
+
+  
+    public E removeLast() {
+        if (isEmpty()) {
+            return null;
         }
-        return null;
+        return remove(trailer.getPrev());
     }
-    
-    public void removeAt(int n) {
+
+ 
+    public void removeAtPosition(int n) {
         if (size == 0 || n < 0) { 
             return;
         }
@@ -166,5 +168,18 @@ public class DoublyLinkedList<E> {
         }
         remove(current);
     }
+
     
+    public E get(int index) {
+        if (size != 0) {
+            Node<E> current = header.getNext();
+            for (int i = 0; (current != null) && (i < index); i++) {
+                current = current.getNext();
+            }
+            if (current != null) {
+                return current.getElement();
+            }
+        }
+        return null;
+    }
 }
