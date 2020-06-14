@@ -6,6 +6,7 @@
 package Bai2;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -45,6 +46,15 @@ public class Program{
     public String getTop() {
         return tail.getTagHTML();
     }
+    public void print() {
+        for(TgHTML t = head; t != null; t = t.NEXT)
+            System.out.print(t.getTagHTML() + "   ");
+    }
 }
+    Website g = new Website();
+    WritetoFile csv = new WritetoFile();
+    Stack s = new Stack();
+    Map<String, Integer> map= new HashMap<>();
 }
+
     
