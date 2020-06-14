@@ -55,6 +55,10 @@ public class Stack {
         head = head.next;
         head.prev = null;}
     }
-    
+    //lay tag tren cung cua stack
+        public String Top(){
+            return head.getTag();
+        }
+        
 
 }
