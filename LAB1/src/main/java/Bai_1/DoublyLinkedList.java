@@ -9,39 +9,64 @@ package Bai_1;
  *
  * @author Dell
  */
-public class DoublyLinkedList<E> {
-    private static class Node<E>{
-        private E element;
-        private Node<E> prev;
-        private Node<E> next;
-        public Node(E e, Node<E> p, Node<E> n){
-            element=e;
+public class DoublyLinkedList<Infor> {
+    private static class Node<Infor>{
+        private Infor element;
+        private Node<Infor> prev;
+        private Node<Infor> next;
+        public Node(Infor i, Node<Infor> p, Node<Infor> n){
+            element=i;
             prev=p;
             next=n;
         }
-        public E getElement(){
+        public Infor getElement(){
             return element;
         }
-        public Node<E> getPrev(){
+        public Node<Infor> getPrev(){
             return prev;
         }
-        public void setPrev(Node<E> p){
+        public void setPrev(Node<Infor> p){
             prev=p;
         }
-        public Node<E> getNext(){
+        public Node<Infor> getNext(){
             return next;
         }
-        public void setNext(Node<E> n){
+        public void setNext(Node<Infor> n){
             next=n;
         }
     }
-    private Node<E> header;
-    private Node<E> trailer;
+    private Node<Infor> header;
+    private Node<Infor> trailer;
     private int size=0;
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+    public Node<Infor> getHeader() {
+        return header;
+    }
+
+    public void setHead(Node<Infor> header) {
+        this.header = header;
+    }
+
+    public Node<Infor> getTrailer() {
+        return trailer;
+    }
+
+    public void setTail(Node<Infor> tail) {
+        this.trailer = trailer;
+    }
+
+    public DoublyLinkedList(Node<Infor> head, Node<Infor> tail) {
+        this.header = header;
+        this.trailer = trailer;
+    }
     public DoublyLinkedList(){
-        header= new Node<>(null,null,null);
-        trailer= new Node<>(null,header,null);
-        header.setNext(trailer);
+        header = trailer = null;
     }
     public int size(){
         return size;
@@ -49,48 +74,48 @@ public class DoublyLinkedList<E> {
     public boolean isEmpty(){
         return size==0;
     }
-    public E first(){
+    public Infor first(){
         if(isEmpty()){
             return null;
         }
         return header.getNext().getElement();
     }
-    public E last(){
+    public Infor last(){
         if(isEmpty()){
             return null;
         }
         return trailer.getPrev().getElement();
     }
     
-    private void addBetween(E e, Node<E> predecessor, Node<E> successor){
-        Node<E> newest= new Node<>(e,predecessor,successor);
+    private void addBetween(Infor newNode, Node<Infor> predecessor, Node<Infor> successor){
+        Node<Infor> newest= new Node<>(newNode,predecessor,successor);
         predecessor.setNext(newest);
         successor.setPrev(newest);
         size++;
     }
-    private E delete(Node<E> node){
-        Node<E> predecessor= node.getPrev();
-        Node<E> successor= node.getNext();
+    private Infor delete(Node<Infor> node){
+        Node<Infor> predecessor= node.getPrev();
+        Node<Infor> successor= node.getNext();
         predecessor.setNext(successor);
         successor.setPrev(predecessor);
         size--;
         return node.getElement();
     }
-    public void addFirst(E e){
-        addBetween(e,header,header.getNext());
+    public void addFirst(Infor newNode){
+        addBetween(newNode,header,header.getNext());
     }
-    public void addLast(E e){
+    public void addLast(Infor newNode){
         addBetween(e,trailer.getPrev(),trailer);
     }
-    public E deleteFirst(){
+    public Infor deleteFirst(){
         if(isEmpty()){
-            return null;
+            Syste.out.println("Empty");
         }
         return delete(header.getNext());
     }
-    public E deleteLast(){
+    public Infor deleteLast(){
         if(isEmpty()){
-            return null;
+            System.out.println("Empty");
         }
         return delete(trailer.getPrev());
     }
