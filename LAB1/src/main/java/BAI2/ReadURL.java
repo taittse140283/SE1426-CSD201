@@ -14,7 +14,12 @@ import java.net.URL;
  * @author Thuan Le
  */
 public class ReadURL {
-    
+    /**
+     * Input an URL and read its content
+     * @param urlString
+     * @return
+     * @throws Exception 
+     */
     public String readHTML(String urlString) throws Exception{
         String content = "";  
         BufferedReader br = null;
