@@ -25,7 +25,20 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
     }
     private Node<E> head;
     private Node<E> tail;
+    public int size;
     
+    /**
+     * Create a default list
+     */
+    public DoublyLinkedList() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+    }
+    
+    public int size(){
+        return this.size;
+    }
     /**
      * Returns top element in the list
      * @return 
@@ -154,31 +167,48 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
             for (int i = 1; i < index; i++) {
             previous = previous.next;
             }
-        Node<E> current = previous.next;
-        previous.next = current.next;
-        size--;
-        return current.element;
+            Node<E> current = previous.next;
+            previous.next = current.next;
+            size--;
+            return current.element;
         }
     }
     
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        head = tail = null;
     }
 
     @Override
     public boolean contains(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.indexOf(e)>=0;
     }
 
     @Override
     public E get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(size == 0){
+            return null;
+        }
+        if(index >=this.size){
+            index = this.size -1;
+        }
+        Node current = this.head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return (E) current.element;
     }
 
     @Override
     public int indexOf(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Node current = this.head;
+        for (int i = 0; i < this.size; i++) {
+            if(current.element.equals(e)){
+                return i;
+            }
+            current = current.next;
+        }
+        return -1;
     }
 
     @Override
