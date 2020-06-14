@@ -65,5 +65,13 @@ public class DoubleLinkedList {
             add(gamer);
         }
     }
+     public Gamer removeLast() {
+        Gamer gamer = tail;
+        Gamer gamerLast = tail.previous;
+        tail = gamerLast;
+        tail.next = null;
+
+        return gamer;
+    }
 
 }
