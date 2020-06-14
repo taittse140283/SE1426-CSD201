@@ -17,7 +17,9 @@ import java.net.URL;
  */
 public class ReadLine {
     
-    //
+    //connection to url and read the content
+    //param url webb
+    //throw IOException, MalformedURLException
     public String readLine(String urlWeb) throws MalformedURLException, IOException{
         String content = "";
         String line;
