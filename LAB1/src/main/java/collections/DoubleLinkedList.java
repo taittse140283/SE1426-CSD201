@@ -5,7 +5,9 @@
 package collections;
 
 public class DoubleLinkedList<E> {
-    /*Nested Node class*/
+    /**
+     * Nested Node class
+     */
     protected static class Node<E> {
         private E element;
         private Node<E> prev;
@@ -22,7 +24,9 @@ public class DoubleLinkedList<E> {
         public void setNext(Node<E> n) { next = n; }
         public void setElement(E e) { element = e; }
     }
-    /*Define variable*/
+    /**
+     * Define variable
+     */
     private final Node<E> head;
     private final Node<E> tail;
     private int size = 0;
@@ -32,53 +36,75 @@ public class DoubleLinkedList<E> {
     public Node<E> getTail() {
         return this.tail;
     }
-    /*Constructor*/
+    /**
+     * Constructor
+     */
     public DoubleLinkedList() {
         head = new Node<>(null, null, null);
         tail = new Node<>(null, head, null);
         head.setNext(tail);
     }
-    /*Return the number of elements in this list*/
+    /**
+     * Return the number of elements in this list
+     */
     public int size() { return size; }
-    /*Check if list is empty or not*/
+    /**
+     * Check if list is empty or not
+     */
     public boolean isEmpty() { return size == 0; }
-    /*Return the fisrt element of the list*/
+    /**
+     * Return the fisrt element of the list
+     */
     public E getFirst() {
         if (isEmpty()) return null;
         return head.getNext().getElement();
     }
-    /*Return the last element of the list*/
+    /**
+     * Return the last element of the list
+     */
     public E getLast() {
         if (isEmpty()) return null;
         return tail.getPrev().getElement();
     } 
-    /*Add an element at the first of the list*/
+    /**
+     * Add an element at the first of the list
+     */
     public void addFirst(E e) {
         addBetween(e, head, head.getNext());
     }
-    /*Add an element at the last of the list*/
+    /**
+     * Add an element at the last of the list
+     */
     public void addLast(E e) {
         addBetween(e, tail.getPrev(), tail);
     }
-    /*Remove and return the first element of the list*/
+    /**
+     * Remove and return the first element of the list
+     */
     public E removeFirst() {
         if (isEmpty()) return null;
         return remove(head.getNext());
     }
-    /*Remove and return the last elment of the list*/
+    /**
+     * Remove and return the last elment of the list
+     */
     public E removeLast() {
         if (isEmpty()) return null;
         return remove(tail.getPrev());
     }
 
-    /*Adds an element to between two next element in the list*/
+    /**
+     * Adds an element to between two next element in the list
+     */
     public void addBetween(E e, Node<E> predecessor, Node<E> successor) {
         Node<E> newest = new Node<>(e, predecessor, successor);
         predecessor.setNext(newest);
         successor.setPrev(newest);
         size++;
     }
-    /*Remove an element of the list*/
+    /**
+     * Remove an element of the list
+     */
     public E remove(Node<E> node) {
         Node<E> predecessor = node.getPrev();
         Node<E> successor = node.getNext();

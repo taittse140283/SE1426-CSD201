@@ -8,6 +8,9 @@ import problem1.*;
 import problem2.*;
 
 public class Main {
+    /**
+     * @define a constant variable HELP
+     */
     final static String HELP = "java -jar LAB1.jar 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>>: Problem 1, read the user csv file and save the data strucutre into csv file\n" +
         "java -jar LAB1.jar 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -a <<email>> <<point>>: Problem 1, add a new user into the data strucutre and save to new csv file\n" +
         "java -jar LAB1.jar 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -d <<email>>: Problem 1, delete a user in the data strucutre and save to new csv file\n" +
@@ -16,12 +19,20 @@ public class Main {
         "java -jar LAB1.jar 1 -r <<user_CSV_file>> -g <<email>>: Problem 1, get the point of user from the data strucutre\n" +
         "java -jar LAB1.jar 1 -r <<user_CSV_file>> -t: Problem 1, get the point of the top user from the data strucutre\n" +
         "java -jar LAB1.jar 2 <<URL-of-website>> <<output-CSV-file>>: Problem 2, read html info from a URL, save all tag information into the CSV output file\n";
+    /**
+     * @param a String[], String st
+     * @return a position of st in a
+     */
     private static int find(String[] a, String st) {
         int result = -1;
         for (int i = 0; i < a.length; i++)
             if (a[i].equals(st)) { result = i; break; }
         return result;
     }
+    /**
+     * @param args the command line arguments
+     * @return Output a String, if String = "" there is no error. otherwise.
+     */
     private static String checkFormat(String[] args) {
         String result = "";
         String problem = args.length != 0 ? args[0] : "";

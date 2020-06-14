@@ -1,13 +1,15 @@
-package problem1;
-
 /**
  *
  * @author SE140834
  */
+package problem1;
+
 public class Player implements Comparable<Player> {
     private String email;
     private long point;
-    
+     /**
+     * @Constructor
+     */
     public Player() {
     }
     
@@ -15,7 +17,9 @@ public class Player implements Comparable<Player> {
         this.email = email;
         this.point = point;
     }
-
+    /**
+     * @Getter and Setter
+     */
     public String getEmail() {
         return this.email;
     }
@@ -31,12 +35,16 @@ public class Player implements Comparable<Player> {
     public void setPoint(long point) {
         this.point = point;
     }
-    
+     /**
+     * @Override toString()
+     */
     @Override
     public String toString() {
         return this.email + ", " + this.point;
     }
-
+     /**
+     * @Override compareTo()
+     */
     @Override
     public int compareTo(Player player) {
         int result = 0;

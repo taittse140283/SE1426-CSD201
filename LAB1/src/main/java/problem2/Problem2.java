@@ -20,6 +20,11 @@ public class Problem2 {
     String data;
     public Problem2() {
     }
+     /**
+     * @Argument String _url
+     * @function read a whole html file of _url
+     * @return a whole string of the website
+     */     
     public String loadURL(String _url) throws MalformedURLException, IOException {
         String str;
         URL url = new URL(_url);
@@ -31,6 +36,9 @@ public class Problem2 {
         }
         return builder.toString();
     }
+     /**
+     * @function countNormalTags and save to HashMap
+     */     
     public void countNormalTags() {
         int i = data.indexOf("</", 0);
         while (i != -1) {
@@ -40,6 +48,9 @@ public class Problem2 {
             i = data.indexOf("</", i + 1);
         }
     }
+     /**
+     * @function countSelfClosingTags and save to HashMap
+     */     
     public void countSelfClosingTags() {
         String reverse = new StringBuilder(data).reverse().toString();
         int i = reverse.indexOf(">/", 0);
@@ -52,6 +63,10 @@ public class Problem2 {
             i = reverse.indexOf(">/", i + 1);
         }
     }
+    /**
+     * @argument String filename
+     * @function sort and write all data to file Name
+     */   
     public void writeFile(String filename) throws IOException {
         StringBuilder builder = new StringBuilder();
         try (FileWriter f = new FileWriter(filename)) {
@@ -75,6 +90,9 @@ public class Problem2 {
             System.out.println(e);
         }
     }
+    /**
+     * @function process Problem2
+     */   
     public void process(String _url, String filename) throws MalformedURLException, IOException {
         data = loadURL(_url);
         countNormalTags();
