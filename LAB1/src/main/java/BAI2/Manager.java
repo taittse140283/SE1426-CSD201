@@ -57,7 +57,7 @@ public class Manager {
 //        }
         if(tag.equalsIgnoreCase("<area>")){
             countTag(tag);
-        } else if(tag.equalsIgnoreCase("<base>")) {
+        } else if(tag.equalsIgnoreCase("<section>")) {
             countTag(tag);
         }else if(tag.equalsIgnoreCase("<br>")) {
             countTag(tag);
@@ -79,15 +79,15 @@ public class Manager {
             countTag(tag);
         }else if(tag.equalsIgnoreCase("<param>")) {
             countTag(tag);
-        }else if(tag.equalsIgnoreCase("<track>")) {
+        }else if(tag.equalsIgnoreCase("<svg>")) {
             countTag(tag);
-        }else if(tag.equalsIgnoreCase("<wbr>")) {
+        }else if(tag.equalsIgnoreCase("<div>")) {
             countTag(tag);
-        }else if(tag.equalsIgnoreCase("<col>")) {
+        }else if(tag.equalsIgnoreCase("<span>")) {
             countTag(tag);
         }else if(tag.equalsIgnoreCase("<command>")) {
             countTag(tag);
-        }else if(tag.equalsIgnoreCase("<keygen>")) {
+        }else if(tag.equalsIgnoreCase("<use>")) {
             countTag(tag);
         }else if(tag.equalsIgnoreCase("<source>")) {
             countTag(tag);
@@ -95,7 +95,7 @@ public class Manager {
             countTag(tag);
         }else if(tag.equalsIgnoreCase("<audio>")) {
             countTag(tag);
-        }else if(tag.equalsIgnoreCase("<ins>")) {
+        }else if(tag.equalsIgnoreCase("<script>")) {
             countTag(tag);
         }
         
