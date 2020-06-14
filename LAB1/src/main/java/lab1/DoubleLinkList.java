@@ -65,10 +65,12 @@ public class DoubleLinkList<Entry> {
     private int size=0;
     
     //constructor  new empty list
+    public DoubleLinkList(Node<Entry> header, Node<Entry> tailer) {
+        this.header = header;
+        this.tailer = tailer;
+    }
     public DoubleLinkList(){
-        header= new Node(null,null,null);
-        tailer=new Node(null,header,null);
-        header.setNext(tailer);
+        header = tailer = null;
     }
     /** Return the number of elements in the linked list. */
     public int size(){ return size;}
@@ -96,8 +98,11 @@ public class DoubleLinkList<Entry> {
     /** add element to the front of the list
      *@param e
      */
-    public void addFirst(Entry e){
-        addBetween(e,header,header.next); 
+    public void addFirst(Node<Entry> newNode){
+        newNode.setNext(header);
+        header.setBack(newNode);
+        header = newNode;
+        size++;
     }
     /** add element to the last the list
      *@param e
