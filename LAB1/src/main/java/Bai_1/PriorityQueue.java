@@ -92,5 +92,29 @@ public class PriorityQueue {
     public Infor min() {
         return (Infor)this.list.get(0);
     }
-   
+    /**
+     * This method below here is used to check the list(empty or not)
+     * @return 
+     */
+    public boolean isEmpty() {
+        return this.list.isEmpty();
+    }
+
+    public int size() {
+        return this.list.size();
+    }
+    /**
+     * This method below here is used to print the list of player by string type
+     * Input data: no
+     * Output data: the list(result)
+     * @return 
+     */
+    public String toString() {
+        String result = "";
+        Infor info;
+        for(Iterator var2 = this.list.iterator(); var2.hasNext(); result = result + info.toString() + "\n") {
+            info = (Infor)var2.next();
+        }
+        return result;
+    }
 }
