@@ -18,5 +18,16 @@ public class FileCSV {
 
     public FileCSV(){
     csv = new HashMap<>();
-}
+    }
+    
+    //count tag appear
+    //param tag
+    public void countTag(String tag){
+        if(csv.containsKey(tag) == false){
+            csv.put(tag, 1);
+        }
+        else {
+            csv.put(tag, csv.get(tag) + 1);
+        }
+    }
 }
