@@ -49,15 +49,47 @@ public class PriorityQueue {
         return list.getHeader().getElement().getPoint();
     }
     
-    public long search(String email){
+    public long searchPoint(String email){
         DoublyLinkedList.Node<Gamer> current = list.getHeader();
-        while(!current.getElement().getEmail().equals(email)) { // tim email cua nguoi choi do trong danh sach
+        while(!current.getElement().getEmail().equals(email)) { 
             current = current.getNext();
         }
         return current.getElement().getPoint();
     }
     
-
+     private int searchPosition(String email) {
+        for (int i = 0; i < list.size; i++) {
+            if (list.get(i).getEmail().equals(email)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public void delete(String email) {
+           
+        int pos = searchPosition(email); 
+        if(pos < 0) {
+            System.out.println("Error: No information found");
+        } else {
+            list.removeAtPosition(pos);
+        }
+    }
+    
+    public void update(String email, int point) {
+       
+        int pos = searchPosition(email);
+        if(pos < 0) { 
+            System.out.println("Error: No information found.");
+        } else { 
+            list.get(pos).setPoint(point); 
+            String updateEmail = list.get(pos).getEmail(); 
+            int updatePoint = list.get(pos).getPoint(); 
+            delete(list.get(pos).getEmail()); 
+            Gamer gm = new Gamer(updateEmail, updatePoint);
+            addAndSort(gm);
+        }
+    }
+    
     public void removeMax() {
         list.removeFirst();
     }
