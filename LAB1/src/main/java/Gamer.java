@@ -2,33 +2,51 @@
 public class Gamer {
 //    Khai báo thuộc tính 
 //    Các constructor và phương thức getter,setter
-    private String email;
-    private double ponit;
 
-    public Gamer() {
-    }
+    Comparable point;
+    String email;
+    Gamer next;
+    Gamer previous;
 
-    public Gamer(String email, double ponit) {
+    public Gamer(Comparable point, String email) {
+        this.point = point;
         this.email = email;
-        this.ponit = ponit;
+        next = previous = null;
     }
 
-    public String getEmail() {
-        return email;
+    public Comparable getPoint() {
+        return point;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public Gamer getNext() {
+        return next;
     }
 
-    public double getPonit() {
-        return ponit;
+    public Gamer getPrevious() {
+        return previous;
     }
 
-    public void setPonit(double ponit) {
-        this.ponit = ponit;
+    public void setPoint(Comparable point) {
+        if (point != null) {
+            this.point = point;
+        }
     }
-    
-    
-    
+
+    public void setNext(Gamer next) {
+        if (next != null) {
+            this.next = next;
+        }
+    }
+
+    public void setPrevious(Gamer previous) {
+        if (previous != null) {
+            this.previous = previous;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return email + " - " + point;
+    }
+
 }
