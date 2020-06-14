@@ -5,7 +5,6 @@
  */
 package CountTagHTML;
 
-import java.io.IOException;
 
 /**
  *
@@ -18,10 +17,11 @@ public class Validations {
     Stack s = new Stack();
 
     //read line of urlWeb, sort and write to file
-    public Validations(String urlWeb, String fileName) throws IOException {
+    public Validations(String urlWeb, String fileName){
         try {
             String content = rl.readLine(urlWeb);
             System.out.println("Processing push and pop the tag in stack");
+            splitTagHTML(content);
             csv.print();
             csv.sortAndPrint(fileName);
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class Validations {
             else if(((content.charAt(i) =='>') || (content.charAt(i) == ' ')) && check == true){
                 tag += ">";
                 check = false;
-                
+                defineTagHTML(tag);
             }
         }
     }
