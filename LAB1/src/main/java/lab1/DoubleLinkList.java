@@ -26,18 +26,42 @@ public class DoubleLinkList<Entry> {
             this.next=next_Node;
             this.back= back_Node;
         }
+        public Node(){
+            element=null;
+            back=next=null;
+        }
+    
         
     
     
     //getters and setters
     public Entry getElement(){ return element;}
+    public void setElement(Entry element){this.element=element;}
     public Node<Entry> getBack(){ return back;}
     public Node<Entry> getNext(){ return next;}
     public void setBack(Node<Entry>  b){back=b;}
     public void setNext(Node<Entry>  n){next=n;}
     }
+
+    
+    
     private Node<Entry> header;
     private Node<Entry> tailer;
+    public Node<Entry> getHeader() {
+        return header;
+    }
+
+    public void setHeader(Node<Entry> header) {
+        this.header = header;
+    }
+
+    public Node<Entry> getTailer() {
+        return tailer;
+    }
+
+    public void setTailer(Node<Entry> tailer) {
+        this.tailer = tailer;
+    }
     private int size=0;
     
     //constructor  new empty list
@@ -61,7 +85,7 @@ public class DoubleLinkList<Entry> {
         return tailer.getBack().getElement();
     }
     //** add element to the linked list int the between the given nodes  */
-    private void addBetween(Entry Element, Node<Entry> infontof, Node<Entry> back){
+    public void addBetween(Entry Element, Node<Entry> infontof, Node<Entry> back){
         /** Create and link a node */
         Node<Entry> new_Node= new Node<>(Element, infontof, back);
         infontof.setNext(new_Node);
@@ -99,7 +123,7 @@ public class DoubleLinkList<Entry> {
     * no output
     
     */
-    private Entry remove(Node <Entry> node){
+    public Entry remove(Node <Entry> node){
         Node<Entry> infontof= node.getBack();
         Node<Entry> back=node.getNext();
         infontof.setNext(back);
@@ -118,6 +142,13 @@ public class DoubleLinkList<Entry> {
             node=node.next;
         }
         return node;
+    }
+    /**
+     * this method to get the point of the node in the list
+     * @param the position of node
+     */
+    public Entry getElementNode(int post) {
+        return getNode(post).getElement();
     }
     
     /**
@@ -139,9 +170,11 @@ public class DoubleLinkList<Entry> {
     
     public void print(){
         for(Node<Entry> n=header; n!=tailer;n=n.next){
-            System.out.println(n.getElement() + " ");
+            System.out.println(n.getElement() +" ");
         }
     }
+    
+   
 }
     
 
