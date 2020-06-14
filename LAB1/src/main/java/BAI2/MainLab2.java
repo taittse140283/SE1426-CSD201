@@ -15,5 +15,7 @@ public class MainLab2 {
         String file = "outputlab2.csv";
         Manager run = new Manager();
         run.runLab2(url, file);
+        
     }
+    
 }
