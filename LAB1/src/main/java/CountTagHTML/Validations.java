@@ -34,6 +34,28 @@ public class Validations {
         String tag = "";
         boolean check = false;
         
-        
+        //check each character with loop
+        for(int i = 0; i < content.length(); i++){
+            //'<' is begin of every tag
+            if(content.charAt(i) == '<'){
+                tag = "<";
+                check = true;
+            }
+            //ignore comment tag '-' and keep checking another tag
+            else if(content.charAt(i) == '-' && check == true){
+                tag = "";
+                check = false;
+            }
+            //write append normal character to tag
+            else if(content.charAt(i) != '>' && content.charAt(i) == ' ' && check == true){
+                tag += content.charAt(i);
+            }
+            //'>' is end of every tag
+            else if(((content.charAt(i) =='>') || (content.charAt(i) == ' ')) && check == true){
+                tag += ">";
+                check = false;
+                
+            }
+        }
     }
 }
