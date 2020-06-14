@@ -37,6 +37,18 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
             return head.element;
         }
     }
+    
+    /**
+     * Returns last element in the list
+     * @return 
+     */
+    public E getLast(){
+        if(size ==0){
+            return null;
+        } else {
+            return tail.element;
+        }
+    }
     @Override
     public void add(int index, E e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
