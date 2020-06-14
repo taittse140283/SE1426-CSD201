@@ -5,10 +5,18 @@
  */
 package Bai2;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Asus
  */
-public class Program {
-    
+public class Program{
+   public class Stack {
+      TgHTML head, tail;
+    public Stack() {
+        head = tail = null;
+    }
+ }
 }
+    

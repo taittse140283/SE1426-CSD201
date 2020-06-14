@@ -11,8 +11,8 @@ package Bai2;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        Program p = new Program();
         String url="https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh";
-        String file="output1.csv";
+        String file="output.csv";
+        Program p = new Program(url, file);
     }
 }
