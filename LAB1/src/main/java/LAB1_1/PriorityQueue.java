@@ -53,4 +53,12 @@ public class PriorityQueue{
         }
         return 0;
     }
+    
+    public Player topPlayer(){
+        return list.get(0);
+    }
+    
+    public Player deteleTop(){
+        return list.remove(0);
+    }
 }
