@@ -57,5 +57,14 @@ public class Stack {
         }
       
     }
-   
+    /*get first node in the list*/
+    public String top(){
+        return head.getTag();
+    }
+    
+    public void print(){
+        for(NodeHTML tag = tail; tag != null; tag = tag.prev)
+            System.out.println(tag.tag+"");
+    }
+}
  
