@@ -38,7 +38,9 @@ public class Stack {
         trailer.next = null;
         
     }
-    
+    /**
+     * Remove a node
+     */
     public void pop(){
         if(header == null){ return;}
         if(header == trailer){ 
@@ -48,5 +50,18 @@ public class Stack {
         } 
         trailer = trailer.prev;
         trailer.next = null;
+    }
+    /**
+     * Get the element at the top
+     * @return 
+     */
+    public String getTop(){
+        return trailer.getTagHtml();
+    }
+    
+    public void print(){
+        for (TagOfHTML tag = header; tag != null; tag = tag.next) {
+            System.out.println(tag.getTagHtml() + " ");
+        }
     }
 }    
