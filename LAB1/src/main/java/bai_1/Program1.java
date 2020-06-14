@@ -91,8 +91,13 @@ public class Program1 {
                     printToFile(args[3]);
                 }
                 else if(args[0].equals("-r") && args[2].equals("-g")) {
-                    getPlayerFromFile(args[1]);
-                    s.getPointOfPlayer(args[3]);
+                    boolean valid = args[3].matches("\\w+@+\\w+.+\\w+(.\\w)?");
+                    if(valid == true) {
+                        getPlayerFromFile(args[1]);
+                        s.getPointOfPlayer(args[3]);
+                    }
+                    else
+                        System.out.println("Wrong email format. Its must be <account name>@<domain>");
                 }
                 else
                     System.out.println("Not valid argument!");
@@ -108,23 +113,46 @@ public class Program1 {
             }
             else if(args.length == 6) {
                 if(args[0].equals("-r") && args[2].equals("-s") && args[4].equals("-d")) {
-                    getPlayerFromFile(args[1]);
-                    s.removePlayer(args[5]);
-                    printToFile(args[3]);
+                    boolean valid = args[5].matches("\\w+@+\\w+.+\\w+(.\\w)?");
+                    if(valid == true) {
+                        getPlayerFromFile(args[1]);
+                        s.removePlayer(args[5]);
+                        printToFile(args[3]);
+                    }
+                    else
+                        System.out.println("Wrong email format. Its must be <account name>@<domain>");
                 }
                 else
                     System.out.println("Not valid argument!");
             }
             else if(args.length == 7) {
                 if(args[0].equals("-r") && args[2].equals("-s") && args[4].equals("-a")) {
-                    getPlayerFromFile(args[1]);
-                    s.addNewPlayer(args[5], Integer.parseInt(args[6]));
-                    printToFile(args[3]);
+                    if(Integer.parseInt(args[6]) >= 0) {
+                        boolean valid = args[5].matches("\\w+@+\\w+.+\\w+(.\\w)?");
+                        if(valid == true) {
+                            getPlayerFromFile(args[1]);
+                            s.addNewPlayer(args[5], Integer.parseInt(args[6]));
+                            printToFile(args[3]);
+                        }
+                        else
+                            System.out.println("Wrong email format. Its must be <account name>@<domain>");
+                    }
+                    else
+                        System.out.println("The point must be a positive integer");
                 }
                 else if(args[0].equals("-r") && args[2].equals("-s") && args[4].equals("-u")) {
-                    getPlayerFromFile(args[1]);
-                    s.updateNewPoint(args[5], Integer.parseInt(args[6]));
-                    printToFile(args[3]);
+                    if(Integer.parseInt(args[6]) >= 0) {
+                        boolean valid = args[5].matches("\\w+@+\\w+.+\\w+(.\\w)?");
+                        if(valid == true) {
+                            getPlayerFromFile(args[1]);
+                            s.updateNewPoint(args[5], Integer.parseInt(args[6]));
+                            printToFile(args[3]);
+                        }
+                        else
+                            System.out.println("Wrong email format. Its must be <account name>@<domain>");
+                    }
+                    else
+                        System.out.println("The point must be a positive integer");
                 }
                 else
                     System.out.println("Not valid argument!");
@@ -133,7 +161,7 @@ public class Program1 {
                 System.out.println("Not valid argument!");
         }
         catch(Exception e) {
-            System.out.println("Not valid argument!");
+            e.printStackTrace();
         }
     }
 }
