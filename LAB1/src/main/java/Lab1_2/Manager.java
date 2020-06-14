@@ -108,5 +108,19 @@ public class Manager {
             }
         }
     }
+        /**
+     * this method read content and write to file after check tag
+     * @param a url and file name
+     */
+    public void Manager(String url , String fileName){
+        String content;
+        try {
+            content = get.readContent(url);
+            checkTag(content);
+            w.WriteFile(hs,fileName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
