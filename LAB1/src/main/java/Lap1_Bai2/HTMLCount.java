@@ -5,139 +5,136 @@
  */
 package Lap1_Bai2;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.MalformedURLException;
+
 /**
  *
  * @author PC
  */
 public class HTMLCount {
-    private DoWithFile file = new DoWithFile();
-    private FirstStack stack = new FirstStack();
+    static DoWithFile file = new DoWithFile();
+    FirstStack tagStack = new FirstStack(500);
     
-    private boolean openTag(String tag){
-        return tag.contains("<") && !tag.contains("</");
-    }
-    /**
-     * Kiểm tra xem có dấu mở tag hay không
-     * @param tag
-     * @return true hay false
-     */
-    
-    private boolean closeTag(String tag){
-        return tag.contains("</");
-    }
-    /**
-     * Kiểm tra xem có dấu đóng tag hay không
-     * @param tag
-     * @return true hay false
-     */
-    
-    public String convertCloseTag(String tag){
-        tag = tag.replace("<", "</");
-        return tag;
-    }
-    /**
-     * Đổi dấu mở tag sang đóng tag
-     * @param tag
-     * @return tag
-     */
-    
-    public boolean aloneTag(String tag, String stringHTML){
-        tag = convertCloseTag(tag);
-        return !stringHTML.contains(tag);
-    }
-    /**
-     * Nếu satringHTML.contains(tag) là đúng khi có thể đóng và thẻ đó không phải là thẻ đơn.
-     * @param tag
-     * @param stringHTML
-     * @return true hay false
-     */
-    
-    public boolean compareTag(String tag, String tagStack){
-        tagStack = convertCloseTag(tagStack);
-        System.out.println("Compare tag function: " + tag.equals(tagStack));
+    private boolean compareTag(String tag, String tagStack){
+        tag = tag.replace("/", "");
         return tag.equals(tagStack);
     }
     /**
-     * So sánh thẻ mở và đóng. Chuyển thẻ mở thành thẻ đóng để so sánh
+     * Hàm dùng để so sánh các tag đầu vào và các tag trong stack
      * @param tag
      * @param tagStack
-     * @return true hay false
+     * @return true nếu tag đó là tag đóng
      */
     
-    public void checkTag(String tag, String htmlString) {
-	String tagCompare = "";
-	boolean isValid;
-	if (openTag(tag)) {
-	    if (!aloneTag(tag, htmlString)) {
-		System.out.println("Push: " + tag);
-		stack.push(tag);
-	    } else {
-		System.out.println("Tag: " + tag + " isValid: " + aloneTag(tag, htmlString));
-		file.updateValue(tag);
-	    }
-	} else if (closeTag(tag)) {
-	    tagCompare = stack.top();
-	    isValid = compareTag(tag, tagCompare);
-	    if (isValid) {
-		System.out.println("Pop: " + tag);
-		file.updateValue(stack.pop());
-	    }
+    private String convertTag(String tag){
+        String[] splitSpace = tag.split(" ");
+        if(splitSpace.length == 1){
+            return tag;
+        } else{
+            String normalTag = splitSpace[0] + '>';
+	    return normalTag;
 	}
     }
     /**
-     * Kiểm tra xem thẻ có giá trị hay không và đưa nó vào file để ghi vào csv
-     * @param stringHTML 
+     * Có 1 vài tag đặc biệt có thẻ mở mà không có thẻ đóng, nên phải chuyển chúng thành tag bình thường 
+     * @return tag bình thường
+     */
+    
+    private boolean alongTag(String tag, String htmlBody) {
+            String closeTag = tag.replace("<", "</");
+            return !htmlBody.contains(closeTag);
+    }
+    /**
+     * Chuyển đổi tag đặc biệt như <br>, </br> 
      * @param tag
+     * @return closeTag
      */
     
-    public void slitTag(String stringHTML){
-        String tag = "";
-        boolean stillValid = true;
-        for(int i= 0; i < stringHTML.length(); i++){
-            if(stringHTML.charAt(i) == '<'){
-                for(int j = i ;j < stringHTML.length() && stillValid == true; j++){
-                    if (regexCheckTag(Character.toString(stringHTML.charAt(j))) && stringHTML.charAt(j) != '>'){
-                        tag += stringHTML.charAt(j);
-                    } else{
-                        stillValid = false;
-                        tag += '>';
-                        if(!tag.equals("<>")){
-                        System.out.println("Tag in slip tag after compare '<>': " + tag);
-                        checkTag(tag, stringHTML);
-                        }
-                        tag = "";
-			j--;
-			i = j;
-                    }
-                }
-            } else{
-                stillValid = true;
-            }
-        }
-    }
-    /**
-     * Tách từng ký tự và đưa nó vao 1 thể. Dùng phương thức regex để xác minh nội dung, nếu là 1 thẻ thì đặt nó vào phương thức checktag để xác định là thẻ mở hay thẻ đóng hoặc thẻ đơn
-     * @param stringHTML
-     * @return 
-     */
-    
-    public static boolean regexCheckTag(String character) {
-	return character.matches("^[a-zA-Z0-9'/''<']+$");
-    }   
-    /**
-     * Kiểm tra từng ký tự bằng phương thức regex
-     * @param character
-     * @return true hay false
-     */
-    
-    public void manage(String csvFile, String fileName) {
-	try {
-	    String htmlString = DoWithFile.readFile(fileName);
-	    slitTag(htmlString);
-            DoWithFile.writeFile(csvFile);
-	    DoWithFile.output();
-	} catch (Exception e) {
-	    e.printStackTrace();
+    private void analysisHTML(String htmlBody) {
+	String tag = "";
+	boolean validTag = false;
+	for (int i = 0; i < htmlBody.length(); i++) {
+	    if (htmlBody.charAt(i) == '<') {
+		tag = "<";
+		validTag = true;
+	    } else if((htmlBody.charAt(i) != '>' && htmlBody.charAt(i) != ' ') && validTag) {
+
+		if(!(Character.isLetterOrDigit(htmlBody.charAt(i))) && (htmlBody.charAt(i) != '!') && (htmlBody.charAt(i) != '/')){ 
+		    validTag = false;
+		}
+		tag = tag + htmlBody.charAt(i);
+	    } else if((htmlBody.charAt(i) != '>' || htmlBody.charAt(i) != ' ') && validTag){
+		tag = tag + '>';
+		validTag = false;
+		handlingTag(tag, htmlBody);
+	    }
 	}
     }
+    /**
+     * Dùng để quét tất cả thân HTML để tìm ra các nội dung có tag và có thể tìm ra 1 số tag đặc biệt
+     * @param htmlBody 
+     */
+    
+    private void handlingTag(String tag, String htmlBody) {
+	tag = tag.toLowerCase();
+
+	if(!tag.contains("</") && alongTag(tag, htmlBody) && !tag.contentEquals("<!doctype>")) {
+	    file.tagValue(tag);
+	} else{
+	    tag = convertTag(tag);
+	    if(!tag.contains("</")){
+		tagStack.push(tag);
+	    } else if(compareTag(tag, tagStack.top())){
+		file.tagValue(tagStack.top());
+		tagStack.pop();
+	    }
+	}
+    }
+    /**
+     * Dùng để xử lý thẻ từ thân HTML, kiểm tra là tag mở hay tag đóng rồi đưa nó vào push hay pop
+     * @param tag
+     * @param htmlBody
+     */
+    
+    public void inputCLI(String url, String fileName) throws IOException{
+	try {
+	    String body = downloadWebsite(url);
+	    analysisHTML(body);
+	    file.output(fileName);
+	} catch (IOException e) {
+	    System.out.println("Can't write to file =(((");
+	} catch (Exception e) {
+	    System.out.println("Can't read the URL");
+	}
+    }
+
+    public static String downloadWebsite(String siteUrl) throws MalformedURLException, IOException{
+	HttpURLConnection connection = (HttpURLConnection) new URL(siteUrl).openConnection();
+	connection.setRequestProperty("outputHTML", "https://vnexpress.net/");
+	StringBuilder htmlBody = new StringBuilder();
+	try {
+	    InputStream inputstream = connection.getInputStream();
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream));
+	    String line;
+	    while((line = reader.readLine()) != null){
+		htmlBody.append(line);
+	    }
+	    reader.close();
+	} catch (IOException e) {
+	    System.out.println("Can't open the link!!");
+	}
+	return htmlBody.toString();
+    }
+    /**
+     * Dùng để tải xuống 1 trang wed HTML và nội dung sẽ chuyển thành dạng String
+     * @param SiteUrl
+     * @throws MalformedURLException
+     * @throw IOException
+     */
 }

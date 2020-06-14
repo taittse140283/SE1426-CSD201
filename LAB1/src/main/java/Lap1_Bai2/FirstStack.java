@@ -17,6 +17,10 @@ public class FirstStack {
     public FirstStack(){
         html = new String[SizeArray];
     }
+
+    FirstStack(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public int size(){
         int size = top;
