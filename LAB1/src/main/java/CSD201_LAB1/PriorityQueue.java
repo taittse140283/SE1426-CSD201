@@ -6,6 +6,8 @@
 package CSD201_LAB1;
 
 import CSD201_LAB1.DoubleLinkList.node;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -95,5 +97,35 @@ public class PriorityQueue {
         }
         return 0;
     }
-    
+    public void getTop(){
+        if(list.isEmpty()){
+            System.err.println("data not empty");
+        }else{
+            System.out.println(list.head.right.getPoint());
+        }
+    }
+    public void deleteTop(){
+        if(list.isEmpty()){
+            System.out.println("data is empty");
+        }else{
+            node currentNode=list.head.right;
+            currentNode.left.right=currentNode.right;
+            currentNode.right.left=currentNode.left;
+            currentNode=null;
+            System.out.println("delete suceess");
+        }
+    }
+    public void exportCSV(String path)throws IOException{
+        FileWriter writer=new FileWriter(path);
+        writer.append("Email,Point\n");
+        node currentNode=list.head.right;
+        while(currentNode!=list.tail){
+            String rawData=String.format("%s,%d\n", currentNode.getEmail(),currentNode.getPoint());
+            writer.append(rawData);
+            currentNode=currentNode.right;
+        }
+        writer.flush();
+        writer.close();
+        System.out.println("save data to csv");
+    }
 }
