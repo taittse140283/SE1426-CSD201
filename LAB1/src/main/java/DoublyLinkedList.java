@@ -8,46 +8,46 @@
  *
  * @author lehie
  */
-public class DoublyLinkedList<P> {
-    private class Node<P> {
-        private P value;
-        private Node<P> next;
-        private Node<P> prev;
+public class DoublyLinkedList<Player> {
+    private class Node<Player> {
+        private Player value;
+        private Node<Player> next;
+        private Node<Player> prev;
         
-        public Node (P value, Node<P> next, Node<P> prev) {
+        public Node (Player value, Node<Player> next, Node<Player> prev) {
             this.value = value;
             this.next = next;
             this.prev = prev;
         }
         
-        public P getValue(){
+        public Player getValue(){
             return value;
         }
         
-        public void setValue(P value){
+        public void setValue(Player value){
             this.value = value;
         }
 
-        public Node<P> getNext() {
+        public Node<Player> getNext() {
             return next;
         }
 
-        public void setNext(Node<P> next) {
+        public void setNext(Node<Player> next) {
             this.next = next;
         }
 
-        public Node<P> getPrev() {
+        public Node<Player> getPrev() {
             return prev;
         }
 
-        public void setPrev(Node<P> prev) {
+        public void setPrev(Node<Player> prev) {
             this.prev = prev;
         }
         
     }
     
-    private Node<P> header;
-    private Node<P> trailer;
+    private Node<Player> header;
+    private Node<Player> trailer;
     public int size = 0;
     
     public DoublyLinkedList() {
@@ -57,19 +57,19 @@ public class DoublyLinkedList<P> {
         size = 0;
     }
 
-    public Node<P> getHeader() {
+    public Node<Player> getHeader() {
         return header;
     }
 
-    public void setHeader(Node<P> header) {
+    public void setHeader(Node<Player> header) {
         this.header = header;
     }
 
-    public Node<P> getTrailer() {
+    public Node<Player> getTrailer() {
         return trailer;
     }
 
-    public void setTrailer(Node<P> trailer) {
+    public void setTrailer(Node<Player> trailer) {
         this.trailer = trailer;  
     }
 
@@ -85,52 +85,52 @@ public class DoublyLinkedList<P> {
         return size ==0;
     }
     
-    public P getFirst() {
+    public Player getFirst() {
         if (isEmpty()) {
             return null;
         }
         return header.getNext().getValue();
     }
 
-    public P getLast() {
+    public Player getLast() {
         if (isEmpty()) {
             return null;
         }
         return trailer.getPrev().getValue();
     }
     
-    public void addBetween(P v, Node<P> p, Node<P> s) {
-        Node<P> newNode = new Node<>(v, p, s); 
+    public void addBetween(Player v, Node<Player> p, Node<Player> s) {
+        Node<Player> newNode = new Node<>(v, p, s); 
         p.setNext(newNode);  
         s.setPrev(newNode); 
         size++; 
     }
         
-    public void addFirst(P v) {
+    public void addFirst(Player v) {
         addBetween(v, header, header.getNext());
     }
     
-    public void addLast(P v) {
+    public void addLast(Player v) {
         addBetween(v, trailer.getPrev(), trailer);
     }
     
-    private P remove(Node<P> n) {
-        Node<P> p = n.getPrev();
-        Node<P> s = n.getNext();
+    private Player remove(Node<Player> n) {
+        Node<Player> p = n.getPrev();
+        Node<Player> s = n.getNext();
         p.setNext(s);
         s.setPrev(p);
         size--;
         return n.getValue();
     }
     
-    public P removeFirst() {
+    public Player removeFirst() {
         if (isEmpty()) {
             return null;
         }
         return remove(header.getNext());
     }
     
-    public P removeLast() {
+    public Player removeLast() {
         if (isEmpty()) {
             return null;
         }
