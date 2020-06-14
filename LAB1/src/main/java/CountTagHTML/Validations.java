@@ -61,6 +61,22 @@ public class Validations {
     
     //define and ignore some tag
     public void defineTagHTML(String tag){
-        
+        //some tag need ignore
+        //
+        if(tag.equalsIgnoreCase("<!DONTYPE>")){
+            csv.countTag(tag);
+        }else if(tag.equalsIgnoreCase("<meta>")){
+            csv.countTag(tag);
+        }else if(tag.equalsIgnoreCase("<link>")){
+            csv.countTag(tag);
+        }else if(tag.equalsIgnoreCase("<img>")){
+            csv.countTag(tag);
+        }else if(tag.equalsIgnoreCase("<hr>")){
+            csv.countTag(tag);
+        }else if(tag.equalsIgnoreCase("<input>")){
+            csv.countTag(tag);
+        }
     }
+    
+    
 }
