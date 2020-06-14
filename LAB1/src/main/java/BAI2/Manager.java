@@ -95,12 +95,38 @@ public class Manager {
             hashMap.put(tag, hashMap.get(tag) + 1);
         }
     }
+    
+    /**
+     * After check tags of html then add all tags were chosen 
+     * @param tag 
+     */
     public void addTag(String tag){
-        
+        if(tag.equalsIgnoreCase("<area>") || tag.equalsIgnoreCase("<base>") || tag.equalsIgnoreCase("<br>")
+            || tag.equalsIgnoreCase("<strong>") || tag.equalsIgnoreCase("<!DOCTYPE>") || tag.equalsIgnoreCase("<embed>")
+            || tag.equalsIgnoreCase("<hr>") || tag.equalsIgnoreCase("<img>") || tag.equalsIgnoreCase("<input>")
+            || tag.equalsIgnoreCase("<link>") || tag.equalsIgnoreCase("<meta>") || tag.equalsIgnoreCase("<param>")
+            || tag.equalsIgnoreCase("<track>") || tag.equalsIgnoreCase("<wbr>") || tag.equalsIgnoreCase("<col>")
+            || tag.equalsIgnoreCase("<command>") || tag.equalsIgnoreCase("<keygen>") || tag.equalsIgnoreCase("<source>")
+            || tag.equalsIgnoreCase("<script>") || tag.equalsIgnoreCase("<pre>") || tag.equalsIgnoreCase("<em>")
+            || tag.equalsIgnoreCase("<small>") || tag.equalsIgnoreCase("<ins>") || tag.equalsIgnoreCase("<sub>") ) {
+            countTag(tag);
+        }
+        else{
+            if(tag.contains("</") == false){
+                stack.push(tag);
+                countTag(tag);
+                stack.print();
+                System.out.print("\n");
+            } else if(stack.getTop().equalsIgnoreCase(tag.replace("/", "")) == true){
+                stack.pop();
+                stack.print();
+                System.out.print("\n");
+            }
+        }
+            
     }
     /**
      * Check and selective tags in html
-     * Don't select cmt tag
      * @param content 
      */
     public void analyzeTagHTML(String content){
@@ -117,7 +143,7 @@ public class Manager {
                 addTag(tag);
                 check = false;
             }else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true){
-                tag = tag + content.charAt(i);
+                tag += content.charAt(i);
             }else if((content.charAt(i) == '>' || content.charAt(i) ==' ' ) && check == true){
                 tag += ">";
                 check = false;
