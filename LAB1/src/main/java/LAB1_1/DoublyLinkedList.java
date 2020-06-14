@@ -55,10 +55,17 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
      * @param index
      * @param e 
      */
-    public void addFirst(int index, E e) {
+    public void addFirst(E e) {
         Node<E> newNode = new Node<E>(e); //Create a newNode
         newNode.next = head; // Attach newNode with head
         head = newNode; // head point to the newNode
+        size++; // Icrease size
+    }
+    
+    public void addLast(E e){
+        Node<E> newNode = new Node<E>(e); //Create a newNode
+        tail.next = newNode; // Attach newNode with head
+        tail = tail.next; // tail point to the last node
         size++; // Icrease size
     }
 
