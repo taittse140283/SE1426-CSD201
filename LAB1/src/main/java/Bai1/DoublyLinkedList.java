@@ -16,34 +16,43 @@ public class DoublyLinkedList<Player> {
         private Node<Player> next;
         private Node<Player> prev;
         
+        public Node(Player value){
+            this.value=value;
+        }
+        
         public Node (Player value, Node<Player> next, Node<Player> prev) {
             this.value = value;
             this.next = next;
             this.prev = prev;
         }
         
-        public Player getValue(){
+        //return data of node
+        public Player getElement(){
             return value;
         }
         
         public void setValue(Player value){
             this.value = value;
         }
-
+        
+        //return node is behind of it
         public Node<Player> getNext() {
             return next;
         }
-
-        public void setNext(Node<Player> next) {
-            this.next = next;
+        
+        //create next node with param is specific node
+        public void setNext(Node<Player> n) {
+            next = n;
         }
-
+        
+        //return node is in front of it
         public Node<Player> getPrev() {
             return prev;
         }
-
-        public void setPrev(Node<Player> prev) {
-            this.prev = prev;
+        
+        //creat prev node with paran is specific node
+        public void setPrev(Node<Player> p) {
+            prev = p;
         }
         
     }
@@ -95,7 +104,7 @@ public class DoublyLinkedList<Player> {
         if (isEmpty()) {
             return null;
         }
-        return header.getNext().getValue();
+        return header.getNext().getElement();
     }
     
     //return node at the end of list
@@ -103,7 +112,7 @@ public class DoublyLinkedList<Player> {
         if (isEmpty()) {
             return null;
         }
-        return trailer.getPrev().getValue();
+        return trailer.getPrev().getElement();
     }
     
     //add new Node between two given nodes
@@ -131,7 +140,7 @@ public class DoublyLinkedList<Player> {
         p.setNext(s);
         s.setPrev(p);
         size--;
-        return n.getValue();
+        return n.getElement();
     }
     
     //delete node at the beginning of list
@@ -175,7 +184,7 @@ public class DoublyLinkedList<Player> {
                 current = current.getNext();
             }
             if (current != null) {
-                return current.getValue();
+                return current.getElement();
             }
         }
         return null;
