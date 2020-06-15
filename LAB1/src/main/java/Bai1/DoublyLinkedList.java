@@ -48,17 +48,20 @@ public class DoublyLinkedList<Player> {
         
     }
     
+    //creat inner class Node for doublylinkedlist
     private Node<Player> header;
     private Node<Player> trailer;
     public int size = 0;
     
+    //constructor
     public DoublyLinkedList() {
         header = new Node<>(null, null, null);
         trailer = new Node<>(null,header, null);
         header.setNext(trailer);
         size = 0;
     }
-
+    
+    //create getter and setter for Node hearder, trailer and size
     public Node<Player> getHeader() {
         return header;
     }
@@ -87,13 +90,15 @@ public class DoublyLinkedList<Player> {
         return size ==0;
     }
     
+    //return node to at beginning of list
     public Player getFirst() {
         if (isEmpty()) {
             return null;
         }
         return header.getNext().getValue();
     }
-
+    
+    //return node at the end of list
     public Player getLast() {
         if (isEmpty()) {
             return null;
@@ -101,21 +106,25 @@ public class DoublyLinkedList<Player> {
         return trailer.getPrev().getValue();
     }
     
+    //add new Node between two given nodes
     public void addBetween(Player v, Node<Player> p, Node<Player> s) {
         Node<Player> newNode = new Node<>(v, p, s); 
         p.setNext(newNode);  
         s.setPrev(newNode); 
         size++; 
     }
-        
+    
+    //insert player to the beginning of list
     public void addFirst(Player v) {
         addBetween(v, header, header.getNext());
     }
     
+    //insert player to the end of list
     public void addLast(Player v) {
         addBetween(v, trailer.getPrev(), trailer);
     }
     
+    //remove the given node from the list and returns its value
     private Player remove(Node<Player> n) {
         Node<Player> p = n.getPrev();
         Node<Player> s = n.getNext();
@@ -125,6 +134,7 @@ public class DoublyLinkedList<Player> {
         return n.getValue();
     }
     
+    //delete node at the beginning of list
     public Player removeFirst() {
         if (isEmpty()) {
             return null;
@@ -132,6 +142,8 @@ public class DoublyLinkedList<Player> {
         return remove(header.getNext());
     }
     
+    
+    //delete node at the end of the list
     public Player removeLast() {
         if (isEmpty()) {
             return null;
@@ -139,6 +151,8 @@ public class DoublyLinkedList<Player> {
         return remove(trailer.getPrev());
     }
     
+    
+    //delete node at a position
     public void removeAtPosition(int n) {
         if (size == 0 || n < 0) {
             return;
@@ -152,7 +166,8 @@ public class DoublyLinkedList<Player> {
         }
         remove(current);
     }
-
+    
+    //return value of node at specific position
     public Player get(int index) {
         if (size != 0) {
             Node<Player> current = header.getNext();
