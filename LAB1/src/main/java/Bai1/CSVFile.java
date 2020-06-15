@@ -66,7 +66,7 @@ public class CSVFile {
                 pw.println("Email, point");
                 Node<Player> current = queue.getList().getHeader();
                 while (current.getNext() != null) {
-                    pw.println(current.getValue().toString());
+                    pw.println(current.getElement().toString());
                     current = current.getNext();
                 }
             } catch (IOException e) {
