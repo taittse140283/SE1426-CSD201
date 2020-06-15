@@ -12,7 +12,8 @@ package Bai1;
  */
 
 public class PriorityQueue extends DoublyLinkedList<Player> {
-
+    
+    //get list of doublylinkedlist to process
     public PriorityQueue() {
         super();
     }
@@ -20,23 +21,24 @@ public class PriorityQueue extends DoublyLinkedList<Player> {
     public PriorityQueue getList(){
         return this;
     }
-
+    
+    //add new player into list and sort its point
     public void addAndSort(Player player) {
         if (this.isEmpty()) {
             this.addFirst(player);
-        } else if (player.getPoint() >= this.getHeader().getValue().getPoint()) {
-            if (player.getPoint() > this.getHeader().getValue().getPoint()) {
+        } else if (player.getPoint() >= this.getHeader().getElement().getPoint()) {
+            if (player.getPoint() > this.getHeader().getElement().getPoint()) {
                 this.addFirst(player);
             } else {
                 Node<Player> current = this.getHeader();
 
                 this.addBetween(player, current, current.getNext());
             }
-        } else if (player.getPoint() <= this.getTrailer().getValue().getPoint()) {
+        } else if (player.getPoint() <= this.getTrailer().getElement().getPoint()) {
             this.addLast(player);
         } else {
             Node<Player> current = this.getHeader();
-            while (current.getValue().getPoint() > player.getPoint()) {
+            while (current.getElement().getPoint() > player.getPoint()) {
                 current = current.getNext();
             }
 
@@ -44,6 +46,7 @@ public class PriorityQueue extends DoublyLinkedList<Player> {
         }
     }
     
+    //return node position
     private int getNodePosition(String email) {
         for (int i = 0; i < this.size; i++) {
             if (this.get(i).getEmail().equals(email)) {
@@ -52,7 +55,8 @@ public class PriorityQueue extends DoublyLinkedList<Player> {
         }
         return -1;
     }
-
+    
+    //change infor of player
     public void update(String email, int point) {
         if (this.isEmpty()) { //list empty
             System.out.println("List empty");
@@ -75,11 +79,13 @@ public class PriorityQueue extends DoublyLinkedList<Player> {
     public void removePlayerHasMaxPoint() {
         this.removeFirst();
     }
-
+    
+    //get the highest point of player
     public int getPlayerHasMaxPoint() {
-        return this.getHeader().getValue().getPoint();
+        return this.getHeader().getElement().getPoint();
     }
-
+    
+    //delete any player with specific email of player
     public void delete(String email) {
         if (this.isEmpty()) { 
             System.out.println("Error: List empty");
@@ -94,19 +100,20 @@ public class PriorityQueue extends DoublyLinkedList<Player> {
         }
     }
 
-
+    //Get node player point
     public int getNodePlayerPoint(String email) {
         Node<Player> current = this.getHeader();
-        while (!current.getValue().getEmail().equals(email)) {
+        while (!current.getElement().getEmail().equals(email)) {
             current = current.getNext();
         }
-        return current.getValue().getPoint();
+        return current.getElement().getPoint();
     }
-
+    
+    //Print player list
     public void printPlayerList(){
         Node<Player> current = this.getHeader();
         while(current!=null){
-            System.out.println(current.getValue());
+            System.out.println(current.getElement());
             current = current.getNext();
         }
     }
