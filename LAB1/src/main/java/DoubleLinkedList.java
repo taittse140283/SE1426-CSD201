@@ -210,7 +210,7 @@ public class DoubleLinkedList<E> {
      * @param file name of file that wants to write to
      */
     public void printtoFile(String file) throws IOException {
-        FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(file));
+        FileOutputStream fos = new FileOutputStream(file);
         DataOutputStream dos = new DataOutputStream(fos);
         dos.writeBytes("Email, Point\n");
         for (Node<E> n = trailer.prev; n != header; n = n.prev) {
@@ -226,7 +226,7 @@ public class DoubleLinkedList<E> {
      * @param file name of file that wants to write to
      */
     public void printtoFileofhtml(String file) throws IOException {
-        FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(file));
+        FileOutputStream fos = new FileOutputStream(file);
         DataOutputStream dos = new DataOutputStream(fos);
         dos.writeBytes("Tag, Frequency" + "\n");
         for (Node<E> n = trailer.prev; n != header; n = n.prev) {

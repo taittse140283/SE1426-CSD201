@@ -28,7 +28,7 @@ public class SortList implements LinkList {
      */
     @Override
     public void findMax() {
-        System.out.println("Max: " + dbl.last());
+        System.out.println(dbl.last().getRank());
     }
 
     /**
@@ -42,7 +42,7 @@ public class SortList implements LinkList {
      */
     @Override
     public void insert(Entry e) {
-        int rank = e.getRank();
+        long rank = e.getRank();
         int size = dbl.size();
         if (size == 0) {
             dbl.addFirst(e);
@@ -94,12 +94,13 @@ public class SortList implements LinkList {
         int size = dbl.size();
         for (int i = 0; i < size; i++) {
             if (mail.equals(dbl.getElementNode(i).getInfo())) {
-                System.out.println("Info:\n" + dbl.getElementNode(i));
+                System.out.println(dbl.getElementNode(i).getRank());
                 return;
             }
         }
         System.out.println("Data is not exist");
     }
+
 
 
     /**
@@ -109,12 +110,12 @@ public class SortList implements LinkList {
      * @param mail email of player.
      */
     @Override
-    public void update(String mail, int new_point) {
-        String new_email;
+    public void update(String mail, long new_point) {
         int size = dbl.size();
         for (int i = 0; i < size; i++) {
             if (mail.equals(dbl.getElementNode(i).getInfo())) {
-                dbl.getElementNode(i).setRank(new_point);
+                remove(mail);
+                insert(new Entry(new_point,mail));
                 System.out.println("Successfully!");
                 return;
             }

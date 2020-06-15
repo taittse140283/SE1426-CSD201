@@ -17,5 +17,5 @@ public interface LinkList {
 
     void find(String mail);
 
-    void update(String mail, int new_point);
+    void update(String mail, long new_point);
 }

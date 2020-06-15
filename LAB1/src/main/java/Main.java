@@ -36,33 +36,37 @@ public class Main {
         String fileInput;
         String fileOutput;
         String email;
-        int point;
-        int new_point;
+        long point;
+        long new_point;
 
         String Error = "Invalid Input";
         try {
             if (args[0].equals("-h")) {
-                System.out.println("Help: \n" +
-                        "./lab1 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>>: Problem 1, read the user csv file and save the data structure into csv file\n" +
-                        "./lab1 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -a <<email>> <<point>>: Problem 1, add a new user into the data structure and save to new csv file\n" +
-                        "./lab1 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -d <<email>>: Problem 1, delete a user in the data structure and save to new csv file\n" +
-                        "./lab1 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -u <<email>> <<new_point>>: Problem 1, update new point for user in the data structure and save to new csv file\n" +
-                        "./lab1 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -dt: Problem 1, delete the top user from the data structure and save to new csv file\n" +
-                        "./lab1 1 -r <<user_CSV_file>> -g <<email>>: Problem 1, get the point of user from the data structure\n" +
-                        "./lab1 1 -r <<user_CSV_file>> -t: Problem 1, get the point of the top user from the data structure");
+                System.out.println("Help:" + "\n" +
+                        "java -jar LAB1.jar 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>>: Problem 1, read the user csv file and save the data strucutre into csv file\n" +
+                        "java -jar LAB1.jar 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -a <<email>> <<point>>: Problem 1, add a new user into the data strucutre and save to new csv file\n" +
+                        "java -jar LAB1.jar 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -d <<email>>: Problem 1, delete a user in the data strucutre and save to new csv file\n" +
+                        "java -jar LAB1.jar 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -u <<email>> <<new_point>>: Problem 1, update new point for user in the data strucutre and save to new csv file\n" +
+                        "java -jar LAB1.jar 1 -r <<user_CSV_file>> -s <<new_user_CSV_file>> -dt: Problem 1, delete the top user from the data strucutre and save to new csv file\n" +
+                        "java -jar LAB1.jar 1 -r <<user_CSV_file>> -g <<email>>: Problem 1, get the point of user from the data strucutre\n" +
+                        "java -jar LAB1.jar 1 -r <<user_CSV_file>> -t: Problem 1, get the point of the top user from the data strucutre\n" +
+                        "java -jar LAB1.jar 2 <<URL-of-website>> <<output-CSV-file>>: Problem 2, read html info from a URL, save all tag information into the CSV output file");
             } else if (args[0].equals("1") && args.length >= 4) {
                 if (args[1].equals("-r")) {
                     if (!args[2].trim().isEmpty()) {
                         fileInput = args[2];
                         if (args[3].equals("-s")) {
-                            if (!args[4].trim().isEmpty()) {
+                            if (!args[4].trim().isEmpty() && args.length == 5) {
                                 fileOutput = args[4];
-                                copyFile(fileInput, fileOutput);
+                                getData(fileInput, sl);
+                                sl.printtoFile(fileOutput);
+                            } else if (args.length > 5){
                                 if (args[5].equals("-a")) {
+                                    fileOutput = args[4];
                                     if (!args[6].trim().isEmpty()) {
                                         email = args[6];
                                         if (!args[7].trim().isEmpty()) {
-                                            point = Integer.parseInt(args[7]);
+                                            point = Long.parseLong(args[7]);
                                             getData(fileInput, sl);
                                             sl.insert(new Entry(point, email));
                                             sl.printtoFile(fileOutput);
@@ -74,6 +78,7 @@ public class Main {
                                     }
                                 } else if (args[5].equals("-d")) {
                                     if (!args[6].trim().isEmpty()) {
+                                        fileOutput = args[4];
                                         email = args[6];
                                         getData(fileInput, sl);
                                         sl.remove(email);
@@ -83,21 +88,25 @@ public class Main {
                                     if (!args[6].trim().isEmpty()) {
                                         email = args[6];
                                         if (!args[7].trim().isEmpty()) {
-                                            new_point = Integer.parseInt(args[7]);
+                                            fileOutput = args[4];
+                                            new_point = Long.parseLong(args[7]);
                                             getData(fileInput, sl);
                                             sl.update(email, new_point);
                                             sl.printtoFile(fileOutput);
                                         }
                                     }
                                 } else if (args[5].equals("-dt")) {
+                                    fileOutput = args[4];
                                     getData(fileInput, sl);
                                     sl.removeMax();
                                     sl.printtoFile(fileOutput);
                                 } else {
                                     System.out.println(Error);
                                 }
-                            } else {
-                                System.out.println(Error);
+
+
+
+
                             }
                         } else if (args[3].equals("-g")) {
                             if (!args[4].trim().isEmpty()) {
@@ -120,7 +129,7 @@ public class Main {
             } else if (args[0].equals("2")) {
                 if (!args[1].trim().isEmpty()) {
                     String url = args[1];
-                    if (!args[2].trim().isEmpty()){
+                    if (!args[2].trim().isEmpty()) {
                         String filenameoutput = args[2];
                         crawWeb(url, filenameoutput);
                     }
@@ -129,9 +138,6 @@ public class Main {
                 System.out.println(Error);
             }
 
-//            for (int i = 0; i < args.length; i++) {
-//                System.out.println(args[i]);
-//            }
         } catch (Exception e) {
             System.out.println("OK hoac Loi");
         }
@@ -149,8 +155,8 @@ public class Main {
      */
     public static void copyFile(String input, String output) {
         try {
-            FileInputStream fis = new FileInputStream("C:\\Users\\Admin\\Desktop\\".concat(input));
-            FileOutputStream fos = new FileOutputStream("C:\\Users\\Admin\\Desktop\\".concat(output));
+            FileInputStream fis = new FileInputStream(input);
+            FileOutputStream fos = new FileOutputStream(output);
 
             int Data;
 
@@ -168,6 +174,7 @@ public class Main {
 
     /**
      * This method is used to get html of web
+     *
      * @param web url of website
      * @return String This is html of web
      * @throws IOException
@@ -198,7 +205,7 @@ public class Main {
         String email;
         int point;
         try {
-            Scanner sc = new Scanner(new File("C:\\Users\\Admin\\Desktop\\".concat(fileInput)));
+            Scanner sc = new Scanner(new File(fileInput));
             sc.nextLine();
             while (sc.hasNext()) {
                 email = sc.next();
@@ -215,7 +222,8 @@ public class Main {
 
     /**
      * This method used to craw data from web
-     * @param url This is url of web
+     *
+     * @param url         This is url of web
      * @param filenameout Name of file when finished processing
      * @throws IOException
      */
@@ -239,7 +247,8 @@ public class Main {
 
     /**
      * This method used to count tags in html
-     * @param s html covert to string
+     *
+     * @param s  html covert to string
      * @param hm hashmap to save data
      */
     public static void countTag(String s, HashMap<String, Integer> hm) {

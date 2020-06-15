@@ -1,17 +1,20 @@
 public class Entry {
-    private int rank;
+    private long rank;
     private String info;
 
-    public Entry(int rank, String info) {
+    public Entry() {
+    }
+
+    public Entry(long rank, String info) {
         this.rank = rank;
         this.info = info;
     }
 
-    public int getRank() {
+    public long getRank() {
         return rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(long rank) {
         this.rank = rank;
     }
 
