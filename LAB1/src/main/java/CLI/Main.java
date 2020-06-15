@@ -170,11 +170,11 @@ public class Main {
         queue.removePlayerHasMaxPoint();
     }
 
-    public static int getPointPlayerOnTop(PriorytiQueue queue) {
+    public static long getPointPlayerOnTop(PriorytiQueue queue) {
         return queue.getPlayerHasMaxPoint();
     }
 
-    public static int getPointPlayer(PriorytiQueue queue, String email) {
+    public static long getPointPlayer(PriorytiQueue queue, String email) {
         return queue.getNodePlayerPoint(email);
     }
     
