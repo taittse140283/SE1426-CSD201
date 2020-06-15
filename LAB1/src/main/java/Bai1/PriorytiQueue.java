@@ -75,7 +75,7 @@ public class PriorytiQueue {
         * Y tuong: Tim dc vi tri cua node can update, sau do gan gia tri moi cho mot node moi va xoa node cu
         * Input: la dia chi email cua nguoi choi va so diem can cap nhat
     */
-    public void update(String email, int point) {
+    public void update(String email, long point) {
         if(list.isEmpty()) { // truong hop danh sach chua co nguoi choi
             System.out.println("List empty");
             return;
@@ -87,7 +87,7 @@ public class PriorytiQueue {
         } else { // truong hop tim thay nguoi choi
             list.get(pos).setPoint(point); // set up diem moi cho nguoi choi do
             String updateEmail = list.get(pos).getEmail(); // gan email cho mot node moi 
-            int updatePoint = list.get(pos).getPoint(); // gan so diem moi cho node moi
+            long updatePoint = list.get(pos).getPoint(); // gan so diem moi cho node moi
             delete(list.get(pos).getEmail()); // xoa node hien tai de cap nhat node moi voi du lieu moi
             Player player = new Player(updateEmail, updatePoint);
             addAndSort(player);// cap nhat vao danh sach
@@ -102,7 +102,7 @@ public class PriorytiQueue {
         lay diem so nguoi choi co diem so cao nhat
         Kieu tra ve la so nguyen vi la diem so
     */
-    public int getPlayerHasMaxPoint() {
+    public long getPlayerHasMaxPoint() {
         return list.getHeader().getElement().getPoint();
     }
     
@@ -125,7 +125,7 @@ public class PriorytiQueue {
         * Input: dia chi email cua nguoi choi
         *Output: tra lai so diem cua nguoi choi do
     */
-    public int  getNodePlayerPoint(String email) {
+    public long  getNodePlayerPoint(String email) {
         DoublyLinkedList.Node<Player> current = list.getHeader();
         while(!current.getElement().getEmail().equals(email)) { // tim email cua nguoi choi do trong danh sach
             current = current.getNext();
