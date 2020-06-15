@@ -14,6 +14,7 @@ public class Player {
     private String email;
     private int point;
     
+    //constructor default and co tham so
     public Player(){
     }
     
@@ -21,7 +22,9 @@ public class Player {
         this.email=email;
         this.point=point;
     }
-
+    
+    
+    //create setter and getter for email, point
     public String getEmail() {
         return email;
     }
