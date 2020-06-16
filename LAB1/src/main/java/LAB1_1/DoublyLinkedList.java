@@ -69,15 +69,22 @@ public class DoublyLinkedList<E>{
     }
 
     
+    public int size(){
+        return this.size;
+    }
+    
+    public boolean isEmpty(){
+        return this.size ==0;
+    }
     /**
      * Returns top element in the list
      * @return 
      */
     public E getFirst(){
-        if(size ==0){
+        if(isEmpty()){
             return null;
         } else {
-            return head.element;
+            return this.head.getNext().getElement();
         }
     }
     
@@ -86,25 +93,25 @@ public class DoublyLinkedList<E>{
      * @return 
      */
     public E getLast(){
-        if(size ==0){
+        if(isEmpty()){
             return null;
         } else {
-            return tail.element;
+            return this.tail.getPrev().getElement();
         }
     }
     
+    private void add(E e, Node<E> forward, Node<E> back){
+        Node<E> newNode = new Node<E>(e, forward, back); //Create a newNode
+        forward.setPrev(back);// Set prev of forward is new node
+        back.setNext(forward);// Set next of back is new node
+        size++; //Increase size
+    }
     /**
      * Add an element to the beginning of the list
      * @param e element
      */
     public void addFirst(E e) {
-        Node<E> newNode = new Node<E>(e); //Create a newNode
-        newNode.next = head; // Attach newNode with head
-        head = newNode; // head point to the newNode
-        size++; // Icrease size
-        if(tail == null){ // the newNode is the only node in list
-            tail = head; 
-        }
+        this.add(e, this.head.getNext(), this.tail);
     }
     
     /**
@@ -112,10 +119,7 @@ public class DoublyLinkedList<E>{
      * @param e element
      */
     public void addLast(E e){
-        Node<E> newNode = new Node<E>(e); //Create a newNode
-        tail.next = newNode; // Attach newNode with head
-        tail = tail.next; // tail point to the last node
-        size++; // Icrease size
+        this.add(e, this.head, this.tail.getPrev());
     }
     
     /**
@@ -123,16 +127,15 @@ public class DoublyLinkedList<E>{
      * @param index  index of the head element is 0
      * @param e element
      */
-    @Override
-    public void add (int index, E e){
+    public void addIndex (int index, E e){
         if(index == 0){
             addFirst(e);
-        } else if (index >= size){
+        } else if (index >= this.size){
             addLast(e);
         } else {
-            Node<E> current =head;
+            Node<E> current = this.head;
             for (int i=1 ; i< index; i++){
-                current = current.next;
+                current = current.getNext();
             }
         }
     }
@@ -142,16 +145,16 @@ public class DoublyLinkedList<E>{
      * @return  return the object that is contained in the removed node
      */
     public E removeFirst() {
-        if (size == 0) {  // if list is empty, return null
+        if (isEmpty()) {  // if list is empty, return null
             return null;
         } else {
-            Node<E> temp = head;
-            head = head.next;
+            Node<E> temp =  this.head;
+            this.head = this.head.getNext();
             size--;
             if (head == null) {
             tail = null;
             }
-            return temp.element;
+            return temp.getElement();
         }
     }
     /**
@@ -159,23 +162,23 @@ public class DoublyLinkedList<E>{
      * @return return the object that is contained in the removed node.
      */
     public E removeLast() {
-        if (size == 0) {
+        if (isEmpty()) {
             return null;
         } else if (size == 1) {
-            Node<E> temp = head;
-            head = tail = null;
+            Node<E> temp = this.head;
+            clear();
             size = 0;
-            return temp.element;
+            return temp.getElement();
         } else {
-            Node<E> current = head;
-            for (int i = 0; i < size - 2; i++) {
-            current = current.next;
+            Node<E> current = this.head;
+            for (int i = 0; i < this.size - 2; i++) {
+            current = current.getNext();
             }
-            Node<E> temp = tail;
-            tail = current;
-            tail.next = null;
+            Node<E> temp = this.tail;
+            this.tail = current;
+            this.tail.next = null;
             size--;
-            return temp.element;
+            return temp.getElement();
         }
     }
     
@@ -184,37 +187,33 @@ public class DoublyLinkedList<E>{
      * @param index
      * @return Return the element that was removed from the list. 
      */
-    @Override
-    public E remove(int index) {
-        if (index < 0 || index >= size) {
+    public E removeIndex(int index) {
+        if (index < 0 || index >= this.size) {
             return null;
         } else if (index == 0) {
             return removeFirst();
-        } else if (index == size - 1) {
+        } else if (index == this.size - 1) {
             return removeLast();
         } else {
-            Node<E> previous = head;
+            Node<E> previous = this.head;
             for (int i = 1; i < index; i++) {
-            previous = previous.next;
+            previous = previous.getNext();
             }
-            Node<E> current = previous.next;
-            previous.next = current.next;
+            Node<E> current = previous.getNext();
+            previous = current;
             size--;
             return current.element;
         }
     }
     
-    @Override
     public void clear() {
-        head = tail = null;
+        this.head = this.tail = null;
     }
 
-    @Override
     public boolean contains(E e) {
         return this.indexOf(e)>=0;
     }
 
-    @Override
     public E get(int index) {
         if(size == 0){
             return null;
@@ -222,40 +221,24 @@ public class DoublyLinkedList<E>{
         if(index >=this.size){
             index = this.size -1;
         }
-        Node current = this.head;
+        Node<E> current = this.head;
         for (int i = 0; i < index; i++) {
-            current = current.next;
+            current = current.getNext();
         }
-        return (E) current.element;
+        return (E) current.getElement();
     }
 
-    @Override
     public int indexOf(E e) {
-        Node current = this.head;
+        Node<E> current = this.head;
         for (int i = 0; i < this.size; i++) {
-            if(current.element.equals(e)){
+            if(current.getElement().equals(e)){
                 return i;
             }
-            current = current.next;
+            current = current.getNext();
         }
         return -1;
     }
-    
-    @Override
-    public int lastIndexOf(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public boolean remove(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object set(int index, E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     @Override 
     public String toString() {
         StringBuilder result = new StringBuilder("[");
