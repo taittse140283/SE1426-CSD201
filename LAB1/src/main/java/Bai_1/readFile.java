@@ -25,19 +25,19 @@ public class readFile {
      * @return 
      */
     public static PriorityQueue readFromFile(String file) {
-        File f= null;
+    
         FileReader fr = null;
         BufferedReader br = null;
         PriorityQueue queue = new PriorityQueue();
         try {
-            f = new File(file);
+       
             fr = new FileReader(file);
             br = new BufferedReader(fr);
-            String s = null;
+            String s = br.readLine();
             while ((s=br.readLine())!=null) {
                 StringTokenizer stk = new StringTokenizer(s, ", ");
                 String email=stk.nextToken();
-                int point = Integer.parseInt(stk.nextToken());
+                long point = Long.parseLong(stk.nextToken());
                 Infor player = new Infor(email, point);
                 queue.add(player);
             }
@@ -51,7 +51,7 @@ public class readFile {
                 if (fr != null) {
                     fr.close();
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -72,16 +72,25 @@ public class readFile {
                 f= new File(file);
                 fw= new FileWriter(f);
                 pw= new PrintWriter(fw);
+                pw.println("Email,Point");
+                DoublyLinkedList.Node<Infor> step= queue.getList().getHeader();
+                do{
+                    pw.println(step.getElement().toString());
+                    step= step.getNext();
+                } while (step!=null);
             } catch (Exception e){
                 e.printStackTrace();
             } finally{
-                if(pw!=null){
+                try{
+                    if(pw!=null){
                     pw.close();
-                }
-                if(fw!=null){
+                    }
+                    if(fw!=null){
                     fw.close();
-                }
+                    }
+               } catch(Exception e){
+                    e.printStackTrace();
             }
 }
-}
+    }
     
