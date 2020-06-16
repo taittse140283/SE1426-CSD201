@@ -15,18 +15,18 @@ public class ArrayStack implements Stack{
     private String[] storage;
 
     public ArrayStack(int CAPACITY) {
-        storage = new String[CAPACITY];
-        top = -1;
+        this.storage = new String[CAPACITY];
+        this.top = -1;
     }
     
     @Override
     public int size() {
-        return this.top +1;
+        return this.top + 1;
     }
 
     @Override
     public boolean isEmpty() {
-        if (top == -1) {
+        if (this.top == -1) {
             return true;
         }
         return false;
@@ -34,7 +34,7 @@ public class ArrayStack implements Stack{
 
     @Override
     public String top() {
-        if (top == -1) {
+        if (this.top == -1) {
             return null;
         }
         return this.storage[this.top];
@@ -42,12 +42,24 @@ public class ArrayStack implements Stack{
 
     @Override
     public void push(String tag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.top == this.storage.length){
+            System.out.println("Stack Overflow");
+        } else {
+            this.top++;
+            this.storage[this.top] = tag;
+        }
     }
 
     @Override
     public String pop() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (isEmpty()) {
+            return null;
+        } else {
+            String tag = this.storage[this.top];
+            this.storage[this.top] = null;
+            this.top--;
+            return tag;
+        }
     }
     
 }
