@@ -39,7 +39,7 @@ public class IOFile {
             String s = br.readLine();
             while (br.ready()) {
                 s = br.readLine();
-                StringTokenizer stk = new StringTokenizer(s, ",");
+                StringTokenizer stk = new StringTokenizer(s, ", ");
                 String email = stk.nextToken();
                 long point = Long.parseLong(stk.nextToken());
 

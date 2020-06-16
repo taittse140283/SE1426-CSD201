@@ -38,7 +38,7 @@ public class Manager {
      * @return
      * @throws java.net.MalformedURLException
      */
-    public static String readHtlmFromWeb(String urlWeb) throws MalformedURLException {
+    public static String loadHTML(String urlWeb) throws MalformedURLException {
 
         String html = ""; // tao chuoi voi gia tri rong de luu noi dung tu web
         String line; // luu noi dung tung dong tu web size
@@ -157,53 +157,48 @@ public class Manager {
 //                        continue;
 //                    }
                     // co van de voi viec dem the nay bang cach xet truong hop rieng
-
-                    if (!tagName.matches("<[a-zA-Z0-9!]+>")) {// kiem tra the !-- , ngoai tru !doctype
-                        i = html.indexOf("<", k + 1);
+                    if (!tagName.matches("<[a-zA-Z0-9!]+>")) {// kiem tra the !-- , (this.), ngoai tru !doctype
+                        i = html.indexOf('<', k + 1);
                         continue;
-                    }
-
+                    }                
                     count = hashMap.containsKey(tagName) ? hashMap.get(tagName) : 0;
                     hashMap.put(tagName, count + 1);
                 } else if (tagName.contains(" ")) { // the tag chua gia tri khoang trang ex: < p class="">
-                    String[] s = tagName.split(" ", 2); // tach chuoi thanh mang ki tu bang dau phan cach la khoang trang
-                    tagName = s[0] + ">"; // lay gia tri dau tien trong mang tim dc
+                    String[] s = tagName.split(" "); // tach chuoi thanh mang ki tu bang dau phan cach la khoang trang
+                    tagName = s[0] + '>'; // lay gia tri dau tien trong mang tim dc
                     if (!tagName.matches("<[!a-zA-Z0-9]+>")) { // kiem tra the !-- , ngoai tru !doctype
-                        i = html.indexOf("<", k + 1);
+                        i = html.indexOf('<', k + 1);
                         continue;
                     }
                     if (!html.contains(tagName.replace("<", "</"))) {
                         count = hashMap.containsKey(tagName) ? hashMap.get(tagName) : 0;
-                        hashMap.put(tagName, count + 1);}
-                     else {
-                        if (tagName.equals("<script>")) {
-                            count = hashMap.containsKey(tagName) ? hashMap.get(tagName) : 0;
-                            hashMap.put(tagName, count + 1);
-                        } else {
+                        hashMap.put(tagName, count + 1);
+                    } else {
+                        
                             listTag.push(tagName);
-                        }
+                        
                     }
 
                 } else {
-                    if (tagName.equals("<script>")) {
-                        count = hashMap.containsKey(tagName) ? hashMap.get(tagName) : 0;
-                        hashMap.put(tagName, count + 1);
-                    } else {
+                    
                         listTag.push(tagName);
-                    }
+                    
                 }
 
             } else {
-                if (!tagName.equals("</script>")) {
-                    listTag.pop();
+//                if (!tagName.equals("</script>")) {
+//                    listTag.pop();
                     String tag = tagName.replace("</", "<");
-                    count = hashMap.containsKey(tag) ? hashMap.get(tag) : 0;
-                    hashMap.put(tag, count + 1);
-                }
+                    if (listTag.top().equals(tag)) {
+                        listTag.pop();
+                        count = hashMap.containsKey(tag) ? hashMap.get(tag) : 0;
+                        hashMap.put(tag, count + 1);
+                    }
+//                }
 
             }
-            i = html.indexOf("<", k + 1);
-            
+            i = html.indexOf('<', k + 1);
+
             // toi uu doc the dac biet
             // luu thang vao danh sach cac the dac biet
 //            if (tagName.equalsIgnoreCase("area") || tagName.equalsIgnoreCase("base") || tagName.equalsIgnoreCase("br")

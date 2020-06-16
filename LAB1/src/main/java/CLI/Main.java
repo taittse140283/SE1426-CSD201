@@ -120,22 +120,21 @@ public class Main {
             case "-a":
                 addNewPlayer(queue, file3, file4);
                 IOFile.writeToFile(queue, file2);// ghi ra file (nguoi dung cung cap thong tin)
-                IOFile.writeToFile(queue, file1); // cap nhat lai danh sach dau vao
                 break;
             case "-d":
                 deletePlayer(queue, file3);
                 IOFile.writeToFile(queue, file2);// ghi ra file (nguoi dung cung cap thong tin)
-                IOFile.writeToFile(queue, file1); // cap nhat lai danh sach dau vao
+//                IOFile.writeToFile(queue, file1); // cap nhat lai danh sach dau vao
                 break;
             case "-u":
                 updatePlayer(queue, file3, file4);
                 IOFile.writeToFile(queue, file2);// ghi ra file (nguoi dung cung cap thong tin)
-                IOFile.writeToFile(queue, file1); // cap nhat lai danh sach dau vao
+//                IOFile.writeToFile(queue, file1); // cap nhat lai danh sach dau vao
                 break;
             case "-dt":
                 deletePlayerOnTop(queue);
                 IOFile.writeToFile(queue, file2);// ghi ra file (nguoi dung cung cap thong tin)
-                IOFile.writeToFile(queue, file1); // cap nhat lai danh sach dau vao
+//                IOFile.writeToFile(queue, file1); // cap nhat lai danh sach dau vao
                 break;
         }
 
@@ -154,7 +153,7 @@ public class Main {
         * Cac ham da duoc summary chuc nang va noi dung ben cac phuong thuc dinh nghia no
      */
     public static void addNewPlayer(PriorytiQueue queue, String email, String point) {
-        Player player = new Player(email, Integer.parseInt(point));
+        Player player = new Player(email, Long.parseLong(point));
         queue.addAndSort(player);
     }
 
@@ -163,11 +162,11 @@ public class Main {
     }
 
     public static void updatePlayer(PriorytiQueue queue, String email, String point) {
-        queue.update(email, Integer.parseInt(point));
+        queue.update(email, Long.parseLong(point));
     }
 
     public static void deletePlayerOnTop(PriorytiQueue queue) {
-        queue.removePlayerHasMaxPoint();
+         queue.removePlayerHasMaxPoint();
     }
 
     public static long getPointPlayerOnTop(PriorytiQueue queue) {
@@ -180,7 +179,7 @@ public class Main {
     
     public static void reportHTML(String url, String file) throws MalformedURLException {
         HashMap<String, Integer> hashMap = new HashMap<>();
-        Manager.process(hashMap, Manager.readHtlmFromWeb(url));
+        Manager.process(hashMap, Manager.loadHTML(url));
         Manager.writeToFile(hashMap, file);
     } 
 }
