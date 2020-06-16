@@ -96,6 +96,12 @@ public class DBLinkedList<E> {
         }
         return delete(header.getNext());
     }
+    public E deleteLast(){
+        if(isEmpty()){
+            System.out.println("Empty");
+        }
+        return delete(trailer.getPrev());
+    }
     }
 }    
     
