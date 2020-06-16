@@ -12,5 +12,33 @@ import java.util.HashMap;
  * @author ZunPeter
  */
 public class Management {
+   HashMap<String, Integer> hashmap = new HashMap<>();
+   GetURL get = new GetURL();
+   Stack stack = new Stack();
+   CreateFile cre = new CreateFile();
+   
+   /** Check all tags in the HTML base on  '<','>' 
+    * @param content  
+    */
+   public void readTag(String content){
+       String tag = " ";
+       boolean check = false;
+        for(int i = 0;i < content.length(); i++){
+            if(content.charAt(i) == '<'){
+                tag = "<";
+                check = true; //(*)
+            }else if(content.charAt(i) == '-' && check == true) {
+                tag = tag + "-";
+                
+                check = false;
+            }else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true) {
+                tag = tag + content.charAt(i);
+            }else if(((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
+                tag = tag + ">";
+                check = false;
+                
+            }
+        }
+    }
    
 }
