@@ -92,7 +92,7 @@ public class DoublyLinkedList<E> {
         successor.setPrev(newest);
         size++;
     }
-    private Infor delete(Node<E> node){
+    private E delete(Node<E> node){
         Node<E> predecessor= node.getPrev();
         Node<E> successor= node.getNext();
         predecessor.setNext(successor);
@@ -100,22 +100,36 @@ public class DoublyLinkedList<E> {
         size--;
         return node.getElement();
     }
-    public void addFirst(Infor newNode){
+    public void addFirst(E e){
         addBetween(e,header,header.getNext());
     }
-    public void addLast(Infor newNode){
+    public void addLast(E e){
         addBetween(e,trailer.getPrev(),trailer);
     }
-    public Infor deleteFirst(){
+    public E deleteFirst(){
         if(isEmpty()){
             Syste.out.println("Empty");
         }
         return delete(header.getNext());
     }
-    public Infor deleteLast(){
+    public E deleteLast(){
         if(isEmpty()){
             System.out.println("Empty");
         }
         return delete(trailer.getPrev());
     }
+    public E get(int index){
+       if(size==0){
+           System.out.println("Empty");
+       } else{
+           Node<E> step = header.getNext();
+            for (int i = 0; ((step) != null) && (i < index); i++) {
+                step = step.getNext();
+            }
+            if (step != null) {
+                return step.getElement();
+            }
+       }
+        return null;
+}
 }
