@@ -14,7 +14,9 @@ LAB1_1:
 LAB1_2:
 - When I first started I knew where to start but it wasn't as easy as I thought and I think most people find LAB1_2 more difficult than LAB1_1
 - It took me 2 days to find a solution when I was stuck in comparing tag .
+
 Problem about CLI:
+
 - Because this is the first time, I still do not know how to do CLI so I consulted from my classmates in part because it is almost time for me to try to complete this part in the next LAB. ^^
 
  
