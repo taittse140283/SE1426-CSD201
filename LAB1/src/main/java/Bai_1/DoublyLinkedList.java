@@ -132,4 +132,16 @@ public class DoublyLinkedList<E> {
        }
         return null;
 }
+   public void removePos(int n) {
+        if(size == 0 || n<0){
+                System.out.println("Error: No element in list or error index");
+            }
+        Node<E> step = header.getNext(); 
+        for (int i = 0; (step != null) && (i < n); i++) { 
+            step = step.getNext();
+        }
+        if (step == null) {
+            return;
+        }
+        remove(step);
 }
