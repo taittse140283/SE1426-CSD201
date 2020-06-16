@@ -10,18 +10,50 @@ package LAB1_1;
  *
  * @author Admin
  */
-public class DoublyLinkedList<E> extends MyAbstractList<E>{
+public class DoublyLinkedList<E>{
     
     /**
      * Create Class Node
      * @param <E> 
      */
-    public static class Node<E> {
+    private class Node<E> {
         E element;
         Node<E> next;
+        Node<E> prev;
         public Node(E element) {
             this.element = element;
         }
+
+        public Node(E element, Node<E> next, Node<E> prev) {
+            this.element = element;
+            this.next = next;
+            this.prev = prev;
+        }
+
+        public E getElement() {
+            return element;
+        }
+
+        public void setElement(E element) {
+            this.element = element;
+        }
+        
+        public Node<E> getNext() {
+            return next;
+        }
+        
+        public void setNext(Node<E> next) {
+            this.next = next;
+        }
+        
+        public Node<E> getPrev() {
+            return prev;
+        }
+        
+        public void setPrev(Node<E> prev) {
+            this.prev = prev;
+        }
+        
     }
     private Node<E> head;
     private Node<E> tail;
@@ -31,14 +63,11 @@ public class DoublyLinkedList<E> extends MyAbstractList<E>{
      * Create a default list
      */
     public DoublyLinkedList() {
-        this.head = null;
-        this.tail = null;
-        this.size = 0;
+        this.head = new Node<E>(null, null, null);
+        this.tail = new Node<E>(null, null, this.head);
+        this.head.setNext(this.tail);
     }
-    
-    public DoublyLinkedList(E[] objects) {
-        super();
-    }
+
     
     /**
      * Returns top element in the list
