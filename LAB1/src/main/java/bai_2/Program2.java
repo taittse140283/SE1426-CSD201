@@ -59,13 +59,15 @@ public class Program2 {
             }
             
             //Normal character => write append this character to tag
-            else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && check == true) {
+            else if(content.charAt(i) != '>' && content.charAt(i) != ' ' && content.charAt(i) != '\n'
+                                    && content.charAt(i) != '\t' && content.charAt(i) != '\r' && check == true) {
                 tag += content.charAt(i);
             }
             
             // '>' is a end character of every tag
             // We can determined some special tag with white space
-            else if(((content.charAt(i) == '>') || (content.charAt(i) == ' ')) && check == true) {
+            else if(((content.charAt(i) == '>') || (content.charAt(i) == ' ') || (content.charAt(i) == '\n')
+                                    || (content.charAt(i) == '\t') || (content.charAt(i) == '\r')) && check == true) {
                 tag += ">";
                 check = false;
                 processingHTMLTag(tag);
