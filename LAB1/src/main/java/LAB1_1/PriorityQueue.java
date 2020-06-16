@@ -55,11 +55,11 @@ public class PriorityQueue extends DoublyLinkedList<Player>{
         return -1L;
     }
     
-    public Player topPlayer(){
+    public Player max(){
         return (Player)this.list.getFirst();
     }
     
-    public Player deteleTop(){
+    public Player removeMax(){
         return (Player)this.list.removeFirst();
     }
 }
