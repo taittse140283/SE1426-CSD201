@@ -87,6 +87,9 @@ public class DBLinkedList<E> {
     public void addFirst(E e){
         addBetween(e,header,header.getNext());
     }
+    public void addLast(E e){
+        addBetween(e,trailer.getPrev(),trailer);
+    }
     }
 }    
     
