@@ -70,22 +70,22 @@ public class CSV {
                 fw = new FileWriter(f);
                 pw = new PrintWriter(fw);
                 pw.println("Email, point");
-                DoublyLinkedList.Node<Player> current = queue.
+                DoublyLinkedList.Node<Player> current = queue.getList().getHead();
                 while (current.getNext() != null) {
                     pw.println(current.getElement().toString());
                     current = current.getNext();
                 }
             } catch (IOException e) {
+                System.out.println("Error: An error occurred while reading the file!");
+            } catch (Exception e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    if (pw != null) {
+                    if (pw != null) 
                         pw.close();
-                    }
-                    if (fw != null) {
+                    if (fw != null)
                         fw.close();
-                    }
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

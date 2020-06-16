@@ -68,6 +68,10 @@ public class DoublyLinkedList<E>{
         this.head.setNext(this.tail);
     }
 
+    public Node<E> getHead() {
+        return head;
+    }
+
     
     public int size(){
         return this.size;
