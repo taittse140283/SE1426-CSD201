@@ -139,8 +139,11 @@ public class DoublyLinkedList<E>{
         } else {
             Node<E> current = this.head;
             for (int i=1 ; i< index; i++){
-                current = current.getNext();
+                current = current.next;
             }
+            Node<E> temp = current.next;
+            current.next = new Node<E>(e);
+            (current.next).next = temp;
         }
     }
     
@@ -153,7 +156,7 @@ public class DoublyLinkedList<E>{
             return null;
         } else {
             Node<E> temp =  this.head;
-            this.head = this.head.getNext();
+            this.head = this.head.next;
             size--;
             if (head == null) {
             tail = null;
@@ -176,7 +179,7 @@ public class DoublyLinkedList<E>{
         } else {
             Node<E> current = this.head;
             for (int i = 0; i < this.size - 2; i++) {
-            current = current.getNext();
+            current = current.next;
             }
             Node<E> temp = this.tail;
             this.tail = current;
