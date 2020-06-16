@@ -13,6 +13,10 @@ package LAB1_1;
 public class PriorityQueue extends DoublyLinkedList<Player>{
     private DoublyLinkedList<Player> list = new DoublyLinkedList<Player>();
     
+    public DoublyLinkedList<Player> getList() {
+        return list;
+    }
+    
     public PriorityQueue(){
         
     }
