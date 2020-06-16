@@ -5,10 +5,14 @@
  */
 package LAB1_1;
 
+import LAB1_1.DoublyLinkedList.Node;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -52,5 +56,39 @@ public class CSV {
             }
         }
         return queue;
+    }
+    
+    public static void writeFile(PriorityQueue queue, String fileName) {
+        if (queue.isEmpty()) {
+            System.out.println("Error: Queue empty!");
+        } else {
+            File f = null;
+            FileWriter fw = null;
+            PrintWriter pw = null;
+            try {
+                f = new File(fileName);
+                fw = new FileWriter(f);
+                pw = new PrintWriter(fw);
+                pw.println("Email, point");
+                DoublyLinkedList.Node<Player> current = queue.
+                while (current.getNext() != null) {
+                    pw.println(current.getElement().toString());
+                    current = current.getNext();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (pw != null) {
+                        pw.close();
+                    }
+                    if (fw != null) {
+                        fw.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

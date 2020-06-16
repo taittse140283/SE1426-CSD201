@@ -16,7 +16,7 @@ public class DoublyLinkedList<E>{
      * Create Class Node
      * @param <E> 
      */
-    private class Node<E> {
+    public static class Node<E> {
         E element;
         Node<E> next;
         Node<E> prev;
