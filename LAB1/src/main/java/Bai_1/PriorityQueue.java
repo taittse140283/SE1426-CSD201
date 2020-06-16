@@ -4,117 +4,97 @@
  * and open the template in the editor.
  */
 package Bai_1;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-
 /**
  *
  * @author Dell
  */
 public class PriorityQueue {
-    public ArrayList<Infor> list= new ArrayList<>();
-
-    /**
-     * This is constructor with no parameter
-     */
-    public PriorityQueue() {
+    DoublyLinkedList<Infor> list= new DoublyLinkedList<>();
+    public DoublyLinkedList<Infor> getList() {
+        return list;
     }
-    /**
-     * This method below here is used to add each member to a list
-     * Input data is infor
-     * Output data is the list of infor
-     * @param infor 
-     */
-    public void add(Infor infor){
-    int size = this.size();
-        for(int i = 0; i < size; ++i) {
-            int index = size - i - 1;
-            if (infor.getPoint() <= ((Infor)this.list.get(index)).getPoint()) {
-                this.list.add(index + 1, infor);
-                return;
+
+   /**
+    * This method below here is used to information of player
+    * @param the list of player 
+    */
+    public void addAndSort(Infor player) {
+        if (list.isEmpty()) {
+            list.addFirst(player);
+        } else if (player.getPoint() >= list.getHeader().getElement().getPoint()) {
+            if (player.getPoint() > list.getHeader().getElement().getPoint()) {
+                list.addFirst(player);
+            } else {
+                DoublyLinkedList.Node<Infor> step = list.getHeader();
+                list.addBetween(player, step, step.getNext());
             }
+        } else if (player.getPoint() <= list.getTrailer().getElement().getPoint()) {
+            list.addLast(player);
+        } else {
+            DoublyLinkedList.Node<Infor> step = list.getHeader();
+            while (step.getElement().getPoint() > player.getPoint()) {
+                step = step.getNext();
+            }
+            list.addBetween(player, step.getPrev(), step);
         }
-
-        this.list.add(0, infor);
     }
+
     /**
-     * This method below here is used to get the email and point from player
-     * Input data is email
+     * This method below here is used to find the pos of player base on email entered by user
      * @param email
      * @return 
      */
-    public long get(String email) {
-        for(int i = 0; i < this.size(); ++i) {
-            if (((Infor)this.list.get(i)).getEmail().equals(email)) {
-                return ((Infor)this.list.get(i)).getPoint();
+    public int findPos(String email) {
+        for (int i = 0; i < list.size; i++) {
+            if (list.get(i).getEmail().equals(email)) {
+                return i;
             }
         }
-
         return -1;
     }
+    
     /**
-     * This method below here is used to delete the player by use input email
-     * Input data is email
+     * This method below here is used to remove player has max point
+     * No @param
+     */
+    public void removePlayerHasMaxPoint() {
+        list.removeFirst();
+    }
+    
+    /**
+     * This method below here is used to get play has max point from list
+     * @return the player has max point
+     */
+    public long getPlayerHasMaxPoint() {
+        return list.getHeader().getElement().getPoint();
+    }
+    
+    /**
+     * This method below here is used to delete the email entered from user
+     * If <0 :empty list
+     * If pos<0: not found
+     * If pos>0: found
      * @param email 
      */
-     public void remove(String email) {
-        for(int i = 0; i < this.size(); ++i) {
-            if (((Infor)this.list.get(i)).getEmail().equals(email)) {
-                this.list.remove(i);
-            }
-        }
-
-    }
-     /**
-      * This method below here is used to update the email and point of player and update the list
-      * Input data is email and point
-      * @param email
-      * @param point 
-      */
-    public void update(String email, int point) {
-        for(int i = 0; i < this.size(); ++i) {
-            if (((Infor)this.list.get(i)).getEmail().equals(email)) {
-                Infor info = (Infor)this.list.remove(i);
-                info.setPoint(point);
-                this.add(info);
-            }
+    public void delete(String email) {
+        int pos = findPos(email); 
+        if(pos < 0) {
+            System.out.println("No information found");
+        } else {
+            list.removePos(pos);
         }
     }
+    
     /**
-     * This method below here is used to delete min value
+     * This method below here is used to get random point of the user from list
+     * @param email
      * @return 
      */
-    public Infor removeMin() {
-        return (Infor)this.list.remove(0);
-    }
-
-    public Infor min() {
-        return (Infor)this.list.get(0);
-    }
-    /**
-     * This method below here is used to check the list(empty or not)
-     * @return 
-     */
-    public boolean isEmpty() {
-        return this.list.isEmpty();
-    }
-
-    public int size() {
-        return this.list.size();
-    }
-    /**
-     * This method below here is used to print the list of player by string type
-     * Input data: no
-     * Output data: the list(result)
-     * @return 
-     */
-    public String toString() {
-        String result = "";
-        Infor info;
-        for(Iterator var2 = this.list.iterator(); var2.hasNext(); result = result + info.toString() + "\n") {
-            info = (Infor)var2.next();
+    public long  getNodePlayerPoint(String email) {
+        DoublyLinkedList.Node<Infor> step = list.getTrailer();
+        while(!step.getElement().getEmail().equals(email)) { 
+            step = step.getNext();
         }
-        return result;
+        return step.getElement().getPoint();
     }
 }
