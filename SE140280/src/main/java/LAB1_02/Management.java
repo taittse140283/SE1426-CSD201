@@ -40,5 +40,12 @@ public class Management {
             }
         }
     }
-   
+   public void count(String tag){
+       if(hashmap.containsKey(tag) == false) {
+            hashmap.put(tag, 1);
+        }
+        else {
+            hashmap.put(tag, hashmap.get(tag) + 1);
+        }
+   }
 }
