@@ -105,34 +105,26 @@ public class SortedPriorityQueue {
         if (updatePlayer != null) {//if found
             //Update point of found player
             try {
-                if (Integer.parseInt(point) < 0) {
+                if (Long.parseLong(point) < 0) {
                     throw new Exception("Error:Must>0");
                 }
-                updatePlayer.getInfo().setPoint(Integer.parseInt(point));
-
+                updatePlayer.getInfo().setPoint(Long.parseLong(point));
+                //clone update node
+                DDLNode<Player> tempUpdate = null;
+                try {
+                    tempUpdate = updatePlayer.clone();
+                } catch (CloneNotSupportedException e) {
+                    System.out.println(e);
+                }
+                //delete update node in old position
+                deletePlayer(email);
+                //Link clone update node with right position
+                add(tempUpdate);
             } catch (NumberFormatException e) {
                 System.out.println("Error:Must be integer");
-                return;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                return;
             }
-            //clone update node
-            DDLNode<Player> tempUpdate = null;
-            try {
-                tempUpdate = updatePlayer.clone();
-            } catch (CloneNotSupportedException e) {
-                System.out.println(e);
-            }
-            //delete update node in old position
-            updatePlayer.getPrev().setNext(updatePlayer.getNext());
-            updatePlayer.getNext().setPrev(updatePlayer.getPrev());
-            //Link clone update node with right position
-            this.add(tempUpdate);
-            list.setSize(list.getSize()-1);//no need to increasing size, cause it like replace the node 
-
-            //print to check updated
-            System.out.println("Updated player:" + updatePlayer.toString());
         } else {
             System.out.println("Error:Not found player");
         }
@@ -150,14 +142,14 @@ public class SortedPriorityQueue {
         if (deletePlayer != null) {
             if(deletePlayer==list.getHeader())
             {
-                System.out.println("Deleted player:"+list.removeFirst());
+                list.removeFirst();
             }
             else if(deletePlayer==list.getTrailer())
             {
-                System.out.println("Deleted player:"+list.removeLast());
+                list.removeLast();
             }
             else {
-                System.out.println("Deleted player:" + list.remove(deletePlayer).toString());
+                list.remove(deletePlayer);
             }
         } else {
             System.out.println("Error:Not found player");

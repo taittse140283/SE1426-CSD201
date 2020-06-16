@@ -23,11 +23,11 @@ public class CSV {
             while(br.ready())//check EOF
             {
                 s=br.readLine();
-                String[] arr=s.split(", ");
+                String[] arr=s.split(",");
                 if(arr.length==2){
                     Player player=new Player();//create new player
                     player.setEmail(arr[0]);
-                    player.setPoint(Integer.parseInt(arr[1]));
+                    player.setPoint(Integer.parseInt(arr[1].trim()));
                     DDLNode<Player> newNode=new DDLNode();//create node to add into list
                     newNode.setInfo(player);
                     queue.add(newNode);

@@ -6,7 +6,7 @@ package bai1;
 public class Player {
     //Contain constructor, getter, setter and override toString()methods to get output be like: email,point;
     private String email;
-    private int point;
+    private long point;
 
     /**
      * Constructor, getter, setter
@@ -17,7 +17,7 @@ public class Player {
     }
 
 
-    public Player(String email, int point) {
+    public Player(String email, long point) {
         this.email = email;
         this.point = point;
     }
@@ -30,11 +30,11 @@ public class Player {
         this.email = email;
     }
 
-    public int getPoint() {
+    public long getPoint() {
         return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(long point) {
         this.point = point;
     }
 
@@ -44,7 +44,7 @@ public class Player {
      */
     @Override
     public String toString() {
-        return email+", "+point;
+        return email+","+point;
     }
 
 }
