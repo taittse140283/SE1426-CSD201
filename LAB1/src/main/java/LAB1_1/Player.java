@@ -11,31 +11,33 @@ package LAB1_1;
  */
 public class Player {
     private String email;
-    private int point;
+    private long point;
 
-    public Player(String email, int point) {
+    public Player(String email, long point) {
         this.email = email;
         this.point = point;
     }
 
-    public static Player Create(String email, int point) {
-        return new Player(email, point);
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public long getPoint() {
-        return this.point;
+        return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(long point) {
         this.point = point;
-    }
-
-    public String getEmail() {
-        return this.email;
     }
 
     @Override
     public String toString() {
-        return this.email + ", " + this.point;
+        return email + "," + point;
     }
+ 
+    
 }
