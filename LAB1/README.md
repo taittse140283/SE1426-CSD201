@@ -76,5 +76,5 @@
 - sortAndWriteToFile: sort the hashtable base on the frequency, display the hastable after sorted on the screen and write the sorted hashtable to the file.
 
 ***
-*- But i think my program still not working very well.
-- Lastly, i hope that my program can run exactly :v*
+*- But i think my program still not working very well.*
+*- Lastly, i hope that my program can run exactly :v*
