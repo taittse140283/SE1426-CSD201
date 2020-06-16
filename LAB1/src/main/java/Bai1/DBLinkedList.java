@@ -90,6 +90,12 @@ public class DBLinkedList<E> {
     public void addLast(E e){
         addBetween(e,trailer.getPrev(),trailer);
     }
+    public E deleteFirst(){
+        if(isEmpty()){
+            System.out.println("Empty");
+        }
+        return delete(header.getNext());
+    }
     }
 }    
     
