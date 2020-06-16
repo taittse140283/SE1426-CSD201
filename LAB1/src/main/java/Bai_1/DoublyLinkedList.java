@@ -9,34 +9,34 @@ package Bai_1;
  *
  * @author Dell
  */
-public class DoublyLinkedList<Infor> {
-    private static class Node<Infor>{
-        private Infor element;
-        private Node<Infor> prev;
-        private Node<Infor> next;
-        public Node(Infor i, Node<Infor> p, Node<Infor> n){
+public class DoublyLinkedList<E> {
+    private static class Node<E>{
+        private E element;
+        private Node<E> prev;
+        private Node<E> next;
+        public Node(E element, Node<E> prev, Node<Infor> n){
             element=i;
             prev=p;
             next=n;
         }
-        public Infor getElement(){
+        public E getElement(){
             return element;
         }
-        public Node<Infor> getPrev(){
+        public Node<E> getPrev(){
             return prev;
         }
-        public void setPrev(Node<Infor> p){
+        public void setPrev(Node<E> p){
             prev=p;
         }
-        public Node<Infor> getNext(){
+        public Node<E> getNext(){
             return next;
         }
-        public void setNext(Node<Infor> n){
+        public void setNext(Node<E> n){
             next=n;
         }
     }
-    private Node<Infor> header;
-    private Node<Infor> trailer;
+    private Node<E> header;
+    private Node<E> trailer;
     private int size=0;
     public int getSize() {
         return size;
@@ -45,28 +45,27 @@ public class DoublyLinkedList<Infor> {
     public void setSize(int size) {
         this.size = size;
     }
-    public Node<Infor> getHeader() {
-        return header;
+    public Node<E> getHeader() {
+        return header.getNext();
     }
 
-    public void setHead(Node<Infor> header) {
+    public void setHeader(Node<E> header) {
         this.header = header;
     }
 
-    public Node<Infor> getTrailer() {
-        return trailer;
+    public Node<E> getTrailer() {
+        return trailer.getPrev();
     }
 
-    public void setTail(Node<Infor> tail) {
+    public void setTrailer(Node<E> trailer) {
         this.trailer = trailer;
     }
 
-    public DoublyLinkedList(Node<Infor> head, Node<Infor> tail) {
-        this.header = header;
-        this.trailer = trailer;
-    }
     public DoublyLinkedList(){
-        header = trailer = null;
+        header = new Node<>(null,null,null);
+        trailer= new Node<>(null, header, null);
+        header.setNext(trailer);
+        size=0;
     }
     public int size(){
         return size;
@@ -74,35 +73,35 @@ public class DoublyLinkedList<Infor> {
     public boolean isEmpty(){
         return size==0;
     }
-    public Infor first(){
+    public E getFirst(){
         if(isEmpty()){
             return null;
         }
         return header.getNext().getElement();
     }
-    public Infor last(){
+    public E getLast(){
         if(isEmpty()){
             return null;
         }
         return trailer.getPrev().getElement();
     }
     
-    private void addBetween(Infor newNode, Node<Infor> predecessor, Node<Infor> successor){
-        Node<Infor> newest= new Node<>(newNode,predecessor,successor);
+    private void addBetween(E e, Node<E> predecessor, Node<E> successor){
+        Node<E> newest= new Node<>(e,predecessor,successor);
         predecessor.setNext(newest);
         successor.setPrev(newest);
         size++;
     }
-    private Infor delete(Node<Infor> node){
-        Node<Infor> predecessor= node.getPrev();
-        Node<Infor> successor= node.getNext();
+    private Infor delete(Node<E> node){
+        Node<E> predecessor= node.getPrev();
+        Node<E> successor= node.getNext();
         predecessor.setNext(successor);
         successor.setPrev(predecessor);
         size--;
         return node.getElement();
     }
     public void addFirst(Infor newNode){
-        addBetween(newNode,header,header.getNext());
+        addBetween(e,header,header.getNext());
     }
     public void addLast(Infor newNode){
         addBetween(e,trailer.getPrev(),trailer);
