@@ -48,4 +48,15 @@ public class Management {
             hashmap.put(tag, hashmap.get(tag) + 1);
         }
    }
+   
+   public void Manager(String url , String fileName){
+        String content;
+        try {
+            content = get.readContent(url);
+            readTag(content);
+            cre.CreateFile(hashmap,fileName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
