@@ -15,7 +15,7 @@ import java.net.URL;
  * @author ZunPeter
  */
 public class GetURL {
-    /*
+    /**
     * Read input and read its content
     * @param urlString
     * 
