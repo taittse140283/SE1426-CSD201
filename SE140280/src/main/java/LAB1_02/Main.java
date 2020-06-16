@@ -10,5 +10,11 @@ package LAB1_02;
  * @author ZunPeter
  */
 public class Main {
-    
+    public static void main(String[] args) throws Exception {
+        Management manager = new Management();
+        String url = "https://www.vietnamworks.com/";
+        String file = "output.csv";
+        manager.Manager(url, file);
+        
+    }
 }
