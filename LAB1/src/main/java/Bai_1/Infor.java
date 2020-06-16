@@ -13,17 +13,28 @@ import java.util.Scanner;
  */
 public class Infor {
      private String email;
-    private int point;
-
-    public Infor() { //khai bao constructor khong tham so
+     private long point;
+     /**
+     *This is constructor with no parameter
+     *No @param
+     *No @return
+     */
+    public Infor() { 
     }
-
-    public Infor(String email, int point) { //khai bao constructor co tham so là email và point
+     /**
+     *This is constructor with parameter
+     *@param email
+     *@param point
+     *No return 
+     */
+    public Infor(String email, long point) { 
         this.email = email;
         this.point = point;
     }
     /**
      * Create getter and setter to accces private variables
+     *@param email and point
+     *@return email and point
      */
     public String getEmail() {
         return email;
@@ -33,31 +44,19 @@ public class Infor {
         this.email = email;
     }
 
-    public int getPoint() {
+    public long getPoint() {
         return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(long point) {
         this.point = point;
     }
     /**
-     * This is a method for user to input email and point
-     * There is no input data
-     * No data output
-     */
-    public void input(){
-        Scanner sc= new Scanner(System.in);
-        System.out.println("Email:");
-        email= sc.nextLine();
-        System.out.println("Point:");
-        point= Integer.parseInt(sc.nextLine());
-    }
-    /**
-     * This is a method to output the data
+     * This is a method to output the data. 
      * No input data
-     * Return email and point of user
+     * @Return email and point of user as a String
      */
-    public void output(){
-        System.out.println("Emai:" + email + "|" + "Point:" + point);
+    public String toString(){
+        return this.getEmail() + "," + this.getPoint();
     }
 }
