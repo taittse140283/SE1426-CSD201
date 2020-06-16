@@ -10,55 +10,56 @@ package LAB1_1;
  *
  * @author Admin
  */
-public class PriorityQueue{
-    private DoublyLinkedList<Player> list = new DoublyLinkedList<>();
+public class PriorityQueue extends DoublyLinkedList<Player>{
+    private DoublyLinkedList<Player> list = new DoublyLinkedList<Player>();
     
     public PriorityQueue(){
         
     }
     
-    public void addPlayer(Player data){
-        for (int i = 0; i < list.size(); i++) {
-            int index = list.size() - i -1 ;
+    public void insert(Player data){
+        int index;
+        for (int i = 0; i < this.size() ; ++i) {
+            index = this.list.size - i -1 ;
             if (data.getPoint()<= this.list.get(index).getPoint()){
-                this.list.add(index+1, data);
+                this.list.addIndex(index+1, data);
                 return;
             }
         }
     }
     
-    public void deletePlayer(String email){
-        for (int i = 0; i < list.size(); i++) {
+    public void remove(String email){
+        for (int i = 0; i < this.size(); ++i) {
             if(this.list.get(i).getEmail().equals(email)){
-                this.list.remove(i);
+                this.list.removeIndex(i);
             }
         }
     }
     
-    public void update(String email, int point){
-        for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getEmail().equals(email)){
-                Player data = list.remove(i);
+    public void update(String email, long point){
+        for (int i = 0; i < this.size(); ++i) {
+            if(this.list.get(i).getEmail().equals(email)){
+                Player data = list.removeIndex(i);
                 data.setPoint(point);
-                addPlayer(data);
+                insert(data);
             }
         }
     }
     
     public long get(String email){
-        for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getEmail().equals(email)){
+        for (int i = 0; i < this.size(); ++i) {
+            if(this.list.get(i).getEmail().equals(email)){
                 return list.get(i).getPoint();
             }
         }
-        return 0;
+        return -1L;
     }
     
     public Player topPlayer(){
-        return list.get(0);
+        return (Player)this.list.getFirst();
     }
     
     public Player deteleTop(){
-        return list.remove(0);
+        return (Player)this.list.removeFirst();
     }
 }
