@@ -9,8 +9,7 @@ package LAB1_2;
  *
  * @author Admin
  */
-public interface Stack<E> {
-
+public interface Stack {
     /**
      * Return the number of elements in the stack.
      * @return 
@@ -27,17 +26,17 @@ public interface Stack<E> {
      * Check the element at the top of the stack.
      * @return
      */
-    public E top();
+    public String top();
 
     /**
      * Add an element at the beginning of the stack.
      * @param e
      */
-    public void push(E e);
+    public void push(String tag);
     
     /**
      * Remove the top element from the stack.
      * @return 
      */
-    public E pop();
+    public String pop();
 }
