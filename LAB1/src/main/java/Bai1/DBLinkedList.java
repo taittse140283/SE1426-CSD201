@@ -84,6 +84,9 @@ public class DBLinkedList<E> {
         size--;
         return node.getElement();
         }
+    public void addFirst(E e){
+        addBetween(e,header,header.getNext());
+    }
     }
 }    
     
