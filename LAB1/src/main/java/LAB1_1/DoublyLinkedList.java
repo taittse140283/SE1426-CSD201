@@ -144,6 +144,7 @@ public class DoublyLinkedList<E>{
             Node<E> temp = current.next;
             current.next = new Node<E>(e);
             (current.next).next = temp;
+            size++;
         }
     }
     
