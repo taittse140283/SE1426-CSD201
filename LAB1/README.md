@@ -1,52 +1,19 @@
-## CSD201 - LAB 1
+## SE140290
 
-### Hiện thực 2 bài toán sau:
+### Some note for project (LAB1):
+ -First, when I heard about the topic of the project, I think it very hard for me because because I don't know much about linkedlist and don't know where i should start.
+ -So lucky, when I didn't know what to do, some of my friends helped me find a solution. and I knew where to start.
+ - And finally I completed it ^^.
 
-1. Một mobile game có **hơn 5 triệu** người chơi, thông tin cần lưu trữ người chơi bao gồm email và point (điểm số), hãy **tự xây dựng** một cấu trúc dữ liệu (thông qua các kiến thức đã học) giúp thực hiện các chức năng quản lý thông tin người chơi **một cách hiệu quả**. Các chức năng cần để quản lý thông tin người chơi bao gồm: thêm (add), xóa (delete), sửa (update) và tìm kiếm (get). Yêu cầu độ phức tạp của giải thuật khi thực hiện các chức năng phải đạt **yêu cầu tối thiểu** là **O(N)**, riêng với chức năng tìm kiếm và xóa ứng với **người chơi có điểm số cao nhất** có độ phức tạp là **O(1)**.
-2. Xây dựng một cấu trúc dữ liệu **stack dựa trên array** với các thao tác **pop** và **push** có độ phức tạp là **O(1)**. Sử dụng cấu trúc stack vừa được xây dựng truy xuất đến một website bất kỳ (ví dụ: vnexpress.net) và **thống kê số html TAG** được sử dụng trong website đó. Dữ liệu thống kê sẽ được ghi vào file CSV với thứ tự các tag tương ứng tần suất xuất hiện của nó từ cao đến thấp.
+### Some problems when doing the project :
+LAB1_1:
+ - Teacher suggest class use DoublyLinkedList and PriorityQueue to do. And I find out the ways to use them effectively.
+ - The first problem I encountered was in the class add() and after consulting in many places, I also solved my problem.
+ - After that class detele I think this part is quite easy and most people know how to solve it .The next problem I encountered was that lass update at the beginning everything went smoothly until I updated the first and last player,and then I have found a way to solve them . I think this is the part where I solved it best in lab1_1.
+ LAB1_2:
+- When I first started I knew where to start but it wasn't as easy as I thought and I think most people find LAB1_2 more difficult than LAB1_1
+- It took me 2 days to find a solution when I was stuck in comparing tag .
+Problem about CLI:
+- Because this is the first time, I still do not know how to do CLI so I consulted from my classmates in part because it is almost time for me to try to complete this part in the next LAB. ^^
 
-### Các yêu cầu trong LAB
-
-1. Chương trình được viết trên mô hình OOP. Học viên được yêu cầu sử dụng try, catch và exception để handle Error. 
-
-2. Sử dụng công nghệ GIT để quản mã nguồn, ứng với mỗi hàm được viết mới hoặc cập nhật, học viên được yêu cầu phải thực hiện commit. Mã nguồn phải được xuất bản trên Github và lịch sử phát triển của mã nguồn phải thể hiện được quá trình liên tục.
-
-3. Với mỗi phương thức (method) và lớp (class), học viên đều buộc phải viết ghi chú dưới dạng chuẩn Java Doc - HTML (xem thêm tại https://www.tutorialspoint.com/java/java_documentation.htm). Các tag yêu cầu bao gồm: param, returns, exception và phần summary.
-
-4. Ứng dụng cung cấp giao diện dòng lệnh cơ bản CLI, hổ trợ các cú pháp sau:
-   ```
-   # Hướng dẫn sử dụng
-   ./lab1 -h
-   Help: 
-   ./lab1 1 -r <<user_CSV_file>>: Problem 1, read the user csv file
-   ./lab1 1 -a <<email>> <<point>>: Problem 1, add a new user into the data strucutre
-   ./lab1 1 -d <<email>>: Problem 1, delete a user in the data strucutre
-   ./lab1 1 -u <<email>> <<new_point>>: Problem 1, update new point for user in the data strucutre
-   ./lab1 1 -g <<email>>: Problem 1, get the point of user from the data strucutre
-   ./lab1 1 -t: Problem 1, get the point of the top user from the data strucutre
-   ./lab1 1 -dt: Problem 1, delete the top user from the data strucutre
-   ./lab1 1 -s <<new_user_CSV_file>>: Problem 1, save the data strucutre into csv file
-   ./lab1 2 <<URL-of-website>> <<output-CSV-file>>: Problem 2, read html info from a URL, save all tag information into the CSV output file
-   ```
-5. Chuẩn đầu vào và đầu ra của ứng dụng
-   
-   ```
-   # USER CSV FILE
-   Email, Point
-   abcv203@gmail.com, 250
-   febgulinda8@outlook.com, 30
-   thinkerabc@yahoo.com, 356
-   ...
-
-   # OUTPUT CSV FILE
-   Tag, Frequence
-   div, 523
-   img, 34
-   li, 12
-   ...
-   ```
-6. Các ghi chú, tóm lược và  điểm nỗi bật của trong project của học viên được trình bày trong file README.md bằng ngôn ngữ markdown.
-
-**Deadline:** 23h00 14/06/2020. Sau deadline mọi commit sẽ không được xem xét. 
-
-**NOTE**: Các yêu cầu 1 và 6 là tiên quyết, giảng viên sẽ loại những dự án không đảm bảo các yêu cầu này. Điểm số xác định bằng số testcase mà ứng dụng của học viên có thể vượt qua. Tất cả các source code được phần mềm phân tích là sao chép sẽ bị cấm thi. 
+ 
