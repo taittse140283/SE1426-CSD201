@@ -25,23 +25,14 @@ public class ContentWebsite {
 
         try {
             url = new URL(link);//create a url object from link
-            HttpURLConnection http = (HttpURLConnection)url.openConnection();
-            if(http.getResponseCode()==200)//standard success response code
-            {
+
                 isr=new InputStreamReader(url.openStream());//openStream() method get a stream from which you can read the contents of the URL
                 br=new BufferedReader(isr);//create buffer to get content of isr
                 while(br.ready())//check EOF
                 {
-                    String s=br.readLine();//read line
-                    content+=s+"\n";//concat string
+                    String s = br.readLine();//read line
+                    content += s + "\n";//concat string
                 }
-            }
-            else
-            {
-                System.out.println("Error: Your url is not responded successfully");
-            }
-
-
         } catch(MalformedURLException e)
         {
             System.out.println("Error: URL is not valid");

@@ -23,7 +23,7 @@ public class HTMLTagManager {
                 {
                     if (!tag.contains(" ") && !html.contains(tag.replace("<", "</")))//check for unpaired tag like <br>
                     {
-                        if (!tag.matches("<[A-Za-z0-9!]+>"))//if tag contains special character except ! then pass it and continue the loop
+                        if (!tag.matches("<[A-Za-z0-9]+>"))//if tag contains special character then pass it and continue the loop
                         {
                             j = html.indexOf('<', k + 1);
                             continue;
@@ -34,7 +34,7 @@ public class HTMLTagManager {
                     } else if (tag.contains(" ")) {
                         String[] validTag = tag.split(" ", 2);//spit into 2 string like <tag and abcxyz>
                         tag = validTag[0] + ">";//concat string to it like <tag>
-                        if (!tag.matches("<[A-Za-z0-9!]+>"))//if tag contains special character except ! then pass it and continue the loop
+                        if (!tag.matches("<[A-Za-z0-9]+>"))//if tag contains special character then pass it and continue the loop
                         {
                             j = html.indexOf('<', k + 1);
                             continue;

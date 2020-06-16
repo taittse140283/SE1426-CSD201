@@ -27,7 +27,7 @@ public class CSV {
                 if(arr.length==2){
                     Player player=new Player();//create new player
                     player.setEmail(arr[0]);
-                    player.setPoint(Integer.parseInt(arr[1].trim()));
+                    player.setPoint(Long.parseLong(arr[1].trim()));
                     DDLNode<Player> newNode=new DDLNode();//create node to add into list
                     newNode.setInfo(player);
                     queue.add(newNode);
@@ -73,7 +73,7 @@ public class CSV {
             PrintWriter pw = null;
             try {
                 pw = new PrintWriter(f);
-                pw.println("Email, Point");
+                pw.println("Email,Point");
                 DDLNode<Player> temp = queue.getList().getHeader();//get the header of the list
                 while (temp != null)//traverse the list
                 {
